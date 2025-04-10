@@ -1,0 +1,10 @@
+using "platforms/cpus/stm32l443rct6.repl"
+
+UserButton: Miscellaneous.Button @ gpioPortA
+    -> gpioPortA@0
+
+UserLED: Miscellaneous.LED @ gpioPortD
+
+gpioPortD:
+    12 -> UserLED@0
+   

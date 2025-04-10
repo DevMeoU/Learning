@@ -1,61 +1,332 @@
 #include <stdio.h>
 #include <stdint.h>
 
-// Stack memory
-#define SIZE_TASK_STACK			(5*1024)
-#define SIZE_SCHED_STACK		(5*1024)
+// -----------------------------
+// Memory and Stack Definitions
+// -----------------------------
+#define SIZE_TASK_STACK         (5*1024)  // Stack size for each task
+#define SIZE_SCHED_STACK        (5*1024)  // Stack size for scheduler
 
-#define SRAM_START				(0x20000000U)
-#define SIZE_SRAM				(64*1024) // 64kB SRAM
-#define SRAM_END				(SRAM_START + SIZE_SRAM)
+#define SRAM_START              (0x20000000U)  // Start address of SRAM
+#define SIZE_SRAM               (64*1024)      // 64kB SRAM
+#define SRAM_END                (SRAM_START + SIZE_SRAM)
 
-#define T1_STACK_START		(SRAM_END)
-#define T2_STACK_START		(SRAM_END - (1*SIZE_TASK_STACK))
-#define T3_STACK_START		(SRAM_END - (2*SIZE_TASK_STACK))
-#define T4_STACK_START		(SRAM_END - (3*SIZE_TASK_STACK))
-#define SCHED_STACK_START	(SRAM_END - (4*SIZE_TASK_STACK))
+#define T1_STACK_START          (SRAM_END)
+#define T2_STACK_START          (SRAM_END - (1*SIZE_TASK_STACK))
+#define T3_STACK_START          (SRAM_END - (2*SIZE_TASK_STACK))
+#define T4_STACK_START          (SRAM_END - (3*SIZE_TASK_STACK))
+#define SCHED_STACK_START       (SRAM_END - (4*SIZE_TASK_STACK))
 
+// -----------------------------
+// System Timer Configuration
+// -----------------------------
+#define TICK_HZ                 (1000)        // 1ms tick
+#define HSI_FREQ                (16000000)    // 16MHz HSI
+#define SYSTICK_TIMER_CLK       (HSI_FREQ)
 
-// Task handle function
+// -----------------------------
+// Task and Scheduler Definitions
+// -----------------------------
+#define MAX_STACKS              (4)           // Number of task stacks
+
+// Task stack pointers and handlers
+uint32_t psp_of_stack[MAX_STACKS] = {T1_STACK_START, T2_STACK_START, T3_STACK_START, T4_STACK_START};
+uint32_t task_handlers[MAX_STACKS];
+uint32_t current_task = 0; // Current task index
+
+// -----------------------------
+// Register Definitions
+// -----------------------------
+#define RCC_BASE                (0x40021000U) // Correct base address of RCC for STM32L433
+#define GPIOA_BASE              (0x40020000U) // Base address of GPIOA (unchanged)
+
+#define RCC_AHB1ENR             (*(volatile uint32_t *)(RCC_BASE + 0x48U)) // RCC AHB1ENR for STM32L433
+#define GPIOA_MODER             (*(volatile uint32_t *)(GPIOA_BASE + 0x00U)) // GPIO port mode register
+#define GPIOA_OTYPER            (*(volatile uint32_t *)(GPIOA_BASE + 0x04U)) // GPIO port output type register
+#define GPIOA_OSPEEDR           (*(volatile uint32_t *)(GPIOA_BASE + 0x08U)) // GPIO port output speed register
+#define GPIOA_PUPDR             (*(volatile uint32_t *)(GPIOA_BASE + 0x0CU)) // GPIO port pull-up/pull-down register
+#define GPIOA_ODR               (*(volatile uint32_t *)(GPIOA_BASE + 0x14U)) // GPIO port output data register
+
+// -----------------------------
+// Function Prototypes
+// -----------------------------
 void task1_handle(void);
 void task2_handle(void);
 void task3_handle(void);
 void task4_handle(void);
+void init_systick_timer(uint32_t tick_hz);
+__attribute__((naked)) void init_scheduler_task(uint32_t sched_top_of_stack);
+void init_task_stack(void);
+void enable_rprocessor_exceptions(void);
+uint32_t get_psp(void);
+void save_psp_value(uint32_t psp_value);
+__attribute__((naked)) void switch_sp_to_psp(void);
+void update_next_task(void);
+void init_led_gpio(void); // Initialize GPIO for LED
 
+// -----------------------------
+// Main Function
+// -----------------------------
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+    enable_rprocessor_exceptions(); // Enable processor exceptions (if needed)
+    init_scheduler_task(SCHED_STACK_START); // Initialize scheduler task stack pointer
+
+    // Assign task handlers
+    task_handlers[0] = (uint32_t)task1_handle;
+    task_handlers[1] = (uint32_t)task2_handle;
+    task_handlers[2] = (uint32_t)task3_handle;
+    task_handlers[3] = (uint32_t)task4_handle;
+
+    init_task_stack(); // Initialize task stacks
+
+    // Initialize SysTick timer for 1ms tick
+    init_systick_timer(TICK_HZ);
+
+    // Initialize GPIO for LED
+    init_led_gpio();
+
+    // Switch to PSP (Process Stack Pointer) mode
+    switch_sp_to_psp();
+
+    // Start the first task
+    task1_handle();
+
+    // Infinite loop
+    for (;;);
 }
 
+// -----------------------------
+// LED GPIO Initialization
+// -----------------------------
+// Configure PA5 as output for LED
+void init_led_gpio(void)
+{
+    // Enable GPIOA clock
+    RCC_AHB1ENR |= (1U << 0); // Set bit 0 to enable GPIOA clock
+
+    // Set PA5 as output mode
+    GPIOA_MODER &= ~(3U << (5 * 2)); // Clear mode bits for PA5
+    GPIOA_MODER |= (1U << (5 * 2));  // Set PA5 to output mode
+
+    // Set PA5 output type to push-pull
+    GPIOA_OTYPER &= ~(1U << 5);
+
+    // Set PA5 speed to high
+    GPIOA_OSPEEDR |= (3U << (5 * 2));
+
+    // Disable pull-up/pull-down for PA5
+    GPIOA_PUPDR &= ~(3U << (5 * 2));
+}
+
+// -----------------------------
+// Task Handlers
+// -----------------------------
+// Task 1: Blink LED
 void task1_handle(void)
 {
-	while(1)
-	{
-		printf("Task 1\n");
-	}
+    while (1)
+    {
+        // Turn on LED
+        GPIOA_ODR |= (1U << 5);
+
+        // Delay for 500ms
+        for (volatile uint32_t i = 0; i < 500000; i++);
+
+        // Turn off LED
+        GPIOA_ODR &= ~(1U << 5);
+
+        // Delay for 500ms
+        for (volatile uint32_t i = 0; i < 500000; i++);
+    }
 }
 
 void task2_handle(void)
 {
-	while(1)
-	{
-		printf("Task 2\n");
-	}
+    while (1)
+    {
+        printf("Task 2\n");
+    }
 }
 
 void task3_handle(void)
 {
-	while(1)
-	{
-		printf("Task 3\n");
-	}
+    while (1)
+    {
+        printf("Task 3\n");
+    }
 }
 
 void task4_handle(void)
 {
-	while(1)
-	{
-		printf("Task 4\n");
-	}
+    while (1)
+    {
+        printf("Task 4\n");
+    }
+}
+
+// -----------------------------
+// SysTick Timer Initialization
+// -----------------------------
+void init_systick_timer(uint32_t tick_hz)
+{
+    uint32_t *pSRVR = (uint32_t *)0xE000E014; // SysTick Reload Value Register
+    uint32_t *pSCSR = (uint32_t *)0xE000E010; // SysTick Control and Status Register
+
+    // Configure SysTick timer for 1ms tick
+    uint32_t reload_value = (SYSTICK_TIMER_CLK / tick_hz) - 1;
+    *pSCSR &= ~0x00FFFFFF; // Clear current value register
+    *pSRVR = reload_value; // Set reload value
+    *pSCSR = 0x00000007;   // Enable SysTick timer, use processor clock, enable interrupt
+
+    // Enable SysTick interrupt in NVIC
+    uint32_t *pNVIC_ISER = (uint32_t *)0xE000E100; // NVIC Interrupt Set-Enable Register
+    *pNVIC_ISER |= (1 << 15); // Enable SysTick interrupt (interrupt number 15)
+}
+
+// -----------------------------
+// Scheduler Initialization
+// -----------------------------
+__attribute__((naked)) void init_scheduler_task(uint32_t sched_top_of_stack)
+{
+    __asm volatile("MSR MSP, %0" : : "r" (sched_top_of_stack)); // Set MSP to scheduler stack
+    __asm volatile("BX LR"); // Return
+}
+
+// -----------------------------
+// Task Stack Initialization
+// -----------------------------
+void init_task_stack(void)
+{
+    uint32_t *pPSP;
+    for (int i = 0; i < MAX_STACKS; i++)
+    {
+        pPSP = (uint32_t *)psp_of_stack[i]; // Get stack pointer for the task
+        *(--pPSP) = 0x01000000;            // xPSR: Thumb bit set
+        *(--pPSP) = (uint32_t)task_handlers[i]; // PC: Task handler function address
+        *(--pPSP) = 0xFFFFFFFD;            // LR: Return to thread mode with PSP
+        for (int j = 0; j < 13; j++)
+        {
+            *(--pPSP) = 0; // Initialize registers R0-R12 to 0
+        }
+        psp_of_stack[i] = (uint32_t)pPSP; // Update stack pointer
+    }
+}
+
+// -----------------------------
+// Exception Handlers
+// -----------------------------
+void enable_rprocessor_exceptions(void)
+{
+    uint32_t *pSHCSR = (uint32_t *)0xE000ED24; // System Handler Control and State Register
+    *pSHCSR |= (1 << 16) | (1 << 17) | (1 << 18); // Enable usage fault, bus fault, memory management fault
+}
+
+void HardFault_Handler(void)
+{
+    printf("Hard Fault occurred\n");
+    while (1);
+}
+
+void MemManage_Handler(void)
+{
+    printf("Memory Management Fault occurred\n");
+    while (1);
+}
+
+void BusFault_Handler(void)
+{
+    printf("Bus Fault occurred\n");
+    while (1);
+}
+
+void UsageFault_Handler(void)
+{
+    printf("Usage Fault occurred\n");
+    while (1);
+}
+
+// -----------------------------
+// PSP Management
+// -----------------------------
+uint32_t get_psp(void)
+{
+    return psp_of_stack[current_task]; // Return current task's PSP
+}
+
+void save_psp_value(uint32_t psp_value)
+{
+    psp_of_stack[current_task] = psp_value; // Save PSP value for current task
+}
+
+void update_next_task(void)
+{
+    current_task++; // Increment task index
+    current_task %= MAX_STACKS; // Wrap around if it exceeds the number of tasks
+}
+
+// -----------------------------
+// Stack Pointer Switching
+// -----------------------------
+__attribute__((naked)) void switch_sp_to_psp(void)
+{
+    __asm volatile("PUSH {LR}"); // Save LR
+    __asm volatile("BL get_psp"); // Get PSP for current task
+    __asm volatile("MSR PSP, R0"); // Set PSP
+    __asm volatile("POP {LR}"); // Restore LR
+    __asm volatile("MOV R0, #0x02"); // Set CONTROL register to use PSP
+    __asm volatile("MSR CONTROL, R0");
+    __asm volatile("BX LR"); // Return
+}
+
+// -----------------------------
+// SysTick Handler
+// -----------------------------
+// This function is the SysTick interrupt handler. It is responsible for saving
+// the current task's context, switching to the next task, and restoring the
+// context of the next task.
+// Hàm này là trình xử lý ngắt SysTick. Nó chịu trách nhiệm lưu trạng thái
+// của task hiện tại, chuyển sang task tiếp theo và khôi phục trạng thái
+// của task tiếp theo.
+__attribute__((naked)) void SysTick_Handler(void)
+{
+    // Save the current task's Process Stack Pointer (PSP)
+    // Lưu giá trị PSP (Process Stack Pointer) của task hiện tại
+    __asm volatile("MRS R0, PSP"); // Move PSP to R0 (current task's stack pointer)
+
+    // Save the context of the current task (R4-R11 registers)
+    // Lưu trạng thái của task hiện tại (các thanh ghi R4-R11)
+    __asm volatile("STMDB R0!, {R4-R11}"); // Store multiple registers (R4-R11) and decrement PSP
+
+    // Save the Link Register (LR) to the stack
+    // Lưu giá trị của thanh ghi LR vào stack
+    __asm volatile("PUSH {LR}"); // Push LR onto the stack
+
+    // Call save_psp_value to save the updated PSP value for the current task
+    // Gọi hàm save_psp_value để lưu giá trị PSP đã cập nhật của task hiện tại
+    __asm volatile("BL save_psp_value"); // Branch to save_psp_value
+
+    // Call update_next_task to determine the next task to run
+    // Gọi hàm update_next_task để xác định task tiếp theo cần chạy
+    __asm volatile("BL update_next_task"); // Branch to update_next_task
+
+    // Get the PSP value for the next task
+    // Lấy giá trị PSP của task tiếp theo
+    __asm volatile("BL get_psp"); // Branch to get_psp (returns PSP of the next task)
+
+    // Restore the context of the next task (R4-R11 registers)
+    // Khôi phục trạng thái của task tiếp theo (các thanh ghi R4-R11)
+    __asm volatile("LDMIA R0!, {R4-R11}"); // Load multiple registers (R4-R11) and increment PSP
+
+    // Set the PSP to the value of the next task
+    // Thiết lập PSP với giá trị của task tiếp theo
+    __asm volatile("MSR PSP, R0"); // Move R0 (next task's PSP) to PSP
+
+    // Restore the Link Register (LR) from the stack
+    // Khôi phục giá trị của thanh ghi LR từ stack
+    __asm volatile("POP {LR}"); // Pop LR from the stack
+
+    // Return to the next task
+    // Trả quyền điều khiển cho task tiếp theo
+    __asm volatile("BX LR"); // Branch to the address in LR
 }
