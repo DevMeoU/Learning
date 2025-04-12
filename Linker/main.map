@@ -1,0 +1,1067 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o (exit)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o) (__stdio_exit_handler)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o) (_fwalk_sglue)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+                              main.o (puts)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o) (__sread)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o (memset)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o) (_close_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+                              syscalls.o (errno)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o) (_impure_ptr)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o) (_lseek_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o) (_read_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o) (_write_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o (__libc_init_array)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o) (__retarget_lock_init_recursive)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o) (strlen)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o) (__call_exitprocs)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o) (atexit)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o) (_free_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o) (_malloc_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o) (__malloc_lock)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o) (_fclose_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o) (__sflush_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o) (__sfvwrite_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o) (__swsetup_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o) (memmove)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o) (_sbrk_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o) (__libc_fini_array)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o) (sysconf)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o) (memchr)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o) (memcpy)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o) (__register_exitproc)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o) (_realloc_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o) (__smakebuf_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o) (_fstat_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o) (_isatty_r)
+C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+                              C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o) (__errno)
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+LOAD main.o
+LOAD syscalls.o
+START GROUP
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a
+END GROUP
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+LOAD C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+                [!provide]                        PROVIDE (__executable_start = SEGMENT_START ("text-segment", 0x8000))
+                0x00008000                        . = SEGMENT_START ("text-segment", 0x8000)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn        0x00008000        0x0
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+                [!provide]                        PROVIDE (__rel_iplt_start = .)
+ *(.rel.iplt)
+ .rel.iplt      0x00008000        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+                [!provide]                        PROVIDE (__rel_iplt_end = .)
+
+.rela.dyn       0x00008000        0x0
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+                [!provide]                        PROVIDE (__rela_iplt_start = .)
+ *(.rela.iplt)
+                [!provide]                        PROVIDE (__rela_iplt_end = .)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init           0x00008000        0xc
+ *(SORT_NONE(.init))
+ .init          0x00008000        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x00008000                _init
+ .init          0x00008004        0x8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+
+.plt
+ *(.plt)
+
+.iplt           0x0000800c        0x0
+ *(.iplt)
+ .iplt          0x0000800c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+
+.gnu.sgstubs
+ *(.gnu.sgstubs*)
+
+.text           0x00008040     0x2380
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ .text.exit     0x00008040       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+                0x00008040                exit
+ *(.text.startup .text.startup.*)
+ .text.startup.register_fini
+                0x0000805c       0x14 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ *(.text.hot .text.hot.*)
+ *(SORT_BY_NAME(.text.sorted.*))
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x00008070        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+ .text          0x00008070        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .text.deregister_tm_clones
+                0x00008070       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .text.register_tm_clones
+                0x0000808c       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .text.__do_global_dtors_aux
+                0x000080b0       0x28 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .text.frame_dummy
+                0x000080d8       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .text          0x000080fc       0x7c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+                0x000080fc                _stack_init
+                0x00008104                _start
+                0x00008104                _mainCRTStartup
+ .text          0x00008178       0x4c main.o
+                0x00008178                main
+ .text          0x000081c4      0x254 syscalls.o
+                0x000081c4                initialise_monitor_handles
+                0x000081d2                _getpid
+                0x000081e2                _kill
+                0x00008208                _exit
+                0x0000821c                _read
+                0x00008236                _write
+                0x00008250                _close
+                0x00008268                _fstat
+                0x00008288                _isatty
+                0x0000829e                _lseek
+                0x000082b8                _open
+                0x000082d4                _wait
+                0x000082f8                _unlink
+                0x0000831c                _times
+                0x00008334                _stat
+                0x00008354                _link
+                0x00008378                _fork
+                0x00008394                _execve
+                0x000083bc                _sbrk
+ .text          0x00008418        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+ .text          0x00008418        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .text.stdio_exit_handler
+                0x00008418       0x18 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .text.cleanup_stdio
+                0x00008430       0x40 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .text.__fp_lock
+                0x00008470       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .text.__fp_unlock
+                0x0000848c       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .text.global_stdio_init.part.0
+                0x000084a8       0xf0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .text.__sfp    0x00008598       0xc0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x00008598                __sfp
+ .text.__sinit  0x00008658       0x3c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x00008658                __sinit
+ .text.__sfp_lock_acquire
+                0x00008694        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x00008694                __sfp_lock_acquire
+ .text.__sfp_lock_release
+                0x000086a0        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x000086a0                __sfp_lock_release
+ .text.__fp_lock_all
+                0x000086ac       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x000086ac                __fp_lock_all
+ .text.__fp_unlock_all
+                0x000086d0       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x000086d0                __fp_unlock_all
+ .text          0x000086f4        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+ .text._fwalk_sglue
+                0x000086f4       0x44 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+                0x000086f4                _fwalk_sglue
+ .text          0x00008738        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+ .text._puts_r  0x00008738       0x9c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+                0x00008738                _puts_r
+ .text.puts     0x000087d4       0x10 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+                0x000087d4                puts
+ .text          0x000087e4        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+ .text.__sread  0x000087e4       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+                0x000087e4                __sread
+ .text.__seofread
+                0x00008808        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+                0x00008808                __seofread
+ .text.__swrite
+                0x0000880c       0x40 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+                0x0000880c                __swrite
+ .text.__sseek  0x0000884c       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+                0x0000884c                __sseek
+ .text.__sclose
+                0x00008870        0x8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+                0x00008870                __sclose
+ .text          0x00008878        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+ .text.memset   0x00008878       0xa4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+                0x00008878                memset
+ .text          0x0000891c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+ .text._close_r
+                0x0000891c       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+                0x0000891c                _close_r
+ .text          0x00008940        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+ .text._reclaim_reent
+                0x00008940       0x6c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+                0x00008940                _reclaim_reent
+ .text          0x000089ac        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+ .text          0x000089ac        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+ .text._lseek_r
+                0x000089ac       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+                0x000089ac                _lseek_r
+ .text          0x000089d8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+ .text._read_r  0x000089d8       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+                0x000089d8                _read_r
+ .text          0x00008a04        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+ .text._write_r
+                0x00008a04       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+                0x00008a04                _write_r
+ .text          0x00008a30        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+ .text.__libc_init_array
+                0x00008a30       0x50 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+                0x00008a30                __libc_init_array
+ .text          0x00008a80        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+ .text.__retarget_lock_init
+                0x00008a80        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a80                __retarget_lock_init
+ .text.__retarget_lock_init_recursive
+                0x00008a84        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a84                __retarget_lock_init_recursive
+ .text.__retarget_lock_close
+                0x00008a88        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a88                __retarget_lock_close
+ .text.__retarget_lock_close_recursive
+                0x00008a8c        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a8c                __retarget_lock_close_recursive
+ .text.__retarget_lock_acquire
+                0x00008a90        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a90                __retarget_lock_acquire
+ .text.__retarget_lock_acquire_recursive
+                0x00008a94        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a94                __retarget_lock_acquire_recursive
+ .text.__retarget_lock_try_acquire
+                0x00008a98        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a98                __retarget_lock_try_acquire
+ .text.__retarget_lock_try_acquire_recursive
+                0x00008a9c        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008a9c                __retarget_lock_try_acquire_recursive
+ .text.__retarget_lock_release
+                0x00008aa0        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008aa0                __retarget_lock_release
+ .text.__retarget_lock_release_recursive
+                0x00008aa4        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x00008aa4                __retarget_lock_release_recursive
+ *fill*         0x00008aa8       0x18 
+ .text          0x00008ac0       0xd8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+                0x00008ac0                strlen
+ .text          0x00008b98        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ .text.__call_exitprocs
+                0x00008b98       0xc0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+                0x00008b98                __call_exitprocs
+ .text          0x00008c58        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+ .text.atexit   0x00008c58        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+                0x00008c58                atexit
+ .text          0x00008c64        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+ .text._malloc_trim_r
+                0x00008c64       0xb8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+                0x00008c64                _malloc_trim_r
+ .text._free_r  0x00008d1c      0x1f8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+                0x00008d1c                _free_r
+ .text          0x00008f14        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+ .text._malloc_r
+                0x00008f14      0x564 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x00008f14                _malloc_r
+ .text          0x00009478        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+ .text.__malloc_lock
+                0x00009478        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+                0x00009478                __malloc_lock
+ .text.__malloc_unlock
+                0x00009484        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+                0x00009484                __malloc_unlock
+ .text          0x00009490        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+ .text._fclose_r
+                0x00009490       0xc0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+                0x00009490                _fclose_r
+ .text.fclose   0x00009550       0x10 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+                0x00009550                fclose
+ .text          0x00009560        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+ .text.__sflush_r
+                0x00009560      0x138 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+                0x00009560                __sflush_r
+ .text._fflush_r
+                0x00009698       0x54 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+                0x00009698                _fflush_r
+ .text.fflush   0x000096ec       0x74 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+                0x000096ec                fflush
+ .text          0x00009760        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+ .text.__sfvwrite_r
+                0x00009760      0x300 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+                0x00009760                __sfvwrite_r
+ .text          0x00009a60        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+ .text.__swsetup_r
+                0x00009a60       0xc4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+                0x00009a60                __swsetup_r
+ .text          0x00009b24        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+ .text.memmove  0x00009b24      0x100 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+                0x00009b24                memmove
+ .text          0x00009c24        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+ .text._sbrk_r  0x00009c24       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+                0x00009c24                _sbrk_r
+ .text          0x00009c48        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+ .text.__libc_fini_array
+                0x00009c48       0x28 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+                0x00009c48                __libc_fini_array
+ .text          0x00009c70        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+ .text.sysconf  0x00009c70       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+                0x00009c70                sysconf
+ *fill*         0x00009c8c        0x4 
+ .text          0x00009c90       0xa0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+                0x00009c90                memchr
+ .text          0x00009d30      0x134 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+                0x00009d30                memcpy
+ .text          0x00009e64        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+ .text.__register_exitproc
+                0x00009e64       0x80 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+                0x00009e64                __register_exitproc
+ .text          0x00009ee4        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+ .text._realloc_r
+                0x00009ee4      0x344 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+                0x00009ee4                _realloc_r
+ .text          0x0000a228        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+ .text.__smakebuf_r
+                0x0000a228       0xdc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+                0x0000a228                __smakebuf_r
+ .text.__swhatbuf_r
+                0x0000a304       0x60 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+                0x0000a304                __swhatbuf_r
+ .text          0x0000a364        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+ .text._fstat_r
+                0x0000a364       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+                0x0000a364                _fstat_r
+ .text          0x0000a390        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+ .text._isatty_r
+                0x0000a390       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+                0x0000a390                _isatty_r
+ .text          0x0000a3b4        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+ .text.__errno  0x0000a3b4        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+                0x0000a3b4                __errno
+ .text          0x0000a3c0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+ .text          0x0000a3c0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x0000a3c0        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x0000a3c0        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x0000a3c0        0x0 linker stubs
+ *(.v4_bx)
+ .v4_bx         0x0000a3c0        0x0 linker stubs
+
+.fini           0x0000a3c0        0xc
+ *(SORT_NONE(.fini))
+ .fini          0x0000a3c0        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x0000a3c0                _fini
+ .fini          0x0000a3c4        0x8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.rodata         0x0000a3cc       0x88
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.all_implied_fbits
+                0x0000a3cc       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .rodata        0x0000a3f0       0x3c main.o
+                0x0000a3f0                c
+ .rodata._puts_r.str1.4
+                0x0000a42c        0x2 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+ *fill*         0x0000a42e        0x2 
+ .rodata.all_implied_fbits
+                0x0000a430       0x24 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+
+.rodata1
+ *(.rodata1)
+
+.ARM.extab      0x0000a454        0x0
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ .ARM.extab     0x0000a454        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+ .ARM.extab     0x0000a454        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+ .ARM.extab     0x0000a454        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+ .ARM.extab     0x0000a454        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+
+.ARM.exidx      0x0000a454        0x8
+                [!provide]                        PROVIDE (__exidx_start = .)
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx     0x0000a454        0x8 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+                                 0x10 (size before relaxing)
+ .ARM.exidx     0x0000a45c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+                                  0x8 (size before relaxing)
+ .ARM.exidx     0x0000a45c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+                                  0x8 (size before relaxing)
+ .ARM.exidx     0x0000a45c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+                                  0x8 (size before relaxing)
+                [!provide]                        PROVIDE (__exidx_end = .)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+ *(.eh_frame_entry .eh_frame_entry.*)
+
+.eh_frame       0x0000a45c       0x8c
+ *(.eh_frame)
+ .eh_frame      0x0000a45c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x0000a45c       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+ .eh_frame      0x0000a490       0x3c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+                                 0x50 (size before relaxing)
+ .eh_frame      0x0000a4cc       0x18 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+                                 0x2c (size before relaxing)
+ .eh_frame      0x0000a4e4        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+ *(.eh_frame.*)
+
+.sframe
+ *(.sframe)
+ *(.sframe.*)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges*)
+                0x0000b4e8                        . = (ALIGN (CONSTANT (MAXPAGESIZE)) + (. & (CONSTANT (MAXPAGESIZE) - 0x1)))
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.sframe
+ *(.sframe)
+ *(.sframe.*)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges*)
+
+.tdata          0x0000b4e8        0x0
+                [!provide]                        PROVIDE (__tdata_start = .)
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x0000b4e8        0x0
+                0x0000b4e8                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                0x0000b4e8                        PROVIDE (__preinit_array_end = .)
+
+.init_array     0x0000b4e8        0x8
+                0x0000b4e8                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ .init_array.00000
+                0x0000b4e8        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+ .init_array    0x0000b4ec        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0000b4f0                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x0000b4f0        0x4
+                0x0000b4f0                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+ .fini_array    0x0000b4f0        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0000b4f4                        PROVIDE (__fini_array_end = .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.got            0x0000b4f4        0x0
+ *(.got.plt)
+ *(.igot.plt)
+ .igot.plt      0x0000b4f4        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ *(.got)
+ *(.igot)
+
+.data           0x0000b4f8      0x580
+                0x0000b4f8                        __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000b4f8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+ .data          0x0000b4f8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .data.__dso_handle
+                0x0000b4f8        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x0000b4f8                __dso_handle
+ .data          0x0000b4fc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+ .data          0x0000b4fc        0xc main.o
+                0x0000b4fc                b
+ .data          0x0000b508        0x4 syscalls.o
+                0x0000b508                environ
+ .data          0x0000b50c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+ .data          0x0000b50c        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .data.__sglue  0x0000b50c        0xc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x0000b50c                __sglue
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+ .data          0x0000b518        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+ .data._impure_ptr
+                0x0000b518        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+                0x0000b518                _impure_ptr
+ *fill*         0x0000b51c        0x4 
+ .data._impure_data
+                0x0000b520      0x140 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+                0x0000b520                _impure_data
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+ .data          0x0000b660        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ .data.__atexit_recursive_mutex
+                0x0000b660        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+                0x0000b660                __atexit_recursive_mutex
+ .data          0x0000b664        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+ .data          0x0000b664        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+ .data          0x0000b664        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+ .data.__malloc_sbrk_base
+                0x0000b664        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000b664                __malloc_sbrk_base
+ .data.__malloc_trim_threshold
+                0x0000b668        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000b668                __malloc_trim_threshold
+ *fill*         0x0000b66c        0x4 
+ .data.__malloc_av_
+                0x0000b670      0x408 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000b670                __malloc_av_
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+ .data          0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+
+.tm_clone_table
+                0x0000ba78        0x0
+ .tm_clone_table
+                0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .tm_clone_table
+                0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+
+.data1
+ *(.data1)
+                0x0000ba78                        _edata = .
+                [!provide]                        PROVIDE (edata = .)
+
+.persistent     0x0000ba78        0x0
+                [!provide]                        PROVIDE (__persistent_start = .)
+ *(.persistent .persistent.* .gnu.linkonce.p.*)
+                0x0000ba78                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__persistent_end = .)
+                0x0000ba78                        . = ALIGN (ALIGNOF (NEXT_SECTION))
+                0x0000ba78                        __bss_start = .
+                0x0000ba78                        __bss_start__ = .
+
+.bss            0x0000ba78      0x350
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+ .bss           0x0000ba78        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .bss.completed.1
+                0x0000ba78        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ *fill*         0x0000ba79        0x3 
+ .bss.object.0  0x0000ba7c       0x18 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .bss           0x0000ba94        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+ .bss           0x0000ba94        0x4 main.o
+                0x0000ba94                a
+ .bss           0x0000ba98        0x8 syscalls.o
+                0x0000ba98                __env
+ .bss           0x0000baa0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+ .bss           0x0000baa0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .bss.__sf      0x0000baa0      0x138 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x0000baa0                __sf
+ .bss.__stdio_exit_handler
+                0x0000bbd8        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+                0x0000bbd8                __stdio_exit_handler
+ .bss           0x0000bbdc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+ .bss           0x0000bbdc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+ .bss           0x0000bbdc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+ .bss           0x0000bbdc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+ .bss           0x0000bbdc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+ .bss           0x0000bbdc        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+ .bss.errno     0x0000bbdc        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+                0x0000bbdc                errno
+ .bss           0x0000bbe0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+ .bss           0x0000bbe0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+ .bss           0x0000bbe0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+ .bss           0x0000bbe0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+ .bss           0x0000bbe0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+ .bss           0x0000bbe0        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+ .bss.__lock___arc4random_mutex
+                0x0000bbe0        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbe0                __lock___arc4random_mutex
+ *fill*         0x0000bbe1        0x3 
+ .bss.__lock___dd_hash_mutex
+                0x0000bbe4        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbe4                __lock___dd_hash_mutex
+ *fill*         0x0000bbe5        0x3 
+ .bss.__lock___tz_mutex
+                0x0000bbe8        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbe8                __lock___tz_mutex
+ *fill*         0x0000bbe9        0x3 
+ .bss.__lock___env_recursive_mutex
+                0x0000bbec        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbec                __lock___env_recursive_mutex
+ *fill*         0x0000bbed        0x3 
+ .bss.__lock___malloc_recursive_mutex
+                0x0000bbf0        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbf0                __lock___malloc_recursive_mutex
+ *fill*         0x0000bbf1        0x3 
+ .bss.__lock___at_quick_exit_mutex
+                0x0000bbf4        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbf4                __lock___at_quick_exit_mutex
+ *fill*         0x0000bbf5        0x3 
+ .bss.__lock___atexit_recursive_mutex
+                0x0000bbf8        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbf8                __lock___atexit_recursive_mutex
+ *fill*         0x0000bbf9        0x3 
+ .bss.__lock___sfp_recursive_mutex
+                0x0000bbfc        0x1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+                0x0000bbfc                __lock___sfp_recursive_mutex
+ .bss           0x0000bbfd        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+ .bss           0x0000bbfd        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ *fill*         0x0000bbfd        0x3 
+ .bss.__atexit  0x0000bc00        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+                0x0000bc00                __atexit
+ .bss           0x0000bc04        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+ .bss           0x0000bc04        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+ .bss           0x0000bc04        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+ .bss.__malloc_current_mallinfo
+                0x0000bc04       0x28 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000bc04                __malloc_current_mallinfo
+ .bss.__malloc_max_total_mem
+                0x0000bc2c        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000bc2c                __malloc_max_total_mem
+ .bss.__malloc_max_sbrked_mem
+                0x0000bc30        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000bc30                __malloc_max_sbrked_mem
+ .bss.__malloc_top_pad
+                0x0000bc34        0x4 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+                0x0000bc34                __malloc_top_pad
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+ .bss           0x0000bc38        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+ .bss.__atexit0
+                0x0000bc38      0x190 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+                0x0000bc38                __atexit0
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+ .bss           0x0000bdc8        0x0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+ *(COMMON)
+                0x0000bdc8                        . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x0000bdc8                        _bss_end__ = .
+                0x0000bdc8                        __bss_end__ = .
+
+.noinit         0x0000bdc8        0x0
+                [!provide]                        PROVIDE (__noinit_start = .)
+ *(.noinit .noinit.* .gnu.linkonce.n.*)
+                0x0000bdc8                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__noinit_end = .)
+                0x0000bdc8                        . = ALIGN (0x4)
+                0x0000bdc8                        . = SEGMENT_START ("ldata-segment", .)
+                0x0000bdc8                        . = ALIGN (0x4)
+                0x0000bdc8                        __end__ = .
+                0x0000bdc8                        _end = .
+                0x0000bdc8                        PROVIDE (end = .)
+
+.stack          0x00080000        0x0
+                0x00080000                        _stack = .
+ *(.stack)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x45
+ *(.comment)
+ .comment       0x00000000       0x45 main.o
+                                 0x46 (size before relaxing)
+ .comment       0x00000045       0x46 syscalls.o
+
+.gnu.build.attributes
+ *(.gnu.build.attributes .gnu.build.attributes.*)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info .gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line .debug_line.* .debug_line_end)
+
+.debug_frame    0x00000000      0x938
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x28 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+ .debug_frame   0x00000028      0x13c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .debug_frame   0x00000164       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+ .debug_frame   0x00000198       0x4c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+ .debug_frame   0x000001e4       0x8c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+ .debug_frame   0x00000270       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+ .debug_frame   0x0000029c       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+ .debug_frame   0x000002c8       0x3c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+ .debug_frame   0x00000304       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+ .debug_frame   0x00000330       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+ .debug_frame   0x0000035c       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+ .debug_frame   0x00000388       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+ .debug_frame   0x000003b4       0xb0 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+ .debug_frame   0x00000464       0x5c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ .debug_frame   0x000004c0       0x20 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+ .debug_frame   0x000004e0       0x78 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+ .debug_frame   0x00000558       0x48 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+ .debug_frame   0x000005a0       0x30 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+ .debug_frame   0x000005d0       0x3c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+ .debug_frame   0x0000060c       0x70 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+ .debug_frame   0x0000067c       0x64 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+ .debug_frame   0x000006e0       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+ .debug_frame   0x0000070c       0x40 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+ .debug_frame   0x0000074c       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+ .debug_frame   0x00000778       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+ .debug_frame   0x000007ac       0x28 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+ .debug_frame   0x000007d4       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+ .debug_frame   0x00000808       0x48 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+ .debug_frame   0x00000850       0x70 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+ .debug_frame   0x000008c0       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+ .debug_frame   0x000008ec       0x2c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+ .debug_frame   0x00000918       0x20 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_addr
+ *(.debug_addr)
+
+.debug_line_str
+                0x00000000      0x1d1
+ *(.debug_line_str)
+ .debug_line_str
+                0x00000000      0x1d1 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+                                 0xd6 (size before relaxing)
+ .debug_line_str
+                0x000001d1       0xe2 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+ .debug_line_str
+                0x000001d1       0xdc C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+ .debug_line_str
+                0x000001d1       0xe3 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+
+.debug_loclists
+ *(.debug_loclists)
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_names
+ *(.debug_names)
+
+.debug_rnglists
+ *(.debug_rnglists)
+
+.debug_str_offsets
+ *(.debug_str_offsets)
+
+.debug_sup
+ *(.debug_sup)
+
+.ARM.attributes
+                0x00000000       0x30
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x22 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+ .ARM.attributes
+                0x00000022       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .ARM.attributes
+                0x00000056       0x20 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crt0.o
+ .ARM.attributes
+                0x00000076       0x34 main.o
+ .ARM.attributes
+                0x000000aa       0x34 syscalls.o
+ .ARM.attributes
+                0x000000de       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-exit.o)
+ .ARM.attributes
+                0x00000112       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-findfp.o)
+ .ARM.attributes
+                0x00000146       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fwalk.o)
+ .ARM.attributes
+                0x0000017a       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-puts.o)
+ .ARM.attributes
+                0x000001ae       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-stdio.o)
+ .ARM.attributes
+                0x000001e2       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memset.o)
+ .ARM.attributes
+                0x00000216       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-closer.o)
+ .ARM.attributes
+                0x0000024a       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reent.o)
+ .ARM.attributes
+                0x0000027e       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-impure.o)
+ .ARM.attributes
+                0x000002b2       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lseekr.o)
+ .ARM.attributes
+                0x000002e6       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-readr.o)
+ .ARM.attributes
+                0x0000031a       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-writer.o)
+ .ARM.attributes
+                0x0000034e       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-init.o)
+ .ARM.attributes
+                0x00000382       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-lock.o)
+ .ARM.attributes
+                0x000003b6       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-strlen.o)
+ .ARM.attributes
+                0x000003d2       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__call_atexit.o)
+ .ARM.attributes
+                0x00000406       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-atexit.o)
+ .ARM.attributes
+                0x0000043a       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-freer.o)
+ .ARM.attributes
+                0x0000046e       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mallocr.o)
+ .ARM.attributes
+                0x000004a2       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-mlock.o)
+ .ARM.attributes
+                0x000004d6       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fclose.o)
+ .ARM.attributes
+                0x0000050a       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fflush.o)
+ .ARM.attributes
+                0x0000053e       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fvwrite.o)
+ .ARM.attributes
+                0x00000572       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-wsetup.o)
+ .ARM.attributes
+                0x000005a6       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memmove.o)
+ .ARM.attributes
+                0x000005da       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sbrkr.o)
+ .ARM.attributes
+                0x0000060e       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fini.o)
+ .ARM.attributes
+                0x00000642       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-sysconf.o)
+ .ARM.attributes
+                0x00000676       0x1c C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memchr.o)
+ .ARM.attributes
+                0x00000692       0x20 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-memcpy.o)
+ .ARM.attributes
+                0x000006b2       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-__atexit.o)
+ .ARM.attributes
+                0x000006e6       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-reallocr.o)
+ .ARM.attributes
+                0x0000071a       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-makebuf.o)
+ .ARM.attributes
+                0x0000074e       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-fstatr.o)
+ .ARM.attributes
+                0x00000782       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-isattyr.o)
+ .ARM.attributes
+                0x000007b6       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libc.a(libc_a-errno.o)
+ .ARM.attributes
+                0x000007ea       0x34 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtend.o
+ .ARM.attributes
+                0x0000081e       0x22 C:/arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(main.exe elf32-littlearm)
+LOAD linker stubs
