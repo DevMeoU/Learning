@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>EcuC</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-CONFIGURATION>
+          <SHORT-NAME>EcuCConfig</SHORT-NAME>
+          <ECUC-MODULE-CONFIGURATION>
+            <SHORT-NAME>Os</SHORT-NAME>
+            <CONTAINERS>
+              <ECUC-PARAM-CONF-CONTAINER>
+                <SHORT-NAME>OsCore</SHORT-NAME>
+                <PARAMETER-VALUES>
+                  <ECUC-NUMERICAL-PARAM-VALUE>
+                    <SHORT-NAME>OsCoreStackSize</SHORT-NAME>
+                    <VALUE>2048</VALUE>
+                  </ECUC-NUMERICAL-PARAM-VALUE>
+                </PARAMETER-VALUES>
+              </ECUC-PARAM-CONF-CONTAINER>
+            </CONTAINERS>
+          </ECUC-MODULE-CONFIGURATION>
+          <ECUC-MODULE-CONFIGURATION>
+            <SHORT-NAME>Memory</SHORT-NAME>
+            <CONTAINERS>
+              <ECUC-PARAM-CONF-CONTAINER>
+                <SHORT-NAME>MemoryConfig</SHORT-NAME>
+                <PARAMETER-VALUES>
+                  <ECUC-NUMERICAL-PARAM-VALUE>
+                    <SHORT-NAME>RamSize</SHORT-NAME>
+                    <VALUE>8192</VALUE>
+                  </ECUC-NUMERICAL-PARAM-VALUE>
+                  <ECUC-NUMERICAL-PARAM-VALUE>
+                    <SHORT-NAME>FlashSize</SHORT-NAME>
+                    <VALUE>65536</VALUE>
+                  </ECUC-NUMERICAL-PARAM-VALUE>
+                </PARAMETER-VALUES>
+              </ECUC-PARAM-CONF-CONTAINER>
+            </CONTAINERS>
+          </ECUC-MODULE-CONFIGURATION>
+        </ECUC-CONFIGURATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Os</SHORT-NAME>
+      <ELEMENTS>
+        <OS-CONFIG>
+          <SHORT-NAME>OsConfig</SHORT-NAME>
+          <OS-APPLICATION>
+            <SHORT-NAME>App1</SHORT-NAME>
+            <TASK-REF DEST="TASK">Task1</TASK-REF>
+          </OS-APPLICATION>
+          <TASK>
+            <SHORT-NAME>Task1</SHORT-NAME>
+            <PRIORITY>1</PRIORITY>
+            <ACTIVATION>1</ACTIVATION>
+            <SCHEDULE>FULL</SCHEDULE>
+          </TASK>
+        </OS-CONFIG>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

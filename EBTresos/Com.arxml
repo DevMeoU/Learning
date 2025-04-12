@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Com</SHORT-NAME>
+      <ELEMENTS>
+        <COM-CONFIG>
+          <SHORT-NAME>ComConfig</SHORT-NAME>
+          <COM-SIGNAL>
+            <SHORT-NAME>Signal_1</SHORT-NAME>
+            <LENGTH>8</LENGTH>
+            <INIT-VALUE>0</INIT-VALUE>
+          </COM-SIGNAL>
+          <COM-SIGNAL>
+            <SHORT-NAME>Signal_2</SHORT-NAME>
+            <LENGTH>16</LENGTH>
+            <INIT-VALUE>255</INIT-VALUE>
+          </COM-SIGNAL>
+        </COM-CONFIG>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

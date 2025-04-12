@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EBTresos_Generator" default="generate">
+    <!-- Template for AUTOSAR code generation from .arxml files -->
+    
+    <!-- Define properties -->
+    <property name="arxml.dir" location="${basedir}/../" />
+    <property name="output.dir" location="${basedir}/../Generated" />
+    
+    <!-- Main target for code generation -->
+    <target name="generate">
+        <!-- Generate CAN module code -->
+        <velocity template="CanTemplate.vm" 
+                  input="${arxml.dir}/Can.arxml" 
+                  output="${output.dir}/Can" />
+                  
+        <!-- Generate COM module code -->
+        <velocity template="ComTemplate.vm" 
+                  input="${arxml.dir}/Com.arxml" 
+                  output="${output.dir}/Com" />
+                  
+        <!-- Generate OS module code -->
+        <velocity template="OsTemplate.vm" 
+                  input="${arxml.dir}/Os.arxml" 
+                  output="${output.dir}/Os" />
+    </target>
+    
+    <!-- Velocity task definition -->
+    <macrodef name="velocity">
+        <attribute name="template" />
+        <attribute name="input" />
+        <attribute name="output" />
+        <sequential>
+            <java classname="org.apache.velocity.app.Velocity" fork="true">
+                <classpath>
+                    <fileset dir="${basedir}/lib" includes="velocity*.jar" />
+                </classpath>
+                <arg value="-template" />
+                <arg value="@{template}" />
+                <arg value="-input" />
+                <arg value="@{input}" />
+                <arg value="-output" />
+                <arg value="@{output}" />
+            </java>
+        </sequential>
+    </macrodef>
+</project>

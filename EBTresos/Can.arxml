@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>Can</SHORT-NAME>
+      <ELEMENTS>
+        <CAN-CONFIG>
+          <SHORT-NAME>CanConfigSet</SHORT-NAME>
+          <CAN-CONTROLLER>
+            <SHORT-NAME>CanController_1</SHORT-NAME>
+            <BAUDRATE>500000</BAUDRATE>
+            <PROP-SEG>8</PROP-SEG>
+            <PHASE-SEG1>7</PHASE-SEG1>
+            <PHASE-SEG2>6</PHASE-SEG2>
+            <SJW>4</SJW>
+          </CAN-CONTROLLER>
+        </CAN-CONFIG>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

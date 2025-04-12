@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anchors>
+  <!-- Anchor points for CAN module -->
+  <anchor id="Can_Init" template="CanTemplate.vm"/>
+  <anchor id="Can_Config" template="CanTemplate.vm"/>
+  
+  <!-- Anchor points for COM module -->
+  <anchor id="Com_Init" template="ComTemplate.vm"/>
+  <anchor id="Com_Config" template="ComTemplate.vm"/>
+  
+  <!-- Anchor points for OS module -->
+  <anchor id="Os_Init" template="OsTemplate.vm"/>
+  <anchor id="Os_Config" template="OsTemplate.vm"/>
+</anchors>

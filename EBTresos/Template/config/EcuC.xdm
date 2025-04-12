@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>EcuC</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-MODULE-CONFIGURATION>
+          <SHORT-NAME>EcuC</SHORT-NAME>
+          <DEFINITION-REF>ECUC-MODULE-DEF/EcuC</DEFINITION-REF>
+          <CONTAINERS>
+            <ECUC-PARAM-CONF-CONTAINER>
+              <SHORT-NAME>EcuCGeneral</SHORT-NAME>
+              <PARAMETER-VALUES>
+                <ECUC-NUMERICAL-PARAM-VALUE>
+                  <DEFINITION-REF>ECUC-PARAM-DEF/EcuC/EcuCGeneral/EcuCNumberOfConfigSets</DEFINITION-REF>
+                  <VALUE>1</VALUE>
+                </ECUC-NUMERICAL-PARAM-VALUE>
+              </PARAMETER-VALUES>
+            </ECUC-PARAM-CONF-CONTAINER>
+          </CONTAINERS>
+        </ECUC-MODULE-CONFIGURATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+  <extension point="org.eclipse.ui.views">
+    <view
+      class="com.vector.tresos.generator.ui.views.GeneratorView"
+      id="com.vector.tresos.generator.view"
+      name="EB Tresos Generator"
+      category="com.vector.tresos.category"/>
+  </extension>
+  
+  <extension point="org.eclipse.core.resources.builders">
+    <builder
+      hasNature="true"
+      id="com.vector.tresos.generator.builder"
+      name="EB Tresos Generator Builder">
+      <run class="com.vector.tresos.generator.core.GeneratorBuilder"/>
+    </builder>
+  </extension>
+  
+  <extension point="org.eclipse.ui.commands">
+    <command
+      id="com.vector.tresos.generator.command"
+      name="Generate AUTOSAR Code"/>
+  </extension>
+</plugin>
