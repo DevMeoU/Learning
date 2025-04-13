@@ -3,7 +3,7 @@
 /* Thông tin về các section trong file object:
  * 
  * 1. .text (Size: 0x4c bytes)
- *    - VMA/LMA: 0x00000000
+ *    - VMA/LMA: 0x00000000 (VMA (Virtual Memory Address) và LMA (Load Memory Address
  *    - File offset: 0x34
  *    - Alignment: 2^2 = 4 bytes
  *    - Thuộc tính: CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
@@ -56,7 +56,7 @@ int b = 10;
 const int c = 10;
 static int d = 10;
 
-int main() {
+int main(void) {
     /* Các biến cục bộ được phân bổ như sau:
      * - int e, f: Biến thường nằm trên stack (SRAM)
      * - const int g: Hằng số nằm trong section .rodata (FLASH)
@@ -78,6 +78,6 @@ int main() {
     j[1] = 2;
 
     /* Chuỗi "Hello, World!\n" là hằng nên nằm trong section .rodata (FLASH) */
-    printf("Hello, World!\n");
+    // printf("Hello, World!\n");
     return 0;
 }
