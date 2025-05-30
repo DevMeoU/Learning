@@ -12,6 +12,7 @@ if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "")
   "config\\sdkconfig.h"
   "esp-idf\\esptool_py\\flasher_args.json.in"
   "esp-idf\\mbedtls\\x509_crt_bundle"
+  "firebase_cert.pem.S"
   "flash_app_args"
   "flash_bootloader_args"
   "flash_project_args"

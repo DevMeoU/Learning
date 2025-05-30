@@ -151,6 +151,7 @@ void uart_parser_task(void *pvParameters) {
     ESP_LOGI(TAG, "UART Parser Task started");
 
     while (1) {
+        LED_NOTIFICATION_ON;
         int len = uart_read_bytes(UART_PORT_NUM, rx_buf, UART_BUF_SIZE, pdMS_TO_TICKS(100));
         if (len > 0) {
             printf("Receive data: ");
@@ -204,6 +205,7 @@ void uart_parser_task(void *pvParameters) {
                     break;
             }
         }
+        LED_NOTIFICATION_OFF; // Tắt LED thông báo sau khi xử lý xong
         vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
@@ -216,7 +218,7 @@ void http_task(void *pvParameters) {
 
     while (1) {
         if (xQueueReceive(xSensorQueue, &recv_data, portMAX_DELAY)) {
-            LED_NOTIFICATION_ON; // Bật LED thông báo khi nhận dữ liệu
+            // LED_NOTIFICATION_ON; // Bật LED thông báo khi nhận dữ liệu
 
             // Trong http_task trước khi gửi request
             if (!is_internet_available()) {
@@ -289,7 +291,7 @@ void http_task(void *pvParameters) {
             cJSON_Delete(root);
             free(json_str);
 
-            LED_NOTIFICATION_OFF; // Tắt LED thông báo sau khi gửi dữ liệu
+            // LED_NOTIFICATION_OFF; // Tắt LED thông báo sau khi gửi dữ liệu
         }
     }
 }
