@@ -1,0 +1,275 @@
+<html>
+<head>
+    <title>ESP32 Configuration</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --background: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+
+        .config-container {
+            background: white;
+            max-width: 640px;
+            width: 100%;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .config-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .config-header h1 {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.875rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .config-header p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background: #f1f5f9;
+        }
+
+        .form-section.wifi {
+            border-left: 4px solid var(--primary);
+        }
+
+        .form-section.server {
+            border-left: 4px solid #94a3b8;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        /* Kiểu chữ nghiêng cho nhãn SSID */
+        .wifi-label {
+            font-style: italic;
+            color: #475569;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+        }
+
+        @media (max-width: 480px) {
+            .config-container {
+                padding: 1.5rem;
+            }
+        }
+        
+        .refresh-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: 10px;
+        }
+
+        .wifi-select-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: white;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .signal-strength {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-left: auto;
+        }
+
+        .loading {
+            display: none;
+            color: #3b82f6;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="config-container">
+        <div class="config-header">
+            <h1>Thiết bị IoT Configuration</h1>
+            <p>Cấu hình thông số kết nối cho thiết bị</p>
+        </div>
+        
+        <form method='post' action='/config' enctype='application/x-www-form-urlencoded'>
+            <!-- WiFi Section -->
+            <div class="form-section wifi">
+                <div class="input-group">
+                    <label class="wifi-label">Chọn mạng WiFi</label>
+                    <div class="wifi-select-wrapper">
+                        <select id="wifi_ssid" name="wifi_ssid" required>
+                            <option value="">Đang quét mạng...</option>
+                        </select>
+                        <button type="button" class="refresh-btn" onclick="scanWifi()">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M23 4v6h-6M1 20v-6h6"/>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="loading" id="scan-loading">Đang quét mạng...</div>
+                    <div class="input-group">
+                        <label class="wifi-label">Mật khẩu WiFi</label>
+                        <input type="password" id="wifi_password" name="wifi_password" required 
+                               placeholder="••••••••">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Server Section -->
+            <div class="form-section server">
+                <div class="input-group">
+                    <label>Địa chỉ máy chủ</label>
+                    <input type="text" id="server_url" name="server_url" required 
+                           placeholder="https://example.com/api">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Lưu cấu hình</button>
+        </form>
+    </div>
+
+    <script>
+        async function loadWifiList() {
+            try {
+                document.getElementById('scan-loading').style.display = 'block';
+                const response = await fetch('/scan');
+                const networks = await response.json();
+                
+                const select = document.getElementById('wifi_ssid');
+                select.innerHTML = networks.map(n => `
+                    <option value="${n.ssid}" data-rssi="${n.rssi}">
+                        ${n.ssid} (${n.rssi}dBm)
+                    </option>
+                `).join('');
+                
+                // Thêm sự kiện thay đổi select
+                select.addEventListener('change', updateSignalStrength);
+                updateSignalStrength(); // Cập nhật ban đầu
+                
+            } catch (error) {
+                console.error('Lỗi khi tải danh sách WiFi:', error);
+            } finally {
+                document.getElementById('scan-loading').style.display = 'none';
+            }
+        }
+
+        function updateSignalStrength() {
+            const selected = document.querySelector('#wifi_ssid option:checked');
+            if (selected && selected.dataset.rssi) {
+                const rssi = parseInt(selected.dataset.rssi);
+                let quality = '';
+                if (rssi >= -50) quality = '✓ Tín hiệu mạnh';
+                else if (rssi >= -70) quality = '~ Tín hiệu trung bình';
+                else quality = '⚠ Tín hiệu yếu';
+                
+                // Cập nhật thông tin chất lượng
+                if (!document.getElementById('signal-info')) {
+                    const div = document.createElement('div');
+                    div.id = 'signal-info';
+                    div.className = 'signal-strength';
+                    selected.parentElement.after(div);
+                }
+                document.getElementById('signal-info').textContent = quality;
+            }
+        }
+
+        async function scanWifi() {
+            try {
+                document.getElementById('scan-loading').style.display = 'block';
+                await fetch('/rescan');
+                await loadWifiList();
+            } catch (error) {
+                console.error('Lỗi khi quét lại:', error);
+            } finally {
+                document.getElementById('scan-loading').style.display = 'none';
+            }
+        }
+
+        // Tự động tải danh sách WiFi khi trang được tải
+        window.addEventListener('DOMContentLoaded', loadWifiList);
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+source E:/Workspace/Learning/ESP32/Scan_SPIFF/build/gdbinit/symbols
+source E:/Workspace/Learning/ESP32/Scan_SPIFF/build/gdbinit/connect

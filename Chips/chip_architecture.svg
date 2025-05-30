@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <title>Sơ đồ Kiến trúc Chip Tổng quan (Ví dụ ARM)</title>
+
+  <style>
+    .block {
+      fill: #f0f0f0;
+      stroke: #333;
+      stroke-width: 1;
+      rx: 5;
+      ry: 5;
+    }
+    .text {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      text-anchor: middle;
+      fill: #000;
+    }
+    .bus {
+      fill: none;
+      stroke: #666;
+      stroke-width: 4;
+    }
+    .connector {
+      fill: none;
+      stroke: #666;
+      stroke-width: 1;
+    }
+    .title {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
+    }
+  </style>
+
+  <text x="300" y="30" class="title">Sơ đồ Kiến trúc Chip Tổng quan (Ví dụ ARM)</text>
+
+  <!-- System Bus -->
+  <line x1="100" y1="200" x2="500" y2="200" class="bus" />
+  <text x="300" y="190" class="text">System Bus (e.g., AHB/APB)</text>
+
+  <!-- CPU Core -->
+  <rect x="250" y="80" width="100" height="60" class="block" />
+  <text x="300" y="115" class="text">CPU Core</text>
+  <text x="300" y="130" class="text">(e.g., ARM Cortex)</text>
+  <line x1="300" y1="140" x2="300" y2="200" class="connector" />
+
+  <!-- Memory -->
+  <rect x="50" y="250" width="100" height="80" class="block" />
+  <text x="100" y="270" class="text">Memory</text>
+  <text x="100" y="290" class="text">RAM</text>
+  <text x="100" y="310" class="text">ROM/Flash</text>
+  <line x1="100" y1="250" x2="100" y2="200" class="connector" />
+
+  <!-- Peripherals -->
+  <rect x="450" y="250" width="100" height="100" class="block" />
+  <text x="500" y="270" class="text">Peripherals</text>
+  <text x="500" y="290" class="text">GPIO</text>
+  <text x="500" y="310" class="text">UART</text>
+  <text x="500" y="330" class="text">SPI/I2C</text>
+  <line x1="500" y1="250" x2="500" y2="200" class="connector" />
+
+  <!-- Other Components (Optional) -->
+  <rect x="250" y="250" width="100" height="60" class="block" />
+  <text x="300" y="275" class="text">DMA Controller</text>
+  <text x="300" y="290" class="text">(Optional)</text>
+  <line x1="300" y1="250" x2="300" y2="200" class="connector" />
+
+</svg>

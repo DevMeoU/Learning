@@ -1,0 +1,7 @@
+[1/4] C:\WINDOWS\system32\cmd.exe /C "cd /D E:\Workspace\Learning\ESP32\RTOS\SmartHome\build\esp-idf\esptool_py && C:\esp\tools_directory\python_env\idf5.4_py3.10_env\Scripts\python.exe C:/esp/container_directory/v5.4.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app E:/Workspace/Learning/ESP32/RTOS/SmartHome/build/partition_table/partition-table.bin E:/Workspace/Learning/ESP32/RTOS/SmartHome/build/SmartHome.bin"
+SmartHome.bin binary size 0xe6e70 bytes. Smallest app partition is 0x100000 bytes. 0x19190 bytes (10%) free.
+[2/4] Performing build step for 'bootloader'
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D E:\Workspace\Learning\ESP32\RTOS\SmartHome\build\bootloader\esp-idf\esptool_py && C:\esp\tools_directory\python_env\idf5.4_py3.10_env\Scripts\python.exe C:/esp/container_directory/v5.4.1/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 E:/Workspace/Learning/ESP32/RTOS/SmartHome/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6920 bytes. 0x6e0 bytes (6%) free.
+[3/4] No install step for 'bootloader'
+[4/4] Completed 'bootloader'

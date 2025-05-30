@@ -1,0 +1,2 @@
+ninja: error: remove(esp-idf\nvs_flash\CMakeFiles\__idf_nvs_flash.dir\src\nvs_cxx_api.cpp.obj.d): The process cannot access the file because it is being used by another process.
+

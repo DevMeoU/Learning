@@ -1,0 +1,1828 @@
+��revision: v3.0ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:7188
+load:0x40078000,len:15756
+load:0x40080400,len:4
+load:0x40080404,len:3860
+entry 0x4008063c
+[0;32mI (29) boot: ESP-IDF v5.4.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time May 25 2025 01:52:07[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (34) boot: chip revision: v3.0[0m
+[0;32mI (38) boot.esp32: SPI Speed      : 80MHz[0m
+[0;32mI (43) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (47) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (52) boot: Enabling RNG early entropy source...[0m
+[0;32mI (57) boot: Partition Table:[0m
+[0;32mI (61) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (68) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (83) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (95) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20a24h (133668) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00030a4c vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (141) esp_image: segment 2: paddr=00030a70 vaddr=3ffb0000 size=03f20h ( 16160) load[0m
+[0;32mI (151) esp_image: segment 3: paddr=00034998 vaddr=40080000 size=0b680h ( 46720) load[0m
+[0;32mI (170) esp_image: segment 4: paddr=00040020 vaddr=400d0020 size=a9d08h (695560) map[0m
+[0;32mI (367) esp_image: segment 5: paddr=000e9d30 vaddr=4008b680 size=0d14ch ( 53580) load[0m
+[0;32mI (396) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (396) boot: Disabling RNG early entropy source...[0m
+[0;32mI (408) cpu_start: Multicore app[0m
+[0;32mI (417) cpu_start: Pro cpu start user code[0m
+[0;32mI (417) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (417) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     SmartHome[0m
+[0;32mI (421) app_init: App version:      c44232e3-dirty[0m
+[0;32mI (425) app_init: Compile time:     May 25 2025 03:18:29[0m
+[0;32mI (430) app_init: ELF file SHA256:  105f516b5...[0m
+[0;32mI (435) app_init: ESP-IDF:          v5.4.1-dirty[0m
+[0;32mI (439) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (443) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (447) efuse_init: Chip rev:         v3.0[0m
+[0;32mI (451) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (457) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (462) heap_init: At 3FFB87B0 len 00027850 (158 KiB): DRAM[0m
+[0;32mI (467) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (473) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (478) heap_init: At 400987CC len 00007834 (30 KiB): IRAM[0m
+[0;32mI (484) spi_flash: detected chip: generic[0m
+[0;32mI (487) spi_flash: flash io: dio[0m
+[0;32mI (491) main_task: Started on CPU0[0m
+[0;32mI (501) main_task: Calling app_main()[0m
+[0;32mI (521) gpio: GPIO[16]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (531) UART_HTTP: Press and hold button for 5 seconds to enter AP mode...[0m
+[0;32mI (531) UART_HTTP: Timeout: 5 seconds remaining[0m
+[0;32mI (1531) UART_HTTP: Timeout: 4 seconds remaining[0m
+[0;32mI (2531) UART_HTTP: Timeout: 3 seconds remaining[0m
+[0;32mI (3531) UART_HTTP: Timeout: 2 seconds remaining[0m
+[0;32mI (4531) UART_HTTP: Timeout: 1 seconds remaining[0m
+[0;32mI (5531) UART_HTTP: No button press detected[0m
+[0;32mI (5531) UART_HTTP: Connecting to saved WiFi...[0m
+[0;32mI (5541) wifi:wifi driver task: 3ffc081c, prio:23, stack:6656, core=0[0m
+[0;32mI (5551) wifi:wifi firmware version: 79fa3f41ba[0m
+[0;32mI (5551) wifi:wifi certification version: v7.0[0m
+[0;32mI (5551) wifi:config NVS flash: enabled[0m
+[0;32mI (5551) wifi:config nano formatting: disabled[0m
+[0;32mI (5561) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (5561) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (5571) wifi:Init management short buffer num: 32[0m
+[0;32mI (5571) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (5581) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (5581) wifi:Init static rx buffer num: 10[0m
+[0;32mI (5581) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (5591) wifi_init: rx ba win: 6[0m
+[0;32mI (5591) wifi_init: accept mbox: 6[0m
+[0;32mI (5591) wifi_init: tcpip mbox: 32[0m
+[0;32mI (5601) wifi_init: udp mbox: 6[0m
+[0;32mI (5601) wifi_init: tcp mbox: 6[0m
+[0;32mI (5601) wifi_init: tcp tx win: 5760[0m
+[0;32mI (5611) wifi_init: tcp rx win: 5760[0m
+[0;32mI (5611) wifi_init: tcp mss: 1440[0m
+[0;32mI (5611) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (5621) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (5621) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (5711) wifi:mode : sta (c0:49:ef:2c:9b:9c)[0m
+[0;32mI (5711) wifi:enable tsf[0m
+[0;32mI (5721) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5721) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5761) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (5781) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (5821) wifi:connected with HAPPY HOME floor4, aid = 2, channel 1, BW20, bssid = 00:c8:96:23:01:01[0m
+[0;32mI (5821) wifi:security: WPA2-PSK, phy: bgn, rssi: -81[0m
+[0;32mI (5831) wifi:pm start, type: 1[0m
+
+[0;32mI (5831) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (5851) wifi:<ba-add>idx:0 (ifx:0, 00:c8:96:23:01:01), tid:0, ssn:0, winSize:64[0m
+[0;32mI (5991) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (6861) esp_netif_handlers: sta ip: 192.168.1.204, mask: 255.255.255.0, gw: 192.168.1.1[0m
+[0;32mI (6861) UART_HTTP: Connected! IP: 192.168.1.204[0m
+[0;32mI (6861) UART_HTTP: UART Parser Task started[0m
+[0;32mI (6861) UART_HTTP: HTTP Task started[0m
+[0;32mI (6861) main_task: Returned from app_main()[0m
+[0;32mI (6961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (6961) UART_HTTP: Waiting for data...[0m
+[0;32mI (7061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7061) UART_HTTP: Waiting for data...[0m
+[0;32mI (7251) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (7251) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (7451) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7451) UART_HTTP: Waiting for data...[0m
+[0;32mI (7551) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7551) UART_HTTP: Waiting for data...[0m
+[0;32mI (7651) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7651) UART_HTTP: Waiting for data...[0m
+[0;32mI (7751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7751) UART_HTTP: Waiting for data...[0m
+[0;32mI (7851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7851) UART_HTTP: Waiting for data...[0m
+[0;32mI (7951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (7951) UART_HTTP: Waiting for data...[0m
+[0;32mI (8051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8051) UART_HTTP: Waiting for data...[0m
+[0;32mI (8151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8151) UART_HTTP: Waiting for data...[0m
+[0;32mI (8251) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (8251) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (8451) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8451) UART_HTTP: Waiting for data...[0m
+[0;32mI (8551) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8551) UART_HTTP: Waiting for data...[0m
+[0;32mI (8651) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8651) UART_HTTP: Waiting for data...[0m
+[0;32mI (8751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8751) UART_HTTP: Waiting for data...[0m
+[0;32mI (8851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8851) UART_HTTP: Waiting for data...[0m
+[0;32mI (8951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (8951) UART_HTTP: Waiting for data...[0m
+[0;32mI (9051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9051) UART_HTTP: Waiting for data...[0m
+[0;32mI (9151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9151) UART_HTTP: Waiting for data...[0m
+[0;32mI (9261) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (9261) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (9461) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9461) UART_HTTP: Waiting for data...[0m
+[0;32mI (9561) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9561) UART_HTTP: Waiting for data...[0m
+[0;32mI (9661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9661) UART_HTTP: Waiting for data...[0m
+[0;32mI (9761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9761) UART_HTTP: Waiting for data...[0m
+[0;32mI (9861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9861) UART_HTTP: Waiting for data...[0m
+[0;32mI (9961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (9961) UART_HTTP: Waiting for data...[0m
+[0;32mI (10061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10061) UART_HTTP: Waiting for data...[0m
+[0;32mI (10161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10161) UART_HTTP: Waiting for data...[0m
+[0;32mI (10261) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (10261) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (10461) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10461) UART_HTTP: Waiting for data...[0m
+[0;32mI (10561) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10561) UART_HTTP: Waiting for data...[0m
+[0;32mI (10661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10661) UART_HTTP: Waiting for data...[0m
+[0;32mI (10761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10761) UART_HTTP: Waiting for data...[0m
+[0;32mI (10861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10861) UART_HTTP: Waiting for data...[0m
+[0;32mI (10961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (10961) UART_HTTP: Waiting for data...[0m
+[0;32mI (11061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11061) UART_HTTP: Waiting for data...[0m
+[0;32mI (11161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11161) UART_HTTP: Waiting for data...[0m
+[0;32mI (11271) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (11271) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (11471) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11471) UART_HTTP: Waiting for data...[0m
+[0;32mI (11571) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11571) UART_HTTP: Waiting for data...[0m
+[0;32mI (11671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11671) UART_HTTP: Waiting for data...[0m
+[0;32mI (11771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11771) UART_HTTP: Waiting for data...[0m
+[0;32mI (11871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11871) UART_HTTP: Waiting for data...[0m
+[0;32mI (11971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (11971) UART_HTTP: Waiting for data...[0m
+[0;32mI (12071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12071) UART_HTTP: Waiting for data...[0m
+[0;32mI (12171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12171) UART_HTTP: Waiting for data...[0m
+[0;32mI (12271) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (12271) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (12471) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12471) UART_HTTP: Waiting for data...[0m
+[0;32mI (12571) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12571) UART_HTTP: Waiting for data...[0m
+[0;32mI (12671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12671) UART_HTTP: Waiting for data...[0m
+[0;32mI (12771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12771) UART_HTTP: Waiting for data...[0m
+[0;32mI (12871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12871) UART_HTTP: Waiting for data...[0m
+[0;32mI (12971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (12971) UART_HTTP: Waiting for data...[0m
+[0;32mI (13071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13071) UART_HTTP: Waiting for data...[0m
+[0;32mI (13171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13171) UART_HTTP: Waiting for data...[0m
+[0;32mI (13271) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (13271) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (13471) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13471) UART_HTTP: Waiting for data...[0m
+[0;32mI (13571) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13571) UART_HTTP: Waiting for data...[0m
+[0;32mI (13671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13671) UART_HTTP: Waiting for data...[0m
+[0;32mI (13771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13771) UART_HTTP: Waiting for data...[0m
+[0;32mI (13871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13871) UART_HTTP: Waiting for data...[0m
+[0;32mI (13971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (13971) UART_HTTP: Waiting for data...[0m
+[0;32mI (14071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14071) UART_HTTP: Waiting for data...[0m
+[0;32mI (14171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14171) UART_HTTP: Waiting for data...[0m
+[0;32mI (14281) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (14281) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (14481) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14481) UART_HTTP: Waiting for data...[0m
+[0;32mI (14581) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14581) UART_HTTP: Waiting for data...[0m
+[0;32mI (14681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14681) UART_HTTP: Waiting for data...[0m
+[0;32mI (14781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14781) UART_HTTP: Waiting for data...[0m
+[0;32mI (14881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14881) UART_HTTP: Waiting for data...[0m
+[0;32mI (14981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (14981) UART_HTTP: Waiting for data...[0m
+[0;32mI (15081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15081) UART_HTTP: Waiting for data...[0m
+[0;32mI (15181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15181) UART_HTTP: Waiting for data...[0m
+[0;32mI (15281) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (15281) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (15481) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15481) UART_HTTP: Waiting for data...[0m
+[0;32mI (15581) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15581) UART_HTTP: Waiting for data...[0m
+[0;32mI (15681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15681) UART_HTTP: Waiting for data...[0m
+[0;32mI (15781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15781) UART_HTTP: Waiting for data...[0m
+[0;32mI (15881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15881) UART_HTTP: Waiting for data...[0m
+[0;32mI (15981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (15981) UART_HTTP: Waiting for data...[0m
+[0;32mI (16081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16081) UART_HTTP: Waiting for data...[0m
+[0;32mI (16181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16181) UART_HTTP: Waiting for data...[0m
+[0;32mI (16291) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (16291) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (16491) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16491) UART_HTTP: Waiting for data...[0m
+[0;32mI (16591) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16591) UART_HTTP: Waiting for data...[0m
+[0;32mI (16691) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16691) UART_HTTP: Waiting for data...[0m
+[0;32mI (16791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16791) UART_HTTP: Waiting for data...[0m
+[0;32mI (16891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16891) UART_HTTP: Waiting for data...[0m
+[0;32mI (16991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (16991) UART_HTTP: Waiting for data...[0m
+[0;32mI (17091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17091) UART_HTTP: Waiting for data...[0m
+[0;32mI (17191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17191) UART_HTTP: Waiting for data...[0m
+[0;32mI (17291) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (17291) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (17491) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17491) UART_HTTP: Waiting for data...[0m
+[0;32mI (17591) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17591) UART_HTTP: Waiting for data...[0m
+[0;32mI (17691) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17691) UART_HTTP: Waiting for data...[0m
+[0;32mI (17791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17791) UART_HTTP: Waiting for data...[0m
+[0;32mI (17891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17891) UART_HTTP: Waiting for data...[0m
+[0;32mI (17991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (17991) UART_HTTP: Waiting for data...[0m
+[0;32mI (18091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18091) UART_HTTP: Waiting for data...[0m
+[0;32mI (18191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18191) UART_HTTP: Waiting for data...[0m
+[0;32mI (18301) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (18301) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (18501) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18501) UART_HTTP: Waiting for data...[0m
+[0;32mI (18601) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18601) UART_HTTP: Waiting for data...[0m
+[0;32mI (18701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18701) UART_HTTP: Waiting for data...[0m
+[0;32mI (18801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18801) UART_HTTP: Waiting for data...[0m
+[0;32mI (18901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (18901) UART_HTTP: Waiting for data...[0m
+[0;32mI (19001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19001) UART_HTTP: Waiting for data...[0m
+[0;32mI (19101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19101) UART_HTTP: Waiting for data...[0m
+[0;32mI (19201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19201) UART_HTTP: Waiting for data...[0m
+[0;32mI (19301) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (19301) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (19501) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19501) UART_HTTP: Waiting for data...[0m
+[0;32mI (19601) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19601) UART_HTTP: Waiting for data...[0m
+[0;32mI (19701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19701) UART_HTTP: Waiting for data...[0m
+[0;32mI (19801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19801) UART_HTTP: Waiting for data...[0m
+[0;32mI (19901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (19901) UART_HTTP: Waiting for data...[0m
+[0;32mI (20001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20001) UART_HTTP: Waiting for data...[0m
+[0;32mI (20101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20101) UART_HTTP: Waiting for data...[0m
+[0;32mI (20201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20201) UART_HTTP: Waiting for data...[0m
+[0;32mI (20301) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (20301) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (20501) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20501) UART_HTTP: Waiting for data...[0m
+[0;32mI (20601) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20601) UART_HTTP: Waiting for data...[0m
+[0;32mI (20701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20701) UART_HTTP: Waiting for data...[0m
+[0;32mI (20801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20801) UART_HTTP: Waiting for data...[0m
+[0;32mI (20901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (20901) UART_HTTP: Waiting for data...[0m
+[0;32mI (21001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21001) UART_HTTP: Waiting for data...[0m
+[0;32mI (21101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21101) UART_HTTP: Waiting for data...[0m
+[0;32mI (21201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21201) UART_HTTP: Waiting for data...[0m
+[0;32mI (21311) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (21311) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (21511) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21511) UART_HTTP: Waiting for data...[0m
+[0;32mI (21611) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21611) UART_HTTP: Waiting for data...[0m
+[0;32mI (21711) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21711) UART_HTTP: Waiting for data...[0m
+[0;32mI (21811) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21811) UART_HTTP: Waiting for data...[0m
+[0;32mI (21911) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (21911) UART_HTTP: Waiting for data...[0m
+[0;32mI (22011) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22011) UART_HTTP: Waiting for data...[0m
+[0;32mI (22111) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22111) UART_HTTP: Waiting for data...[0m
+[0;32mI (22211) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22211) UART_HTTP: Waiting for data...[0m
+[0;32mI (22311) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (22311) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (22511) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22511) UART_HTTP: Waiting for data...[0m
+[0;32mI (22611) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22611) UART_HTTP: Waiting for data...[0m
+[0;32mI (22711) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22711) UART_HTTP: Waiting for data...[0m
+[0;32mI (22811) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22811) UART_HTTP: Waiting for data...[0m
+[0;32mI (22911) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (22911) UART_HTTP: Waiting for data...[0m
+[0;32mI (23011) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23011) UART_HTTP: Waiting for data...[0m
+[0;32mI (23111) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23111) UART_HTTP: Waiting for data...[0m
+[0;32mI (23211) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23211) UART_HTTP: Waiting for data...[0m
+[0;32mI (23321) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (23321) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (23521) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23521) UART_HTTP: Waiting for data...[0m
+[0;32mI (23621) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23621) UART_HTTP: Waiting for data...[0m
+[0;32mI (23721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23721) UART_HTTP: Waiting for data...[0m
+[0;32mI (23821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23821) UART_HTTP: Waiting for data...[0m
+[0;32mI (23921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (23921) UART_HTTP: Waiting for data...[0m
+[0;32mI (24021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24021) UART_HTTP: Waiting for data...[0m
+[0;32mI (24121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24121) UART_HTTP: Waiting for data...[0m
+[0;32mI (24221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24221) UART_HTTP: Waiting for data...[0m
+[0;32mI (24321) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (24321) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (24521) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24521) UART_HTTP: Waiting for data...[0m
+[0;32mI (24621) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24621) UART_HTTP: Waiting for data...[0m
+[0;32mI (24721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24721) UART_HTTP: Waiting for data...[0m
+[0;32mI (24821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24821) UART_HTTP: Waiting for data...[0m
+[0;32mI (24921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (24921) UART_HTTP: Waiting for data...[0m
+[0;32mI (25021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25021) UART_HTTP: Waiting for data...[0m
+[0;32mI (25121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25121) UART_HTTP: Waiting for data...[0m
+[0;32mI (25221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25221) UART_HTTP: Waiting for data...[0m
+[0;32mI (25321) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (25321) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (25521) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25521) UART_HTTP: Waiting for data...[0m
+[0;32mI (25621) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25621) UART_HTTP: Waiting for data...[0m
+[0;32mI (25721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25721) UART_HTTP: Waiting for data...[0m
+[0;32mI (25821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25821) UART_HTTP: Waiting for data...[0m
+[0;32mI (25921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (25921) UART_HTTP: Waiting for data...[0m
+[0;32mI (26021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26021) UART_HTTP: Waiting for data...[0m
+[0;32mI (26121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26121) UART_HTTP: Waiting for data...[0m
+[0;32mI (26221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26221) UART_HTTP: Waiting for data...[0m
+[0;32mI (26331) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (26331) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (26531) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26531) UART_HTTP: Waiting for data...[0m
+[0;32mI (26631) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26631) UART_HTTP: Waiting for data...[0m
+[0;32mI (26731) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26731) UART_HTTP: Waiting for data...[0m
+[0;32mI (26831) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26831) UART_HTTP: Waiting for data...[0m
+[0;32mI (26931) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (26931) UART_HTTP: Waiting for data...[0m
+[0;32mI (27031) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27031) UART_HTTP: Waiting for data...[0m
+[0;32mI (27131) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27131) UART_HTTP: Waiting for data...[0m
+[0;32mI (27231) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27231) UART_HTTP: Waiting for data...[0m
+[0;32mI (27331) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (27331) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (27531) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27531) UART_HTTP: Waiting for data...[0m
+[0;32mI (27631) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27631) UART_HTTP: Waiting for data...[0m
+[0;32mI (27731) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27731) UART_HTTP: Waiting for data...[0m
+[0;32mI (27831) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27831) UART_HTTP: Waiting for data...[0m
+[0;32mI (27931) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (27931) UART_HTTP: Waiting for data...[0m
+[0;32mI (28031) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28031) UART_HTTP: Waiting for data...[0m
+[0;32mI (28131) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28131) UART_HTTP: Waiting for data...[0m
+[0;32mI (28231) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28231) UART_HTTP: Waiting for data...[0m
+[0;32mI (28341) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (28341) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (28541) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28541) UART_HTTP: Waiting for data...[0m
+[0;32mI (28641) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28641) UART_HTTP: Waiting for data...[0m
+[0;32mI (28741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28741) UART_HTTP: Waiting for data...[0m
+[0;32mI (28841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28841) UART_HTTP: Waiting for data...[0m
+[0;32mI (28941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (28941) UART_HTTP: Waiting for data...[0m
+[0;32mI (29041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29041) UART_HTTP: Waiting for data...[0m
+[0;32mI (29141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29141) UART_HTTP: Waiting for data...[0m
+[0;32mI (29241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29241) UART_HTTP: Waiting for data...[0m
+[0;32mI (29341) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (29341) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (29541) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29541) UART_HTTP: Waiting for data...[0m
+[0;32mI (29641) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29641) UART_HTTP: Waiting for data...[0m
+[0;32mI (29741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29741) UART_HTTP: Waiting for data...[0m
+[0;32mI (29841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29841) UART_HTTP: Waiting for data...[0m
+[0;32mI (29941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (29941) UART_HTTP: Waiting for data...[0m
+[0;32mI (30041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30041) UART_HTTP: Waiting for data...[0m
+[0;32mI (30141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30141) UART_HTTP: Waiting for data...[0m
+[0;32mI (30241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30241) UART_HTTP: Waiting for data...[0m
+[0;32mI (30341) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (30341) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (30541) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30541) UART_HTTP: Waiting for data...[0m
+[0;32mI (30641) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30641) UART_HTTP: Waiting for data...[0m
+[0;32mI (30741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30741) UART_HTTP: Waiting for data...[0m
+[0;32mI (30841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30841) UART_HTTP: Waiting for data...[0m
+[0;32mI (30941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (30941) UART_HTTP: Waiting for data...[0m
+[0;32mI (31041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31041) UART_HTTP: Waiting for data...[0m
+[0;32mI (31141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31141) UART_HTTP: Waiting for data...[0m
+[0;32mI (31241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31241) UART_HTTP: Waiting for data...[0m
+[0;32mI (31351) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (31351) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (31551) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31551) UART_HTTP: Waiting for data...[0m
+[0;32mI (31651) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31651) UART_HTTP: Waiting for data...[0m
+[0;32mI (31751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31751) UART_HTTP: Waiting for data...[0m
+[0;32mI (31851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31851) UART_HTTP: Waiting for data...[0m
+[0;32mI (31951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (31951) UART_HTTP: Waiting for data...[0m
+[0;32mI (32051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32051) UART_HTTP: Waiting for data...[0m
+[0;32mI (32151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32151) UART_HTTP: Waiting for data...[0m
+[0;32mI (32251) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32251) UART_HTTP: Waiting for data...[0m
+[0;32mI (32351) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (32351) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (32551) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32551) UART_HTTP: Waiting for data...[0m
+[0;32mI (32651) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32651) UART_HTTP: Waiting for data...[0m
+[0;32mI (32751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32751) UART_HTTP: Waiting for data...[0m
+[0;32mI (32851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32851) UART_HTTP: Waiting for data...[0m
+[0;32mI (32951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (32951) UART_HTTP: Waiting for data...[0m
+[0;32mI (33051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33051) UART_HTTP: Waiting for data...[0m
+[0;32mI (33151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33151) UART_HTTP: Waiting for data...[0m
+[0;32mI (33251) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33251) UART_HTTP: Waiting for data...[0m
+[0;32mI (33361) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (33361) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (33561) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33561) UART_HTTP: Waiting for data...[0m
+[0;32mI (33661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33661) UART_HTTP: Waiting for data...[0m
+[0;32mI (33761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33761) UART_HTTP: Waiting for data...[0m
+[0;32mI (33861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33861) UART_HTTP: Waiting for data...[0m
+[0;32mI (33961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (33961) UART_HTTP: Waiting for data...[0m
+[0;32mI (34061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34061) UART_HTTP: Waiting for data...[0m
+[0;32mI (34161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34161) UART_HTTP: Waiting for data...[0m
+[0;32mI (34261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34261) UART_HTTP: Waiting for data...[0m
+[0;32mI (34361) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (34361) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (34561) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34561) UART_HTTP: Waiting for data...[0m
+[0;32mI (34661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34661) UART_HTTP: Waiting for data...[0m
+[0;32mI (34761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34761) UART_HTTP: Waiting for data...[0m
+[0;32mI (34861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34861) UART_HTTP: Waiting for data...[0m
+[0;32mI (34961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (34961) UART_HTTP: Waiting for data...[0m
+[0;32mI (35061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35061) UART_HTTP: Waiting for data...[0m
+[0;32mI (35161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35161) UART_HTTP: Waiting for data...[0m
+[0;32mI (35261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35261) UART_HTTP: Waiting for data...[0m
+[0;32mI (35361) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (35361) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (35561) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35561) UART_HTTP: Waiting for data...[0m
+[0;32mI (35661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35661) UART_HTTP: Waiting for data...[0m
+[0;32mI (35761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35761) UART_HTTP: Waiting for data...[0m
+[0;32mI (35861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35861) UART_HTTP: Waiting for data...[0m
+[0;32mI (35961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (35961) UART_HTTP: Waiting for data...[0m
+[0;32mI (36061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36061) UART_HTTP: Waiting for data...[0m
+[0;32mI (36161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36161) UART_HTTP: Waiting for data...[0m
+[0;32mI (36261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36261) UART_HTTP: Waiting for data...[0m
+[0;32mI (36371) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (36371) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (36571) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36571) UART_HTTP: Waiting for data...[0m
+[0;32mI (36671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36671) UART_HTTP: Waiting for data...[0m
+[0;32mI (36771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36771) UART_HTTP: Waiting for data...[0m
+[0;32mI (36871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36871) UART_HTTP: Waiting for data...[0m
+[0;32mI (36971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (36971) UART_HTTP: Waiting for data...[0m
+[0;32mI (37071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37071) UART_HTTP: Waiting for data...[0m
+[0;32mI (37171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37171) UART_HTTP: Waiting for data...[0m
+[0;32mI (37271) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37271) UART_HTTP: Waiting for data...[0m
+[0;32mI (37371) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (37371) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (37571) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37571) UART_HTTP: Waiting for data...[0m
+[0;32mI (37671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37671) UART_HTTP: Waiting for data...[0m
+[0;32mI (37771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37771) UART_HTTP: Waiting for data...[0m
+[0;32mI (37871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37871) UART_HTTP: Waiting for data...[0m
+[0;32mI (37971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (37971) UART_HTTP: Waiting for data...[0m
+[0;32mI (38071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38071) UART_HTTP: Waiting for data...[0m
+[0;32mI (38171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38171) UART_HTTP: Waiting for data...[0m
+[0;32mI (38271) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38271) UART_HTTP: Waiting for data...[0m
+[0;32mI (38381) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (38381) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (38581) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38581) UART_HTTP: Waiting for data...[0m
+[0;32mI (38681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38681) UART_HTTP: Waiting for data...[0m
+[0;32mI (38781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38781) UART_HTTP: Waiting for data...[0m
+[0;32mI (38881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38881) UART_HTTP: Waiting for data...[0m
+[0;32mI (38981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (38981) UART_HTTP: Waiting for data...[0m
+[0;32mI (39081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39081) UART_HTTP: Waiting for data...[0m
+[0;32mI (39181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39181) UART_HTTP: Waiting for data...[0m
+[0;32mI (39281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39281) UART_HTTP: Waiting for data...[0m
+[0;32mI (39381) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (39381) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (39581) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39581) UART_HTTP: Waiting for data...[0m
+[0;32mI (39681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39681) UART_HTTP: Waiting for data...[0m
+[0;32mI (39781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39781) UART_HTTP: Waiting for data...[0m
+[0;32mI (39881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39881) UART_HTTP: Waiting for data...[0m
+[0;32mI (39981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (39981) UART_HTTP: Waiting for data...[0m
+[0;32mI (40081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40081) UART_HTTP: Waiting for data...[0m
+[0;32mI (40181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40181) UART_HTTP: Waiting for data...[0m
+[0;32mI (40281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40281) UART_HTTP: Waiting for data...[0m
+[0;32mI (40381) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (40381) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (40581) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40581) UART_HTTP: Waiting for data...[0m
+[0;32mI (40681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40681) UART_HTTP: Waiting for data...[0m
+[0;32mI (40781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40781) UART_HTTP: Waiting for data...[0m
+[0;32mI (40881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40881) UART_HTTP: Waiting for data...[0m
+[0;32mI (40981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (40981) UART_HTTP: Waiting for data...[0m
+[0;32mI (41081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41081) UART_HTTP: Waiting for data...[0m
+[0;32mI (41181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41181) UART_HTTP: Waiting for data...[0m
+[0;32mI (41281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41281) UART_HTTP: Waiting for data...[0m
+[0;32mI (41391) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (41391) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (41591) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41591) UART_HTTP: Waiting for data...[0m
+[0;32mI (41691) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41691) UART_HTTP: Waiting for data...[0m
+[0;32mI (41791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41791) UART_HTTP: Waiting for data...[0m
+[0;32mI (41891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41891) UART_HTTP: Waiting for data...[0m
+[0;32mI (41991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (41991) UART_HTTP: Waiting for data...[0m
+[0;32mI (42091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42091) UART_HTTP: Waiting for data...[0m
+[0;32mI (42191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42191) UART_HTTP: Waiting for data...[0m
+[0;32mI (42291) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42291) UART_HTTP: Waiting for data...[0m
+[0;32mI (42391) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (42391) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (42591) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42591) UART_HTTP: Waiting for data...[0m
+[0;32mI (42691) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42691) UART_HTTP: Waiting for data...[0m
+[0;32mI (42791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42791) UART_HTTP: Waiting for data...[0m
+[0;32mI (42891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42891) UART_HTTP: Waiting for data...[0m
+[0;32mI (42991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (42991) UART_HTTP: Waiting for data...[0m
+[0;32mI (43091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43091) UART_HTTP: Waiting for data...[0m
+[0;32mI (43191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43191) UART_HTTP: Waiting for data...[0m
+[0;32mI (43291) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43291) UART_HTTP: Waiting for data...[0m
+[0;32mI (43401) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (43401) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (43601) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43601) UART_HTTP: Waiting for data...[0m
+[0;32mI (43701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43701) UART_HTTP: Waiting for data...[0m
+[0;32mI (43801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43801) UART_HTTP: Waiting for data...[0m
+[0;32mI (43901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (43901) UART_HTTP: Waiting for data...[0m
+[0;32mI (44001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44001) UART_HTTP: Waiting for data...[0m
+[0;32mI (44101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44101) UART_HTTP: Waiting for data...[0m
+[0;32mI (44201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44201) UART_HTTP: Waiting for data...[0m
+[0;32mI (44301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44301) UART_HTTP: Waiting for data...[0m
+[0;32mI (44401) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (44401) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (44601) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44601) UART_HTTP: Waiting for data...[0m
+[0;32mI (44701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44701) UART_HTTP: Waiting for data...[0m
+[0;32mI (44801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44801) UART_HTTP: Waiting for data...[0m
+[0;32mI (44901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (44901) UART_HTTP: Waiting for data...[0m
+[0;32mI (45001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45001) UART_HTTP: Waiting for data...[0m
+[0;32mI (45101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45101) UART_HTTP: Waiting for data...[0m
+[0;32mI (45201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45201) UART_HTTP: Waiting for data...[0m
+[0;32mI (45301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45301) UART_HTTP: Waiting for data...[0m
+[0;32mI (45401) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (45401) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (45601) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45601) UART_HTTP: Waiting for data...[0m
+[0;32mI (45701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45701) UART_HTTP: Waiting for data...[0m
+[0;32mI (45801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45801) UART_HTTP: Waiting for data...[0m
+[0;32mI (45901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (45901) UART_HTTP: Waiting for data...[0m
+[0;32mI (46001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46001) UART_HTTP: Waiting for data...[0m
+[0;32mI (46101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46101) UART_HTTP: Waiting for data...[0m
+[0;32mI (46201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46201) UART_HTTP: Waiting for data...[0m
+[0;32mI (46301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46301) UART_HTTP: Waiting for data...[0m
+[0;32mI (46411) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (46411) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (46611) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46611) UART_HTTP: Waiting for data...[0m
+[0;32mI (46711) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46711) UART_HTTP: Waiting for data...[0m
+[0;32mI (46811) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46811) UART_HTTP: Waiting for data...[0m
+[0;32mI (46911) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (46911) UART_HTTP: Waiting for data...[0m
+[0;32mI (47011) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47011) UART_HTTP: Waiting for data...[0m
+[0;32mI (47111) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47111) UART_HTTP: Waiting for data...[0m
+[0;32mI (47211) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47211) UART_HTTP: Waiting for data...[0m
+[0;32mI (47311) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47311) UART_HTTP: Waiting for data...[0m
+[0;32mI (47411) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (47411) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (47611) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47611) UART_HTTP: Waiting for data...[0m
+[0;32mI (47711) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47711) UART_HTTP: Waiting for data...[0m
+[0;32mI (47811) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47811) UART_HTTP: Waiting for data...[0m
+[0;32mI (47911) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (47911) UART_HTTP: Waiting for data...[0m
+[0;32mI (48011) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48011) UART_HTTP: Waiting for data...[0m
+[0;32mI (48111) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48111) UART_HTTP: Waiting for data...[0m
+[0;32mI (48211) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48211) UART_HTTP: Waiting for data...[0m
+[0;32mI (48311) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48311) UART_HTTP: Waiting for data...[0m
+[0;32mI (48421) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (48421) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (48621) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48621) UART_HTTP: Waiting for data...[0m
+[0;32mI (48721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48721) UART_HTTP: Waiting for data...[0m
+[0;32mI (48821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48821) UART_HTTP: Waiting for data...[0m
+[0;32mI (48921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (48921) UART_HTTP: Waiting for data...[0m
+[0;32mI (49021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49021) UART_HTTP: Waiting for data...[0m
+[0;32mI (49121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49121) UART_HTTP: Waiting for data...[0m
+[0;32mI (49221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49221) UART_HTTP: Waiting for data...[0m
+[0;32mI (49321) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49321) UART_HTTP: Waiting for data...[0m
+[0;32mI (49421) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (49421) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (49621) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49621) UART_HTTP: Waiting for data...[0m
+[0;32mI (49721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49721) UART_HTTP: Waiting for data...[0m
+[0;32mI (49821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49821) UART_HTTP: Waiting for data...[0m
+[0;32mI (49921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (49921) UART_HTTP: Waiting for data...[0m
+[0;32mI (50021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50021) UART_HTTP: Waiting for data...[0m
+[0;32mI (50121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50121) UART_HTTP: Waiting for data...[0m
+[0;32mI (50221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50221) UART_HTTP: Waiting for data...[0m
+[0;32mI (50321) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50321) UART_HTTP: Waiting for data...[0m
+[0;32mI (50421) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (50421) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (50621) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50621) UART_HTTP: Waiting for data...[0m
+[0;32mI (50721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50721) UART_HTTP: Waiting for data...[0m
+[0;32mI (50821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50821) UART_HTTP: Waiting for data...[0m
+[0;32mI (50921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (50921) UART_HTTP: Waiting for data...[0m
+[0;32mI (51021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51021) UART_HTTP: Waiting for data...[0m
+[0;32mI (51121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51121) UART_HTTP: Waiting for data...[0m
+[0;32mI (51221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51221) UART_HTTP: Waiting for data...[0m
+[0;32mI (51321) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51321) UART_HTTP: Waiting for data...[0m
+[0;32mI (51431) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (51431) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (51631) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51631) UART_HTTP: Waiting for data...[0m
+[0;32mI (51731) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51731) UART_HTTP: Waiting for data...[0m
+[0;32mI (51831) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51831) UART_HTTP: Waiting for data...[0m
+[0;32mI (51931) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (51931) UART_HTTP: Waiting for data...[0m
+[0;32mI (52031) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52031) UART_HTTP: Waiting for data...[0m
+[0;32mI (52131) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52131) UART_HTTP: Waiting for data...[0m
+[0;32mI (52231) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52231) UART_HTTP: Waiting for data...[0m
+[0;32mI (52331) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52331) UART_HTTP: Waiting for data...[0m
+[0;32mI (52431) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (52431) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (52631) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52631) UART_HTTP: Waiting for data...[0m
+[0;32mI (52731) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52731) UART_HTTP: Waiting for data...[0m
+[0;32mI (52831) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52831) UART_HTTP: Waiting for data...[0m
+[0;32mI (52931) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (52931) UART_HTTP: Waiting for data...[0m
+[0;32mI (53031) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53031) UART_HTTP: Waiting for data...[0m
+[0;32mI (53131) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53131) UART_HTTP: Waiting for data...[0m
+[0;32mI (53231) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53231) UART_HTTP: Waiting for data...[0m
+[0;32mI (53331) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53331) UART_HTTP: Waiting for data...[0m
+[0;32mI (53441) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (53441) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (53641) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53641) UART_HTTP: Waiting for data...[0m
+[0;32mI (53741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53741) UART_HTTP: Waiting for data...[0m
+[0;32mI (53841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53841) UART_HTTP: Waiting for data...[0m
+[0;32mI (53941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (53941) UART_HTTP: Waiting for data...[0m
+[0;32mI (54041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54041) UART_HTTP: Waiting for data...[0m
+[0;32mI (54141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54141) UART_HTTP: Waiting for data...[0m
+[0;32mI (54241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54241) UART_HTTP: Waiting for data...[0m
+[0;32mI (54341) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54341) UART_HTTP: Waiting for data...[0m
+[0;32mI (54441) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (54441) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (54641) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54641) UART_HTTP: Waiting for data...[0m
+[0;32mI (54741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54741) UART_HTTP: Waiting for data...[0m
+[0;32mI (54841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54841) UART_HTTP: Waiting for data...[0m
+[0;32mI (54941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (54941) UART_HTTP: Waiting for data...[0m
+[0;32mI (55041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55041) UART_HTTP: Waiting for data...[0m
+[0;32mI (55141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55141) UART_HTTP: Waiting for data...[0m
+[0;32mI (55241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55241) UART_HTTP: Waiting for data...[0m
+[0;32mI (55341) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55341) UART_HTTP: Waiting for data...[0m
+[0;32mI (55441) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (55441) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (55641) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55641) UART_HTTP: Waiting for data...[0m
+[0;32mI (55741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55741) UART_HTTP: Waiting for data...[0m
+[0;32mI (55841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55841) UART_HTTP: Waiting for data...[0m
+[0;32mI (55941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (55941) UART_HTTP: Waiting for data...[0m
+[0;32mI (56041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56041) UART_HTTP: Waiting for data...[0m
+[0;32mI (56141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56141) UART_HTTP: Waiting for data...[0m
+[0;32mI (56241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56241) UART_HTTP: Waiting for data...[0m
+[0;32mI (56341) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56341) UART_HTTP: Waiting for data...[0m
+[0;32mI (56451) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (56451) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (56651) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56651) UART_HTTP: Waiting for data...[0m
+[0;32mI (56751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56751) UART_HTTP: Waiting for data...[0m
+[0;32mI (56851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56851) UART_HTTP: Waiting for data...[0m
+[0;32mI (56951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (56951) UART_HTTP: Waiting for data...[0m
+[0;32mI (57051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57051) UART_HTTP: Waiting for data...[0m
+[0;32mI (57151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57151) UART_HTTP: Waiting for data...[0m
+[0;32mI (57251) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57251) UART_HTTP: Waiting for data...[0m
+[0;32mI (57351) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57351) UART_HTTP: Waiting for data...[0m
+[0;32mI (57451) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (57451) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (57651) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57651) UART_HTTP: Waiting for data...[0m
+[0;32mI (57751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57751) UART_HTTP: Waiting for data...[0m
+[0;32mI (57851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57851) UART_HTTP: Waiting for data...[0m
+[0;32mI (57951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (57951) UART_HTTP: Waiting for data...[0m
+[0;32mI (58051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58051) UART_HTTP: Waiting for data...[0m
+[0;32mI (58151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58151) UART_HTTP: Waiting for data...[0m
+[0;32mI (58251) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58251) UART_HTTP: Waiting for data...[0m
+[0;32mI (58351) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58351) UART_HTTP: Waiting for data...[0m
+[0;32mI (58461) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (58461) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (58661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58661) UART_HTTP: Waiting for data...[0m
+[0;32mI (58761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58761) UART_HTTP: Waiting for data...[0m
+[0;32mI (58861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58861) UART_HTTP: Waiting for data...[0m
+[0;32mI (58961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (58961) UART_HTTP: Waiting for data...[0m
+[0;32mI (59061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59061) UART_HTTP: Waiting for data...[0m
+[0;32mI (59161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59161) UART_HTTP: Waiting for data...[0m
+[0;32mI (59261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59261) UART_HTTP: Waiting for data...[0m
+[0;32mI (59361) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59361) UART_HTTP: Waiting for data...[0m
+[0;32mI (59461) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (59461) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (59661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59661) UART_HTTP: Waiting for data...[0m
+[0;32mI (59761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59761) UART_HTTP: Waiting for data...[0m
+[0;32mI (59861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59861) UART_HTTP: Waiting for data...[0m
+[0;32mI (59961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (59961) UART_HTTP: Waiting for data...[0m
+[0;32mI (60061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60061) UART_HTTP: Waiting for data...[0m
+[0;32mI (60161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60161) UART_HTTP: Waiting for data...[0m
+[0;32mI (60261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60261) UART_HTTP: Waiting for data...[0m
+[0;32mI (60361) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60361) UART_HTTP: Waiting for data...[0m
+[0;32mI (60461) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (60461) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (60661) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60661) UART_HTTP: Waiting for data...[0m
+[0;32mI (60761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60761) UART_HTTP: Waiting for data...[0m
+[0;32mI (60861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60861) UART_HTTP: Waiting for data...[0m
+[0;32mI (60961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (60961) UART_HTTP: Waiting for data...[0m
+[0;32mI (61061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61061) UART_HTTP: Waiting for data...[0m
+[0;32mI (61161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61161) UART_HTTP: Waiting for data...[0m
+[0;32mI (61261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61261) UART_HTTP: Waiting for data...[0m
+[0;32mI (61361) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61361) UART_HTTP: Waiting for data...[0m
+[0;32mI (61471) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (61471) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (61671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61671) UART_HTTP: Waiting for data...[0m
+[0;32mI (61771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61771) UART_HTTP: Waiting for data...[0m
+[0;32mI (61871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61871) UART_HTTP: Waiting for data...[0m
+[0;32mI (61971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (61971) UART_HTTP: Waiting for data...[0m
+[0;32mI (62071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62071) UART_HTTP: Waiting for data...[0m
+[0;32mI (62171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62171) UART_HTTP: Waiting for data...[0m
+[0;32mI (62271) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62271) UART_HTTP: Waiting for data...[0m
+[0;32mI (62371) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62371) UART_HTTP: Waiting for data...[0m
+[0;32mI (62471) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (62471) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (62671) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62671) UART_HTTP: Waiting for data...[0m
+[0;32mI (62771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62771) UART_HTTP: Waiting for data...[0m
+[0;32mI (62871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62871) UART_HTTP: Waiting for data...[0m
+[0;32mI (62971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (62971) UART_HTTP: Waiting for data...[0m
+[0;32mI (63071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63071) UART_HTTP: Waiting for data...[0m
+[0;32mI (63171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63171) UART_HTTP: Waiting for data...[0m
+[0;32mI (63271) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63271) UART_HTTP: Waiting for data...[0m
+[0;32mI (63371) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63371) UART_HTTP: Waiting for data...[0m
+[0;32mI (63481) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (63481) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (63681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63681) UART_HTTP: Waiting for data...[0m
+[0;32mI (63781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63781) UART_HTTP: Waiting for data...[0m
+[0;32mI (63881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63881) UART_HTTP: Waiting for data...[0m
+[0;32mI (63981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (63981) UART_HTTP: Waiting for data...[0m
+[0;32mI (64081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64081) UART_HTTP: Waiting for data...[0m
+[0;32mI (64181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64181) UART_HTTP: Waiting for data...[0m
+[0;32mI (64281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64281) UART_HTTP: Waiting for data...[0m
+[0;32mI (64381) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64381) UART_HTTP: Waiting for data...[0m
+[0;32mI (64481) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (64481) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (64681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64681) UART_HTTP: Waiting for data...[0m
+[0;32mI (64781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64781) UART_HTTP: Waiting for data...[0m
+[0;32mI (64881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64881) UART_HTTP: Waiting for data...[0m
+[0;32mI (64981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (64981) UART_HTTP: Waiting for data...[0m
+[0;32mI (65081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65081) UART_HTTP: Waiting for data...[0m
+[0;32mI (65181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65181) UART_HTTP: Waiting for data...[0m
+[0;32mI (65281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65281) UART_HTTP: Waiting for data...[0m
+[0;32mI (65381) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65381) UART_HTTP: Waiting for data...[0m
+[0;32mI (65481) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (65481) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (65681) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65681) UART_HTTP: Waiting for data...[0m
+[0;32mI (65781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65781) UART_HTTP: Waiting for data...[0m
+[0;32mI (65881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65881) UART_HTTP: Waiting for data...[0m
+[0;32mI (65981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (65981) UART_HTTP: Waiting for data...[0m
+[0;32mI (66081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66081) UART_HTTP: Waiting for data...[0m
+[0;32mI (66181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66181) UART_HTTP: Waiting for data...[0m
+[0;32mI (66281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66281) UART_HTTP: Waiting for data...[0m
+[0;32mI (66381) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66381) UART_HTTP: Waiting for data...[0m
+[0;32mI (66491) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (66491) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (66691) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66691) UART_HTTP: Waiting for data...[0m
+[0;32mI (66791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66791) UART_HTTP: Waiting for data...[0m
+[0;32mI (66891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66891) UART_HTTP: Waiting for data...[0m
+[0;32mI (66991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (66991) UART_HTTP: Waiting for data...[0m
+[0;32mI (67091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67091) UART_HTTP: Waiting for data...[0m
+[0;32mI (67191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67191) UART_HTTP: Waiting for data...[0m
+[0;32mI (67291) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67291) UART_HTTP: Waiting for data...[0m
+[0;32mI (67391) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67391) UART_HTTP: Waiting for data...[0m
+[0;32mI (67491) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (67491) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (67691) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67691) UART_HTTP: Waiting for data...[0m
+[0;32mI (67791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67791) UART_HTTP: Waiting for data...[0m
+[0;32mI (67891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67891) UART_HTTP: Waiting for data...[0m
+[0;32mI (67991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (67991) UART_HTTP: Waiting for data...[0m
+[0;32mI (68091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68091) UART_HTTP: Waiting for data...[0m
+[0;32mI (68191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68191) UART_HTTP: Waiting for data...[0m
+[0;32mI (68291) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68291) UART_HTTP: Waiting for data...[0m
+[0;32mI (68391) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68391) UART_HTTP: Waiting for data...[0m
+[0;32mI (68501) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (68501) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (68701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68701) UART_HTTP: Waiting for data...[0m
+[0;32mI (68801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68801) UART_HTTP: Waiting for data...[0m
+[0;32mI (68901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (68901) UART_HTTP: Waiting for data...[0m
+[0;32mI (69001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69001) UART_HTTP: Waiting for data...[0m
+[0;32mI (69101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69101) UART_HTTP: Waiting for data...[0m
+[0;32mI (69201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69201) UART_HTTP: Waiting for data...[0m
+[0;32mI (69301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69301) UART_HTTP: Waiting for data...[0m
+[0;32mI (69401) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69401) UART_HTTP: Waiting for data...[0m
+[0;32mI (69501) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (69501) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (69701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69701) UART_HTTP: Waiting for data...[0m
+[0;32mI (69801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69801) UART_HTTP: Waiting for data...[0m
+[0;32mI (69901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (69901) UART_HTTP: Waiting for data...[0m
+[0;32mI (70001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70001) UART_HTTP: Waiting for data...[0m
+[0;32mI (70101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70101) UART_HTTP: Waiting for data...[0m
+[0;32mI (70201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70201) UART_HTTP: Waiting for data...[0m
+[0;32mI (70301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70301) UART_HTTP: Waiting for data...[0m
+[0;32mI (70401) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70401) UART_HTTP: Waiting for data...[0m
+[0;32mI (70501) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (70501) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (70701) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70701) UART_HTTP: Waiting for data...[0m
+[0;32mI (70801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70801) UART_HTTP: Waiting for data...[0m
+[0;32mI (70901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (70901) UART_HTTP: Waiting for data...[0m
+[0;32mI (71001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71001) UART_HTTP: Waiting for data...[0m
+[0;32mI (71101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71101) UART_HTTP: Waiting for data...[0m
+[0;32mI (71201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71201) UART_HTTP: Waiting for data...[0m
+[0;32mI (71301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71301) UART_HTTP: Waiting for data...[0m
+[0;32mI (71401) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71401) UART_HTTP: Waiting for data...[0m
+[0;32mI (71511) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (71511) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (71711) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71711) UART_HTTP: Waiting for data...[0m
+[0;32mI (71811) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71811) UART_HTTP: Waiting for data...[0m
+[0;32mI (71911) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (71911) UART_HTTP: Waiting for data...[0m
+[0;32mI (72011) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72011) UART_HTTP: Waiting for data...[0m
+[0;32mI (72111) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72111) UART_HTTP: Waiting for data...[0m
+[0;32mI (72211) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72211) UART_HTTP: Waiting for data...[0m
+[0;32mI (72311) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72311) UART_HTTP: Waiting for data...[0m
+[0;32mI (72411) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72411) UART_HTTP: Waiting for data...[0m
+[0;32mI (72511) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (72511) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (72711) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72711) UART_HTTP: Waiting for data...[0m
+[0;32mI (72811) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72811) UART_HTTP: Waiting for data...[0m
+[0;32mI (72911) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (72911) UART_HTTP: Waiting for data...[0m
+[0;32mI (73011) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73011) UART_HTTP: Waiting for data...[0m
+[0;32mI (73111) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73111) UART_HTTP: Waiting for data...[0m
+[0;32mI (73211) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73211) UART_HTTP: Waiting for data...[0m
+[0;32mI (73311) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73311) UART_HTTP: Waiting for data...[0m
+[0;32mI (73411) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73411) UART_HTTP: Waiting for data...[0m
+[0;32mI (73521) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (73521) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (73721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73721) UART_HTTP: Waiting for data...[0m
+[0;32mI (73821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73821) UART_HTTP: Waiting for data...[0m
+[0;32mI (73921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (73921) UART_HTTP: Waiting for data...[0m
+[0;32mI (74021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74021) UART_HTTP: Waiting for data...[0m
+[0;32mI (74121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74121) UART_HTTP: Waiting for data...[0m
+[0;32mI (74221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74221) UART_HTTP: Waiting for data...[0m
+[0;32mI (74321) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74321) UART_HTTP: Waiting for data...[0m
+[0;32mI (74421) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74421) UART_HTTP: Waiting for data...[0m
+[0;32mI (74521) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (74521) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (74721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74721) UART_HTTP: Waiting for data...[0m
+[0;32mI (74821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74821) UART_HTTP: Waiting for data...[0m
+[0;32mI (74921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (74921) UART_HTTP: Waiting for data...[0m
+[0;32mI (75021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75021) UART_HTTP: Waiting for data...[0m
+[0;32mI (75121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75121) UART_HTTP: Waiting for data...[0m
+[0;32mI (75221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75221) UART_HTTP: Waiting for data...[0m
+[0;32mI (75321) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75321) UART_HTTP: Waiting for data...[0m
+[0;32mI (75421) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75421) UART_HTTP: Waiting for data...[0m
+[0;32mI (75521) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (75521) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (75721) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75721) UART_HTTP: Waiting for data...[0m
+[0;32mI (75821) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75821) UART_HTTP: Waiting for data...[0m
+[0;32mI (75921) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (75921) UART_HTTP: Waiting for data...[0m
+[0;32mI (76021) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76021) UART_HTTP: Waiting for data...[0m
+[0;32mI (76121) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76121) UART_HTTP: Waiting for data...[0m
+[0;32mI (76221) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76221) UART_HTTP: Waiting for data...[0m
+[0;32mI (76321) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76321) UART_HTTP: Waiting for data...[0m
+[0;32mI (76421) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76421) UART_HTTP: Waiting for data...[0m
+[0;32mI (76531) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (76531) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (76731) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76731) UART_HTTP: Waiting for data...[0m
+[0;32mI (76831) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76831) UART_HTTP: Waiting for data...[0m
+[0;32mI (76931) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (76931) UART_HTTP: Waiting for data...[0m
+[0;32mI (77031) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77031) UART_HTTP: Waiting for data...[0m
+[0;32mI (77131) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77131) UART_HTTP: Waiting for data...[0m
+[0;32mI (77231) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77231) UART_HTTP: Waiting for data...[0m
+[0;32mI (77331) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77331) UART_HTTP: Waiting for data...[0m
+[0;32mI (77431) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77431) UART_HTTP: Waiting for data...[0m
+[0;32mI (77531) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (77531) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (77731) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77731) UART_HTTP: Waiting for data...[0m
+[0;32mI (77831) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77831) UART_HTTP: Waiting for data...[0m
+[0;32mI (77931) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (77931) UART_HTTP: Waiting for data...[0m
+[0;32mI (78031) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78031) UART_HTTP: Waiting for data...[0m
+[0;32mI (78131) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78131) UART_HTTP: Waiting for data...[0m
+[0;32mI (78231) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78231) UART_HTTP: Waiting for data...[0m
+[0;32mI (78331) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78331) UART_HTTP: Waiting for data...[0m
+[0;32mI (78431) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78431) UART_HTTP: Waiting for data...[0m
+[0;32mI (78541) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (78541) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (78741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78741) UART_HTTP: Waiting for data...[0m
+[0;32mI (78841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78841) UART_HTTP: Waiting for data...[0m
+[0;32mI (78941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (78941) UART_HTTP: Waiting for data...[0m
+[0;32mI (79041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79041) UART_HTTP: Waiting for data...[0m
+[0;32mI (79141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79141) UART_HTTP: Waiting for data...[0m
+[0;32mI (79241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79241) UART_HTTP: Waiting for data...[0m
+[0;32mI (79341) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79341) UART_HTTP: Waiting for data...[0m
+[0;32mI (79441) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79441) UART_HTTP: Waiting for data...[0m
+[0;32mI (79541) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (79541) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (79741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79741) UART_HTTP: Waiting for data...[0m
+[0;32mI (79841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79841) UART_HTTP: Waiting for data...[0m
+[0;32mI (79941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (79941) UART_HTTP: Waiting for data...[0m
+[0;32mI (80041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80041) UART_HTTP: Waiting for data...[0m
+[0;32mI (80141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80141) UART_HTTP: Waiting for data...[0m
+[0;32mI (80241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80241) UART_HTTP: Waiting for data...[0m
+[0;32mI (80341) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80341) UART_HTTP: Waiting for data...[0m
+[0;32mI (80441) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80441) UART_HTTP: Waiting for data...[0m
+[0;32mI (80541) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (80541) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (80741) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80741) UART_HTTP: Waiting for data...[0m
+[0;32mI (80841) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80841) UART_HTTP: Waiting for data...[0m
+[0;32mI (80941) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (80941) UART_HTTP: Waiting for data...[0m
+[0;32mI (81041) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81041) UART_HTTP: Waiting for data...[0m
+[0;32mI (81141) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81141) UART_HTTP: Waiting for data...[0m
+[0;32mI (81241) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81241) UART_HTTP: Waiting for data...[0m
+[0;32mI (81341) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81341) UART_HTTP: Waiting for data...[0m
+[0;32mI (81441) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81441) UART_HTTP: Waiting for data...[0m
+[0;32mI (81551) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (81551) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (81751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81751) UART_HTTP: Waiting for data...[0m
+[0;32mI (81851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81851) UART_HTTP: Waiting for data...[0m
+[0;32mI (81951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (81951) UART_HTTP: Waiting for data...[0m
+[0;32mI (82051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82051) UART_HTTP: Waiting for data...[0m
+[0;32mI (82151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82151) UART_HTTP: Waiting for data...[0m
+[0;32mI (82251) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82251) UART_HTTP: Waiting for data...[0m
+[0;32mI (82351) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82351) UART_HTTP: Waiting for data...[0m
+[0;32mI (82451) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82451) UART_HTTP: Waiting for data...[0m
+[0;32mI (82551) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (82551) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (82751) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82751) UART_HTTP: Waiting for data...[0m
+[0;32mI (82851) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82851) UART_HTTP: Waiting for data...[0m
+[0;32mI (82951) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (82951) UART_HTTP: Waiting for data...[0m
+[0;32mI (83051) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83051) UART_HTTP: Waiting for data...[0m
+[0;32mI (83151) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83151) UART_HTTP: Waiting for data...[0m
+[0;32mI (83251) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83251) UART_HTTP: Waiting for data...[0m
+[0;32mI (83351) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83351) UART_HTTP: Waiting for data...[0m
+[0;32mI (83451) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83451) UART_HTTP: Waiting for data...[0m
+[0;32mI (83561) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (83561) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (83761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83761) UART_HTTP: Waiting for data...[0m
+[0;32mI (83861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83861) UART_HTTP: Waiting for data...[0m
+[0;32mI (83961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (83961) UART_HTTP: Waiting for data...[0m
+[0;32mI (84061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84061) UART_HTTP: Waiting for data...[0m
+[0;32mI (84161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84161) UART_HTTP: Waiting for data...[0m
+[0;32mI (84261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84261) UART_HTTP: Waiting for data...[0m
+[0;32mI (84361) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84361) UART_HTTP: Waiting for data...[0m
+[0;32mI (84461) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84461) UART_HTTP: Waiting for data...[0m
+[0;32mI (84561) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (84561) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (84761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84761) UART_HTTP: Waiting for data...[0m
+[0;32mI (84861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84861) UART_HTTP: Waiting for data...[0m
+[0;32mI (84961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (84961) UART_HTTP: Waiting for data...[0m
+[0;32mI (85061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85061) UART_HTTP: Waiting for data...[0m
+[0;32mI (85161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85161) UART_HTTP: Waiting for data...[0m
+[0;32mI (85261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85261) UART_HTTP: Waiting for data...[0m
+[0;32mI (85361) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85361) UART_HTTP: Waiting for data...[0m
+[0;32mI (85461) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85461) UART_HTTP: Waiting for data...[0m
+[0;32mI (85561) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (85561) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (85761) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85761) UART_HTTP: Waiting for data...[0m
+[0;32mI (85861) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85861) UART_HTTP: Waiting for data...[0m
+[0;32mI (85961) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (85961) UART_HTTP: Waiting for data...[0m
+[0;32mI (86061) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86061) UART_HTTP: Waiting for data...[0m
+[0;32mI (86161) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86161) UART_HTTP: Waiting for data...[0m
+[0;32mI (86261) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86261) UART_HTTP: Waiting for data...[0m
+[0;32mI (86361) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86361) UART_HTTP: Waiting for data...[0m
+[0;32mI (86461) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86461) UART_HTTP: Waiting for data...[0m
+[0;32mI (86571) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (86571) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (86771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86771) UART_HTTP: Waiting for data...[0m
+[0;32mI (86871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86871) UART_HTTP: Waiting for data...[0m
+[0;32mI (86971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (86971) UART_HTTP: Waiting for data...[0m
+[0;32mI (87071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87071) UART_HTTP: Waiting for data...[0m
+[0;32mI (87171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87171) UART_HTTP: Waiting for data...[0m
+[0;32mI (87271) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87271) UART_HTTP: Waiting for data...[0m
+[0;32mI (87371) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87371) UART_HTTP: Waiting for data...[0m
+[0;32mI (87471) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87471) UART_HTTP: Waiting for data...[0m
+[0;32mI (87571) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (87571) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (87771) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87771) UART_HTTP: Waiting for data...[0m
+[0;32mI (87871) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87871) UART_HTTP: Waiting for data...[0m
+[0;32mI (87971) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (87971) UART_HTTP: Waiting for data...[0m
+[0;32mI (88071) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88071) UART_HTTP: Waiting for data...[0m
+[0;32mI (88171) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88171) UART_HTTP: Waiting for data...[0m
+[0;32mI (88271) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88271) UART_HTTP: Waiting for data...[0m
+[0;32mI (88371) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88371) UART_HTTP: Waiting for data...[0m
+[0;32mI (88471) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88471) UART_HTTP: Waiting for data...[0m
+[0;32mI (88581) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (88581) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (88781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88781) UART_HTTP: Waiting for data...[0m
+[0;32mI (88881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88881) UART_HTTP: Waiting for data...[0m
+[0;32mI (88981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (88981) UART_HTTP: Waiting for data...[0m
+[0;32mI (89081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89081) UART_HTTP: Waiting for data...[0m
+[0;32mI (89181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89181) UART_HTTP: Waiting for data...[0m
+[0;32mI (89281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89281) UART_HTTP: Waiting for data...[0m
+[0;32mI (89381) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89381) UART_HTTP: Waiting for data...[0m
+[0;32mI (89481) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89481) UART_HTTP: Waiting for data...[0m
+[0;32mI (89581) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (89581) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (89781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89781) UART_HTTP: Waiting for data...[0m
+[0;32mI (89881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89881) UART_HTTP: Waiting for data...[0m
+[0;32mI (89981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (89981) UART_HTTP: Waiting for data...[0m
+[0;32mI (90081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90081) UART_HTTP: Waiting for data...[0m
+[0;32mI (90181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90181) UART_HTTP: Waiting for data...[0m
+[0;32mI (90281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90281) UART_HTTP: Waiting for data...[0m
+[0;32mI (90381) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90381) UART_HTTP: Waiting for data...[0m
+[0;32mI (90481) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90481) UART_HTTP: Waiting for data...[0m
+[0;32mI (90581) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (90581) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (90781) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90781) UART_HTTP: Waiting for data...[0m
+[0;32mI (90881) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90881) UART_HTTP: Waiting for data...[0m
+[0;32mI (90981) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (90981) UART_HTTP: Waiting for data...[0m
+[0;32mI (91081) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91081) UART_HTTP: Waiting for data...[0m
+[0;32mI (91181) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91181) UART_HTTP: Waiting for data...[0m
+[0;32mI (91281) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91281) UART_HTTP: Waiting for data...[0m
+[0;32mI (91381) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91381) UART_HTTP: Waiting for data...[0m
+[0;32mI (91481) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91481) UART_HTTP: Waiting for data...[0m
+[0;32mI (91591) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (91591) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (91791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91791) UART_HTTP: Waiting for data...[0m
+[0;32mI (91891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91891) UART_HTTP: Waiting for data...[0m
+[0;32mI (91991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (91991) UART_HTTP: Waiting for data...[0m
+[0;32mI (92091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92091) UART_HTTP: Waiting for data...[0m
+[0;32mI (92191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92191) UART_HTTP: Waiting for data...[0m
+[0;32mI (92291) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92291) UART_HTTP: Waiting for data...[0m
+[0;32mI (92391) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92391) UART_HTTP: Waiting for data...[0m
+[0;32mI (92491) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92491) UART_HTTP: Waiting for data...[0m
+[0;32mI (92591) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (92591) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (92791) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92791) UART_HTTP: Waiting for data...[0m
+[0;32mI (92891) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92891) UART_HTTP: Waiting for data...[0m
+[0;32mI (92991) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (92991) UART_HTTP: Waiting for data...[0m
+[0;32mI (93091) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93091) UART_HTTP: Waiting for data...[0m
+[0;32mI (93191) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93191) UART_HTTP: Waiting for data...[0m
+[0;32mI (93291) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93291) UART_HTTP: Waiting for data...[0m
+[0;32mI (93391) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93391) UART_HTTP: Waiting for data...[0m
+[0;32mI (93491) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93491) UART_HTTP: Waiting for data...[0m
+[0;32mI (93601) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (93601) UART_HTTP: Receive data:[0m
+AA 04 
+[0;32mI (93801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93801) UART_HTTP: Waiting for data...[0m
+[0;32mI (93901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (93901) UART_HTTP: Waiting for data...[0m
+[0;32mI (94001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94001) UART_HTTP: Waiting for data...[0m
+[0;32mI (94101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94101) UART_HTTP: Waiting for data...[0m
+[0;32mI (94201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94201) UART_HTTP: Waiting for data...[0m
+[0;32mI (94301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94301) UART_HTTP: Waiting for data...[0m
+[0;32mI (94401) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94401) UART_HTTP: Waiting for data...[0m
+[0;32mI (94501) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94501) UART_HTTP: Waiting for data...[0m
+[0;32mI (94601) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (94601) UART_HTTP: Receive data:[0m
+AA 04 
+Checksum lỗi: 0xAA (đúng: 0x60)
+AA 04 AA 04 
+[0;32mI (94801) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94801) UART_HTTP: Waiting for data...[0m
+[0;32mI (94901) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (94901) UART_HTTP: Waiting for data...[0m
+[0;32mI (95001) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (95001) UART_HTTP: Waiting for data...[0m
+[0;32mI (95101) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (95101) UART_HTTP: Waiting for data...[0m
+[0;32mI (95201) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (95201) UART_HTTP: Waiting for data...[0m
+[0;32mI (95301) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (95301) UART_HTTP: Waiting for data...[0m
+[0;32mI (95401) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (95401) UART_HTTP: Waiting for data...[0m
+[0;32mI (95501) UART_HTTP: Received 0 bytes:[0m
+[0;32mI (95501) UART_HTTP: Waiting for data...[0m
+[0;32mI (95601) UART_HTTP: Received 2 bytes:[0m
+[0;32mI (95601) UART_HTTP: Receive data:[0m
+AA 04 

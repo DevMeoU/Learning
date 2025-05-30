@@ -101,6 +101,8 @@
 #define RCC_AHB1ENR          (*(volatile uint32_t *)(RCC_BASE + 0x48U))
 #define RCC_APB1ENR2         (*(volatile uint32_t *)(RCC_BASE + 0x5CU))
 
+#define RCC_AHB2ENR          (*(volatile uint32_t *)(RCC_BASE + 0x4CU))
+#define RCC_APB2ENR2         (*(volatile uint32_t *)(RCC_BASE + 0x60U))
 // GPIO Registers
 // Các thanh ghi GPIO
 #define GPIOA_MODER          (*(volatile uint32_t *)(GPIOA_BASE + 0x00U))

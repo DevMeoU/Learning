@@ -1,0 +1,2874 @@
+����revision: v�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:7188
+load:0x40078000,len:15756
+load:0x40080400,len:4
+load:0x40080404,len:3860
+entry 0x4008063c
+[0;32mI (29) boot: ESP-IDF v5.4.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time May 25 2025 01:52:07[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (34) boot: chip revision: v3.0[0m
+[0;32mI (38) boot.esp32: SPI Speed      : 80MHz[0m
+[0;32mI (43) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (47) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (52) boot: Enabling RNG early entropy source...[0m
+[0;32mI (57) boot: Partition Table:[0m
+[0;32mI (61) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (68) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (83) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (95) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=209f4h (133620) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=00030a1c vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (141) esp_image: segment 2: paddr=00030a40 vaddr=3ffb0000 size=03f20h ( 16160) load[0m
+[0;32mI (151) esp_image: segment 3: paddr=00034968 vaddr=40080000 size=0b6b0h ( 46768) load[0m
+[0;32mI (170) esp_image: segment 4: paddr=00040020 vaddr=400d0020 size=a9ce4h (695524) map[0m
+[0;32mI (367) esp_image: segment 5: paddr=000e9d0c vaddr=4008b6b0 size=0d11ch ( 53532) load[0m
+[0;32mI (396) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (396) boot: Disabling RNG early entropy source...[0m
+[0;32mI (408) cpu_start: Multicore app[0m
+[0;32mI (417) cpu_start: Pro cpu start user code[0m
+[0;32mI (417) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (417) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     SmartHome[0m
+[0;32mI (421) app_init: App version:      c44232e3-dirty[0m
+[0;32mI (425) app_init: Compile time:     May 25 2025 03:18:29[0m
+[0;32mI (430) app_init: ELF file SHA256:  88d15cfab...[0m
+[0;32mI (435) app_init: ESP-IDF:          v5.4.1-dirty[0m
+[0;32mI (439) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (443) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (447) efuse_init: Chip rev:         v3.0[0m
+[0;32mI (451) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (457) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (462) heap_init: At 3FFB87B0 len 00027850 (158 KiB): DRAM[0m
+[0;32mI (467) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (473) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (478) heap_init: At 400987CC len 00007834 (30 KiB): IRAM[0m
+[0;32mI (484) spi_flash: detected chip: generic[0m
+[0;32mI (487) spi_flash: flash io: dio[0m
+[0;32mI (491) main_task: Started on CPU0[0m
+[0;32mI (501) main_task: Calling app_main()[0m
+[0;32mI (521) gpio: GPIO[16]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (531) UART_HTTP: Press and hold button for 5 seconds to enter AP mode...[0m
+[0;32mI (531) UART_HTTP: Timeout: 5 seconds remaining[0m
+[0;32mI (1531) UART_HTTP: Timeout: 4 seconds remaining[0m
+[0;32mI (2531) UART_HTTP: Timeout: 3 seconds remaining[0m
+[0;32mI (3531) UART_HTTP: Timeout: 2 seconds remaining[0m
+[0;32mI (4531) UART_HTTP: Timeout: 1 seconds remaining[0m
+[0;32mI (5531) UART_HTTP: No button press detected[0m
+[0;32mI (5531) UART_HTTP: Connecting to saved WiFi...[0m
+[0;32mI (5541) wifi:wifi driver task: 3ffc081c, prio:23, stack:6656, core=0[0m
+[0;32mI (5551) wifi:wifi firmware version: 79fa3f41ba[0m
+[0;32mI (5551) wifi:wifi certification version: v7.0[0m
+[0;32mI (5551) wifi:config NVS flash: enabled[0m
+[0;32mI (5551) wifi:config nano formatting: disabled[0m
+[0;32mI (5561) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (5561) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (5571) wifi:Init management short buffer num: 32[0m
+[0;32mI (5571) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (5581) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (5581) wifi:Init static rx buffer num: 10[0m
+[0;32mI (5581) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (5591) wifi_init: rx ba win: 6[0m
+[0;32mI (5591) wifi_init: accept mbox: 6[0m
+[0;32mI (5591) wifi_init: tcpip mbox: 32[0m
+[0;32mI (5601) wifi_init: udp mbox: 6[0m
+[0;32mI (5601) wifi_init: tcp mbox: 6[0m
+[0;32mI (5601) wifi_init: tcp tx win: 5760[0m
+[0;32mI (5611) wifi_init: tcp rx win: 5760[0m
+[0;32mI (5611) wifi_init: tcp mss: 1440[0m
+[0;32mI (5611) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (5621) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (5621) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (5711) wifi:mode : sta (c0:49:ef:2c:9b:9c)[0m
+[0;32mI (5711) wifi:enable tsf[0m
+[0;32mI (5721) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5721) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5781) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (5811) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (5881) wifi:connected with HAPPY HOME floor4, aid = 1, channel 1, BW20, bssid = 00:c8:96:23:01:01[0m
+[0;32mI (5881) wifi:security: WPA2-PSK, phy: bgn, rssi: -67[0m
+[0;32mI (5881) wifi:pm start, type: 1[0m
+
+[0;32mI (5881) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (5901) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (5911) wifi:<ba-add>idx:0 (ifx:0, 00:c8:96:23:01:01), tid:0, ssn:0, winSize:64[0m
+[0;32mI (6931) esp_netif_handlers: sta ip: 192.168.1.204, mask: 255.255.255.0, gw: 192.168.1.1[0m
+[0;32mI (6931) UART_HTTP: Connected! IP: 192.168.1.204[0m
+[0;32mI (6931) UART_HTTP: UART Parser Task started[0m
+[0;32mI (6931) UART_HTTP: HTTP Task started[0m
+[0;32mI (6931) main_task: Returned from app_main()[0m
+[0;33mW (7031) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 05 00 17 20 
+Parsed: T=0.05°C, H=0.23%
+[0;33mW (7401) UART_HTTP: Waiting for data...[0m
+[0;32mI (7441) wifi:<ba-add>idx:1 (ifx:0, 00:c8:96:23:01:01), tid:6, ssn:2, winSize:64[0m
+[0;33mW (7501) UART_HTTP: Waiting for data...[0m
+[0;33mW (7601) UART_HTTP: Waiting for data...[0m
+[0;33mW (7701) UART_HTTP: Waiting for data...[0m
+[0;33mW (7801) UART_HTTP: Waiting for data...[0m
+[0;33mW (7901) UART_HTTP: Waiting for data...[0m
+[0;33mW (8001) UART_HTTP: Waiting for data...[0m
+[0;33mW (8101) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5C 00 55 B5 
+Parsed: T=0.92°C, H=0.85%
+[0;33mW (8411) UART_HTTP: Waiting for data...[0m
+[0;33mW (8511) UART_HTTP: Waiting for data...[0m
+[0;33mW (8611) UART_HTTP: Waiting for data...[0m
+[0;33mW (8711) UART_HTTP: Waiting for data...[0m
+[0;33mW (8811) UART_HTTP: Waiting for data...[0m
+[0;33mW (8911) UART_HTTP: Waiting for data...[0m
+[0;33mW (9011) UART_HTTP: Waiting for data...[0m
+[0;33mW (9111) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0E 00 5F 71 
+Parsed: T=0.14°C, H=0.95%
+[0;33mW (9421) UART_HTTP: Waiting for data...[0m
+[0;33mW (9521) UART_HTTP: Waiting for data...[0m
+[0;33mW (9621) UART_HTTP: Waiting for data...[0m
+[0;33mW (9721) UART_HTTP: Waiting for data...[0m
+[0;33mW (9821) UART_HTTP: Waiting for data...[0m
+[0;33mW (9921) UART_HTTP: Waiting for data...[0m
+[0;33mW (10021) UART_HTTP: Waiting for data...[0m
+[0;33mW (10121) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4D 00 4E 9F 
+Parsed: T=0.77°C, H=0.78%
+[0;33mW (10431) UART_HTTP: Waiting for data...[0m
+[0;33mW (10531) UART_HTTP: Waiting for data...[0m
+[0;33mW (10631) UART_HTTP: Waiting for data...[0m
+[0;33mW (10731) UART_HTTP: Waiting for data...[0m
+[0;33mW (10831) UART_HTTP: Waiting for data...[0m
+[0;33mW (10931) UART_HTTP: Waiting for data...[0m
+[0;33mW (11031) UART_HTTP: Waiting for data...[0m
+[0;33mW (11131) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 21 00 0D 32 
+Parsed: T=0.33°C, H=0.13%
+[0;33mW (11441) UART_HTTP: Waiting for data...[0m
+[0;33mW (11541) UART_HTTP: Waiting for data...[0m
+[0;33mW (11641) UART_HTTP: Waiting for data...[0m
+[0;33mW (11741) UART_HTTP: Waiting for data...[0m
+[0;33mW (11841) UART_HTTP: Waiting for data...[0m
+[0;33mW (11941) UART_HTTP: Waiting for data...[0m
+[0;33mW (12041) UART_HTTP: Waiting for data...[0m
+[0;33mW (12141) UART_HTTP: Waiting for data...[0m
+[1;31mE (12211) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (12211) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (12211) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (12211) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 40 00 16 5A 
+Parsed: T=0.64°C, H=0.22%
+[0;33mW (12451) UART_HTTP: Waiting for data...[0m
+[0;33mW (12551) UART_HTTP: Waiting for data...[0m
+[0;33mW (12651) UART_HTTP: Waiting for data...[0m
+[0;33mW (12751) UART_HTTP: Waiting for data...[0m
+[0;33mW (12851) UART_HTTP: Waiting for data...[0m
+[0;33mW (12951) UART_HTTP: Waiting for data...[0m
+[0;33mW (13051) UART_HTTP: Waiting for data...[0m
+[0;33mW (13151) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 11 00 2F 44 
+Parsed: T=0.17°C, H=0.47%
+[0;33mW (13461) UART_HTTP: Waiting for data...[0m
+[0;33mW (13561) UART_HTTP: Waiting for data...[0m
+[0;33mW (13661) UART_HTTP: Waiting for data...[0m
+[0;33mW (13761) UART_HTTP: Waiting for data...[0m
+[0;33mW (13861) UART_HTTP: Waiting for data...[0m
+[0;33mW (13961) UART_HTTP: Waiting for data...[0m
+[0;33mW (14061) UART_HTTP: Waiting for data...[0m
+[0;33mW (14161) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2A 00 28 56 
+Parsed: T=0.42°C, H=0.40%
+[0;33mW (14471) UART_HTTP: Waiting for data...[0m
+[0;33mW (14571) UART_HTTP: Waiting for data...[0m
+[0;33mW (14671) UART_HTTP: Waiting for data...[0m
+[0;33mW (14771) UART_HTTP: Waiting for data...[0m
+[0;33mW (14871) UART_HTTP: Waiting for data...[0m
+[0;33mW (14971) UART_HTTP: Waiting for data...[0m
+[0;33mW (15071) UART_HTTP: Waiting for data...[0m
+[0;33mW (15171) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 23 00 2C 53 
+Parsed: T=0.35°C, H=0.44%
+[0;33mW (15481) UART_HTTP: Waiting for data...[0m
+[0;33mW (15581) UART_HTTP: Waiting for data...[0m
+[0;33mW (15681) UART_HTTP: Waiting for data...[0m
+[0;33mW (15781) UART_HTTP: Waiting for data...[0m
+[0;33mW (15881) UART_HTTP: Waiting for data...[0m
+[0;33mW (15981) UART_HTTP: Waiting for data...[0m
+[0;33mW (16081) UART_HTTP: Waiting for data...[0m
+[0;33mW (16181) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 61 00 0F 74 
+Parsed: T=0.97°C, H=0.15%
+[0;33mW (16491) UART_HTTP: Waiting for data...[0m
+[0;33mW (16591) UART_HTTP: Waiting for data...[0m
+[0;33mW (16691) UART_HTTP: Waiting for data...[0m
+[0;33mW (16791) UART_HTTP: Waiting for data...[0m
+[0;33mW (16891) UART_HTTP: Waiting for data...[0m
+[0;33mW (16991) UART_HTTP: Waiting for data...[0m
+[0;33mW (17091) UART_HTTP: Waiting for data...[0m
+[0;33mW (17191) UART_HTTP: Waiting for data...[0m
+[1;31mE (17231) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (17231) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (17231) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (17231) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 32 00 2D 63 
+Parsed: T=0.50°C, H=0.45%
+[0;33mW (17491) UART_HTTP: Waiting for data...[0m
+[0;33mW (17591) UART_HTTP: Waiting for data...[0m
+[0;33mW (17691) UART_HTTP: Waiting for data...[0m
+[0;33mW (17791) UART_HTTP: Waiting for data...[0m
+[0;33mW (17891) UART_HTTP: Waiting for data...[0m
+[0;33mW (17991) UART_HTTP: Waiting for data...[0m
+[0;33mW (18091) UART_HTTP: Waiting for data...[0m
+[0;33mW (18191) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5E 00 2B 8D 
+Parsed: T=0.94°C, H=0.43%
+[0;33mW (18501) UART_HTTP: Waiting for data...[0m
+[0;33mW (18601) UART_HTTP: Waiting for data...[0m
+[0;33mW (18701) UART_HTTP: Waiting for data...[0m
+[0;33mW (18801) UART_HTTP: Waiting for data...[0m
+[0;33mW (18901) UART_HTTP: Waiting for data...[0m
+[0;33mW (19001) UART_HTTP: Waiting for data...[0m
+[0;33mW (19101) UART_HTTP: Waiting for data...[0m
+[0;33mW (19201) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 24 00 22 4A 
+Parsed: T=0.36°C, H=0.34%
+[0;33mW (19511) UART_HTTP: Waiting for data...[0m
+[0;33mW (19611) UART_HTTP: Waiting for data...[0m
+[0;33mW (19711) UART_HTTP: Waiting for data...[0m
+[0;33mW (19811) UART_HTTP: Waiting for data...[0m
+[0;33mW (19911) UART_HTTP: Waiting for data...[0m
+[0;33mW (20011) UART_HTTP: Waiting for data...[0m
+[0;33mW (20111) UART_HTTP: Waiting for data...[0m
+[0;33mW (20211) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 13 00 32 49 
+Parsed: T=0.19°C, H=0.50%
+[0;33mW (20521) UART_HTTP: Waiting for data...[0m
+[0;33mW (20621) UART_HTTP: Waiting for data...[0m
+[0;33mW (20721) UART_HTTP: Waiting for data...[0m
+[0;33mW (20821) UART_HTTP: Waiting for data...[0m
+[0;33mW (20921) UART_HTTP: Waiting for data...[0m
+[0;33mW (21021) UART_HTTP: Waiting for data...[0m
+[0;33mW (21121) UART_HTTP: Waiting for data...[0m
+[0;33mW (21221) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 58 00 58 B4 
+Parsed: T=0.88°C, H=0.88%
+[0;33mW (21531) UART_HTTP: Waiting for data...[0m
+[0;33mW (21631) UART_HTTP: Waiting for data...[0m
+[0;33mW (21731) UART_HTTP: Waiting for data...[0m
+[0;33mW (21831) UART_HTTP: Waiting for data...[0m
+[0;33mW (21931) UART_HTTP: Waiting for data...[0m
+[0;33mW (22031) UART_HTTP: Waiting for data...[0m
+[0;33mW (22131) UART_HTTP: Waiting for data...[0m
+[0;33mW (22231) UART_HTTP: Waiting for data...[0m
+[1;31mE (22251) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (22251) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (22251) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (22251) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 48 00 0F 5B 
+Parsed: T=0.72°C, H=0.15%
+[0;33mW (22541) UART_HTTP: Waiting for data...[0m
+[0;33mW (22641) UART_HTTP: Waiting for data...[0m
+[0;33mW (22741) UART_HTTP: Waiting for data...[0m
+[0;33mW (22841) UART_HTTP: Waiting for data...[0m
+[0;33mW (22941) UART_HTTP: Waiting for data...[0m
+[0;33mW (23041) UART_HTTP: Waiting for data...[0m
+[0;33mW (23141) UART_HTTP: Waiting for data...[0m
+[0;33mW (23241) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1F 00 34 57 
+Parsed: T=0.31°C, H=0.52%
+[0;33mW (23551) UART_HTTP: Waiting for data...[0m
+[0;33mW (23651) UART_HTTP: Waiting for data...[0m
+[0;33mW (23751) UART_HTTP: Waiting for data...[0m
+[0;33mW (23851) UART_HTTP: Waiting for data...[0m
+[0;33mW (23951) UART_HTTP: Waiting for data...[0m
+[0;33mW (24051) UART_HTTP: Waiting for data...[0m
+[0;33mW (24151) UART_HTTP: Waiting for data...[0m
+[0;33mW (24251) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2A 00 49 77 
+Parsed: T=0.42°C, H=0.73%
+[0;33mW (24561) UART_HTTP: Waiting for data...[0m
+[0;33mW (24661) UART_HTTP: Waiting for data...[0m
+[0;33mW (24761) UART_HTTP: Waiting for data...[0m
+[0;33mW (24861) UART_HTTP: Waiting for data...[0m
+[0;33mW (24961) UART_HTTP: Waiting for data...[0m
+[0;33mW (25061) UART_HTTP: Waiting for data...[0m
+[0;33mW (25161) UART_HTTP: Waiting for data...[0m
+[0;33mW (25261) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5C 00 4F AF 
+Parsed: T=0.92°C, H=0.79%
+[0;33mW (25571) UART_HTTP: Waiting for data...[0m
+[0;33mW (25671) UART_HTTP: Waiting for data...[0m
+[0;33mW (25771) UART_HTTP: Waiting for data...[0m
+[0;33mW (25871) UART_HTTP: Waiting for data...[0m
+[0;33mW (25971) UART_HTTP: Waiting for data...[0m
+[0;33mW (26071) UART_HTTP: Waiting for data...[0m
+[0;33mW (26171) UART_HTTP: Waiting for data...[0m
+[0;33mW (26271) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5F 00 0D 70 
+Parsed: T=0.95°C, H=0.13%
+[0;33mW (26581) UART_HTTP: Waiting for data...[0m
+[0;33mW (26681) UART_HTTP: Waiting for data...[0m
+[0;33mW (26781) UART_HTTP: Waiting for data...[0m
+[0;33mW (26881) UART_HTTP: Waiting for data...[0m
+[0;33mW (26981) UART_HTTP: Waiting for data...[0m
+[0;33mW (27081) UART_HTTP: Waiting for data...[0m
+[0;33mW (27181) UART_HTTP: Waiting for data...[0m
+[1;31mE (27271) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (27271) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (27271) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (27271) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (27281) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2F 00 22 55 
+Parsed: T=0.47°C, H=0.34%
+[0;33mW (27581) UART_HTTP: Waiting for data...[0m
+[0;33mW (27681) UART_HTTP: Waiting for data...[0m
+[0;33mW (27781) UART_HTTP: Waiting for data...[0m
+[0;33mW (27881) UART_HTTP: Waiting for data...[0m
+[0;33mW (27981) UART_HTTP: Waiting for data...[0m
+[0;33mW (28081) UART_HTTP: Waiting for data...[0m
+[0;33mW (28181) UART_HTTP: Waiting for data...[0m
+[0;33mW (28281) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 18 00 21 3D 
+Parsed: T=0.24°C, H=0.33%
+[0;33mW (28591) UART_HTTP: Waiting for data...[0m
+[0;33mW (28691) UART_HTTP: Waiting for data...[0m
+[0;33mW (28791) UART_HTTP: Waiting for data...[0m
+[0;33mW (28891) UART_HTTP: Waiting for data...[0m
+[0;33mW (28991) UART_HTTP: Waiting for data...[0m
+[0;33mW (29091) UART_HTTP: Waiting for data...[0m
+[0;33mW (29191) UART_HTTP: Waiting for data...[0m
+[0;33mW (29291) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 06 00 38 42 
+Parsed: T=0.06°C, H=0.56%
+[0;33mW (29601) UART_HTTP: Waiting for data...[0m
+[0;33mW (29701) UART_HTTP: Waiting for data...[0m
+[0;33mW (29801) UART_HTTP: Waiting for data...[0m
+[0;33mW (29901) UART_HTTP: Waiting for data...[0m
+[0;33mW (30001) UART_HTTP: Waiting for data...[0m
+[0;33mW (30101) UART_HTTP: Waiting for data...[0m
+[0;33mW (30201) UART_HTTP: Waiting for data...[0m
+[0;33mW (30301) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 30 00 5B 8F 
+Parsed: T=0.48°C, H=0.91%
+[0;33mW (30611) UART_HTTP: Waiting for data...[0m
+[0;33mW (30711) UART_HTTP: Waiting for data...[0m
+[0;33mW (30811) UART_HTTP: Waiting for data...[0m
+[0;33mW (30911) UART_HTTP: Waiting for data...[0m
+[0;33mW (31011) UART_HTTP: Waiting for data...[0m
+[0;33mW (31111) UART_HTTP: Waiting for data...[0m
+[0;33mW (31211) UART_HTTP: Waiting for data...[0m
+[0;33mW (31311) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 58 00 2E 8A 
+Parsed: T=0.88°C, H=0.46%
+[0;33mW (31621) UART_HTTP: Waiting for data...[0m
+[0;33mW (31721) UART_HTTP: Waiting for data...[0m
+[0;33mW (31821) UART_HTTP: Waiting for data...[0m
+[0;33mW (31921) UART_HTTP: Waiting for data...[0m
+[0;33mW (32021) UART_HTTP: Waiting for data...[0m
+[0;33mW (32121) UART_HTTP: Waiting for data...[0m
+[0;33mW (32221) UART_HTTP: Waiting for data...[0m
+[1;31mE (32291) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (32291) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (32291) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (32291) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (32321) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3F 00 52 95 
+Parsed: T=0.63°C, H=0.82%
+[0;33mW (32631) UART_HTTP: Waiting for data...[0m
+[0;33mW (32731) UART_HTTP: Waiting for data...[0m
+[0;33mW (32831) UART_HTTP: Waiting for data...[0m
+[0;33mW (32931) UART_HTTP: Waiting for data...[0m
+[0;33mW (33031) UART_HTTP: Waiting for data...[0m
+[0;33mW (33131) UART_HTTP: Waiting for data...[0m
+[0;33mW (33231) UART_HTTP: Waiting for data...[0m
+[0;33mW (33331) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3F 00 42 85 
+Parsed: T=0.63°C, H=0.66%
+[0;33mW (33641) UART_HTTP: Waiting for data...[0m
+[0;33mW (33741) UART_HTTP: Waiting for data...[0m
+[0;33mW (33841) UART_HTTP: Waiting for data...[0m
+[0;33mW (33941) UART_HTTP: Waiting for data...[0m
+[0;33mW (34041) UART_HTTP: Waiting for data...[0m
+[0;33mW (34141) UART_HTTP: Waiting for data...[0m
+[0;33mW (34241) UART_HTTP: Waiting for data...[0m
+[0;33mW (34341) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0F 00 61 74 
+Parsed: T=0.15°C, H=0.97%
+[0;33mW (34651) UART_HTTP: Waiting for data...[0m
+[0;33mW (34751) UART_HTTP: Waiting for data...[0m
+[0;33mW (34851) UART_HTTP: Waiting for data...[0m
+[0;33mW (34951) UART_HTTP: Waiting for data...[0m
+[0;33mW (35051) UART_HTTP: Waiting for data...[0m
+[0;33mW (35151) UART_HTTP: Waiting for data...[0m
+[0;33mW (35251) UART_HTTP: Waiting for data...[0m
+[0;33mW (35351) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 60 00 39 9D 
+Parsed: T=0.96°C, H=0.57%
+[0;33mW (35661) UART_HTTP: Waiting for data...[0m
+[0;33mW (35761) UART_HTTP: Waiting for data...[0m
+[0;33mW (35861) UART_HTTP: Waiting for data...[0m
+[0;33mW (35961) UART_HTTP: Waiting for data...[0m
+[0;33mW (36061) UART_HTTP: Waiting for data...[0m
+[0;33mW (36161) UART_HTTP: Waiting for data...[0m
+[0;33mW (36261) UART_HTTP: Waiting for data...[0m
+[0;33mW (36361) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 43 00 43 8A 
+Parsed: T=0.67°C, H=0.67%
+[0;33mW (36661) UART_HTTP: Waiting for data...[0m
+[0;33mW (36761) UART_HTTP: Waiting for data...[0m
+[0;33mW (36861) UART_HTTP: Waiting for data...[0m
+[0;33mW (36961) UART_HTTP: Waiting for data...[0m
+[0;33mW (37061) UART_HTTP: Waiting for data...[0m
+[0;33mW (37161) UART_HTTP: Waiting for data...[0m
+[0;33mW (37261) UART_HTTP: Waiting for data...[0m
+[1;31mE (37311) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (37311) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (37311) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (37311) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (37361) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 00 00 4A 4E 
+Parsed: T=0.00°C, H=0.74%
+[0;33mW (37671) UART_HTTP: Waiting for data...[0m
+[0;33mW (37771) UART_HTTP: Waiting for data...[0m
+[0;33mW (37871) UART_HTTP: Waiting for data...[0m
+[0;33mW (37971) UART_HTTP: Waiting for data...[0m
+[0;33mW (38071) UART_HTTP: Waiting for data...[0m
+[0;33mW (38171) UART_HTTP: Waiting for data...[0m
+[0;33mW (38271) UART_HTTP: Waiting for data...[0m
+[0;33mW (38371) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 25 00 4F 78 
+Parsed: T=0.37°C, H=0.79%
+[0;33mW (38681) UART_HTTP: Waiting for data...[0m
+[0;33mW (38781) UART_HTTP: Waiting for data...[0m
+[0;33mW (38881) UART_HTTP: Waiting for data...[0m
+[0;33mW (38981) UART_HTTP: Waiting for data...[0m
+[0;33mW (39081) UART_HTTP: Waiting for data...[0m
+[0;33mW (39181) UART_HTTP: Waiting for data...[0m
+[0;33mW (39281) UART_HTTP: Waiting for data...[0m
+[0;33mW (39381) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5C 00 40 A0 
+Parsed: T=0.92°C, H=0.64%
+[0;33mW (39691) UART_HTTP: Waiting for data...[0m
+[0;33mW (39791) UART_HTTP: Waiting for data...[0m
+[0;33mW (39891) UART_HTTP: Waiting for data...[0m
+[0;33mW (39991) UART_HTTP: Waiting for data...[0m
+[0;33mW (40091) UART_HTTP: Waiting for data...[0m
+[0;33mW (40191) UART_HTTP: Waiting for data...[0m
+[0;33mW (40291) UART_HTTP: Waiting for data...[0m
+[0;33mW (40391) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 30 00 04 38 
+Parsed: T=0.48°C, H=0.04%
+[0;33mW (40701) UART_HTTP: Waiting for data...[0m
+[0;33mW (40801) UART_HTTP: Waiting for data...[0m
+[0;33mW (40901) UART_HTTP: Waiting for data...[0m
+[0;33mW (41001) UART_HTTP: Waiting for data...[0m
+[0;33mW (41101) UART_HTTP: Waiting for data...[0m
+[0;33mW (41201) UART_HTTP: Waiting for data...[0m
+[0;33mW (41301) UART_HTTP: Waiting for data...[0m
+[0;33mW (41401) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3C 00 57 97 
+Parsed: T=0.60°C, H=0.87%
+[0;33mW (41711) UART_HTTP: Waiting for data...[0m
+[0;33mW (41811) UART_HTTP: Waiting for data...[0m
+[0;33mW (41911) UART_HTTP: Waiting for data...[0m
+[0;33mW (42011) UART_HTTP: Waiting for data...[0m
+[0;33mW (42111) UART_HTTP: Waiting for data...[0m
+[0;33mW (42211) UART_HTTP: Waiting for data...[0m
+[0;33mW (42311) UART_HTTP: Waiting for data...[0m
+[1;31mE (42331) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (42331) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (42331) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (42331) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (42411) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1E 00 51 73 
+Parsed: T=0.30°C, H=0.81%
+[0;33mW (42721) UART_HTTP: Waiting for data...[0m
+[0;33mW (42821) UART_HTTP: Waiting for data...[0m
+[0;33mW (42921) UART_HTTP: Waiting for data...[0m
+[0;33mW (43021) UART_HTTP: Waiting for data...[0m
+[0;33mW (43121) UART_HTTP: Waiting for data...[0m
+[0;33mW (43221) UART_HTTP: Waiting for data...[0m
+[0;33mW (43321) UART_HTTP: Waiting for data...[0m
+[0;33mW (43421) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5B 00 23 82 
+Parsed: T=0.91°C, H=0.35%
+[0;33mW (43731) UART_HTTP: Waiting for data...[0m
+[0;33mW (43831) UART_HTTP: Waiting for data...[0m
+[0;33mW (43931) UART_HTTP: Waiting for data...[0m
+[0;33mW (44031) UART_HTTP: Waiting for data...[0m
+[0;33mW (44131) UART_HTTP: Waiting for data...[0m
+[0;33mW (44231) UART_HTTP: Waiting for data...[0m
+[0;33mW (44331) UART_HTTP: Waiting for data...[0m
+[0;33mW (44431) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5E 00 10 72 
+Parsed: T=0.94°C, H=0.16%
+[0;33mW (44731) UART_HTTP: Waiting for data...[0m
+[0;33mW (44831) UART_HTTP: Waiting for data...[0m
+[0;33mW (44931) UART_HTTP: Waiting for data...[0m
+[0;33mW (45031) UART_HTTP: Waiting for data...[0m
+[0;33mW (45131) UART_HTTP: Waiting for data...[0m
+[0;33mW (45231) UART_HTTP: Waiting for data...[0m
+[0;33mW (45331) UART_HTTP: Waiting for data...[0m
+[0;33mW (45431) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 44 00 4C 94 
+Parsed: T=0.68°C, H=0.76%
+[0;33mW (45741) UART_HTTP: Waiting for data...[0m
+[0;33mW (45841) UART_HTTP: Waiting for data...[0m
+[0;33mW (45941) UART_HTTP: Waiting for data...[0m
+[0;33mW (46041) UART_HTTP: Waiting for data...[0m
+[0;33mW (46141) UART_HTTP: Waiting for data...[0m
+[0;33mW (46241) UART_HTTP: Waiting for data...[0m
+[0;33mW (46341) UART_HTTP: Waiting for data...[0m
+[0;33mW (46441) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 20 00 5F 83 
+Parsed: T=0.32°C, H=0.95%
+[0;33mW (46751) UART_HTTP: Waiting for data...[0m
+[0;33mW (46851) UART_HTTP: Waiting for data...[0m
+[0;33mW (46951) UART_HTTP: Waiting for data...[0m
+[0;33mW (47051) UART_HTTP: Waiting for data...[0m
+[0;33mW (47151) UART_HTTP: Waiting for data...[0m
+[0;33mW (47251) UART_HTTP: Waiting for data...[0m
+[0;33mW (47351) UART_HTTP: Waiting for data...[0m
+[1;31mE (47351) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (47351) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (47351) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (47351) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (47451) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 06 00 5D 67 
+Parsed: T=0.06°C, H=0.93%
+[0;33mW (47761) UART_HTTP: Waiting for data...[0m
+[0;33mW (47861) UART_HTTP: Waiting for data...[0m
+[0;33mW (47961) UART_HTTP: Waiting for data...[0m
+[0;33mW (48061) UART_HTTP: Waiting for data...[0m
+[0;33mW (48161) UART_HTTP: Waiting for data...[0m
+[0;33mW (48261) UART_HTTP: Waiting for data...[0m
+[0;33mW (48361) UART_HTTP: Waiting for data...[0m
+[0;33mW (48461) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 11 00 5D 72 
+Parsed: T=0.17°C, H=0.93%
+[0;33mW (48771) UART_HTTP: Waiting for data...[0m
+[0;33mW (48871) UART_HTTP: Waiting for data...[0m
+[0;33mW (48971) UART_HTTP: Waiting for data...[0m
+[0;33mW (49071) UART_HTTP: Waiting for data...[0m
+[0;33mW (49171) UART_HTTP: Waiting for data...[0m
+[0;33mW (49271) UART_HTTP: Waiting for data...[0m
+[0;33mW (49371) UART_HTTP: Waiting for data...[0m
+[0;33mW (49471) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 30 00 10 44 
+Parsed: T=0.48°C, H=0.16%
+[0;33mW (49781) UART_HTTP: Waiting for data...[0m
+[0;33mW (49881) UART_HTTP: Waiting for data...[0m
+[0;33mW (49981) UART_HTTP: Waiting for data...[0m
+[0;33mW (50081) UART_HTTP: Waiting for data...[0m
+[0;33mW (50181) UART_HTTP: Waiting for data...[0m
+[0;33mW (50281) UART_HTTP: Waiting for data...[0m
+[0;33mW (50381) UART_HTTP: Waiting for data...[0m
+[0;33mW (50481) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 14 00 3D 55 
+Parsed: T=0.20°C, H=0.61%
+[0;33mW (50791) UART_HTTP: Waiting for data...[0m
+[0;33mW (50891) UART_HTTP: Waiting for data...[0m
+[0;33mW (50991) UART_HTTP: Waiting for data...[0m
+[0;33mW (51091) UART_HTTP: Waiting for data...[0m
+[0;33mW (51191) UART_HTTP: Waiting for data...[0m
+[0;33mW (51291) UART_HTTP: Waiting for data...[0m
+[0;33mW (51391) UART_HTTP: Waiting for data...[0m
+[0;33mW (51491) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 03 00 61 68 
+Parsed: T=0.03°C, H=0.97%
+[0;33mW (51801) UART_HTTP: Waiting for data...[0m
+[0;33mW (51901) UART_HTTP: Waiting for data...[0m
+[0;33mW (52001) UART_HTTP: Waiting for data...[0m
+[0;33mW (52101) UART_HTTP: Waiting for data...[0m
+[0;33mW (52201) UART_HTTP: Waiting for data...[0m
+[0;33mW (52301) UART_HTTP: Waiting for data...[0m
+[1;31mE (52381) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (52381) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (52381) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (52381) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (52401) UART_HTTP: Waiting for data...[0m
+[0;33mW (52501) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 23 00 35 5C 
+Parsed: T=0.35°C, H=0.53%
+[0;33mW (52811) UART_HTTP: Waiting for data...[0m
+[0;33mW (52911) UART_HTTP: Waiting for data...[0m
+[0;33mW (53011) UART_HTTP: Waiting for data...[0m
+[0;33mW (53111) UART_HTTP: Waiting for data...[0m
+[0;33mW (53211) UART_HTTP: Waiting for data...[0m
+[0;33mW (53311) UART_HTTP: Waiting for data...[0m
+[0;33mW (53411) UART_HTTP: Waiting for data...[0m
+[0;33mW (53511) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1A 00 27 45 
+Parsed: T=0.26°C, H=0.39%
+[0;33mW (53821) UART_HTTP: Waiting for data...[0m
+[0;33mW (53921) UART_HTTP: Waiting for data...[0m
+[0;33mW (54021) UART_HTTP: Waiting for data...[0m
+[0;33mW (54121) UART_HTTP: Waiting for data...[0m
+[0;33mW (54221) UART_HTTP: Waiting for data...[0m
+[0;33mW (54321) UART_HTTP: Waiting for data...[0m
+[0;33mW (54421) UART_HTTP: Waiting for data...[0m
+[0;33mW (54521) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0C 00 56 66 
+Parsed: T=0.12°C, H=0.86%
+[0;33mW (54821) UART_HTTP: Waiting for data...[0m
+[0;33mW (54921) UART_HTTP: Waiting for data...[0m
+[0;33mW (55021) UART_HTTP: Waiting for data...[0m
+[0;33mW (55121) UART_HTTP: Waiting for data...[0m
+[0;33mW (55221) UART_HTTP: Waiting for data...[0m
+[0;33mW (55321) UART_HTTP: Waiting for data...[0m
+[0;33mW (55421) UART_HTTP: Waiting for data...[0m
+[0;33mW (55521) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 32 00 36 6C 
+Parsed: T=0.50°C, H=0.54%
+[0;33mW (55831) UART_HTTP: Waiting for data...[0m
+[0;33mW (55931) UART_HTTP: Waiting for data...[0m
+[0;33mW (56031) UART_HTTP: Waiting for data...[0m
+[0;33mW (56131) UART_HTTP: Waiting for data...[0m
+[0;33mW (56231) UART_HTTP: Waiting for data...[0m
+[0;33mW (56331) UART_HTTP: Waiting for data...[0m
+[0;33mW (56431) UART_HTTP: Waiting for data...[0m
+[0;33mW (56531) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 58 00 44 A0 
+Parsed: T=0.88°C, H=0.68%
+[0;33mW (56841) UART_HTTP: Waiting for data...[0m
+[0;33mW (56941) UART_HTTP: Waiting for data...[0m
+[0;33mW (57041) UART_HTTP: Waiting for data...[0m
+[0;33mW (57141) UART_HTTP: Waiting for data...[0m
+[0;33mW (57241) UART_HTTP: Waiting for data...[0m
+[0;33mW (57341) UART_HTTP: Waiting for data...[0m
+[1;31mE (57401) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (57401) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (57401) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (57401) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (57441) UART_HTTP: Waiting for data...[0m
+[0;33mW (57541) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 25 00 22 4B 
+Parsed: T=0.37°C, H=0.34%
+[0;33mW (57851) UART_HTTP: Waiting for data...[0m
+[0;33mW (57951) UART_HTTP: Waiting for data...[0m
+[0;33mW (58051) UART_HTTP: Waiting for data...[0m
+[0;33mW (58151) UART_HTTP: Waiting for data...[0m
+[0;33mW (58251) UART_HTTP: Waiting for data...[0m
+[0;33mW (58351) UART_HTTP: Waiting for data...[0m
+[0;33mW (58451) UART_HTTP: Waiting for data...[0m
+[0;33mW (58551) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 08 00 5A 66 
+Parsed: T=0.08°C, H=0.90%
+[0;33mW (58861) UART_HTTP: Waiting for data...[0m
+[0;33mW (58961) UART_HTTP: Waiting for data...[0m
+[0;33mW (59061) UART_HTTP: Waiting for data...[0m
+[0;33mW (59161) UART_HTTP: Waiting for data...[0m
+[0;33mW (59261) UART_HTTP: Waiting for data...[0m
+[0;33mW (59361) UART_HTTP: Waiting for data...[0m
+[0;33mW (59461) UART_HTTP: Waiting for data...[0m
+[0;33mW (59561) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4C 00 41 91 
+Parsed: T=0.76°C, H=0.65%
+[0;33mW (59871) UART_HTTP: Waiting for data...[0m
+[0;33mW (59971) UART_HTTP: Waiting for data...[0m
+[0;33mW (60071) UART_HTTP: Waiting for data...[0m
+[0;33mW (60171) UART_HTTP: Waiting for data...[0m
+[0;33mW (60271) UART_HTTP: Waiting for data...[0m
+[0;33mW (60371) UART_HTTP: Waiting for data...[0m
+[0;33mW (60471) UART_HTTP: Waiting for data...[0m
+[0;33mW (60571) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2F 00 0F 42 
+Parsed: T=0.47°C, H=0.15%
+[0;33mW (60881) UART_HTTP: Waiting for data...[0m
+[0;33mW (60981) UART_HTTP: Waiting for data...[0m
+[0;33mW (61081) UART_HTTP: Waiting for data...[0m
+[0;33mW (61181) UART_HTTP: Waiting for data...[0m
+[0;33mW (61281) UART_HTTP: Waiting for data...[0m
+[0;33mW (61381) UART_HTTP: Waiting for data...[0m
+[0;33mW (61481) UART_HTTP: Waiting for data...[0m
+[0;33mW (61581) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 56 00 39 93 
+Parsed: T=0.86°C, H=0.57%
+[0;33mW (61891) UART_HTTP: Waiting for data...[0m
+[0;33mW (61991) UART_HTTP: Waiting for data...[0m
+[0;33mW (62091) UART_HTTP: Waiting for data...[0m
+[0;33mW (62191) UART_HTTP: Waiting for data...[0m
+[0;33mW (62291) UART_HTTP: Waiting for data...[0m
+[0;33mW (62391) UART_HTTP: Waiting for data...[0m
+[1;31mE (62421) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (62421) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (62421) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (62421) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (62491) UART_HTTP: Waiting for data...[0m
+[0;33mW (62591) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3D 00 46 87 
+Parsed: T=0.61°C, H=0.70%
+[0;33mW (62901) UART_HTTP: Waiting for data...[0m
+[0;33mW (63001) UART_HTTP: Waiting for data...[0m
+[0;33mW (63101) UART_HTTP: Waiting for data...[0m
+[0;33mW (63201) UART_HTTP: Waiting for data...[0m
+[0;33mW (63301) UART_HTTP: Waiting for data...[0m
+[0;33mW (63401) UART_HTTP: Waiting for data...[0m
+[0;33mW (63501) UART_HTTP: Waiting for data...[0m
+[0;33mW (63601) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 29 00 25 52 
+Parsed: T=0.41°C, H=0.37%
+[0;33mW (63911) UART_HTTP: Waiting for data...[0m
+[0;33mW (64011) UART_HTTP: Waiting for data...[0m
+[0;33mW (64111) UART_HTTP: Waiting for data...[0m
+[0;33mW (64211) UART_HTTP: Waiting for data...[0m
+[0;33mW (64311) UART_HTTP: Waiting for data...[0m
+[0;33mW (64411) UART_HTTP: Waiting for data...[0m
+[0;33mW (64511) UART_HTTP: Waiting for data...[0m
+[0;33mW (64611) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4B 00 07 56 
+Parsed: T=0.75°C, H=0.07%
+[0;33mW (64911) UART_HTTP: Waiting for data...[0m
+[0;33mW (65011) UART_HTTP: Waiting for data...[0m
+[0;33mW (65111) UART_HTTP: Waiting for data...[0m
+[0;33mW (65211) UART_HTTP: Waiting for data...[0m
+[0;33mW (65311) UART_HTTP: Waiting for data...[0m
+[0;33mW (65411) UART_HTTP: Waiting for data...[0m
+[0;33mW (65511) UART_HTTP: Waiting for data...[0m
+[0;33mW (65611) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1A 00 39 57 
+Parsed: T=0.26°C, H=0.57%
+[0;33mW (65921) UART_HTTP: Waiting for data...[0m
+[0;33mW (66021) UART_HTTP: Waiting for data...[0m
+[0;33mW (66121) UART_HTTP: Waiting for data...[0m
+[0;33mW (66221) UART_HTTP: Waiting for data...[0m
+[0;33mW (66321) UART_HTTP: Waiting for data...[0m
+[0;33mW (66421) UART_HTTP: Waiting for data...[0m
+[0;33mW (66521) UART_HTTP: Waiting for data...[0m
+[0;33mW (66621) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 63 00 25 8C 
+Parsed: T=0.99°C, H=0.37%
+[0;33mW (66931) UART_HTTP: Waiting for data...[0m
+[0;33mW (67031) UART_HTTP: Waiting for data...[0m
+[0;33mW (67131) UART_HTTP: Waiting for data...[0m
+[0;33mW (67231) UART_HTTP: Waiting for data...[0m
+[0;33mW (67331) UART_HTTP: Waiting for data...[0m
+[0;33mW (67431) UART_HTTP: Waiting for data...[0m
+[1;31mE (67441) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (67441) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (67441) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (67441) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (67531) UART_HTTP: Waiting for data...[0m
+[0;33mW (67631) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5F 00 4F B2 
+Parsed: T=0.95°C, H=0.79%
+[0;33mW (67941) UART_HTTP: Waiting for data...[0m
+[0;33mW (68041) UART_HTTP: Waiting for data...[0m
+[0;33mW (68141) UART_HTTP: Waiting for data...[0m
+[0;33mW (68241) UART_HTTP: Waiting for data...[0m
+[0;33mW (68341) UART_HTTP: Waiting for data...[0m
+[0;33mW (68441) UART_HTTP: Waiting for data...[0m
+[0;33mW (68541) UART_HTTP: Waiting for data...[0m
+[0;33mW (68641) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 55 00 25 7E 
+Parsed: T=0.85°C, H=0.37%
+[0;33mW (68951) UART_HTTP: Waiting for data...[0m
+[0;33mW (69051) UART_HTTP: Waiting for data...[0m
+[0;33mW (69151) UART_HTTP: Waiting for data...[0m
+[0;33mW (69251) UART_HTTP: Waiting for data...[0m
+[0;33mW (69351) UART_HTTP: Waiting for data...[0m
+[0;33mW (69451) UART_HTTP: Waiting for data...[0m
+[0;33mW (69551) UART_HTTP: Waiting for data...[0m
+[0;33mW (69651) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 42 00 4D 93 
+Parsed: T=0.66°C, H=0.77%
+[0;33mW (69961) UART_HTTP: Waiting for data...[0m
+[0;33mW (70061) UART_HTTP: Waiting for data...[0m
+[0;33mW (70161) UART_HTTP: Waiting for data...[0m
+[0;33mW (70261) UART_HTTP: Waiting for data...[0m
+[0;33mW (70361) UART_HTTP: Waiting for data...[0m
+[0;33mW (70461) UART_HTTP: Waiting for data...[0m
+[0;33mW (70561) UART_HTTP: Waiting for data...[0m
+[0;33mW (70661) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 48 00 4B 97 
+Parsed: T=0.72°C, H=0.75%
+[0;33mW (70971) UART_HTTP: Waiting for data...[0m
+[0;33mW (71071) UART_HTTP: Waiting for data...[0m
+[0;33mW (71171) UART_HTTP: Waiting for data...[0m
+[0;33mW (71271) UART_HTTP: Waiting for data...[0m
+[0;33mW (71371) UART_HTTP: Waiting for data...[0m
+[0;33mW (71471) UART_HTTP: Waiting for data...[0m
+[0;33mW (71571) UART_HTTP: Waiting for data...[0m
+[0;33mW (71671) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0C 00 4B 5B 
+Parsed: T=0.12°C, H=0.75%
+[0;33mW (71981) UART_HTTP: Waiting for data...[0m
+[0;33mW (72081) UART_HTTP: Waiting for data...[0m
+[0;33mW (72181) UART_HTTP: Waiting for data...[0m
+[0;33mW (72281) UART_HTTP: Waiting for data...[0m
+[0;33mW (72381) UART_HTTP: Waiting for data...[0m
+[1;31mE (72461) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (72461) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (72461) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (72461) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (72481) UART_HTTP: Waiting for data...[0m
+[0;33mW (72581) UART_HTTP: Waiting for data...[0m
+[0;33mW (72681) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4E 00 2D 7F 
+Parsed: T=0.78°C, H=0.45%
+[0;33mW (72991) UART_HTTP: Waiting for data...[0m
+[0;33mW (73091) UART_HTTP: Waiting for data...[0m
+[0;33mW (73191) UART_HTTP: Waiting for data...[0m
+[0;33mW (73291) UART_HTTP: Waiting for data...[0m
+[0;33mW (73391) UART_HTTP: Waiting for data...[0m
+[0;33mW (73491) UART_HTTP: Waiting for data...[0m
+[0;33mW (73591) UART_HTTP: Waiting for data...[0m
+[0;33mW (73691) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2C 00 2F 5F 
+Parsed: T=0.44°C, H=0.47%
+[0;33mW (74001) UART_HTTP: Waiting for data...[0m
+[0;33mW (74101) UART_HTTP: Waiting for data...[0m
+[0;33mW (74201) UART_HTTP: Waiting for data...[0m
+[0;33mW (74301) UART_HTTP: Waiting for data...[0m
+[0;33mW (74401) UART_HTTP: Waiting for data...[0m
+[0;33mW (74501) UART_HTTP: Waiting for data...[0m
+[0;33mW (74601) UART_HTTP: Waiting for data...[0m
+[0;33mW (74701) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2F 00 43 76 
+Parsed: T=0.47°C, H=0.67%
+[0;33mW (75011) UART_HTTP: Waiting for data...[0m
+[0;33mW (75111) UART_HTTP: Waiting for data...[0m
+[0;33mW (75211) UART_HTTP: Waiting for data...[0m
+[0;33mW (75311) UART_HTTP: Waiting for data...[0m
+[0;33mW (75411) UART_HTTP: Waiting for data...[0m
+[0;33mW (75511) UART_HTTP: Waiting for data...[0m
+[0;33mW (75611) UART_HTTP: Waiting for data...[0m
+[0;33mW (75711) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 25 00 1C 45 
+Parsed: T=0.37°C, H=0.28%
+[0;33mW (76011) UART_HTTP: Waiting for data...[0m
+[0;33mW (76111) UART_HTTP: Waiting for data...[0m
+[0;33mW (76211) UART_HTTP: Waiting for data...[0m
+[0;33mW (76311) UART_HTTP: Waiting for data...[0m
+[0;33mW (76411) UART_HTTP: Waiting for data...[0m
+[0;33mW (76511) UART_HTTP: Waiting for data...[0m
+[0;33mW (76611) UART_HTTP: Waiting for data...[0m
+[0;33mW (76711) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 08 00 36 42 
+Parsed: T=0.08°C, H=0.54%
+[0;33mW (77021) UART_HTTP: Waiting for data...[0m
+[0;33mW (77121) UART_HTTP: Waiting for data...[0m
+[0;33mW (77221) UART_HTTP: Waiting for data...[0m
+[0;33mW (77321) UART_HTTP: Waiting for data...[0m
+[0;33mW (77421) UART_HTTP: Waiting for data...[0m
+[1;31mE (77481) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (77481) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (77481) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (77481) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (77521) UART_HTTP: Waiting for data...[0m
+[0;33mW (77621) UART_HTTP: Waiting for data...[0m
+[0;33mW (77721) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 38 00 1F 5B 
+Parsed: T=0.56°C, H=0.31%
+[0;33mW (78031) UART_HTTP: Waiting for data...[0m
+[0;33mW (78131) UART_HTTP: Waiting for data...[0m
+[0;33mW (78231) UART_HTTP: Waiting for data...[0m
+[0;33mW (78331) UART_HTTP: Waiting for data...[0m
+[0;33mW (78431) UART_HTTP: Waiting for data...[0m
+[0;33mW (78531) UART_HTTP: Waiting for data...[0m
+[0;33mW (78631) UART_HTTP: Waiting for data...[0m
+[0;33mW (78731) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 01 00 2F 34 
+Parsed: T=0.01°C, H=0.47%
+[0;33mW (79041) UART_HTTP: Waiting for data...[0m
+[0;33mW (79141) UART_HTTP: Waiting for data...[0m
+[0;33mW (79241) UART_HTTP: Waiting for data...[0m
+[0;33mW (79341) UART_HTTP: Waiting for data...[0m
+[0;33mW (79441) UART_HTTP: Waiting for data...[0m
+[0;33mW (79541) UART_HTTP: Waiting for data...[0m
+[0;33mW (79641) UART_HTTP: Waiting for data...[0m
+[0;33mW (79741) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2E 00 2C 5E 
+Parsed: T=0.46°C, H=0.44%
+[0;33mW (80051) UART_HTTP: Waiting for data...[0m
+[0;33mW (80151) UART_HTTP: Waiting for data...[0m
+[0;33mW (80251) UART_HTTP: Waiting for data...[0m
+[0;33mW (80351) UART_HTTP: Waiting for data...[0m
+[0;33mW (80451) UART_HTTP: Waiting for data...[0m
+[0;33mW (80551) UART_HTTP: Waiting for data...[0m
+[0;33mW (80651) UART_HTTP: Waiting for data...[0m
+[0;33mW (80751) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 53 00 0E 65 
+Parsed: T=0.83°C, H=0.14%
+[0;33mW (81061) UART_HTTP: Waiting for data...[0m
+[0;33mW (81161) UART_HTTP: Waiting for data...[0m
+[0;33mW (81261) UART_HTTP: Waiting for data...[0m
+[0;33mW (81361) UART_HTTP: Waiting for data...[0m
+[0;33mW (81461) UART_HTTP: Waiting for data...[0m
+[0;33mW (81561) UART_HTTP: Waiting for data...[0m
+[0;33mW (81661) UART_HTTP: Waiting for data...[0m
+[0;33mW (81761) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 44 00 39 81 
+Parsed: T=0.68°C, H=0.57%
+[0;33mW (82071) UART_HTTP: Waiting for data...[0m
+[0;33mW (82171) UART_HTTP: Waiting for data...[0m
+[0;33mW (82271) UART_HTTP: Waiting for data...[0m
+[0;33mW (82371) UART_HTTP: Waiting for data...[0m
+[0;33mW (82471) UART_HTTP: Waiting for data...[0m
+[1;31mE (82501) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (82501) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (82501) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (82501) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (82571) UART_HTTP: Waiting for data...[0m
+[0;33mW (82671) UART_HTTP: Waiting for data...[0m
+[0;33mW (82771) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 03 00 5D 64 
+Parsed: T=0.03°C, H=0.93%
+[0;33mW (83081) UART_HTTP: Waiting for data...[0m
+[0;33mW (83181) UART_HTTP: Waiting for data...[0m
+[0;33mW (83281) UART_HTTP: Waiting for data...[0m
+[0;33mW (83381) UART_HTTP: Waiting for data...[0m
+[0;33mW (83481) UART_HTTP: Waiting for data...[0m
+[0;33mW (83581) UART_HTTP: Waiting for data...[0m
+[0;33mW (83681) UART_HTTP: Waiting for data...[0m
+[0;33mW (83781) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 38 00 1E 5A 
+Parsed: T=0.56°C, H=0.30%
+[0;33mW (84091) UART_HTTP: Waiting for data...[0m
+[0;33mW (84191) UART_HTTP: Waiting for data...[0m
+[0;33mW (84291) UART_HTTP: Waiting for data...[0m
+[0;33mW (84391) UART_HTTP: Waiting for data...[0m
+[0;33mW (84491) UART_HTTP: Waiting for data...[0m
+[0;33mW (84591) UART_HTTP: Waiting for data...[0m
+[0;33mW (84691) UART_HTTP: Waiting for data...[0m
+[0;33mW (84791) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0B 00 3D 4C 
+Parsed: T=0.11°C, H=0.61%
+[0;33mW (85101) UART_HTTP: Waiting for data...[0m
+[0;33mW (85201) UART_HTTP: Waiting for data...[0m
+[0;33mW (85301) UART_HTTP: Waiting for data...[0m
+[0;33mW (85401) UART_HTTP: Waiting for data...[0m
+[0;33mW (85501) UART_HTTP: Waiting for data...[0m
+[0;33mW (85601) UART_HTTP: Waiting for data...[0m
+[0;33mW (85701) UART_HTTP: Waiting for data...[0m
+[0;33mW (85801) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2F 00 36 69 
+Parsed: T=0.47°C, H=0.54%
+[0;33mW (86101) UART_HTTP: Waiting for data...[0m
+[0;33mW (86201) UART_HTTP: Waiting for data...[0m
+[0;33mW (86301) UART_HTTP: Waiting for data...[0m
+[0;33mW (86401) UART_HTTP: Waiting for data...[0m
+[0;33mW (86501) UART_HTTP: Waiting for data...[0m
+[0;33mW (86601) UART_HTTP: Waiting for data...[0m
+[0;33mW (86701) UART_HTTP: Waiting for data...[0m
+[0;33mW (86801) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 39 00 02 3F 
+Parsed: T=0.57°C, H=0.02%
+[0;33mW (87111) UART_HTTP: Waiting for data...[0m
+[0;33mW (87211) UART_HTTP: Waiting for data...[0m
+[0;33mW (87311) UART_HTTP: Waiting for data...[0m
+[0;33mW (87411) UART_HTTP: Waiting for data...[0m
+[0;33mW (87511) UART_HTTP: Waiting for data...[0m
+[1;31mE (87521) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (87521) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (87521) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (87521) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (87611) UART_HTTP: Waiting for data...[0m
+[0;33mW (87711) UART_HTTP: Waiting for data...[0m
+[0;33mW (87811) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 35 00 23 5C 
+Parsed: T=0.53°C, H=0.35%
+[0;33mW (88121) UART_HTTP: Waiting for data...[0m
+[0;33mW (88221) UART_HTTP: Waiting for data...[0m
+[0;33mW (88321) UART_HTTP: Waiting for data...[0m
+[0;33mW (88421) UART_HTTP: Waiting for data...[0m
+[0;33mW (88521) UART_HTTP: Waiting for data...[0m
+[0;33mW (88621) UART_HTTP: Waiting for data...[0m
+[0;33mW (88721) UART_HTTP: Waiting for data...[0m
+[0;33mW (88821) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4E 00 08 5A 
+Parsed: T=0.78°C, H=0.08%
+[0;33mW (89131) UART_HTTP: Waiting for data...[0m
+[0;33mW (89231) UART_HTTP: Waiting for data...[0m
+[0;33mW (89331) UART_HTTP: Waiting for data...[0m
+[0;33mW (89431) UART_HTTP: Waiting for data...[0m
+[0;33mW (89531) UART_HTTP: Waiting for data...[0m
+[0;33mW (89631) UART_HTTP: Waiting for data...[0m
+[0;33mW (89731) UART_HTTP: Waiting for data...[0m
+[0;33mW (89831) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 04 00 3A 42 
+Parsed: T=0.04°C, H=0.58%
+[0;33mW (90141) UART_HTTP: Waiting for data...[0m
+[0;33mW (90241) UART_HTTP: Waiting for data...[0m
+[0;33mW (90341) UART_HTTP: Waiting for data...[0m
+[0;33mW (90441) UART_HTTP: Waiting for data...[0m
+[0;33mW (90541) UART_HTTP: Waiting for data...[0m
+[0;33mW (90641) UART_HTTP: Waiting for data...[0m
+[0;33mW (90741) UART_HTTP: Waiting for data...[0m
+[0;33mW (90841) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 21 00 09 2E 
+Parsed: T=0.33°C, H=0.09%
+[0;33mW (91151) UART_HTTP: Waiting for data...[0m
+[0;33mW (91251) UART_HTTP: Waiting for data...[0m
+[0;33mW (91351) UART_HTTP: Waiting for data...[0m
+[0;33mW (91451) UART_HTTP: Waiting for data...[0m
+[0;33mW (91551) UART_HTTP: Waiting for data...[0m
+[0;33mW (91651) UART_HTTP: Waiting for data...[0m
+[0;33mW (91751) UART_HTTP: Waiting for data...[0m
+[0;33mW (91851) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4C 00 11 61 
+Parsed: T=0.76°C, H=0.17%
+[0;33mW (92161) UART_HTTP: Waiting for data...[0m
+[0;33mW (92261) UART_HTTP: Waiting for data...[0m
+[0;33mW (92361) UART_HTTP: Waiting for data...[0m
+[0;33mW (92461) UART_HTTP: Waiting for data...[0m
+[1;31mE (92541) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (92541) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (92541) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (92541) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (92561) UART_HTTP: Waiting for data...[0m
+[0;33mW (92661) UART_HTTP: Waiting for data...[0m
+[0;33mW (92761) UART_HTTP: Waiting for data...[0m
+[0;33mW (92861) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 46 00 58 A2 
+Parsed: T=0.70°C, H=0.88%
+[0;33mW (93171) UART_HTTP: Waiting for data...[0m
+[0;33mW (93271) UART_HTTP: Waiting for data...[0m
+[0;33mW (93371) UART_HTTP: Waiting for data...[0m
+[0;33mW (93471) UART_HTTP: Waiting for data...[0m
+[0;33mW (93571) UART_HTTP: Waiting for data...[0m
+[0;33mW (93671) UART_HTTP: Waiting for data...[0m
+[0;33mW (93771) UART_HTTP: Waiting for data...[0m
+[0;33mW (93871) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3C 00 3C 7C 
+Parsed: T=0.60°C, H=0.60%
+[0;33mW (94181) UART_HTTP: Waiting for data...[0m
+[0;33mW (94281) UART_HTTP: Waiting for data...[0m
+[0;33mW (94381) UART_HTTP: Waiting for data...[0m
+[0;33mW (94481) UART_HTTP: Waiting for data...[0m
+[0;33mW (94581) UART_HTTP: Waiting for data...[0m
+[0;33mW (94681) UART_HTTP: Waiting for data...[0m
+[0;33mW (94781) UART_HTTP: Waiting for data...[0m
+[0;33mW (94881) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 63 00 18 7F 
+Parsed: T=0.99°C, H=0.24%
+[0;33mW (95191) UART_HTTP: Waiting for data...[0m
+[0;33mW (95291) UART_HTTP: Waiting for data...[0m
+[0;33mW (95391) UART_HTTP: Waiting for data...[0m
+[0;33mW (95491) UART_HTTP: Waiting for data...[0m
+[0;33mW (95591) UART_HTTP: Waiting for data...[0m
+[0;33mW (95691) UART_HTTP: Waiting for data...[0m
+[0;33mW (95791) UART_HTTP: Waiting for data...[0m
+[0;33mW (95891) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 22 00 55 7B 
+Parsed: T=0.34°C, H=0.85%
+[0;33mW (96191) UART_HTTP: Waiting for data...[0m
+[0;33mW (96291) UART_HTTP: Waiting for data...[0m
+[0;33mW (96391) UART_HTTP: Waiting for data...[0m
+[0;33mW (96491) UART_HTTP: Waiting for data...[0m
+[0;33mW (96591) UART_HTTP: Waiting for data...[0m
+[0;33mW (96691) UART_HTTP: Waiting for data...[0m
+[0;33mW (96791) UART_HTTP: Waiting for data...[0m
+[0;33mW (96891) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 07 00 28 33 
+Parsed: T=0.07°C, H=0.40%
+[0;33mW (97201) UART_HTTP: Waiting for data...[0m
+[0;33mW (97301) UART_HTTP: Waiting for data...[0m
+[0;33mW (97401) UART_HTTP: Waiting for data...[0m
+[0;33mW (97501) UART_HTTP: Waiting for data...[0m
+[1;31mE (97561) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (97561) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (97561) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (97561) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (97601) UART_HTTP: Waiting for data...[0m
+[0;33mW (97701) UART_HTTP: Waiting for data...[0m
+[0;33mW (97801) UART_HTTP: Waiting for data...[0m
+[0;33mW (97901) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 59 00 0F 6C 
+Parsed: T=0.89°C, H=0.15%
+[0;33mW (98211) UART_HTTP: Waiting for data...[0m
+[0;33mW (98311) UART_HTTP: Waiting for data...[0m
+[0;33mW (98411) UART_HTTP: Waiting for data...[0m
+[0;33mW (98511) UART_HTTP: Waiting for data...[0m
+[0;33mW (98611) UART_HTTP: Waiting for data...[0m
+[0;33mW (98711) UART_HTTP: Waiting for data...[0m
+[0;33mW (98811) UART_HTTP: Waiting for data...[0m
+[0;33mW (98911) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 59 00 35 92 
+Parsed: T=0.89°C, H=0.53%
+[0;33mW (99221) UART_HTTP: Waiting for data...[0m
+[0;33mW (99321) UART_HTTP: Waiting for data...[0m
+[0;33mW (99421) UART_HTTP: Waiting for data...[0m
+[0;33mW (99521) UART_HTTP: Waiting for data...[0m
+[0;33mW (99621) UART_HTTP: Waiting for data...[0m
+[0;33mW (99721) UART_HTTP: Waiting for data...[0m
+[0;33mW (99821) UART_HTTP: Waiting for data...[0m
+[0;33mW (99921) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 62 00 1F 85 
+Parsed: T=0.98°C, H=0.31%
+[0;33mW (100231) UART_HTTP: Waiting for data...[0m
+[0;33mW (100331) UART_HTTP: Waiting for data...[0m
+[0;33mW (100431) UART_HTTP: Waiting for data...[0m
+[0;33mW (100531) UART_HTTP: Waiting for data...[0m
+[0;33mW (100631) UART_HTTP: Waiting for data...[0m
+[0;33mW (100731) UART_HTTP: Waiting for data...[0m
+[0;33mW (100831) UART_HTTP: Waiting for data...[0m
+[0;33mW (100931) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 33 00 54 8B 
+Parsed: T=0.51°C, H=0.84%
+[0;33mW (101241) UART_HTTP: Waiting for data...[0m
+[0;33mW (101341) UART_HTTP: Waiting for data...[0m
+[0;33mW (101441) UART_HTTP: Waiting for data...[0m
+[0;33mW (101541) UART_HTTP: Waiting for data...[0m
+[0;33mW (101641) UART_HTTP: Waiting for data...[0m
+[0;33mW (101741) UART_HTTP: Waiting for data...[0m
+[0;33mW (101841) UART_HTTP: Waiting for data...[0m
+[0;33mW (101941) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 08 00 2D 39 
+Parsed: T=0.08°C, H=0.45%
+[0;33mW (102251) UART_HTTP: Waiting for data...[0m
+[0;33mW (102351) UART_HTTP: Waiting for data...[0m
+[0;33mW (102451) UART_HTTP: Waiting for data...[0m
+[0;33mW (102551) UART_HTTP: Waiting for data...[0m
+[1;31mE (102581) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (102581) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (102581) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (102581) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (102651) UART_HTTP: Waiting for data...[0m
+[0;33mW (102751) UART_HTTP: Waiting for data...[0m
+[0;33mW (102851) UART_HTTP: Waiting for data...[0m
+[0;33mW (102951) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2C 00 51 81 
+Parsed: T=0.44°C, H=0.81%
+[0;33mW (103261) UART_HTTP: Waiting for data...[0m
+[0;33mW (103361) UART_HTTP: Waiting for data...[0m
+[0;33mW (103461) UART_HTTP: Waiting for data...[0m
+[0;33mW (103561) UART_HTTP: Waiting for data...[0m
+[0;33mW (103661) UART_HTTP: Waiting for data...[0m
+[0;33mW (103761) UART_HTTP: Waiting for data...[0m
+[0;33mW (103861) UART_HTTP: Waiting for data...[0m
+[0;33mW (103961) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 53 00 35 8C 
+Parsed: T=0.83°C, H=0.53%
+[0;33mW (104271) UART_HTTP: Waiting for data...[0m
+[0;33mW (104371) UART_HTTP: Waiting for data...[0m
+[0;33mW (104471) UART_HTTP: Waiting for data...[0m
+[0;33mW (104571) UART_HTTP: Waiting for data...[0m
+[0;33mW (104671) UART_HTTP: Waiting for data...[0m
+[0;33mW (104771) UART_HTTP: Waiting for data...[0m
+[0;33mW (104871) UART_HTTP: Waiting for data...[0m
+[0;33mW (104971) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 38 00 03 3F 
+Parsed: T=0.56°C, H=0.03%
+[0;33mW (105271) UART_HTTP: Waiting for data...[0m
+[0;33mW (105371) UART_HTTP: Waiting for data...[0m
+[0;33mW (105471) UART_HTTP: Waiting for data...[0m
+[0;33mW (105571) UART_HTTP: Waiting for data...[0m
+[0;33mW (105671) UART_HTTP: Waiting for data...[0m
+[0;33mW (105771) UART_HTTP: Waiting for data...[0m
+[0;33mW (105871) UART_HTTP: Waiting for data...[0m
+[0;33mW (105971) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1F 00 1A 3D 
+Parsed: T=0.31°C, H=0.26%
+[0;33mW (106281) UART_HTTP: Waiting for data...[0m
+[0;33mW (106381) UART_HTTP: Waiting for data...[0m
+[0;33mW (106481) UART_HTTP: Waiting for data...[0m
+[0;33mW (106581) UART_HTTP: Waiting for data...[0m
+[0;33mW (106681) UART_HTTP: Waiting for data...[0m
+[0;33mW (106781) UART_HTTP: Waiting for data...[0m
+[0;33mW (106881) UART_HTTP: Waiting for data...[0m
+[0;33mW (106981) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 28 00 1C 48 
+Parsed: T=0.40°C, H=0.28%
+[0;33mW (107291) UART_HTTP: Waiting for data...[0m
+[0;33mW (107391) UART_HTTP: Waiting for data...[0m
+[0;33mW (107491) UART_HTTP: Waiting for data...[0m
+[0;33mW (107591) UART_HTTP: Waiting for data...[0m
+[1;31mE (107601) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (107601) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (107601) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (107601) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (107691) UART_HTTP: Waiting for data...[0m
+[0;33mW (107791) UART_HTTP: Waiting for data...[0m
+[0;33mW (107891) UART_HTTP: Waiting for data...[0m
+[0;33mW (107991) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5C 00 26 86 
+Parsed: T=0.92°C, H=0.38%
+[0;33mW (108301) UART_HTTP: Waiting for data...[0m
+[0;33mW (108401) UART_HTTP: Waiting for data...[0m
+[0;33mW (108501) UART_HTTP: Waiting for data...[0m
+[0;33mW (108601) UART_HTTP: Waiting for data...[0m
+[0;33mW (108701) UART_HTTP: Waiting for data...[0m
+[0;33mW (108801) UART_HTTP: Waiting for data...[0m
+[0;33mW (108901) UART_HTTP: Waiting for data...[0m
+[0;33mW (109001) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 60 00 44 A8 
+Parsed: T=0.96°C, H=0.68%
+[0;33mW (109311) UART_HTTP: Waiting for data...[0m
+[0;33mW (109411) UART_HTTP: Waiting for data...[0m
+[0;33mW (109511) UART_HTTP: Waiting for data...[0m
+[0;33mW (109611) UART_HTTP: Waiting for data...[0m
+[0;33mW (109711) UART_HTTP: Waiting for data...[0m
+[0;33mW (109811) UART_HTTP: Waiting for data...[0m
+[0;33mW (109911) UART_HTTP: Waiting for data...[0m
+[0;33mW (110011) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2C 00 3E 6E 
+Parsed: T=0.44°C, H=0.62%
+[0;33mW (110321) UART_HTTP: Waiting for data...[0m
+[0;33mW (110421) UART_HTTP: Waiting for data...[0m
+[0;33mW (110521) UART_HTTP: Waiting for data...[0m
+[0;33mW (110621) UART_HTTP: Waiting for data...[0m
+[0;33mW (110721) UART_HTTP: Waiting for data...[0m
+[0;33mW (110821) UART_HTTP: Waiting for data...[0m
+[0;33mW (110921) UART_HTTP: Waiting for data...[0m
+[0;33mW (111021) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 58 00 1E 7A 
+Parsed: T=0.88°C, H=0.30%
+[0;33mW (111331) UART_HTTP: Waiting for data...[0m
+[0;33mW (111431) UART_HTTP: Waiting for data...[0m
+[0;33mW (111531) UART_HTTP: Waiting for data...[0m
+[0;33mW (111631) UART_HTTP: Waiting for data...[0m
+[0;33mW (111731) UART_HTTP: Waiting for data...[0m
+[0;33mW (111831) UART_HTTP: Waiting for data...[0m
+[0;33mW (111931) UART_HTTP: Waiting for data...[0m
+[0;33mW (112031) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4F 00 10 63 
+Parsed: T=0.79°C, H=0.16%
+[0;33mW (112341) UART_HTTP: Waiting for data...[0m
+[0;33mW (112441) UART_HTTP: Waiting for data...[0m
+[0;33mW (112541) UART_HTTP: Waiting for data...[0m
+[1;31mE (112621) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (112621) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (112621) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (112621) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (112641) UART_HTTP: Waiting for data...[0m
+[0;33mW (112741) UART_HTTP: Waiting for data...[0m
+[0;33mW (112841) UART_HTTP: Waiting for data...[0m
+[0;33mW (112941) UART_HTTP: Waiting for data...[0m
+[0;33mW (113041) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 46 00 3C 86 
+Parsed: T=0.70°C, H=0.60%
+[0;33mW (113351) UART_HTTP: Waiting for data...[0m
+[0;33mW (113451) UART_HTTP: Waiting for data...[0m
+[0;33mW (113551) UART_HTTP: Waiting for data...[0m
+[0;33mW (113651) UART_HTTP: Waiting for data...[0m
+[0;33mW (113751) UART_HTTP: Waiting for data...[0m
+[0;33mW (113851) UART_HTTP: Waiting for data...[0m
+[0;33mW (113951) UART_HTTP: Waiting for data...[0m
+[0;33mW (114051) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0C 00 38 48 
+Parsed: T=0.12°C, H=0.56%
+[0;33mW (114361) UART_HTTP: Waiting for data...[0m
+[0;33mW (114461) UART_HTTP: Waiting for data...[0m
+[0;33mW (114561) UART_HTTP: Waiting for data...[0m
+[0;33mW (114661) UART_HTTP: Waiting for data...[0m
+[0;33mW (114761) UART_HTTP: Waiting for data...[0m
+[0;33mW (114861) UART_HTTP: Waiting for data...[0m
+[0;33mW (114961) UART_HTTP: Waiting for data...[0m
+[0;33mW (115061) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 54 00 38 90 
+Parsed: T=0.84°C, H=0.56%
+[0;33mW (115361) UART_HTTP: Waiting for data...[0m
+[0;33mW (115461) UART_HTTP: Waiting for data...[0m
+[0;33mW (115561) UART_HTTP: Waiting for data...[0m
+[0;33mW (115661) UART_HTTP: Waiting for data...[0m
+[0;33mW (115761) UART_HTTP: Waiting for data...[0m
+[0;33mW (115861) UART_HTTP: Waiting for data...[0m
+[0;33mW (115961) UART_HTTP: Waiting for data...[0m
+[0;33mW (116061) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1B 00 3E 5D 
+Parsed: T=0.27°C, H=0.62%
+[0;33mW (116371) UART_HTTP: Waiting for data...[0m
+[0;33mW (116471) UART_HTTP: Waiting for data...[0m
+[0;33mW (116571) UART_HTTP: Waiting for data...[0m
+[0;33mW (116671) UART_HTTP: Waiting for data...[0m
+[0;33mW (116771) UART_HTTP: Waiting for data...[0m
+[0;33mW (116871) UART_HTTP: Waiting for data...[0m
+[0;33mW (116971) UART_HTTP: Waiting for data...[0m
+[0;33mW (117071) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 03 00 3E 45 
+Parsed: T=0.03°C, H=0.62%
+[0;33mW (117381) UART_HTTP: Waiting for data...[0m
+[0;33mW (117481) UART_HTTP: Waiting for data...[0m
+[0;33mW (117581) UART_HTTP: Waiting for data...[0m
+[1;31mE (117641) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (117641) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (117641) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (117641) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (117681) UART_HTTP: Waiting for data...[0m
+[0;33mW (117781) UART_HTTP: Waiting for data...[0m
+[0;33mW (117881) UART_HTTP: Waiting for data...[0m
+[0;33mW (117981) UART_HTTP: Waiting for data...[0m
+[0;33mW (118081) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 19 00 60 7D 
+Parsed: T=0.25°C, H=0.96%
+[0;33mW (118391) UART_HTTP: Waiting for data...[0m
+[0;33mW (118491) UART_HTTP: Waiting for data...[0m
+[0;33mW (118591) UART_HTTP: Waiting for data...[0m
+[0;33mW (118691) UART_HTTP: Waiting for data...[0m
+[0;33mW (118791) UART_HTTP: Waiting for data...[0m
+[0;33mW (118891) UART_HTTP: Waiting for data...[0m
+[0;33mW (118991) UART_HTTP: Waiting for data...[0m
+[0;33mW (119091) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 29 00 0F 3C 
+Parsed: T=0.41°C, H=0.15%
+[0;33mW (119401) UART_HTTP: Waiting for data...[0m
+[0;33mW (119501) UART_HTTP: Waiting for data...[0m
+[0;33mW (119601) UART_HTTP: Waiting for data...[0m
+[0;33mW (119701) UART_HTTP: Waiting for data...[0m
+[0;33mW (119801) UART_HTTP: Waiting for data...[0m
+[0;33mW (119901) UART_HTTP: Waiting for data...[0m
+[0;33mW (120001) UART_HTTP: Waiting for data...[0m
+[0;33mW (120101) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 40 00 21 65 
+Parsed: T=0.64°C, H=0.33%
+[0;33mW (120411) UART_HTTP: Waiting for data...[0m
+[0;33mW (120511) UART_HTTP: Waiting for data...[0m
+[0;33mW (120611) UART_HTTP: Waiting for data...[0m
+[0;33mW (120711) UART_HTTP: Waiting for data...[0m
+[0;33mW (120811) UART_HTTP: Waiting for data...[0m
+[0;33mW (120911) UART_HTTP: Waiting for data...[0m
+[0;33mW (121011) UART_HTTP: Waiting for data...[0m
+[0;33mW (121111) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 09 00 17 24 
+Parsed: T=0.09°C, H=0.23%
+[0;33mW (121421) UART_HTTP: Waiting for data...[0m
+[0;33mW (121521) UART_HTTP: Waiting for data...[0m
+[0;33mW (121621) UART_HTTP: Waiting for data...[0m
+[0;33mW (121721) UART_HTTP: Waiting for data...[0m
+[0;33mW (121821) UART_HTTP: Waiting for data...[0m
+[0;33mW (121921) UART_HTTP: Waiting for data...[0m
+[0;33mW (122021) UART_HTTP: Waiting for data...[0m
+[0;33mW (122121) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 53 00 38 8F 
+Parsed: T=0.83°C, H=0.56%
+[0;33mW (122431) UART_HTTP: Waiting for data...[0m
+[0;33mW (122531) UART_HTTP: Waiting for data...[0m
+[0;33mW (122631) UART_HTTP: Waiting for data...[0m
+[1;31mE (122661) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (122661) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (122661) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (122661) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (122731) UART_HTTP: Waiting for data...[0m
+[0;33mW (122831) UART_HTTP: Waiting for data...[0m
+[0;33mW (122931) UART_HTTP: Waiting for data...[0m
+[0;33mW (123031) UART_HTTP: Waiting for data...[0m
+[0;33mW (123131) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4B 00 26 75 
+Parsed: T=0.75°C, H=0.38%
+[0;33mW (123441) UART_HTTP: Waiting for data...[0m
+[0;33mW (123541) UART_HTTP: Waiting for data...[0m
+[0;33mW (123641) UART_HTTP: Waiting for data...[0m
+[0;33mW (123741) UART_HTTP: Waiting for data...[0m
+[0;33mW (123841) UART_HTTP: Waiting for data...[0m
+[0;33mW (123941) UART_HTTP: Waiting for data...[0m
+[0;33mW (124041) UART_HTTP: Waiting for data...[0m
+[0;33mW (124141) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 48 00 35 81 
+Parsed: T=0.72°C, H=0.53%
+[0;33mW (124451) UART_HTTP: Waiting for data...[0m
+[0;33mW (124551) UART_HTTP: Waiting for data...[0m
+[0;33mW (124651) UART_HTTP: Waiting for data...[0m
+[0;33mW (124751) UART_HTTP: Waiting for data...[0m
+[0;33mW (124851) UART_HTTP: Waiting for data...[0m
+[0;33mW (124951) UART_HTTP: Waiting for data...[0m
+[0;33mW (125051) UART_HTTP: Waiting for data...[0m
+[0;33mW (125151) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 33 00 54 8B 
+Parsed: T=0.51°C, H=0.84%
+[0;33mW (125451) UART_HTTP: Waiting for data...[0m
+[0;33mW (125551) UART_HTTP: Waiting for data...[0m
+[0;33mW (125651) UART_HTTP: Waiting for data...[0m
+[0;33mW (125751) UART_HTTP: Waiting for data...[0m
+[0;33mW (125851) UART_HTTP: Waiting for data...[0m
+[0;33mW (125951) UART_HTTP: Waiting for data...[0m
+[0;33mW (126051) UART_HTTP: Waiting for data...[0m
+[0;33mW (126151) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 02 00 1C 22 
+Parsed: T=0.02°C, H=0.28%
+[0;33mW (126461) UART_HTTP: Waiting for data...[0m
+[0;33mW (126561) UART_HTTP: Waiting for data...[0m
+[0;33mW (126661) UART_HTTP: Waiting for data...[0m
+[0;33mW (126761) UART_HTTP: Waiting for data...[0m
+[0;33mW (126861) UART_HTTP: Waiting for data...[0m
+[0;33mW (126961) UART_HTTP: Waiting for data...[0m
+[0;33mW (127061) UART_HTTP: Waiting for data...[0m
+[0;33mW (127161) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5B 00 4E AD 
+Parsed: T=0.91°C, H=0.78%
+[0;33mW (127471) UART_HTTP: Waiting for data...[0m
+[0;33mW (127571) UART_HTTP: Waiting for data...[0m
+[0;33mW (127671) UART_HTTP: Waiting for data...[0m
+[1;31mE (127681) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (127681) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (127681) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (127681) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (127771) UART_HTTP: Waiting for data...[0m
+[0;33mW (127871) UART_HTTP: Waiting for data...[0m
+[0;33mW (127971) UART_HTTP: Waiting for data...[0m
+[0;33mW (128071) UART_HTTP: Waiting for data...[0m
+[0;33mW (128171) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0F 00 0E 21 
+Parsed: T=0.15°C, H=0.14%
+[0;33mW (128481) UART_HTTP: Waiting for data...[0m
+[0;33mW (128581) UART_HTTP: Waiting for data...[0m
+[0;33mW (128681) UART_HTTP: Waiting for data...[0m
+[0;33mW (128781) UART_HTTP: Waiting for data...[0m
+[0;33mW (128881) UART_HTTP: Waiting for data...[0m
+[0;33mW (128981) UART_HTTP: Waiting for data...[0m
+[0;33mW (129081) UART_HTTP: Waiting for data...[0m
+[0;33mW (129181) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4B 00 17 66 
+Parsed: T=0.75°C, H=0.23%
+[0;33mW (129491) UART_HTTP: Waiting for data...[0m
+[0;33mW (129591) UART_HTTP: Waiting for data...[0m
+[0;33mW (129691) UART_HTTP: Waiting for data...[0m
+[0;33mW (129791) UART_HTTP: Waiting for data...[0m
+[0;33mW (129891) UART_HTTP: Waiting for data...[0m
+[0;33mW (129991) UART_HTTP: Waiting for data...[0m
+[0;33mW (130091) UART_HTTP: Waiting for data...[0m
+[0;33mW (130191) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 26 00 17 41 
+Parsed: T=0.38°C, H=0.23%
+[0;33mW (130501) UART_HTTP: Waiting for data...[0m
+[0;33mW (130601) UART_HTTP: Waiting for data...[0m
+[0;33mW (130701) UART_HTTP: Waiting for data...[0m
+[0;33mW (130801) UART_HTTP: Waiting for data...[0m
+[0;33mW (130901) UART_HTTP: Waiting for data...[0m
+[0;33mW (131001) UART_HTTP: Waiting for data...[0m
+[0;33mW (131101) UART_HTTP: Waiting for data...[0m
+[0;33mW (131201) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 57 00 59 B4 
+Parsed: T=0.87°C, H=0.89%
+[0;33mW (131511) UART_HTTP: Waiting for data...[0m
+[0;33mW (131611) UART_HTTP: Waiting for data...[0m
+[0;33mW (131711) UART_HTTP: Waiting for data...[0m
+[0;33mW (131811) UART_HTTP: Waiting for data...[0m
+[0;33mW (131911) UART_HTTP: Waiting for data...[0m
+[0;33mW (132011) UART_HTTP: Waiting for data...[0m
+[0;33mW (132111) UART_HTTP: Waiting for data...[0m
+[0;33mW (132211) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 32 00 56 8C 
+Parsed: T=0.50°C, H=0.86%
+[0;33mW (132521) UART_HTTP: Waiting for data...[0m
+[0;33mW (132621) UART_HTTP: Waiting for data...[0m
+[1;31mE (132701) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (132701) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (132701) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (132701) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (132721) UART_HTTP: Waiting for data...[0m
+[0;33mW (132821) UART_HTTP: Waiting for data...[0m
+[0;33mW (132921) UART_HTTP: Waiting for data...[0m
+[0;33mW (133021) UART_HTTP: Waiting for data...[0m
+[0;33mW (133121) UART_HTTP: Waiting for data...[0m
+[0;33mW (133221) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 57 00 27 82 
+Parsed: T=0.87°C, H=0.39%
+[0;33mW (133531) UART_HTTP: Waiting for data...[0m
+[0;33mW (133631) UART_HTTP: Waiting for data...[0m
+[0;33mW (133731) UART_HTTP: Waiting for data...[0m
+[0;33mW (133831) UART_HTTP: Waiting for data...[0m
+[0;33mW (133931) UART_HTTP: Waiting for data...[0m
+[0;33mW (134031) UART_HTTP: Waiting for data...[0m
+[0;33mW (134131) UART_HTTP: Waiting for data...[0m
+[0;33mW (134231) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4E 00 3B 8D 
+Parsed: T=0.78°C, H=0.59%
+[0;33mW (134541) UART_HTTP: Waiting for data...[0m
+[0;33mW (134641) UART_HTTP: Waiting for data...[0m
+[0;33mW (134741) UART_HTTP: Waiting for data...[0m
+[0;33mW (134841) UART_HTTP: Waiting for data...[0m
+[0;33mW (134941) UART_HTTP: Waiting for data...[0m
+[0;33mW (135041) UART_HTTP: Waiting for data...[0m
+[0;33mW (135141) UART_HTTP: Waiting for data...[0m
+[0;33mW (135241) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 12 00 09 1F 
+Parsed: T=0.18°C, H=0.09%
+[0;33mW (135541) UART_HTTP: Waiting for data...[0m
+[0;33mW (135641) UART_HTTP: Waiting for data...[0m
+[0;33mW (135741) UART_HTTP: Waiting for data...[0m
+[0;33mW (135841) UART_HTTP: Waiting for data...[0m
+[0;33mW (135941) UART_HTTP: Waiting for data...[0m
+[0;33mW (136041) UART_HTTP: Waiting for data...[0m
+[0;33mW (136141) UART_HTTP: Waiting for data...[0m
+[0;33mW (136241) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 36 00 25 5F 
+Parsed: T=0.54°C, H=0.37%
+[0;33mW (136551) UART_HTTP: Waiting for data...[0m
+[0;33mW (136651) UART_HTTP: Waiting for data...[0m
+[0;33mW (136751) UART_HTTP: Waiting for data...[0m
+[0;33mW (136851) UART_HTTP: Waiting for data...[0m
+[0;33mW (136951) UART_HTTP: Waiting for data...[0m
+[0;33mW (137051) UART_HTTP: Waiting for data...[0m
+[0;33mW (137151) UART_HTTP: Waiting for data...[0m
+[0;33mW (137251) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1B 00 4A 69 
+Parsed: T=0.27°C, H=0.74%
+[0;33mW (137561) UART_HTTP: Waiting for data...[0m
+[0;33mW (137661) UART_HTTP: Waiting for data...[0m
+[1;31mE (137721) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (137721) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (137721) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (137721) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (137761) UART_HTTP: Waiting for data...[0m
+[0;33mW (137861) UART_HTTP: Waiting for data...[0m
+[0;33mW (137961) UART_HTTP: Waiting for data...[0m
+[0;33mW (138061) UART_HTTP: Waiting for data...[0m
+[0;33mW (138161) UART_HTTP: Waiting for data...[0m
+[0;33mW (138261) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 10 00 3D 51 
+Parsed: T=0.16°C, H=0.61%
+[0;33mW (138571) UART_HTTP: Waiting for data...[0m
+[0;33mW (138671) UART_HTTP: Waiting for data...[0m
+[0;33mW (138771) UART_HTTP: Waiting for data...[0m
+[0;33mW (138871) UART_HTTP: Waiting for data...[0m
+[0;33mW (138971) UART_HTTP: Waiting for data...[0m
+[0;33mW (139071) UART_HTTP: Waiting for data...[0m
+[0;33mW (139171) UART_HTTP: Waiting for data...[0m
+[0;33mW (139271) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 06 00 35 3F 
+Parsed: T=0.06°C, H=0.53%
+[0;33mW (139581) UART_HTTP: Waiting for data...[0m
+[0;33mW (139681) UART_HTTP: Waiting for data...[0m
+[0;33mW (139781) UART_HTTP: Waiting for data...[0m
+[0;33mW (139881) UART_HTTP: Waiting for data...[0m
+[0;33mW (139981) UART_HTTP: Waiting for data...[0m
+[0;33mW (140081) UART_HTTP: Waiting for data...[0m
+[0;33mW (140181) UART_HTTP: Waiting for data...[0m
+[0;33mW (140281) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0B 00 1E 2D 
+Parsed: T=0.11°C, H=0.30%
+[0;33mW (140591) UART_HTTP: Waiting for data...[0m
+[0;33mW (140691) UART_HTTP: Waiting for data...[0m
+[0;33mW (140791) UART_HTTP: Waiting for data...[0m
+[0;33mW (140891) UART_HTTP: Waiting for data...[0m
+[0;33mW (140991) UART_HTTP: Waiting for data...[0m
+[0;33mW (141091) UART_HTTP: Waiting for data...[0m
+[0;33mW (141191) UART_HTTP: Waiting for data...[0m
+[0;33mW (141291) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 63 00 02 69 
+Parsed: T=0.99°C, H=0.02%
+[0;33mW (141601) UART_HTTP: Waiting for data...[0m
+[0;33mW (141701) UART_HTTP: Waiting for data...[0m
+[0;33mW (141801) UART_HTTP: Waiting for data...[0m
+[0;33mW (141901) UART_HTTP: Waiting for data...[0m
+[0;33mW (142001) UART_HTTP: Waiting for data...[0m
+[0;33mW (142101) UART_HTTP: Waiting for data...[0m
+[0;33mW (142201) UART_HTTP: Waiting for data...[0m
+[0;33mW (142301) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3F 00 42 85 
+Parsed: T=0.63°C, H=0.66%
+[0;33mW (142611) UART_HTTP: Waiting for data...[0m
+[0;33mW (142711) UART_HTTP: Waiting for data...[0m
+[1;31mE (142741) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (142741) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (142741) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (142741) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (142811) UART_HTTP: Waiting for data...[0m
+[0;33mW (142911) UART_HTTP: Waiting for data...[0m
+[0;33mW (143011) UART_HTTP: Waiting for data...[0m
+[0;33mW (143111) UART_HTTP: Waiting for data...[0m
+[0;33mW (143211) UART_HTTP: Waiting for data...[0m
+[0;33mW (143311) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5B 00 06 65 
+Parsed: T=0.91°C, H=0.06%
+[0;33mW (143621) UART_HTTP: Waiting for data...[0m
+[0;33mW (143721) UART_HTTP: Waiting for data...[0m
+[0;33mW (143821) UART_HTTP: Waiting for data...[0m
+[0;33mW (143921) UART_HTTP: Waiting for data...[0m
+[0;33mW (144021) UART_HTTP: Waiting for data...[0m
+[0;33mW (144121) UART_HTTP: Waiting for data...[0m
+[0;33mW (144221) UART_HTTP: Waiting for data...[0m
+[0;33mW (144321) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 61 00 5F C4 
+Parsed: T=0.97°C, H=0.95%
+[0;33mW (144621) UART_HTTP: Waiting for data...[0m
+[0;33mW (144721) UART_HTTP: Waiting for data...[0m
+[0;33mW (144821) UART_HTTP: Waiting for data...[0m
+[0;33mW (144921) UART_HTTP: Waiting for data...[0m
+[0;33mW (145021) UART_HTTP: Waiting for data...[0m
+[0;33mW (145121) UART_HTTP: Waiting for data...[0m
+[0;33mW (145221) UART_HTTP: Waiting for data...[0m
+[0;33mW (145321) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 44 00 47 8F 
+Parsed: T=0.68°C, H=0.71%
+ets Jul 29 2019 12:21:46
+
+rst:0x8 (TG1WDT_SYS_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:7188
+load:0x40078000,len:15756
+load:0x40080400,len:4
+load:0x40080404,len:3860
+entry 0x4008063c
+[0;32mI (58) boot: ESP-IDF v5.4.1-dirty 2nd stage bootloader[0m
+[0;32mI (58) boot: compile time May 25 2025 01:52:07[0m
+[0;32mI (58) boot: Multicore bootloader[0m
+[0;32mI (63) boot: chip revision: v3.0[0m
+[0;32mI (67) boot.esp32: SPI Speed      : 80MHz[0m
+[0;32mI (72) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (76) boot.esp32: SPI Flash Size : 4MB[0m
+[0;33mW (81) boot.esp32: PRO CPU has been reset by WDT[0m
+[0;33mW (86) boot.esp32: WDT rst info: PRO CPU PC=0x40019106[0m
+[0;33mW (92) boot.esp32: WDT rst info: APP CPU PC=0x400803c0[0m
+[0;32mI (98) boot: Enabling RNG early entropy source...[0m
+[0;32mI (103) boot: Partition Table:[0m
+[0;32mI (107) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (114) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (122) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (129) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (137) boot: End of partition table[0m
+[0;32mI (141) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=209f4h (133620) map[0m
+[0;32mI (188) esp_image: segment 1: paddr=00030a1c vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (188) esp_image: segment 2: paddr=00030a40 vaddr=3ffb0000 size=03f20h ( 16160) load[0m
+[0;32mI (198) esp_image: segment 3: paddr=00034968 vaddr=40080000 size=0b6b0h ( 46768) load[0m
+[0;32mI (217) esp_image: segment 4: paddr=00040020 vaddr=400d0020 size=a9ce4h (695524) map[0m
+[0;32mI (414) esp_image: segment 5: paddr=000e9d0c vaddr=4008b6b0 size=0d11ch ( 53532) load[0m
+[0;32mI (443) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (443) boot: Disabling RNG early entropy source...[0m
+[0;32mI (455) cpu_start: Multicore app[0m
+[0;32mI (463) cpu_start: Pro cpu start user code[0m
+[0;32mI (463) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (464) app_init: Application information:[0m
+[0;32mI (464) app_init: Project name:     SmartHome[0m
+[0;32mI (468) app_init: App version:      c44232e3-dirty[0m
+[0;32mI (472) app_init: Compile time:     May 25 2025 03:18:29[0m
+[0;32mI (477) app_init: ELF file SHA256:  88d15cfab...[0m
+[0;32mI (482) app_init: ESP-IDF:          v5.4.1-dirty[0m
+[0;32mI (486) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (490) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (494) efuse_init: Chip rev:         v3.0[0m
+[0;32mI (498) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (504) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (509) heap_init: At 3FFB87B0 len 00027850 (158 KiB): DRAM[0m
+[0;32mI (514) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (520) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (525) heap_init: At 400987CC len 00007834 (30 KiB): IRAM[0m
+[0;32mI (531) spi_flash: detected chip: generic[0m
+[0;32mI (534) spi_flash: flash io: dio[0m
+[0;32mI (538) main_task: Started on CPU0[0m
+[0;32mI (548) main_task: Calling app_main()[0m
+[0;32mI (568) gpio: GPIO[16]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (578) UART_HTTP: Press and hold button for 5 seconds to enter AP mode...[0m
+[0;32mI (578) UART_HTTP: Timeout: 5 seconds remaining[0m
+[0;32mI (1578) UART_HTTP: Timeout: 4 seconds remaining[0m
+[0;32mI (2578) UART_HTTP: Timeout: 3 seconds remaining[0m
+[0;32mI (3578) UART_HTTP: Timeout: 2 seconds remaining[0m
+[0;32mI (4578) UART_HTTP: Timeout: 1 seconds remaining[0m
+[0;32mI (5578) UART_HTTP: No button press detected[0m
+[0;32mI (5578) UART_HTTP: Connecting to saved WiFi...[0m
+[0;32mI (5588) wifi:wifi driver task: 3ffc081c, prio:23, stack:6656, core=0[0m
+[0;32mI (5598) wifi:wifi firmware version: 79fa3f41ba[0m
+[0;32mI (5598) wifi:wifi certification version: v7.0[0m
+[0;32mI (5598) wifi:config NVS flash: enabled[0m
+[0;32mI (5598) wifi:config nano formatting: disabled[0m
+[0;32mI (5608) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (5608) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (5618) wifi:Init management short buffer num: 32[0m
+[0;32mI (5618) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (5628) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (5628) wifi:Init static rx buffer num: 10[0m
+[0;32mI (5628) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (5638) wifi_init: rx ba win: 6[0m
+[0;32mI (5638) wifi_init: accept mbox: 6[0m
+[0;32mI (5638) wifi_init: tcpip mbox: 32[0m
+[0;32mI (5648) wifi_init: udp mbox: 6[0m
+[0;32mI (5648) wifi_init: tcp mbox: 6[0m
+[0;32mI (5648) wifi_init: tcp tx win: 5760[0m
+[0;32mI (5658) wifi_init: tcp rx win: 5760[0m
+[0;32mI (5658) wifi_init: tcp mss: 1440[0m
+[0;32mI (5658) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (5668) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (5668) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (5758) wifi:mode : sta (c0:49:ef:2c:9b:9c)[0m
+[0;32mI (5758) wifi:enable tsf[0m
+[0;32mI (5768) wifi:new:<1,0>, old:<1,0>, ap:<255,255>, sta:<1,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (5768) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (5798) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (5838) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (5868) wifi:connected with HAPPY HOME floor4, aid = 1, channel 1, BW20, bssid = 00:c8:96:23:01:01[0m
+[0;32mI (5868) wifi:security: WPA2-PSK, phy: bgn, rssi: -69[0m
+[0;32mI (5878) wifi:pm start, type: 1[0m
+
+[0;32mI (5878) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (5898) wifi:<ba-add>idx:0 (ifx:0, 00:c8:96:23:01:01), tid:0, ssn:0, winSize:64[0m
+[0;32mI (5938) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (6918) esp_netif_handlers: sta ip: 192.168.1.204, mask: 255.255.255.0, gw: 192.168.1.1[0m
+[0;32mI (6918) UART_HTTP: Connected! IP: 192.168.1.204[0m
+[0;32mI (6918) UART_HTTP: UART Parser Task started[0m
+[0;32mI (6918) UART_HTTP: HTTP Task started[0m
+[0;32mI (6918) main_task: Returned from app_main()[0m
+[0;33mW (7018) UART_HTTP: Waiting for data...[0m
+[0;33mW (7118) UART_HTTP: Waiting for data...[0m
+[0;33mW (7218) UART_HTTP: Waiting for data...[0m
+[0;33mW (7318) UART_HTTP: Waiting for data...[0m
+[0;33mW (7418) UART_HTTP: Waiting for data...[0m
+[0;33mW (7518) UART_HTTP: Waiting for data...[0m
+[0;33mW (7618) UART_HTTP: Waiting for data...[0m
+[0;33mW (7718) UART_HTTP: Waiting for data...[0m
+[0;33mW (7818) UART_HTTP: Waiting for data...[0m
+[0;33mW (7918) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 29 00 3C 69 
+Parsed: T=0.41°C, H=0.60%
+[0;33mW (8218) UART_HTTP: Waiting for data...[0m
+[0;33mW (8318) UART_HTTP: Waiting for data...[0m
+[0;33mW (8418) UART_HTTP: Waiting for data...[0m
+[0;33mW (8518) UART_HTTP: Waiting for data...[0m
+[0;33mW (8618) UART_HTTP: Waiting for data...[0m
+[0;33mW (8718) UART_HTTP: Waiting for data...[0m
+[0;33mW (8818) UART_HTTP: Waiting for data...[0m
+[0;32mI (8838) wifi:<ba-add>idx:1 (ifx:0, 00:c8:96:23:01:01), tid:6, ssn:2, winSize:64[0m
+[0;33mW (8918) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1B 00 46 65 
+Parsed: T=0.27°C, H=0.70%
+[0;33mW (9218) UART_HTTP: Waiting for data...[0m
+[0;33mW (9318) UART_HTTP: Waiting for data...[0m
+[0;33mW (9418) UART_HTTP: Waiting for data...[0m
+[0;33mW (9518) UART_HTTP: Waiting for data...[0m
+[0;33mW (9618) UART_HTTP: Waiting for data...[0m
+[0;33mW (9718) UART_HTTP: Waiting for data...[0m
+[0;33mW (9818) UART_HTTP: Waiting for data...[0m
+[0;33mW (9918) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4E 00 12 64 
+Parsed: T=0.78°C, H=0.18%
+[0;33mW (10228) UART_HTTP: Waiting for data...[0m
+[0;33mW (10328) UART_HTTP: Waiting for data...[0m
+[0;33mW (10428) UART_HTTP: Waiting for data...[0m
+[0;33mW (10528) UART_HTTP: Waiting for data...[0m
+[0;33mW (10628) UART_HTTP: Waiting for data...[0m
+[0;33mW (10728) UART_HTTP: Waiting for data...[0m
+[0;33mW (10828) UART_HTTP: Waiting for data...[0m
+[0;33mW (10928) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 27 00 46 71 
+Parsed: T=0.39°C, H=0.70%
+[0;33mW (11238) UART_HTTP: Waiting for data...[0m
+[0;33mW (11338) UART_HTTP: Waiting for data...[0m
+[0;33mW (11438) UART_HTTP: Waiting for data...[0m
+[0;33mW (11538) UART_HTTP: Waiting for data...[0m
+[0;33mW (11638) UART_HTTP: Waiting for data...[0m
+[0;33mW (11738) UART_HTTP: Waiting for data...[0m
+[0;33mW (11838) UART_HTTP: Waiting for data...[0m
+[0;33mW (11938) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 37 00 63 9E 
+Parsed: T=0.55°C, H=0.99%
+[0;33mW (12248) UART_HTTP: Waiting for data...[0m
+[0;33mW (12348) UART_HTTP: Waiting for data...[0m
+[0;33mW (12448) UART_HTTP: Waiting for data...[0m
+[0;33mW (12548) UART_HTTP: Waiting for data...[0m
+[0;33mW (12648) UART_HTTP: Waiting for data...[0m
+[0;33mW (12748) UART_HTTP: Waiting for data...[0m
+[0;33mW (12848) UART_HTTP: Waiting for data...[0m
+[0;33mW (12948) UART_HTTP: Waiting for data...[0m
+[1;31mE (13028) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (13028) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (13028) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (13028) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 3B 00 37 76 
+Parsed: T=0.59°C, H=0.55%
+[0;33mW (13258) UART_HTTP: Waiting for data...[0m
+[0;33mW (13358) UART_HTTP: Waiting for data...[0m
+[0;33mW (13458) UART_HTTP: Waiting for data...[0m
+[0;33mW (13558) UART_HTTP: Waiting for data...[0m
+[0;33mW (13658) UART_HTTP: Waiting for data...[0m
+[0;33mW (13758) UART_HTTP: Waiting for data...[0m
+[0;33mW (13858) UART_HTTP: Waiting for data...[0m
+[0;33mW (13958) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5B 00 04 63 
+Parsed: T=0.91°C, H=0.04%
+[0;33mW (14268) UART_HTTP: Waiting for data...[0m
+[0;33mW (14368) UART_HTTP: Waiting for data...[0m
+[0;33mW (14468) UART_HTTP: Waiting for data...[0m
+[0;33mW (14568) UART_HTTP: Waiting for data...[0m
+[0;33mW (14668) UART_HTTP: Waiting for data...[0m
+[0;33mW (14768) UART_HTTP: Waiting for data...[0m
+[0;33mW (14868) UART_HTTP: Waiting for data...[0m
+[0;33mW (14968) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0F 00 16 29 
+Parsed: T=0.15°C, H=0.22%
+[0;33mW (15278) UART_HTTP: Waiting for data...[0m
+[0;33mW (15378) UART_HTTP: Waiting for data...[0m
+[0;33mW (15478) UART_HTTP: Waiting for data...[0m
+[0;33mW (15578) UART_HTTP: Waiting for data...[0m
+[0;33mW (15678) UART_HTTP: Waiting for data...[0m
+[0;33mW (15778) UART_HTTP: Waiting for data...[0m
+[0;33mW (15878) UART_HTTP: Waiting for data...[0m
+[0;33mW (15978) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4A 00 2C 7A 
+Parsed: T=0.74°C, H=0.44%
+[0;33mW (16288) UART_HTTP: Waiting for data...[0m
+[0;33mW (16388) UART_HTTP: Waiting for data...[0m
+[0;33mW (16488) UART_HTTP: Waiting for data...[0m
+[0;33mW (16588) UART_HTTP: Waiting for data...[0m
+[0;33mW (16688) UART_HTTP: Waiting for data...[0m
+[0;33mW (16788) UART_HTTP: Waiting for data...[0m
+[0;33mW (16888) UART_HTTP: Waiting for data...[0m
+[0;33mW (16988) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 52 00 0D 63 
+Parsed: T=0.82°C, H=0.13%
+[0;33mW (17298) UART_HTTP: Waiting for data...[0m
+[0;33mW (17398) UART_HTTP: Waiting for data...[0m
+[0;33mW (17498) UART_HTTP: Waiting for data...[0m
+[0;33mW (17598) UART_HTTP: Waiting for data...[0m
+[0;33mW (17698) UART_HTTP: Waiting for data...[0m
+[0;33mW (17798) UART_HTTP: Waiting for data...[0m
+[0;33mW (17898) UART_HTTP: Waiting for data...[0m
+[0;33mW (17998) UART_HTTP: Waiting for data...[0m
+[1;31mE (18048) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (18048) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (18048) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (18048) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 1A 00 45 63 
+Parsed: T=0.26°C, H=0.69%
+[0;33mW (18308) UART_HTTP: Waiting for data...[0m
+[0;33mW (18408) UART_HTTP: Waiting for data...[0m
+[0;33mW (18508) UART_HTTP: Waiting for data...[0m
+[0;33mW (18608) UART_HTTP: Waiting for data...[0m
+[0;33mW (18708) UART_HTTP: Waiting for data...[0m
+[0;33mW (18808) UART_HTTP: Waiting for data...[0m
+[0;33mW (18908) UART_HTTP: Waiting for data...[0m
+[0;33mW (19008) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2C 00 4C 7C 
+Parsed: T=0.44°C, H=0.76%
+[0;33mW (19308) UART_HTTP: Waiting for data...[0m
+[0;33mW (19408) UART_HTTP: Waiting for data...[0m
+[0;33mW (19508) UART_HTTP: Waiting for data...[0m
+[0;33mW (19608) UART_HTTP: Waiting for data...[0m
+[0;33mW (19708) UART_HTTP: Waiting for data...[0m
+[0;33mW (19808) UART_HTTP: Waiting for data...[0m
+[0;33mW (19908) UART_HTTP: Waiting for data...[0m
+[0;33mW (20008) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 62 00 05 6B 
+Parsed: T=0.98°C, H=0.05%
+[0;33mW (20318) UART_HTTP: Waiting for data...[0m
+[0;33mW (20418) UART_HTTP: Waiting for data...[0m
+[0;33mW (20518) UART_HTTP: Waiting for data...[0m
+[0;33mW (20618) UART_HTTP: Waiting for data...[0m
+[0;33mW (20718) UART_HTTP: Waiting for data...[0m
+[0;33mW (20818) UART_HTTP: Waiting for data...[0m
+[0;33mW (20918) UART_HTTP: Waiting for data...[0m
+[0;33mW (21018) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 51 00 29 7E 
+Parsed: T=0.81°C, H=0.41%
+[0;33mW (21328) UART_HTTP: Waiting for data...[0m
+[0;33mW (21428) UART_HTTP: Waiting for data...[0m
+[0;33mW (21528) UART_HTTP: Waiting for data...[0m
+[0;33mW (21628) UART_HTTP: Waiting for data...[0m
+[0;33mW (21728) UART_HTTP: Waiting for data...[0m
+[0;33mW (21828) UART_HTTP: Waiting for data...[0m
+[0;33mW (21928) UART_HTTP: Waiting for data...[0m
+[0;33mW (22028) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 28 00 4B 77 
+Parsed: T=0.40°C, H=0.75%
+[0;33mW (22338) UART_HTTP: Waiting for data...[0m
+[0;33mW (22438) UART_HTTP: Waiting for data...[0m
+[0;33mW (22538) UART_HTTP: Waiting for data...[0m
+[0;33mW (22638) UART_HTTP: Waiting for data...[0m
+[0;33mW (22738) UART_HTTP: Waiting for data...[0m
+[0;33mW (22838) UART_HTTP: Waiting for data...[0m
+[0;33mW (22938) UART_HTTP: Waiting for data...[0m
+[0;33mW (23038) UART_HTTP: Waiting for data...[0m
+[1;31mE (23068) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (23068) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (23068) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (23068) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 5C 00 39 99 
+Parsed: T=0.92°C, H=0.57%
+[0;33mW (23348) UART_HTTP: Waiting for data...[0m
+[0;33mW (23448) UART_HTTP: Waiting for data...[0m
+[0;33mW (23548) UART_HTTP: Waiting for data...[0m
+[0;33mW (23648) UART_HTTP: Waiting for data...[0m
+[0;33mW (23748) UART_HTTP: Waiting for data...[0m
+[0;33mW (23848) UART_HTTP: Waiting for data...[0m
+[0;33mW (23948) UART_HTTP: Waiting for data...[0m
+[0;33mW (24048) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 32 00 20 56 
+Parsed: T=0.50°C, H=0.32%
+[0;33mW (24358) UART_HTTP: Waiting for data...[0m
+[0;33mW (24458) UART_HTTP: Waiting for data...[0m
+[0;33mW (24558) UART_HTTP: Waiting for data...[0m
+[0;33mW (24658) UART_HTTP: Waiting for data...[0m
+[0;33mW (24758) UART_HTTP: Waiting for data...[0m
+[0;33mW (24858) UART_HTTP: Waiting for data...[0m
+[0;33mW (24958) UART_HTTP: Waiting for data...[0m
+[0;33mW (25058) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1B 00 32 51 
+Parsed: T=0.27°C, H=0.50%
+[0;33mW (25368) UART_HTTP: Waiting for data...[0m
+[0;33mW (25468) UART_HTTP: Waiting for data...[0m
+[0;33mW (25568) UART_HTTP: Waiting for data...[0m
+[0;33mW (25668) UART_HTTP: Waiting for data...[0m
+[0;33mW (25768) UART_HTTP: Waiting for data...[0m
+[0;33mW (25868) UART_HTTP: Waiting for data...[0m
+[0;33mW (25968) UART_HTTP: Waiting for data...[0m
+[0;33mW (26068) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 28 00 20 4C 
+Parsed: T=0.40°C, H=0.32%
+[0;33mW (26378) UART_HTTP: Waiting for data...[0m
+[0;33mW (26478) UART_HTTP: Waiting for data...[0m
+[0;33mW (26578) UART_HTTP: Waiting for data...[0m
+[0;33mW (26678) UART_HTTP: Waiting for data...[0m
+[0;33mW (26778) UART_HTTP: Waiting for data...[0m
+[0;33mW (26878) UART_HTTP: Waiting for data...[0m
+[0;33mW (26978) UART_HTTP: Waiting for data...[0m
+[0;33mW (27078) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0A 00 30 3E 
+Parsed: T=0.10°C, H=0.48%
+[0;33mW (27388) UART_HTTP: Waiting for data...[0m
+[0;33mW (27488) UART_HTTP: Waiting for data...[0m
+[0;33mW (27588) UART_HTTP: Waiting for data...[0m
+[0;33mW (27688) UART_HTTP: Waiting for data...[0m
+[0;33mW (27788) UART_HTTP: Waiting for data...[0m
+[0;33mW (27888) UART_HTTP: Waiting for data...[0m
+[0;33mW (27988) UART_HTTP: Waiting for data...[0m
+[0;33mW (28088) UART_HTTP: Waiting for data...[0m
+[1;31mE (28088) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (28088) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (28088) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (28088) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+Receive data: AA 04 00 55 00 09 62 
+Parsed: T=0.85°C, H=0.09%
+[0;33mW (28398) UART_HTTP: Waiting for data...[0m
+[0;33mW (28498) UART_HTTP: Waiting for data...[0m
+[0;33mW (28598) UART_HTTP: Waiting for data...[0m
+[0;33mW (28698) UART_HTTP: Waiting for data...[0m
+[0;33mW (28798) UART_HTTP: Waiting for data...[0m
+[0;33mW (28898) UART_HTTP: Waiting for data...[0m
+[0;33mW (28998) UART_HTTP: Waiting for data...[0m
+[0;33mW (29098) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1F 00 39 5C 
+Parsed: T=0.31°C, H=0.57%
+[0;33mW (29398) UART_HTTP: Waiting for data...[0m
+[0;33mW (29498) UART_HTTP: Waiting for data...[0m
+[0;33mW (29598) UART_HTTP: Waiting for data...[0m
+[0;33mW (29698) UART_HTTP: Waiting for data...[0m
+[0;33mW (29798) UART_HTTP: Waiting for data...[0m
+[0;33mW (29898) UART_HTTP: Waiting for data...[0m
+[0;33mW (29998) UART_HTTP: Waiting for data...[0m
+[0;33mW (30098) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 63 00 13 7A 
+Parsed: T=0.99°C, H=0.19%
+[0;33mW (30408) UART_HTTP: Waiting for data...[0m
+[0;33mW (30508) UART_HTTP: Waiting for data...[0m
+[0;33mW (30608) UART_HTTP: Waiting for data...[0m
+[0;33mW (30708) UART_HTTP: Waiting for data...[0m
+[0;33mW (30808) UART_HTTP: Waiting for data...[0m
+[0;33mW (30908) UART_HTTP: Waiting for data...[0m
+[0;33mW (31008) UART_HTTP: Waiting for data...[0m
+[0;33mW (31108) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 61 00 40 A5 
+Parsed: T=0.97°C, H=0.64%
+[0;33mW (31418) UART_HTTP: Waiting for data...[0m
+[0;33mW (31518) UART_HTTP: Waiting for data...[0m
+[0;33mW (31618) UART_HTTP: Waiting for data...[0m
+[0;33mW (31718) UART_HTTP: Waiting for data...[0m
+[0;33mW (31818) UART_HTTP: Waiting for data...[0m
+[0;33mW (31918) UART_HTTP: Waiting for data...[0m
+[0;33mW (32018) UART_HTTP: Waiting for data...[0m
+[0;33mW (32118) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 34 00 3F 77 
+Parsed: T=0.52°C, H=0.63%
+[0;33mW (32428) UART_HTTP: Waiting for data...[0m
+[0;33mW (32528) UART_HTTP: Waiting for data...[0m
+[0;33mW (32628) UART_HTTP: Waiting for data...[0m
+[0;33mW (32728) UART_HTTP: Waiting for data...[0m
+[0;33mW (32828) UART_HTTP: Waiting for data...[0m
+[0;33mW (32928) UART_HTTP: Waiting for data...[0m
+[0;33mW (33028) UART_HTTP: Waiting for data...[0m
+[1;31mE (33108) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (33108) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (33108) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (33108) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (33128) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 10 00 2D 41 
+Parsed: T=0.16°C, H=0.45%
+[0;33mW (33438) UART_HTTP: Waiting for data...[0m
+[0;33mW (33538) UART_HTTP: Waiting for data...[0m
+[0;33mW (33638) UART_HTTP: Waiting for data...[0m
+[0;33mW (33738) UART_HTTP: Waiting for data...[0m
+[0;33mW (33838) UART_HTTP: Waiting for data...[0m
+[0;33mW (33938) UART_HTTP: Waiting for data...[0m
+[0;33mW (34038) UART_HTTP: Waiting for data...[0m
+[0;33mW (34138) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 30 00 02 36 
+Parsed: T=0.48°C, H=0.02%
+[0;33mW (34448) UART_HTTP: Waiting for data...[0m
+[0;33mW (34548) UART_HTTP: Waiting for data...[0m
+[0;33mW (34648) UART_HTTP: Waiting for data...[0m
+[0;33mW (34748) UART_HTTP: Waiting for data...[0m
+[0;33mW (34848) UART_HTTP: Waiting for data...[0m
+[0;33mW (34948) UART_HTTP: Waiting for data...[0m
+[0;33mW (35048) UART_HTTP: Waiting for data...[0m
+[0;33mW (35148) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3D 00 0F 50 
+Parsed: T=0.61°C, H=0.15%
+[0;33mW (35458) UART_HTTP: Waiting for data...[0m
+[0;33mW (35558) UART_HTTP: Waiting for data...[0m
+[0;33mW (35658) UART_HTTP: Waiting for data...[0m
+[0;33mW (35758) UART_HTTP: Waiting for data...[0m
+[0;33mW (35858) UART_HTTP: Waiting for data...[0m
+[0;32mI (35858) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (35958) UART_HTTP: Waiting for data...[0m
+[0;33mW (36058) UART_HTTP: Waiting for data...[0m
+[0;33mW (36158) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 11 00 58 6D 
+Parsed: T=0.17°C, H=0.88%
+[0;33mW (36468) UART_HTTP: Waiting for data...[0m
+[0;33mW (36568) UART_HTTP: Waiting for data...[0m
+[0;33mW (36668) UART_HTTP: Waiting for data...[0m
+[0;33mW (36768) UART_HTTP: Waiting for data...[0m
+[0;33mW (36868) UART_HTTP: Waiting for data...[0m
+[0;33mW (36968) UART_HTTP: Waiting for data...[0m
+[0;33mW (37068) UART_HTTP: Waiting for data...[0m
+[0;33mW (37168) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1C 00 41 61 
+Parsed: T=0.28°C, H=0.65%
+[0;32mI (37378) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (37478) UART_HTTP: Waiting for data...[0m
+[0;33mW (37578) UART_HTTP: Waiting for data...[0m
+[0;33mW (37678) UART_HTTP: Waiting for data...[0m
+[0;33mW (37778) UART_HTTP: Waiting for data...[0m
+[0;33mW (37878) UART_HTTP: Waiting for data...[0m
+[0;33mW (37978) UART_HTTP: Waiting for data...[0m
+[0;33mW (38078) UART_HTTP: Waiting for data...[0m
+[0;33mW (38178) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 48 00 2F 7B 
+Parsed: T=0.72°C, H=0.47%
+[0;33mW (38488) UART_HTTP: Waiting for data...[0m
+[0;33mW (38588) UART_HTTP: Waiting for data...[0m
+[0;33mW (38688) UART_HTTP: Waiting for data...[0m
+[0;33mW (38788) UART_HTTP: Waiting for data...[0m
+[0;32mI (38818) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (38888) UART_HTTP: Waiting for data...[0m
+[0;33mW (38988) UART_HTTP: Waiting for data...[0m
+[0;33mW (39088) UART_HTTP: Waiting for data...[0m
+[0;33mW (39188) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 45 00 60 A9 
+Parsed: T=0.69°C, H=0.96%
+[0;33mW (39488) UART_HTTP: Waiting for data...[0m
+[0;33mW (39588) UART_HTTP: Waiting for data...[0m
+[0;33mW (39688) UART_HTTP: Waiting for data...[0m
+[0;33mW (39788) UART_HTTP: Waiting for data...[0m
+[0;33mW (39888) UART_HTTP: Waiting for data...[0m
+[0;33mW (39988) UART_HTTP: Waiting for data...[0m
+[0;33mW (40088) UART_HTTP: Waiting for data...[0m
+[0;33mW (40188) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 19 00 28 45 
+Parsed: T=0.25°C, H=0.40%
+[0;33mW (40498) UART_HTTP: Waiting for data...[0m
+[0;33mW (40598) UART_HTTP: Waiting for data...[0m
+[0;33mW (40698) UART_HTTP: Waiting for data...[0m
+[0;33mW (40798) UART_HTTP: Waiting for data...[0m
+[0;33mW (40898) UART_HTTP: Waiting for data...[0m
+[0;33mW (40998) UART_HTTP: Waiting for data...[0m
+[0;33mW (41098) UART_HTTP: Waiting for data...[0m
+[0;33mW (41198) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 51 00 55 AA 
+Parsed: T=0.81°C, H=0.85%
+[0;33mW (41508) UART_HTTP: Waiting for data...[0m
+[0;33mW (41608) UART_HTTP: Waiting for data...[0m
+[0;33mW (41708) UART_HTTP: Waiting for data...[0m
+[0;33mW (41808) UART_HTTP: Waiting for data...[0m
+[0;33mW (41908) UART_HTTP: Waiting for data...[0m
+[0;33mW (42008) UART_HTTP: Waiting for data...[0m
+[0;33mW (42108) UART_HTTP: Waiting for data...[0m
+[0;33mW (42208) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5C 00 26 86 
+Parsed: T=0.92°C, H=0.38%
+[0;33mW (42518) UART_HTTP: Waiting for data...[0m
+[0;33mW (42618) UART_HTTP: Waiting for data...[0m
+[0;33mW (42718) UART_HTTP: Waiting for data...[0m
+[0;33mW (42818) UART_HTTP: Waiting for data...[0m
+[0;33mW (42918) UART_HTTP: Waiting for data...[0m
+[0;33mW (43018) UART_HTTP: Waiting for data...[0m
+[0;32mI (43108) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (43118) UART_HTTP: Waiting for data...[0m
+[0;33mW (43218) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 40 00 28 6C 
+Parsed: T=0.64°C, H=0.40%
+[0;33mW (43528) UART_HTTP: Waiting for data...[0m
+[0;33mW (43628) UART_HTTP: Waiting for data...[0m
+[0;33mW (43728) UART_HTTP: Waiting for data...[0m
+[0;33mW (43828) UART_HTTP: Waiting for data...[0m
+[0;33mW (43928) UART_HTTP: Waiting for data...[0m
+[0;33mW (44028) UART_HTTP: Waiting for data...[0m
+[0;33mW (44128) UART_HTTP: Waiting for data...[0m
+[0;33mW (44228) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 58 00 4C A8 
+Parsed: T=0.88°C, H=0.76%
+[0;33mW (44538) UART_HTTP: Waiting for data...[0m
+[0;33mW (44638) UART_HTTP: Waiting for data...[0m
+[0;33mW (44738) UART_HTTP: Waiting for data...[0m
+[0;33mW (44838) UART_HTTP: Waiting for data...[0m
+[0;33mW (44938) UART_HTTP: Waiting for data...[0m
+[0;33mW (45038) UART_HTTP: Waiting for data...[0m
+[0;33mW (45138) UART_HTTP: Waiting for data...[0m
+[0;33mW (45238) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3F 00 40 83 
+Parsed: T=0.63°C, H=0.64%
+[0;33mW (45548) UART_HTTP: Waiting for data...[0m
+[0;33mW (45648) UART_HTTP: Waiting for data...[0m
+[0;33mW (45748) UART_HTTP: Waiting for data...[0m
+[0;33mW (45848) UART_HTTP: Waiting for data...[0m
+[0;33mW (45948) UART_HTTP: Waiting for data...[0m
+[0;33mW (46048) UART_HTTP: Waiting for data...[0m
+[0;33mW (46148) UART_HTTP: Waiting for data...[0m
+[0;33mW (46248) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 59 00 16 73 
+Parsed: T=0.89°C, H=0.22%
+[0;33mW (46558) UART_HTTP: Waiting for data...[0m
+[0;33mW (46658) UART_HTTP: Waiting for data...[0m
+[0;33mW (46758) UART_HTTP: Waiting for data...[0m
+[0;33mW (46858) UART_HTTP: Waiting for data...[0m
+[0;33mW (46958) UART_HTTP: Waiting for data...[0m
+[0;33mW (47058) UART_HTTP: Waiting for data...[0m
+[0;33mW (47158) UART_HTTP: Waiting for data...[0m
+[0;33mW (47258) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3D 00 60 A1 
+Parsed: T=0.61°C, H=0.96%
+[0;33mW (47568) UART_HTTP: Waiting for data...[0m
+[0;33mW (47668) UART_HTTP: Waiting for data...[0m
+[0;33mW (47768) UART_HTTP: Waiting for data...[0m
+[0;33mW (47868) UART_HTTP: Waiting for data...[0m
+[0;33mW (47968) UART_HTTP: Waiting for data...[0m
+[0;33mW (48068) UART_HTTP: Waiting for data...[0m
+[1;31mE (48128) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (48128) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (48128) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (48128) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (48168) UART_HTTP: Waiting for data...[0m
+[0;33mW (48268) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 10 00 2C 40 
+Parsed: T=0.16°C, H=0.44%
+[0;33mW (48578) UART_HTTP: Waiting for data...[0m
+[0;33mW (48678) UART_HTTP: Waiting for data...[0m
+[0;33mW (48778) UART_HTTP: Waiting for data...[0m
+[0;33mW (48878) UART_HTTP: Waiting for data...[0m
+[0;33mW (48978) UART_HTTP: Waiting for data...[0m
+[0;33mW (49078) UART_HTTP: Waiting for data...[0m
+[0;33mW (49178) UART_HTTP: Waiting for data...[0m
+[0;33mW (49278) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 23 00 53 7A 
+Parsed: T=0.35°C, H=0.83%
+[0;33mW (49578) UART_HTTP: Waiting for data...[0m
+[0;33mW (49678) UART_HTTP: Waiting for data...[0m
+[0;33mW (49778) UART_HTTP: Waiting for data...[0m
+[0;33mW (49878) UART_HTTP: Waiting for data...[0m
+[0;33mW (49978) UART_HTTP: Waiting for data...[0m
+[0;33mW (50078) UART_HTTP: Waiting for data...[0m
+[0;33mW (50178) UART_HTTP: Waiting for data...[0m
+[0;33mW (50278) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 13 00 3A 51 
+Parsed: T=0.19°C, H=0.58%
+[0;33mW (50588) UART_HTTP: Waiting for data...[0m
+[0;33mW (50688) UART_HTTP: Waiting for data...[0m
+[0;33mW (50788) UART_HTTP: Waiting for data...[0m
+[0;33mW (50888) UART_HTTP: Waiting for data...[0m
+[0;33mW (50988) UART_HTTP: Waiting for data...[0m
+[0;33mW (51088) UART_HTTP: Waiting for data...[0m
+[0;33mW (51188) UART_HTTP: Waiting for data...[0m
+[0;33mW (51288) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 33 00 42 79 
+Parsed: T=0.51°C, H=0.66%
+[0;33mW (51598) UART_HTTP: Waiting for data...[0m
+[0;33mW (51698) UART_HTTP: Waiting for data...[0m
+[0;33mW (51798) UART_HTTP: Waiting for data...[0m
+[0;33mW (51898) UART_HTTP: Waiting for data...[0m
+[0;33mW (51998) UART_HTTP: Waiting for data...[0m
+[0;33mW (52098) UART_HTTP: Waiting for data...[0m
+[0;33mW (52198) UART_HTTP: Waiting for data...[0m
+[0;33mW (52298) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 23 00 0C 33 
+Parsed: T=0.35°C, H=0.12%
+[0;33mW (52608) UART_HTTP: Waiting for data...[0m
+[0;33mW (52708) UART_HTTP: Waiting for data...[0m
+[0;33mW (52808) UART_HTTP: Waiting for data...[0m
+[0;33mW (52908) UART_HTTP: Waiting for data...[0m
+[0;33mW (53008) UART_HTTP: Waiting for data...[0m
+[0;33mW (53108) UART_HTTP: Waiting for data...[0m
+[0;33mW (53208) UART_HTTP: Waiting for data...[0m
+[0;33mW (53308) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1F 00 14 37 
+Parsed: T=0.31°C, H=0.20%
+[0;33mW (53618) UART_HTTP: Waiting for data...[0m
+[0;33mW (53718) UART_HTTP: Waiting for data...[0m
+[0;33mW (53818) UART_HTTP: Waiting for data...[0m
+[0;33mW (53918) UART_HTTP: Waiting for data...[0m
+[0;33mW (54018) UART_HTTP: Waiting for data...[0m
+[0;33mW (54118) UART_HTTP: Waiting for data...[0m
+[0;33mW (54168) HTTP_CLIENT: Connection timed out before data was ready![0m
+[1;31mE (54168) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_EAGAIN[0m
+[0;33mW (54218) UART_HTTP: Waiting for data...[0m
+[0;33mW (54318) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 07 00 5D 68 
+Parsed: T=0.07°C, H=0.93%
+[0;33mW (54628) UART_HTTP: Waiting for data...[0m
+[0;33mW (54728) UART_HTTP: Waiting for data...[0m
+[0;33mW (54828) UART_HTTP: Waiting for data...[0m
+[0;33mW (54928) UART_HTTP: Waiting for data...[0m
+[0;33mW (55028) UART_HTTP: Waiting for data...[0m
+[0;33mW (55128) UART_HTTP: Waiting for data...[0m
+[0;33mW (55228) UART_HTTP: Waiting for data...[0m
+[0;33mW (55328) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0D 00 0B 1C 
+Parsed: T=0.13°C, H=0.11%
+[0;33mW (55638) UART_HTTP: Waiting for data...[0m
+[0;33mW (55738) UART_HTTP: Waiting for data...[0m
+[0;33mW (55838) UART_HTTP: Waiting for data...[0m
+[0;33mW (55938) UART_HTTP: Waiting for data...[0m
+[0;33mW (56038) UART_HTTP: Waiting for data...[0m
+[0;33mW (56138) UART_HTTP: Waiting for data...[0m
+[0;33mW (56238) UART_HTTP: Waiting for data...[0m
+[0;33mW (56338) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 06 00 0C 16 
+Parsed: T=0.06°C, H=0.12%
+[0;33mW (56648) UART_HTTP: Waiting for data...[0m
+[0;33mW (56748) UART_HTTP: Waiting for data...[0m
+[0;33mW (56848) UART_HTTP: Waiting for data...[0m
+[0;33mW (56948) UART_HTTP: Waiting for data...[0m
+[0;33mW (57048) UART_HTTP: Waiting for data...[0m
+[0;33mW (57148) UART_HTTP: Waiting for data...[0m
+[0;33mW (57248) UART_HTTP: Waiting for data...[0m
+[0;33mW (57348) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3C 00 0C 4C 
+Parsed: T=0.60°C, H=0.12%
+[0;33mW (57648) UART_HTTP: Waiting for data...[0m
+[0;33mW (57748) UART_HTTP: Waiting for data...[0m
+[0;33mW (57848) UART_HTTP: Waiting for data...[0m
+[0;33mW (57948) UART_HTTP: Waiting for data...[0m
+[0;33mW (58048) UART_HTTP: Waiting for data...[0m
+[0;33mW (58148) UART_HTTP: Waiting for data...[0m
+[0;33mW (58248) UART_HTTP: Waiting for data...[0m
+[0;33mW (58348) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2C 00 29 59 
+Parsed: T=0.44°C, H=0.41%
+[0;33mW (58658) UART_HTTP: Waiting for data...[0m
+[0;33mW (58758) UART_HTTP: Waiting for data...[0m
+[0;33mW (58858) UART_HTTP: Waiting for data...[0m
+[0;33mW (58958) UART_HTTP: Waiting for data...[0m
+[0;32mI (58988) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (59058) UART_HTTP: Waiting for data...[0m
+[0;33mW (59158) UART_HTTP: Waiting for data...[0m
+[0;33mW (59258) UART_HTTP: Waiting for data...[0m
+[0;32mI (59268) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (59358) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 22 00 2D 53 
+Parsed: T=0.34°C, H=0.45%
+[0;33mW (59668) UART_HTTP: Waiting for data...[0m
+[0;33mW (59768) UART_HTTP: Waiting for data...[0m
+[0;33mW (59868) UART_HTTP: Waiting for data...[0m
+[0;33mW (59968) UART_HTTP: Waiting for data...[0m
+[0;33mW (60068) UART_HTTP: Waiting for data...[0m
+[0;33mW (60168) UART_HTTP: Waiting for data...[0m
+[0;33mW (60268) UART_HTTP: Waiting for data...[0m
+[0;33mW (60368) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 07 00 20 2B 
+Parsed: T=0.07°C, H=0.32%
+[0;33mW (60678) UART_HTTP: Waiting for data...[0m
+[0;33mW (60778) UART_HTTP: Waiting for data...[0m
+[0;33mW (60878) UART_HTTP: Waiting for data...[0m
+[0;33mW (60978) UART_HTTP: Waiting for data...[0m
+[0;33mW (61078) UART_HTTP: Waiting for data...[0m
+[0;33mW (61178) UART_HTTP: Waiting for data...[0m
+[0;33mW (61278) UART_HTTP: Waiting for data...[0m
+[0;33mW (61378) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 60 00 1B 7F 
+Parsed: T=0.96°C, H=0.27%
+[0;33mW (61688) UART_HTTP: Waiting for data...[0m
+[0;33mW (61788) UART_HTTP: Waiting for data...[0m
+[0;33mW (61888) UART_HTTP: Waiting for data...[0m
+[0;33mW (61988) UART_HTTP: Waiting for data...[0m
+[0;33mW (62088) UART_HTTP: Waiting for data...[0m
+[0;33mW (62188) UART_HTTP: Waiting for data...[0m
+[0;33mW (62288) UART_HTTP: Waiting for data...[0m
+[0;33mW (62388) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5F 00 35 98 
+Parsed: T=0.95°C, H=0.53%
+[0;33mW (62698) UART_HTTP: Waiting for data...[0m
+[0;33mW (62798) UART_HTTP: Waiting for data...[0m
+[0;33mW (62898) UART_HTTP: Waiting for data...[0m
+[0;32mI (62978) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (62998) UART_HTTP: Waiting for data...[0m
+[0;33mW (63098) UART_HTTP: Waiting for data...[0m
+[0;33mW (63198) UART_HTTP: Waiting for data...[0m
+[0;33mW (63298) UART_HTTP: Waiting for data...[0m
+[0;33mW (63398) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2E 00 62 94 
+Parsed: T=0.46°C, H=0.98%
+[0;33mW (63708) UART_HTTP: Waiting for data...[0m
+[0;33mW (63808) UART_HTTP: Waiting for data...[0m
+[0;33mW (63908) UART_HTTP: Waiting for data...[0m
+[0;33mW (64008) UART_HTTP: Waiting for data...[0m
+[0;33mW (64108) UART_HTTP: Waiting for data...[0m
+[0;33mW (64208) UART_HTTP: Waiting for data...[0m
+[0;33mW (64308) UART_HTTP: Waiting for data...[0m
+[0;33mW (64408) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 19 00 61 7E 
+Parsed: T=0.25°C, H=0.97%
+[0;33mW (64718) UART_HTTP: Waiting for data...[0m
+[0;33mW (64818) UART_HTTP: Waiting for data...[0m
+[0;33mW (64918) UART_HTTP: Waiting for data...[0m
+[0;33mW (65018) UART_HTTP: Waiting for data...[0m
+[0;33mW (65118) UART_HTTP: Waiting for data...[0m
+[0;33mW (65218) UART_HTTP: Waiting for data...[0m
+[0;33mW (65318) UART_HTTP: Waiting for data...[0m
+[0;33mW (65418) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 23 00 52 79 
+Parsed: T=0.35°C, H=0.82%
+[0;33mW (65728) UART_HTTP: Waiting for data...[0m
+[0;33mW (65828) UART_HTTP: Waiting for data...[0m
+[0;33mW (65928) UART_HTTP: Waiting for data...[0m
+[0;33mW (66028) UART_HTTP: Waiting for data...[0m
+[0;33mW (66128) UART_HTTP: Waiting for data...[0m
+[0;33mW (66228) UART_HTTP: Waiting for data...[0m
+[0;33mW (66328) UART_HTTP: Waiting for data...[0m
+[0;33mW (66428) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2E 00 26 58 
+Parsed: T=0.46°C, H=0.38%
+[0;33mW (66738) UART_HTTP: Waiting for data...[0m
+[0;33mW (66838) UART_HTTP: Waiting for data...[0m
+[0;33mW (66938) UART_HTTP: Waiting for data...[0m
+[0;33mW (67038) UART_HTTP: Waiting for data...[0m
+[0;33mW (67138) UART_HTTP: Waiting for data...[0m
+[0;33mW (67238) UART_HTTP: Waiting for data...[0m
+[0;32mI (67278) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (67338) UART_HTTP: Waiting for data...[0m
+[0;33mW (67438) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5D 00 07 68 
+Parsed: T=0.93°C, H=0.07%
+[0;33mW (67738) UART_HTTP: Waiting for data...[0m
+[0;33mW (67838) UART_HTTP: Waiting for data...[0m
+[0;33mW (67938) UART_HTTP: Waiting for data...[0m
+[0;33mW (68038) UART_HTTP: Waiting for data...[0m
+[0;33mW (68138) UART_HTTP: Waiting for data...[0m
+[0;33mW (68238) UART_HTTP: Waiting for data...[0m
+[0;33mW (68338) UART_HTTP: Waiting for data...[0m
+[0;33mW (68438) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 30 00 42 76 
+Parsed: T=0.48°C, H=0.66%
+[0;33mW (68748) UART_HTTP: Waiting for data...[0m
+[0;33mW (68848) UART_HTTP: Waiting for data...[0m
+[0;33mW (68948) UART_HTTP: Waiting for data...[0m
+[0;33mW (69048) UART_HTTP: Waiting for data...[0m
+[0;33mW (69148) UART_HTTP: Waiting for data...[0m
+[0;33mW (69248) UART_HTTP: Waiting for data...[0m
+[0;33mW (69348) UART_HTTP: Waiting for data...[0m
+[0;33mW (69448) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4B 00 2B 7A 
+Parsed: T=0.75°C, H=0.43%
+[0;33mW (69758) UART_HTTP: Waiting for data...[0m
+[0;33mW (69858) UART_HTTP: Waiting for data...[0m
+[0;33mW (69958) UART_HTTP: Waiting for data...[0m
+[0;33mW (70058) UART_HTTP: Waiting for data...[0m
+[0;33mW (70158) UART_HTTP: Waiting for data...[0m
+[0;33mW (70258) UART_HTTP: Waiting for data...[0m
+[0;33mW (70358) UART_HTTP: Waiting for data...[0m
+[0;33mW (70458) UART_HTTP: Waiting for data...[0m
+[0;32mI (70488) UART_HTTP: HTTP Status: 200[0m
+Receive data: AA 04 00 5B 00 2C 8B 
+Parsed: T=0.91°C, H=0.44%
+[0;33mW (70768) UART_HTTP: Waiting for data...[0m
+[0;33mW (70868) UART_HTTP: Waiting for data...[0m
+[0;33mW (70968) UART_HTTP: Waiting for data...[0m
+[0;33mW (71068) UART_HTTP: Waiting for data...[0m
+[0;33mW (71168) UART_HTTP: Waiting for data...[0m
+[0;33mW (71268) UART_HTTP: Waiting for data...[0m
+[0;33mW (71368) UART_HTTP: Waiting for data...[0m
+[0;33mW (71468) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 45 00 44 8D 
+Parsed: T=0.69°C, H=0.68%
+[0;33mW (71778) UART_HTTP: Waiting for data...[0m
+[0;33mW (71878) UART_HTTP: Waiting for data...[0m
+[0;33mW (71978) UART_HTTP: Waiting for data...[0m
+[0;33mW (72078) UART_HTTP: Waiting for data...[0m
+[0;33mW (72178) UART_HTTP: Waiting for data...[0m
+[0;33mW (72278) UART_HTTP: Waiting for data...[0m
+[0;32mI (72298) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (72378) UART_HTTP: Waiting for data...[0m
+[0;33mW (72478) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 53 00 0D 64 
+Parsed: T=0.83°C, H=0.13%
+[0;33mW (72788) UART_HTTP: Waiting for data...[0m
+[0;33mW (72888) UART_HTTP: Waiting for data...[0m
+[0;33mW (72988) UART_HTTP: Waiting for data...[0m
+[0;33mW (73088) UART_HTTP: Waiting for data...[0m
+[0;33mW (73188) UART_HTTP: Waiting for data...[0m
+[0;33mW (73288) UART_HTTP: Waiting for data...[0m
+[0;33mW (73388) UART_HTTP: Waiting for data...[0m
+[0;33mW (73488) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 29 00 45 72 
+Parsed: T=0.41°C, H=0.69%
+[0;33mW (73798) UART_HTTP: Waiting for data...[0m
+[0;33mW (73898) UART_HTTP: Waiting for data...[0m
+[0;33mW (73998) UART_HTTP: Waiting for data...[0m
+[0;33mW (74098) UART_HTTP: Waiting for data...[0m
+[0;33mW (74198) UART_HTTP: Waiting for data...[0m
+[0;33mW (74298) UART_HTTP: Waiting for data...[0m
+[0;33mW (74398) UART_HTTP: Waiting for data...[0m
+[0;33mW (74498) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 40 00 1F 63 
+Parsed: T=0.64°C, H=0.31%
+[0;33mW (74808) UART_HTTP: Waiting for data...[0m
+[0;32mI (74858) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (74908) UART_HTTP: Waiting for data...[0m
+[0;33mW (75008) UART_HTTP: Waiting for data...[0m
+[0;33mW (75108) UART_HTTP: Waiting for data...[0m
+[0;33mW (75208) UART_HTTP: Waiting for data...[0m
+[0;33mW (75308) UART_HTTP: Waiting for data...[0m
+[0;33mW (75408) UART_HTTP: Waiting for data...[0m
+[0;33mW (75508) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 16 00 54 6E 
+Parsed: T=0.22°C, H=0.84%
+[0;33mW (75818) UART_HTTP: Waiting for data...[0m
+[0;33mW (75918) UART_HTTP: Waiting for data...[0m
+[0;33mW (76018) UART_HTTP: Waiting for data...[0m
+[0;33mW (76118) UART_HTTP: Waiting for data...[0m
+[0;33mW (76218) UART_HTTP: Waiting for data...[0m
+[0;33mW (76318) UART_HTTP: Waiting for data...[0m
+[0;33mW (76418) UART_HTTP: Waiting for data...[0m
+[0;33mW (76518) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3B 00 1A 59 
+Parsed: T=0.59°C, H=0.26%
+[0;33mW (76828) UART_HTTP: Waiting for data...[0m
+[0;33mW (76928) UART_HTTP: Waiting for data...[0m
+[0;33mW (77028) UART_HTTP: Waiting for data...[0m
+[0;33mW (77128) UART_HTTP: Waiting for data...[0m
+[0;33mW (77228) UART_HTTP: Waiting for data...[0m
+[0;33mW (77328) UART_HTTP: Waiting for data...[0m
+[0;33mW (77428) UART_HTTP: Waiting for data...[0m
+[0;33mW (77528) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2E 00 3D 6F 
+Parsed: T=0.46°C, H=0.61%
+[0;33mW (77828) UART_HTTP: Waiting for data...[0m
+[0;33mW (77928) UART_HTTP: Waiting for data...[0m
+[0;33mW (78028) UART_HTTP: Waiting for data...[0m
+[0;33mW (78128) UART_HTTP: Waiting for data...[0m
+[0;33mW (78228) UART_HTTP: Waiting for data...[0m
+[0;33mW (78328) UART_HTTP: Waiting for data...[0m
+[0;33mW (78428) UART_HTTP: Waiting for data...[0m
+[0;33mW (78528) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 29 00 55 82 
+Parsed: T=0.41°C, H=0.85%
+[0;33mW (78838) UART_HTTP: Waiting for data...[0m
+[0;33mW (78938) UART_HTTP: Waiting for data...[0m
+[0;33mW (79038) UART_HTTP: Waiting for data...[0m
+[0;33mW (79138) UART_HTTP: Waiting for data...[0m
+[0;33mW (79238) UART_HTTP: Waiting for data...[0m
+[0;33mW (79338) UART_HTTP: Waiting for data...[0m
+[0;33mW (79438) UART_HTTP: Waiting for data...[0m
+[0;33mW (79538) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 11 00 4C 61 
+Parsed: T=0.17°C, H=0.76%
+[0;32mI (79768) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (79848) UART_HTTP: Waiting for data...[0m
+[0;33mW (79948) UART_HTTP: Waiting for data...[0m
+[0;33mW (80048) UART_HTTP: Waiting for data...[0m
+[0;33mW (80148) UART_HTTP: Waiting for data...[0m
+[0;33mW (80248) UART_HTTP: Waiting for data...[0m
+[0;33mW (80348) UART_HTTP: Waiting for data...[0m
+[0;33mW (80448) UART_HTTP: Waiting for data...[0m
+[0;33mW (80548) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 56 00 00 5A 
+Parsed: T=0.86°C, H=0.00%
+[0;33mW (80858) UART_HTTP: Waiting for data...[0m
+[0;33mW (80958) UART_HTTP: Waiting for data...[0m
+[0;33mW (81058) UART_HTTP: Waiting for data...[0m
+[0;33mW (81158) UART_HTTP: Waiting for data...[0m
+[0;33mW (81258) UART_HTTP: Waiting for data...[0m
+[0;33mW (81358) UART_HTTP: Waiting for data...[0m
+[0;33mW (81458) UART_HTTP: Waiting for data...[0m
+[0;33mW (81558) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 01 00 1C 21 
+Parsed: T=0.01°C, H=0.28%
+[0;33mW (81868) UART_HTTP: Waiting for data...[0m
+[0;33mW (81968) UART_HTTP: Waiting for data...[0m
+[0;33mW (82068) UART_HTTP: Waiting for data...[0m
+[0;33mW (82168) UART_HTTP: Waiting for data...[0m
+[0;33mW (82268) UART_HTTP: Waiting for data...[0m
+[0;33mW (82368) UART_HTTP: Waiting for data...[0m
+[0;33mW (82468) UART_HTTP: Waiting for data...[0m
+[0;33mW (82568) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 30 00 3A 6E 
+Parsed: T=0.48°C, H=0.58%
+[0;33mW (82878) UART_HTTP: Waiting for data...[0m
+[0;33mW (82978) UART_HTTP: Waiting for data...[0m
+[0;33mW (83078) UART_HTTP: Waiting for data...[0m
+[0;33mW (83178) UART_HTTP: Waiting for data...[0m
+[0;33mW (83278) UART_HTTP: Waiting for data...[0m
+[0;33mW (83378) UART_HTTP: Waiting for data...[0m
+[0;33mW (83478) UART_HTTP: Waiting for data...[0m
+[0;33mW (83578) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3A 00 4B 89 
+Parsed: T=0.58°C, H=0.75%
+[0;33mW (83888) UART_HTTP: Waiting for data...[0m
+[0;33mW (83988) UART_HTTP: Waiting for data...[0m
+[0;33mW (84088) UART_HTTP: Waiting for data...[0m
+[0;33mW (84188) UART_HTTP: Waiting for data...[0m
+[0;33mW (84288) UART_HTTP: Waiting for data...[0m
+[0;33mW (84388) UART_HTTP: Waiting for data...[0m
+[0;33mW (84488) UART_HTTP: Waiting for data...[0m
+[0;33mW (84588) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 42 00 58 9E 
+Parsed: T=0.66°C, H=0.88%
+[0;33mW (84898) UART_HTTP: Waiting for data...[0m
+[0;33mW (84998) UART_HTTP: Waiting for data...[0m
+[0;33mW (85098) UART_HTTP: Waiting for data...[0m
+[0;33mW (85198) UART_HTTP: Waiting for data...[0m
+[0;33mW (85298) UART_HTTP: Waiting for data...[0m
+[0;33mW (85398) UART_HTTP: Waiting for data...[0m
+[0;33mW (85498) UART_HTTP: Waiting for data...[0m
+[0;33mW (85598) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 55 00 1B 74 
+Parsed: T=0.85°C, H=0.27%
+[0;33mW (85908) UART_HTTP: Waiting for data...[0m
+[0;33mW (86008) UART_HTTP: Waiting for data...[0m
+[0;33mW (86108) UART_HTTP: Waiting for data...[0m
+[0;33mW (86208) UART_HTTP: Waiting for data...[0m
+[0;33mW (86278) HTTP_CLIENT: Connection timed out before data was ready![0m
+[1;31mE (86278) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_EAGAIN[0m
+[0;33mW (86308) UART_HTTP: Waiting for data...[0m
+[0;33mW (86408) UART_HTTP: Waiting for data...[0m
+[0;33mW (86508) UART_HTTP: Waiting for data...[0m
+[0;33mW (86608) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 15 00 2D 46 
+Parsed: T=0.21°C, H=0.45%
+[0;33mW (86918) UART_HTTP: Waiting for data...[0m
+[0;33mW (87018) UART_HTTP: Waiting for data...[0m
+[0;33mW (87118) UART_HTTP: Waiting for data...[0m
+[0;33mW (87218) UART_HTTP: Waiting for data...[0m
+[0;33mW (87318) UART_HTTP: Waiting for data...[0m
+[0;33mW (87418) UART_HTTP: Waiting for data...[0m
+[0;33mW (87518) UART_HTTP: Waiting for data...[0m
+[0;33mW (87618) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4C 00 5C AC 
+Parsed: T=0.76°C, H=0.92%
+[0;33mW (87918) UART_HTTP: Waiting for data...[0m
+[0;33mW (88018) UART_HTTP: Waiting for data...[0m
+[0;33mW (88118) UART_HTTP: Waiting for data...[0m
+[0;33mW (88218) UART_HTTP: Waiting for data...[0m
+[0;33mW (88318) UART_HTTP: Waiting for data...[0m
+[0;33mW (88418) UART_HTTP: Waiting for data...[0m
+[0;33mW (88518) UART_HTTP: Waiting for data...[0m
+[0;33mW (88618) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 46 00 4F 99 
+Parsed: T=0.70°C, H=0.79%
+[0;33mW (88928) UART_HTTP: Waiting for data...[0m
+[0;33mW (89028) UART_HTTP: Waiting for data...[0m
+[0;33mW (89128) UART_HTTP: Waiting for data...[0m
+[0;33mW (89228) UART_HTTP: Waiting for data...[0m
+[0;33mW (89328) UART_HTTP: Waiting for data...[0m
+[0;33mW (89428) UART_HTTP: Waiting for data...[0m
+[0;33mW (89528) UART_HTTP: Waiting for data...[0m
+[0;33mW (89628) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0B 00 19 28 
+Parsed: T=0.11°C, H=0.25%
+[0;33mW (89938) UART_HTTP: Waiting for data...[0m
+[0;33mW (90038) UART_HTTP: Waiting for data...[0m
+[0;33mW (90138) UART_HTTP: Waiting for data...[0m
+[0;32mI (90218) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (90238) UART_HTTP: Waiting for data...[0m
+[0;33mW (90338) UART_HTTP: Waiting for data...[0m
+[0;32mI (90428) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (90438) UART_HTTP: Waiting for data...[0m
+[0;33mW (90538) UART_HTTP: Waiting for data...[0m
+[0;33mW (90638) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 27 00 61 8C 
+Parsed: T=0.39°C, H=0.97%
+[0;33mW (90948) UART_HTTP: Waiting for data...[0m
+[0;32mI (90948) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (91048) UART_HTTP: Waiting for data...[0m
+[0;33mW (91148) UART_HTTP: Waiting for data...[0m
+[0;33mW (91248) UART_HTTP: Waiting for data...[0m
+[0;33mW (91348) UART_HTTP: Waiting for data...[0m
+[0;33mW (91448) UART_HTTP: Waiting for data...[0m
+[0;33mW (91548) UART_HTTP: Waiting for data...[0m
+[0;33mW (91648) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 14 00 50 68 
+Parsed: T=0.20°C, H=0.80%
+[0;33mW (91958) UART_HTTP: Waiting for data...[0m
+[0;33mW (92058) UART_HTTP: Waiting for data...[0m
+[0;33mW (92158) UART_HTTP: Waiting for data...[0m
+[0;32mI (92168) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (92258) UART_HTTP: Waiting for data...[0m
+[0;33mW (92358) UART_HTTP: Waiting for data...[0m
+[0;33mW (92458) UART_HTTP: Waiting for data...[0m
+[0;33mW (92558) UART_HTTP: Waiting for data...[0m
+[0;32mI (92588) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (92658) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 3D 00 36 77 
+Parsed: T=0.61°C, H=0.54%
+[0;33mW (92968) UART_HTTP: Waiting for data...[0m
+[0;33mW (93068) UART_HTTP: Waiting for data...[0m
+[0;33mW (93168) UART_HTTP: Waiting for data...[0m
+[0;32mI (93208) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (93268) UART_HTTP: Waiting for data...[0m
+[0;33mW (93368) UART_HTTP: Waiting for data...[0m
+[0;33mW (93468) UART_HTTP: Waiting for data...[0m
+[0;33mW (93568) UART_HTTP: Waiting for data...[0m
+[0;33mW (93668) UART_HTTP: Waiting for data...[0m
+[0;32mI (93718) UART_HTTP: HTTP Status: 200[0m
+Receive data: AA 04 00 2B 00 28 57 
+Parsed: T=0.43°C, H=0.40%
+[0;33mW (93978) UART_HTTP: Waiting for data...[0m
+[0;33mW (94078) UART_HTTP: Waiting for data...[0m
+[0;33mW (94178) UART_HTTP: Waiting for data...[0m
+[0;33mW (94278) UART_HTTP: Waiting for data...[0m
+[0;33mW (94378) UART_HTTP: Waiting for data...[0m
+[0;33mW (94478) UART_HTTP: Waiting for data...[0m
+[0;33mW (94578) UART_HTTP: Waiting for data...[0m
+[0;32mI (94628) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (94678) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 19 00 12 2F 
+Parsed: T=0.25°C, H=0.18%
+[0;33mW (94988) UART_HTTP: Waiting for data...[0m
+[0;33mW (95088) UART_HTTP: Waiting for data...[0m
+[0;33mW (95188) UART_HTTP: Waiting for data...[0m
+[0;32mI (95238) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (95288) UART_HTTP: Waiting for data...[0m
+[0;33mW (95388) UART_HTTP: Waiting for data...[0m
+[0;33mW (95488) UART_HTTP: Waiting for data...[0m
+[0;33mW (95588) UART_HTTP: Waiting for data...[0m
+[0;33mW (95688) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 13 00 4F 66 
+Parsed: T=0.19°C, H=0.79%
+[0;33mW (95998) UART_HTTP: Waiting for data...[0m
+[0;32mI (96028) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (96098) UART_HTTP: Waiting for data...[0m
+[0;33mW (96198) UART_HTTP: Waiting for data...[0m
+[0;33mW (96298) UART_HTTP: Waiting for data...[0m
+[0;33mW (96398) UART_HTTP: Waiting for data...[0m
+[0;33mW (96498) UART_HTTP: Waiting for data...[0m
+[0;32mI (96568) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (96598) UART_HTTP: Waiting for data...[0m
+[0;33mW (96698) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 27 00 59 84 
+Parsed: T=0.39°C, H=0.89%
+[0;33mW (97008) UART_HTTP: Waiting for data...[0m
+[0;32mI (97018) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (97108) UART_HTTP: Waiting for data...[0m
+[0;33mW (97208) UART_HTTP: Waiting for data...[0m
+[0;33mW (97308) UART_HTTP: Waiting for data...[0m
+[0;33mW (97408) UART_HTTP: Waiting for data...[0m
+[0;33mW (97508) UART_HTTP: Waiting for data...[0m
+[0;33mW (97608) UART_HTTP: Waiting for data...[0m
+[0;32mI (97608) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (97708) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 55 00 1D 76 
+Parsed: T=0.85°C, H=0.29%
+[0;33mW (98008) UART_HTTP: Waiting for data...[0m
+[0;32mI (98088) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (98108) UART_HTTP: Waiting for data...[0m
+[0;33mW (98208) UART_HTTP: Waiting for data...[0m
+[0;33mW (98308) UART_HTTP: Waiting for data...[0m
+[0;33mW (98408) UART_HTTP: Waiting for data...[0m
+[0;33mW (98508) UART_HTTP: Waiting for data...[0m
+[0;33mW (98608) UART_HTTP: Waiting for data...[0m
+[0;33mW (98708) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 10 00 46 5A 
+Parsed: T=0.16°C, H=0.70%
+[0;33mW (99018) UART_HTTP: Waiting for data...[0m
+[0;33mW (99118) UART_HTTP: Waiting for data...[0m
+[0;33mW (99218) UART_HTTP: Waiting for data...[0m
+[0;32mI (99238) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (99318) UART_HTTP: Waiting for data...[0m
+[0;33mW (99418) UART_HTTP: Waiting for data...[0m
+[0;33mW (99518) UART_HTTP: Waiting for data...[0m
+[0;33mW (99618) UART_HTTP: Waiting for data...[0m
+[0;33mW (99718) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 35 00 0B 44 
+Parsed: T=0.53°C, H=0.11%
+[0;33mW (100028) UART_HTTP: Waiting for data...[0m
+[0;33mW (100128) UART_HTTP: Waiting for data...[0m
+[0;33mW (100228) UART_HTTP: Waiting for data...[0m
+[0;33mW (100328) UART_HTTP: Waiting for data...[0m
+[0;33mW (100428) UART_HTTP: Waiting for data...[0m
+[0;33mW (100528) UART_HTTP: Waiting for data...[0m
+[0;33mW (100628) UART_HTTP: Waiting for data...[0m
+[0;33mW (100728) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1B 00 08 27 
+Parsed: T=0.27°C, H=0.08%
+[0;33mW (101038) UART_HTTP: Waiting for data...[0m
+[0;33mW (101138) UART_HTTP: Waiting for data...[0m
+[0;32mI (101178) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (101238) UART_HTTP: Waiting for data...[0m
+[0;33mW (101338) UART_HTTP: Waiting for data...[0m
+[0;33mW (101438) UART_HTTP: Waiting for data...[0m
+[0;33mW (101538) UART_HTTP: Waiting for data...[0m
+[0;33mW (101638) UART_HTTP: Waiting for data...[0m
+[0;33mW (101738) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2E 00 35 67 
+Parsed: T=0.46°C, H=0.53%
+[0;33mW (102048) UART_HTTP: Waiting for data...[0m
+[0;33mW (102148) UART_HTTP: Waiting for data...[0m
+[0;33mW (102248) UART_HTTP: Waiting for data...[0m
+[0;33mW (102348) UART_HTTP: Waiting for data...[0m
+[0;33mW (102448) UART_HTTP: Waiting for data...[0m
+[0;33mW (102548) UART_HTTP: Waiting for data...[0m
+[0;33mW (102648) UART_HTTP: Waiting for data...[0m
+[0;33mW (102748) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 1A 00 1C 3A 
+Parsed: T=0.26°C, H=0.28%
+[0;32mI (103018) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (103058) UART_HTTP: Waiting for data...[0m
+[0;33mW (103158) UART_HTTP: Waiting for data...[0m
+[0;33mW (103258) UART_HTTP: Waiting for data...[0m
+[0;33mW (103358) UART_HTTP: Waiting for data...[0m
+[0;33mW (103458) UART_HTTP: Waiting for data...[0m
+[0;33mW (103558) UART_HTTP: Waiting for data...[0m
+[0;33mW (103658) UART_HTTP: Waiting for data...[0m
+[0;33mW (103758) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 5F 00 20 83 
+Parsed: T=0.95°C, H=0.32%
+[0;32mI (104038) UART_HTTP: HTTP Status: 200[0m
+[0;33mW (104068) UART_HTTP: Waiting for data...[0m
+[0;33mW (104168) UART_HTTP: Waiting for data...[0m
+[0;33mW (104268) UART_HTTP: Waiting for data...[0m
+[0;33mW (104368) UART_HTTP: Waiting for data...[0m
+[0;33mW (104468) UART_HTTP: Waiting for data...[0m
+[0;33mW (104568) UART_HTTP: Waiting for data...[0m
+[0;33mW (104668) UART_HTTP: Waiting for data...[0m
+[0;33mW (104768) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 4B 00 3B 8A 
+Parsed: T=0.75°C, H=0.59%
+[0;33mW (105078) UART_HTTP: Waiting for data...[0m
+[0;33mW (105178) UART_HTTP: Waiting for data...[0m
+[0;33mW (105278) UART_HTTP: Waiting for data...[0m
+[0;33mW (105378) UART_HTTP: Waiting for data...[0m
+[0;33mW (105478) UART_HTTP: Waiting for data...[0m
+[0;33mW (105578) UART_HTTP: Waiting for data...[0m
+[0;33mW (105678) UART_HTTP: Waiting for data...[0m
+[0;33mW (105778) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2A 00 37 65 
+Parsed: T=0.42°C, H=0.55%
+[0;33mW (106088) UART_HTTP: Waiting for data...[0m
+[0;33mW (106188) UART_HTTP: Waiting for data...[0m
+[0;33mW (106288) UART_HTTP: Waiting for data...[0m
+[1;31mE (106308) transport_base: tcp_read error, errno=Connection reset by peer[0m
+[1;31mE (106308) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_FETCH_HEADER[0m
+[0;33mW (106388) UART_HTTP: Waiting for data...[0m
+[0;33mW (106488) UART_HTTP: Waiting for data...[0m
+[0;33mW (106588) UART_HTTP: Waiting for data...[0m
+[0;33mW (106688) UART_HTTP: Waiting for data...[0m
+[0;33mW (106788) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 21 00 28 4D 
+Parsed: T=0.33°C, H=0.40%
+[0;33mW (107098) UART_HTTP: Waiting for data...[0m
+[0;33mW (107198) UART_HTTP: Waiting for data...[0m
+[0;33mW (107298) UART_HTTP: Waiting for data...[0m
+[0;33mW (107398) UART_HTTP: Waiting for data...[0m
+[0;33mW (107498) UART_HTTP: Waiting for data...[0m
+[0;33mW (107598) UART_HTTP: Waiting for data...[0m
+[0;33mW (107698) UART_HTTP: Waiting for data...[0m
+[0;33mW (107798) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 26 00 31 5B 
+Parsed: T=0.38°C, H=0.49%
+[0;33mW (108098) UART_HTTP: Waiting for data...[0m
+[0;33mW (108198) UART_HTTP: Waiting for data...[0m
+[0;33mW (108298) UART_HTTP: Waiting for data...[0m
+[0;33mW (108398) UART_HTTP: Waiting for data...[0m
+[0;33mW (108498) UART_HTTP: Waiting for data...[0m
+[0;33mW (108598) UART_HTTP: Waiting for data...[0m
+[0;33mW (108698) UART_HTTP: Waiting for data...[0m
+[0;33mW (108798) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 42 00 3B 81 
+Parsed: T=0.66°C, H=0.59%
+[0;33mW (109108) UART_HTTP: Waiting for data...[0m
+[0;33mW (109208) UART_HTTP: Waiting for data...[0m
+[0;33mW (109308) UART_HTTP: Waiting for data...[0m
+[0;33mW (109408) UART_HTTP: Waiting for data...[0m
+[0;33mW (109508) UART_HTTP: Waiting for data...[0m
+[0;33mW (109608) UART_HTTP: Waiting for data...[0m
+[0;33mW (109708) UART_HTTP: Waiting for data...[0m
+[0;33mW (109808) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 07 00 32 3D 
+Parsed: T=0.07°C, H=0.50%
+[0;33mW (110118) UART_HTTP: Waiting for data...[0m
+[0;33mW (110218) UART_HTTP: Waiting for data...[0m
+[0;33mW (110318) UART_HTTP: Waiting for data...[0m
+[0;33mW (110418) UART_HTTP: Waiting for data...[0m
+[0;33mW (110518) UART_HTTP: Waiting for data...[0m
+[0;33mW (110618) UART_HTTP: Waiting for data...[0m
+[0;33mW (110718) UART_HTTP: Waiting for data...[0m
+[0;33mW (110818) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 09 00 54 61 
+Parsed: T=0.09°C, H=0.84%
+[0;33mW (111128) UART_HTTP: Waiting for data...[0m
+[0;33mW (111228) UART_HTTP: Waiting for data...[0m
+[1;31mE (111318) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (111318) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (111318) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (111318) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (111328) UART_HTTP: Waiting for data...[0m
+[0;33mW (111428) UART_HTTP: Waiting for data...[0m
+[0;33mW (111528) UART_HTTP: Waiting for data...[0m
+[0;33mW (111628) UART_HTTP: Waiting for data...[0m
+[0;33mW (111728) UART_HTTP: Waiting for data...[0m
+[0;33mW (111828) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 51 00 19 6E 
+Parsed: T=0.81°C, H=0.25%
+[0;33mW (112138) UART_HTTP: Waiting for data...[0m
+[0;33mW (112238) UART_HTTP: Waiting for data...[0m
+[0;33mW (112338) UART_HTTP: Waiting for data...[0m
+[0;33mW (112438) UART_HTTP: Waiting for data...[0m
+[0;33mW (112538) UART_HTTP: Waiting for data...[0m
+[0;33mW (112638) UART_HTTP: Waiting for data...[0m
+[0;33mW (112738) UART_HTTP: Waiting for data...[0m
+[0;33mW (112838) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 0D 00 17 28 
+Parsed: T=0.13°C, H=0.23%
+[0;33mW (113148) UART_HTTP: Waiting for data...[0m
+[0;33mW (113248) UART_HTTP: Waiting for data...[0m
+[0;33mW (113348) UART_HTTP: Waiting for data...[0m
+[0;33mW (113448) UART_HTTP: Waiting for data...[0m
+[0;33mW (113548) UART_HTTP: Waiting for data...[0m
+[0;33mW (113648) UART_HTTP: Waiting for data...[0m
+[0;33mW (113748) UART_HTTP: Waiting for data...[0m
+[0;33mW (113848) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 62 00 11 77 
+Parsed: T=0.98°C, H=0.17%
+[0;33mW (114158) UART_HTTP: Waiting for data...[0m
+[0;33mW (114258) UART_HTTP: Waiting for data...[0m
+[0;33mW (114358) UART_HTTP: Waiting for data...[0m
+[0;33mW (114458) UART_HTTP: Waiting for data...[0m
+[0;33mW (114558) UART_HTTP: Waiting for data...[0m
+[0;33mW (114658) UART_HTTP: Waiting for data...[0m
+[0;33mW (114758) UART_HTTP: Waiting for data...[0m
+[0;33mW (114858) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2A 00 3A 68 
+Parsed: T=0.42°C, H=0.58%
+[0;33mW (115168) UART_HTTP: Waiting for data...[0m
+[0;33mW (115268) UART_HTTP: Waiting for data...[0m
+[0;33mW (115368) UART_HTTP: Waiting for data...[0m
+[0;33mW (115468) UART_HTTP: Waiting for data...[0m
+[0;33mW (115568) UART_HTTP: Waiting for data...[0m
+[0;33mW (115668) UART_HTTP: Waiting for data...[0m
+[0;33mW (115768) UART_HTTP: Waiting for data...[0m
+[0;33mW (115868) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 53 00 56 AD 
+Parsed: T=0.83°C, H=0.86%
+[0;33mW (116178) UART_HTTP: Waiting for data...[0m
+[0;33mW (116278) UART_HTTP: Waiting for data...[0m
+[1;31mE (116338) esp-tls: [sock=54] select() timeout[0m
+[1;31mE (116338) transport_base: Failed to open a new connection: 32774[0m
+[1;31mE (116338) HTTP_CLIENT: Connection failed, sock < 0[0m
+[1;31mE (116338) UART_HTTP: HTTP request failed: ESP_ERR_HTTP_CONNECT[0m
+[0;33mW (116378) UART_HTTP: Waiting for data...[0m
+[0;33mW (116478) UART_HTTP: Waiting for data...[0m
+[0;33mW (116578) UART_HTTP: Waiting for data...[0m
+[0;33mW (116678) UART_HTTP: Waiting for data...[0m
+[0;33mW (116778) UART_HTTP: Waiting for data...[0m
+[0;33mW (116878) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 2F 00 3B 6E 
+Parsed: T=0.47°C, H=0.59%
+[0;33mW (117188) UART_HTTP: Waiting for data...[0m
+[0;33mW (117288) UART_HTTP: Waiting for data...[0m
+[0;33mW (117388) UART_HTTP: Waiting for data...[0m
+[0;33mW (117488) UART_HTTP: Waiting for data...[0m
+[0;33mW (117588) UART_HTTP: Waiting for data...[0m
+[0;33mW (117688) UART_HTTP: Waiting for data...[0m
+[0;33mW (117788) UART_HTTP: Waiting for data...[0m
+[0;33mW (117888) UART_HTTP: Waiting for data...[0m
+Receive data: AA 04 00 36 00 0A 44 
+Parsed: T=0.54°C, H=0.10%
+[0;33mW (118188) UART_HTTP: Waiting for data...[0m
+[0;33mW (118288) UART_HTTP: Waiting for data...[0m
+[0;33mW (118388) UART_HTTP: Waiting for data...[0m
+[0;33mW (118488) UART_HTTP: Waiting for data...[0m
+[0;33mW (118588) UART_HTTP: Waiting for data...[0m
+[0;33mW (118688) UART_HTTP: Waiting for data...[0m
+[0;33mW (118788) UART_HTTP: Waiting for data...[0m
+[0;33mW (118888) UART_HTTP: Waiting for data...[0m

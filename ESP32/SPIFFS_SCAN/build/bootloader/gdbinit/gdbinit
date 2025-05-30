@@ -1,0 +1,2 @@
+source E:/Workspace/Learning/ESP32/SPIFFS_SCAN/build/bootloader/gdbinit/symbols
+source E:/Workspace/Learning/ESP32/SPIFFS_SCAN/build/bootloader/gdbinit/connect

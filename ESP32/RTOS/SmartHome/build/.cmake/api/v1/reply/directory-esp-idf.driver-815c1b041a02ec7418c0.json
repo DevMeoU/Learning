@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "esp-idf/driver",
+		"source" : "C:/esp/container_directory/v5.4.1/esp-idf/components/driver"
+	}
+}

@@ -1,0 +1,1 @@
+curl -X POST http://192.168.1.118:8080/data -H "Content-Type: application/json" -d '{"device":"test","temperature":25,"humidity":50}'

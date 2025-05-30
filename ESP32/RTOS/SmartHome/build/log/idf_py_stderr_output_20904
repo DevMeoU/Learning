@@ -1,0 +1,7 @@
+CMake Error at run_serial_tool.cmake:67 (message):
+  
+  C:/esp/tools_directory/python_env/idf5.4_py3.10_env/Scripts/python.exe;;C:/esp/container_directory/v5.4.1/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32
+  failed.
+
+
+

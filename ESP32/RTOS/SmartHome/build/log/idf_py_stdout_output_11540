@@ -1,0 +1,110 @@
+chip revision: v3.0[0m
+[0;32ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:7188
+load:0x40078000,len:15756
+load:0x40080400,len:4
+load:0x40080404,len:3860
+entry 0x4008063c
+[0;32mI (29) boot: ESP-IDF v5.4.1-dirty 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time May 25 2025 01:52:07[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (34) boot: chip revision: v3.0[0m
+[0;32mI (38) boot.esp32: SPI Speed      : 80MHz[0m
+[0;32mI (43) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (47) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (52) boot: Enabling RNG early entropy source...[0m
+[0;32mI (57) boot: Partition Table:[0m
+[0;32mI (61) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (68) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (75) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (83) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (90) boot: End of partition table[0m
+[0;32mI (95) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=20974h (133492) map[0m
+[0;32mI (141) esp_image: segment 1: paddr=0003099c vaddr=3ff80000 size=0001ch (    28) load[0m
+[0;32mI (141) esp_image: segment 2: paddr=000309c0 vaddr=3ffb0000 size=03f20h ( 16160) load[0m
+[0;32mI (151) esp_image: segment 3: paddr=000348e8 vaddr=40080000 size=0b730h ( 46896) load[0m
+[0;32mI (170) esp_image: segment 4: paddr=00040020 vaddr=400d0020 size=a9c7ch (695420) map[0m
+[0;32mI (367) esp_image: segment 5: paddr=000e9ca4 vaddr=4008b730 size=0d09ch ( 53404) load[0m
+[0;32mI (396) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (396) boot: Disabling RNG early entropy source...[0m
+[0;32mI (408) cpu_start: Multicore app[0m
+[0;32mI (416) cpu_start: Pro cpu start user code[0m
+[0;32mI (417) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (417) app_init: Application information:[0m
+[0;32mI (417) app_init: Project name:     SmartHome[0m
+[0;32mI (421) app_init: App version:      c44232e3-dirty[0m
+[0;32mI (425) app_init: Compile time:     May 25 2025 01:50:16[0m
+[0;32mI (430) app_init: ELF file SHA256:  633ce0a9e...[0m
+[0;32mI (435) app_init: ESP-IDF:          v5.4.1-dirty[0m
+[0;32mI (439) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (443) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (447) efuse_init: Chip rev:         v3.0[0m
+[0;32mI (451) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (457) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (462) heap_init: At 3FFB87B0 len 00027850 (158 KiB): DRAM[0m
+[0;32mI (467) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (473) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (478) heap_init: At 400987CC len 00007834 (30 KiB): IRAM[0m
+[0;32mI (484) spi_flash: detected chip: generic[0m
+[0;32mI (487) spi_flash: flash io: dio[0m
+[0;32mI (491) main_task: Started on CPU0[0m
+[0;32mI (501) main_task: Calling app_main()[0m
+[0;32mI (531) gpio: GPIO[16]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (531) UART_HTTP: Press and hold button for 10 seconds to enter AP mode...[0m
+[0;32mI (531) UART_HTTP: Timeout: 10 seconds remaining[0m
+[0;32mI (1531) UART_HTTP: Timeout: 9 seconds remaining[0m
+[0;32mI (2531) UART_HTTP: Timeout: 8 seconds remaining[0m
+[0;32mI (3531) UART_HTTP: Timeout: 7 seconds remaining[0m
+[0;32mI (4531) UART_HTTP: Timeout: 6 seconds remaining[0m
+[0;32mI (5531) UART_HTTP: Timeout: 5 seconds remaining[0m
+[0;32mI (6531) UART_HTTP: Timeout: 4 seconds remaining[0m
+[0;32mI (7531) UART_HTTP: Timeout: 3 seconds remaining[0m
+[0;32mI (8531) UART_HTTP: Timeout: 2 seconds remaining[0m
+[0;32mI (9531) UART_HTTP: Timeout: 1 seconds remaining[0m
+[0;32mI (10531) UART_HTTP: No button press detected[0m
+[0;32mI (10531) UART_HTTP: Connecting to saved WiFi...[0m
+[0;32mI (10541) wifi:wifi driver task: 3ffc081c, prio:23, stack:6656, core=0[0m
+[0;32mI (10551) wifi:wifi firmware version: 79fa3f41ba[0m
+[0;32mI (10551) wifi:wifi certification version: v7.0[0m
+[0;32mI (10551) wifi:config NVS flash: enabled[0m
+[0;32mI (10551) wifi:config nano formatting: disabled[0m
+[0;32mI (10561) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (10561) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (10571) wifi:Init management short buffer num: 32[0m
+[0;32mI (10571) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (10581) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (10581) wifi:Init static rx buffer num: 10[0m
+[0;32mI (10581) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (10591) wifi_init: rx ba win: 6[0m
+[0;32mI (10591) wifi_init: accept mbox: 6[0m
+[0;32mI (10591) wifi_init: tcpip mbox: 32[0m
+[0;32mI (10601) wifi_init: udp mbox: 6[0m
+[0;32mI (10601) wifi_init: tcp mbox: 6[0m
+[0;32mI (10601) wifi_init: tcp tx win: 5760[0m
+[0;32mI (10611) wifi_init: tcp rx win: 5760[0m
+[0;32mI (10611) wifi_init: tcp mss: 1440[0m
+[0;32mI (10611) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (10621) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (10621) phy_init: phy_version 4860,6b7a6e5,Feb  6 2025,14:47:07[0m
+[0;32mI (10711) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(0)[0m
+[0;32mI (10731) wifi:mode : sta (c0:49:ef:2c:9b:9c)[0m
+[0;32mI (10731) wifi:enable tsf[0m
+[0;32mI (10741) wifi:new:<11,0>, old:<1,0>, ap:<255,255>, sta:<11,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (10751) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (10801) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (10841) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (10891) wifi:connected with HAPPY HOME floor4, aid = 3, channel 11, BW20, bssid = 00:c8:96:23:01:01[0m
+[0;32mI (10891) wifi:security: WPA2-PSK, phy: bgn, rssi: -75[0m
+[0;32mI (10891) wifi:pm start, type: 1[0m
+
+[0;32mI (10891) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (10911) wifi:<ba-add>idx:0 (ifx:0, 00:c8:96:23:01:01), tid:0, ssn:0, winSize:64[0m
+[0;32mI (10931) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (11921) esp_netif_handlers: sta ip: 192.168.1.204, mask: 255.255.255.0, gw: 192.168.1.1[0m
+[0;32mI (11921) UART_HTTP: Connected! IP: 192.168.1.204[0m
+[0;32mI (11921) main_task: Returned from app_main()[0m
