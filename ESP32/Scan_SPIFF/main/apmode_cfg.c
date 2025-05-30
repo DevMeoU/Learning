@@ -51,6 +51,19 @@ extern const uint8_t firebase_cert_pem_end[]   asm("_binary_firebase_cert_pem_en
 #define LED_RED             GPIO_NUM_13 // GPIO cho LED đỏ
 #define LED_YELLOW          GPIO_NUM_12 // GPIO cho LED vàng
 
+#define LED_GREEN_ON        gpio_set_level(LED_GREEN, 1)
+#define LED_GREEN_OFF       gpio_set_level(LED_GREEN, 0)
+#define LED_RED_ON          gpio_set_level(LED_RED, 1)
+#define LED_RED_OFF         gpio_set_level(LED_RED, 0)
+#define LED_YELLOW_ON       gpio_set_level(LED_YELLOW, 1)
+#define LED_YELLOW_OFF      gpio_set_level(LED_YELLOW, 0)
+
+#define SET_ALL_LED(__lg__, __lr__, __ly__) { \
+    gpio_set_level(LED_GREEN, __lg__); \
+    gpio_set_level(LED_RED, __lr__); \
+    gpio_set_level(LED_YELLOW, __ly__); \
+}
+
 // Cấu hình WiFi
 #define WIFI_SSID "HAPPY HOME floor4"
 #define WIFI_PASS "H@ppyhome4"
@@ -175,6 +188,8 @@ void uart_parser_task(void *pvParameters) {
                     if (checksum == b) {
                         data_frame_t recv_data;
                         memcpy(&recv_data, payload, sizeof(data_frame_t));
+                        SET_ALL_LED(recv_data.led_green, recv_data.led_red, recv_data.led_yellow);
+                        // In ra thông tin nhận được
                         ESP_LOGI(TAG, "Led Green: %d, Led Yellow: %d, Led Red: %d, Reserved: %d, Sensor Data: %.2f",
                                  recv_data.led_green, recv_data.led_yellow, recv_data.led_red, recv_data.reserved,
                                  recv_data.sensor_data.f_sensor_value);
