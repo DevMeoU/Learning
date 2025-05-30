@@ -15,6 +15,11 @@
 #include "esp_http_client.h"
 #include "esp_http_server.h"
 #include "cJSON.h"
+#include "esp_tls.h"
+
+// Khai báo external certificate
+extern const uint8_t firebase_cert_pem_start[] asm("_binary_firebase_cert_pem_start");
+extern const uint8_t firebase_cert_pem_end[]   asm("_binary_firebase_cert_pem_end");
 
 // Cấu hình UART
 #define UART_PORT_NUM UART_NUM_1
@@ -25,7 +30,14 @@
 #define MAX_PAYLOAD     8
 
 // Cấu hình GPIO
-#define BUTTON_GPIO GPIO_NUM_16 // GPIO cho nút nhấn
+#define BUTTON_GPIO         GPIO_NUM_16 // GPIO cho nút nhấn
+#define LED_NOTIFICATION    GPIO_NUM_2 // GPIO cho LED thông báo
+#define LED_NOTIFICATION_ON  gpio_set_level(LED_NOTIFICATION, 1)
+#define LED_NOTIFICATION_OFF gpio_set_level(LED_NOTIFICATION, 0)
+
+#define LED_GREEN           GPIO_NUM_15 // GPIO cho LED xanh
+#define LED_RED             GPIO_NUM_13 // GPIO cho LED đỏ
+#define LED_YELLOW          GPIO_NUM_12 // GPIO cho LED vàng
 
 // Cấu hình WiFi
 #define WIFI_SSID "HAPPY HOME floor4"
@@ -176,6 +188,7 @@ void http_task(void *pvParameters) {
 
     while (1) {
         if (xQueueReceive(xSensorQueue, &recv_data, portMAX_DELAY)) {
+            LED_NOTIFICATION_ON; // Bật LED thông báo khi nhận dữ liệu
             if (server_url == NULL) {
                 ESP_LOGE(TAG, "Server URL not configured!");
                 continue;
@@ -193,7 +206,12 @@ void http_task(void *pvParameters) {
             esp_http_client_config_t config = {
                 .url = server_url,
                 .method = HTTP_METHOD_POST,
-                .timeout_ms = 5000
+                .timeout_ms = 10000,
+                .cert_pem = (const char *)firebase_cert_pem_start,
+                .skip_cert_common_name_check = false, // Kiểm tra CN
+                .keep_alive_enable = true,
+                .transport_type = HTTP_TRANSPORT_OVER_SSL,
+                .use_global_ca_store = true, // Sử dụng kho chứng chỉ toàn cục
             };
 
             esp_http_client_handle_t client = esp_http_client_init(&config);
@@ -210,6 +228,8 @@ void http_task(void *pvParameters) {
             esp_http_client_cleanup(client);
             cJSON_Delete(root);
             free(json_str);
+
+            LED_NOTIFICATION_OFF; // Tắt LED thông báo sau khi gửi dữ liệu
         }
     }
 }
@@ -412,12 +432,23 @@ void app_main() {
     };
     gpio_config(&io_conf);
 
+    // Cấu hình GPIO cho LED thông báo
+    gpio_config_t led_conf = {
+        .pin_bit_mask = (1ULL << LED_NOTIFICATION) | (1ULL << LED_GREEN) | (1ULL << LED_RED) | (1ULL << LED_YELLOW),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    gpio_config(&led_conf);
+
     bool enter_ap_mode = false;
     int timeout = 5; // 5 giây
 
     ESP_LOGI(TAG, "Press and hold button for %d seconds to enter AP mode...", timeout);
 
-    // Đếm ngược 10 giây chờ nút nhấn
+    LED_NOTIFICATION_ON; // Bật LED thông báo
+    // Đếm ngược 5 giây chờ nút nhấn
     for (int i = timeout; i > 0; i--) {
         if (gpio_get_level(BUTTON_GPIO) == 0) { // 0 = nút được nhấn (do pull-up)
             enter_ap_mode = true;
@@ -427,6 +458,8 @@ void app_main() {
         ESP_LOGI(TAG, "Timeout: %d seconds remaining", i);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
+
+    LED_NOTIFICATION_OFF; // Tắt LED thông báo
 
     // Xử lý sau khi hết thời gian
     if (!enter_ap_mode) {
@@ -448,6 +481,8 @@ void app_main() {
     if (enter_ap_mode) {
         wifi_init_ap();
         start_webserver();
+        esp_log_level_set("esp-tls", ESP_LOG_VERBOSE);
+        esp_log_level_set("http_client", ESP_LOG_VERBOSE);
     }
 
     // Khởi tạo các task chính
