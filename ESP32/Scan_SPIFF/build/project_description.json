@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "Scan_SPIFF",
-    "project_version":    "a7c1f318-dirty",
+    "project_version":    "c1248eaa-dirty",
     "project_path":       "E:/Workspace/Learning/ESP32/Scan_SPIFF",
     "idf_path":           "C:/esp/container_directory/v5.4.1/esp-idf",
     "build_dir":          "E:/Workspace/Learning/ESP32/Scan_SPIFF/build",
@@ -1195,7 +1195,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/libmain.a",
-            "sources": [ "E:/Workspace/Learning/ESP32/Scan_SPIFF/main/apmode_cfg.c", "E:/Workspace/Learning/ESP32/Scan_SPIFF/build/firebase_cert.pem.S" ],
+            "sources": [ "E:/Workspace/Learning/ESP32/Scan_SPIFF/main/main.c", "E:/Workspace/Learning/ESP32/Scan_SPIFF/main/apmode_cfg.c", "E:/Workspace/Learning/ESP32/Scan_SPIFF/build/firebase_cert.pem.S" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

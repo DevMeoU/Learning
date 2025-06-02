@@ -825,6 +825,9 @@ E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/wifi_provisioning/CMakeFile
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/wifi_provisioning/CMakeFiles/install/local.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/wifi_provisioning/CMakeFiles/install/strip.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/__idf_main.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/spiffs_spiffs_bin.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/spiffs-flash.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/encrypted-spiffs-flash.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/edit_cache.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/rebuild_cache.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/main/CMakeFiles/list_install_components.dir

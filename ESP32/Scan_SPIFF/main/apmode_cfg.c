@@ -28,6 +28,7 @@
 #include "esp_netif.h"
 #include "esp_log.h"
 #include "esp_tls.h"
+#include "esp_spiffs.h"
 
 // Khai báo external certificate
 extern const uint8_t firebase_cert_pem_start[] asm("_binary_firebase_cert_pem_start");
@@ -97,34 +98,15 @@ typedef struct {
 void wifi_init_sta(void);
 void wifi_init_ap(void);
 static esp_err_t http_event_handler(esp_http_client_event_t *evt);
-static esp_err_t post_handler(httpd_req_t *req);
-static esp_err_t index_handler(httpd_req_t *req);
-void urldecode(char *src, char *dest, size_t max_len);
+static void urldecode(char *src, char *dest, size_t max_len);
 void print_hex(const uint8_t *data, size_t len);
 bool is_internet_available();
-
-// Thêm HTML form
-static const char* HTML_FORM = 
-"<html>"
-"<head>"
-"    <title>ESP32 Configuration</title>"
-"    <meta charset=\"UTF-8\">"
-"</head>"
-"<body>"
-"    <h1>ESP32 Server Configuration</h1>"
-"    <form method='post' action='/config' enctype='application/x-www-form-urlencoded'>"
-"        <label>Server URL: </label>"
-"        <input type='text' name='server_url' required><br><br>"
-"        <input type='submit' value='Save'>"
-"    </form>"
-"</body>"
-"</html>";
+esp_err_t send_file_from_spiffs(httpd_req_t *req, const char *path, const char *content_type);
+static esp_err_t handle_get_wifi_scan(httpd_req_t *req);
 
 // Thêm handler cho GET request tới root
-static esp_err_t index_handler(httpd_req_t *req) {
-    httpd_resp_set_type(req, "text/html");
-    httpd_resp_send(req, HTML_FORM, HTTPD_RESP_USE_STRLEN);
-    return ESP_OK;
+static esp_err_t handle_get_wifi_config_html(httpd_req_t *req) {
+    return send_file_from_spiffs(req, "/spiffs/wifi_config.html", "text/html");
 }
 
 void uart_init() {
@@ -212,20 +194,29 @@ void uart_parser_task(void *pvParameters) {
 
 void http_task(void *pvParameters) {
     data_frame_t recv_data;
+    char *server_url = NULL;
+    size_t required_size;
 
     ESP_LOGI(TAG, "HTTP Task started");
+    
     // Đọc server_url từ NVS
+    if (nvs_get_str(nvs_handle_storage, "server_url", NULL, &required_size) == ESP_OK) {
+        server_url = malloc(required_size);
+        nvs_get_str(nvs_handle_storage, "server_url", server_url, &required_size);
+        ESP_LOGI(TAG, "Loaded server URL from NVS: %s", server_url);
+    }
 
     while (1) {
         if (xQueueReceive(xSensorQueue, &recv_data, portMAX_DELAY)) {
-            // LED_NOTIFICATION_ON; // Bật LED thông báo khi nhận dữ liệu
-
             // Trong http_task trước khi gửi request
             if (!is_internet_available()) {
                 ESP_LOGW(TAG, "No internet connection, skipping HTTP request");
                 continue;
             }
-
+            if (!server_url || strlen(server_url) == 0) {
+                ESP_LOGE(TAG, "server_url is NULL or empty, skipping HTTP request");
+                continue;
+            }
             const char *auth_token = "V2yKXVusT10Fa6BRLP6TgiZOKS0BUI5SqVwwSwUr";
             char full_url[256];
             snprintf(full_url, sizeof(full_url), "%s/data_stream.json?auth=%s", server_url, auth_token);
@@ -350,13 +341,18 @@ void wifi_init_sta(void) {
     ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL));
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL));
 
-    wifi_config_t wifi_config = {
-        .sta = {
-            .ssid = WIFI_SSID,
-            .password = WIFI_PASS,
-            .threshold.authmode = WIFI_AUTH_WPA2_PSK,
-        },
-    };
+    // Đọc SSID và password từ NVS
+    char ssid[33] = {0};
+    char pass[65] = {0};
+    size_t ssid_len = sizeof(ssid);
+    size_t pass_len = sizeof(pass);
+    nvs_get_str(nvs_handle_storage, "wifi_ssid", ssid, &ssid_len);
+    nvs_get_str(nvs_handle_storage, "wifi_pass", pass, &pass_len);
+
+    wifi_config_t wifi_config = {0};
+    strncpy((char *)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
+    strncpy((char *)wifi_config.sta.password, pass, sizeof(wifi_config.sta.password));
+    wifi_config.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK;
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config));
@@ -396,17 +392,41 @@ void wifi_init_ap(void) {
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_AP, &wifi_config));
+    
+    ESP_ERROR_CHECK(esp_wifi_stop());
+    vTaskDelay(pdMS_TO_TICKS(500));
     ESP_ERROR_CHECK(esp_wifi_start());
+    vTaskDelay(pdMS_TO_TICKS(500));
 
     ESP_LOGI(TAG, "AP Mode Started. SSID: %s Password: %s", AP_SSID, AP_PASSWORD);
 }
 
-static esp_err_t post_handler(httpd_req_t *req) {
-    char buf[256];
-    char decoded_buf[256];
-    char *server_url_value = NULL;
-    
-    // Nhận dữ liệu
+// Đọc file HTML từ SPIFFS và trả về client
+esp_err_t send_file_from_spiffs(httpd_req_t *req, const char *path, const char *content_type) {
+    FILE *f = fopen(path, "r");
+    if (!f) {
+        ESP_LOGE(TAG, "Failed to open %s", path);
+        httpd_resp_send_404(req);
+        return ESP_FAIL;
+    }
+    httpd_resp_set_type(req, content_type);
+    char buf[512];
+    size_t n;
+    while ((n = fread(buf, 1, sizeof(buf), f)) > 0) {
+        httpd_resp_send_chunk(req, buf, n);
+    }
+    fclose(f);
+    httpd_resp_send_chunk(req, NULL, 0);
+    return ESP_OK;
+}
+
+// API scan WiFi trả về JSON
+
+
+// Handler POST /config nhận ssid, password, server_url, token
+static esp_err_t handle_post_wifi_config(httpd_req_t *req) {
+    char buf[512];
+    char decoded_buf[512];
     int ret = httpd_req_recv(req, buf, sizeof(buf)-1);
     if (ret <= 0) {
         ESP_LOGE(TAG, "Receive failed: %d", ret);
@@ -414,177 +434,98 @@ static esp_err_t post_handler(httpd_req_t *req) {
         return ESP_FAIL;
     }
     buf[ret] = '\0';
-
-    // Giải mã URL encoded data
-    urldecode(buf, decoded_buf, sizeof(decoded_buf));
-    
-    // Parse form data (dạng: server_url=value)
-    server_url_value = strstr(decoded_buf, "server_url=");
-    if (!server_url_value) {
-        ESP_LOGE(TAG, "Missing server_url field");
-        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Missing server_url");
-        return ESP_FAIL;
+    // Kiểm tra Content-Type
+    char content_type[32];
+    httpd_req_get_hdr_value_str(req, "Content-Type", content_type, sizeof(content_type));
+    char ssid[64] = {0}, password[64] = {0}, server_url[128] = {0}, token[128] = {0};
+    if (strstr(content_type, "application/json")) {
+        // Parse JSON
+        cJSON *root = cJSON_Parse(buf);
+        if (!root) {
+            httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Invalid JSON");
+            return ESP_FAIL;
+        }
+        cJSON *jssid = cJSON_GetObjectItem(root, "ssid");
+        cJSON *jpass = cJSON_GetObjectItem(root, "password");
+        cJSON *jurl = cJSON_GetObjectItem(root, "server_url");
+        cJSON *jtoken = cJSON_GetObjectItem(root, "token");
+        if (!jssid || !jurl || !jtoken) {
+            cJSON_Delete(root);
+            httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Missing field");
+            return ESP_FAIL;
+        }
+        strncpy(ssid, jssid->valuestring, sizeof(ssid)-1);
+        if (jpass) strncpy(password, jpass->valuestring, sizeof(password)-1);
+        strncpy(server_url, jurl->valuestring, sizeof(server_url)-1);
+        strncpy(token, jtoken->valuestring, sizeof(token)-1);
+        cJSON_Delete(root);
+    } else {
+        // Parse x-www-form-urlencoded
+        urldecode(buf, decoded_buf, sizeof(decoded_buf));
+        char *p;
+        p = strstr(decoded_buf, "ssid=");
+        if (p) { p += 5; char *e = strchr(p, '&'); size_t l = e ? (size_t)(e-p) : strlen(p); strncpy(ssid, p, l); ssid[l] = 0; }
+        p = strstr(decoded_buf, "password=");
+        if (p) { p += 9; char *e = strchr(p, '&'); size_t l = e ? (size_t)(e-p) : strlen(p); strncpy(password, p, l); password[l] = 0; }
+        p = strstr(decoded_buf, "server_url=");
+        if (p) { p += 11; char *e = strchr(p, '&'); size_t l = e ? (size_t)(e-p) : strlen(p); strncpy(server_url, p, l); server_url[l] = 0; }
+        p = strstr(decoded_buf, "token=");
+        if (p) { p += 6; char *e = strchr(p, '&'); size_t l = e ? (size_t)(e-p) : strlen(p); strncpy(token, p, l); token[l] = 0; }
+        if (!ssid[0] || !server_url[0] || !token[0]) {
+            httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Missing field");
+            return ESP_FAIL;
+        }
     }
-    
-    server_url_value += strlen("server_url=");
-    char *end = strchr(server_url_value, '&');
-    if (end) *end = '\0';
-
     // Lưu vào NVS
-    esp_err_t err = nvs_set_str(nvs_handle_storage, "server_url", server_url_value);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "NVS save failed: %s", esp_err_to_name(err));
-        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Save failed");
-        return ESP_FAIL;
-    }
+    nvs_set_str(nvs_handle_storage, "wifi_ssid", ssid);
+    nvs_set_str(nvs_handle_storage, "wifi_pass", password);
+    nvs_set_str(nvs_handle_storage, "server_url", server_url);
+    nvs_set_str(nvs_handle_storage, "token", token);
     nvs_commit(nvs_handle_storage);
-
-    // Cập nhật server_url
-    if (server_url) free(server_url);
-    server_url = strdup(server_url_value);
-    
-    // Phản hồi
-    httpd_resp_send(req, "Configuration saved! Rebooting...", HTTPD_RESP_USE_STRLEN);
+    // Cập nhật biến runtime
+    // ... (tùy logic của bạn)
+    // Trả về JSON nếu là JSON, còn lại trả về text
+    if (strstr(content_type, "application/json")) {
+        httpd_resp_set_type(req, "application/json");
+        httpd_resp_send(req, "{\"success\":true}", HTTPD_RESP_USE_STRLEN);
+    } else {
+        httpd_resp_send(req, "Configuration saved! Rebooting...", HTTPD_RESP_USE_STRLEN);
+    }
     vTaskDelay(pdMS_TO_TICKS(1000));
     esp_restart();
-
     return ESP_OK;
 }
 
-// Hàm giải mã URL encoding
-void urldecode(char *src, char *dest, size_t max_len) {
-    char a, b;
-    size_t i = 0;
-    while (*src && i < max_len-1) {
-        if ((*src == '%') &&
-            ((a = src[1]) && (b = src[2])) &&
-            (isxdigit(a) && isxdigit(b))) {
-            if (a >= 'a') a -= 'a'-'A';
-            if (a >= 'A') a -= ('A' - 10);
-            else a -= '0';
-            if (b >= 'a') b -= 'a'-'A';
-            if (b >= 'A') b -= ('A' - 10);
-            else b -= '0';
-            *dest++ = 16*a + b;
-            src += 3;
-        } else if (*src == '+') {
-            *dest++ = ' ';
-            src++;
-        } else {
-            *dest++ = *src++;
-        }
-        i++;
-    }
-    *dest = '\0';
-}
-
+// Sửa start_webserver để đăng ký đúng handler
 void start_webserver() {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.stack_size = 8192; // Tăng stack cho HTTP server để tránh overflow khi scan WiFi
     httpd_handle_t server = NULL;
-
     if (httpd_start(&server, &config) == ESP_OK) {
-        // Handler cho GET request tới root
         httpd_uri_t index_uri = {
             .uri = "/",
             .method = HTTP_GET,
-            .handler = index_handler
+            .handler = handle_get_wifi_config_html
         };
-        
-        // Handler cho POST request tới /config
         httpd_uri_t config_uri = {
             .uri = "/config",
             .method = HTTP_POST,
-            .handler = post_handler
+            .handler = handle_post_wifi_config
         };
-
+        httpd_uri_t scan_uri = {
+            .uri = "/scan",
+            .method = HTTP_GET,
+            .handler = handle_get_wifi_scan
+        };
         httpd_register_uri_handler(server, &index_uri);
         httpd_register_uri_handler(server, &config_uri);
+        httpd_register_uri_handler(server, &scan_uri);
     }
 }
 
-void app_main() {
-    // Khởi tạo NVS
-    esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
-
-    // Mở NVS storage
-    ESP_ERROR_CHECK(nvs_open("storage", NVS_READWRITE, &nvs_handle_storage));
-
-    // Cấu hình GPIO cho nút nhấn
-    gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << BUTTON_GPIO),
-        .mode = GPIO_MODE_INPUT,
-        .pull_up_en = GPIO_PULLUP_ENABLE,    // Sử dụng pull-up nội
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
-    gpio_config(&io_conf);
-
-    // Cấu hình GPIO cho LED thông báo
-    gpio_config_t led_conf = {
-        .pin_bit_mask = (1ULL << LED_NOTIFICATION) | (1ULL << LED_GREEN) | (1ULL << LED_RED) | (1ULL << LED_YELLOW),
-        .mode = GPIO_MODE_OUTPUT,
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
-    gpio_config(&led_conf);
-
-    esp_tls_init_global_ca_store();
-
-    bool enter_ap_mode = false;
-    int timeout = 5; // 5 giây
-
-    ESP_LOGI(TAG, "Press and hold button for %d seconds to enter AP mode...", timeout);
-
-    LED_NOTIFICATION_ON; // Bật LED thông báo
-    // Đếm ngược 5 giây chờ nút nhấn
-    for (int i = timeout; i > 0; i--) {
-        if (gpio_get_level(BUTTON_GPIO) == 0) { // 0 = nút được nhấn (do pull-up)
-            enter_ap_mode = true;
-            ESP_LOGI(TAG, "Button pressed! Entering AP mode...");
-            break;
-        }
-        ESP_LOGI(TAG, "Timeout: %d seconds remaining", i);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-
-    LED_NOTIFICATION_OFF; // Tắt LED thông báo
-
-    // Xử lý sau khi hết thời gian
-    if (!enter_ap_mode) {
-        ESP_LOGI(TAG, "No button press detected");
-        // Kiểm tra cấu hình đã lưu
-        size_t required_size;
-        if (nvs_get_str(nvs_handle_storage, "server_url", NULL, &required_size) == ESP_OK) {
-            server_url = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "server_url", server_url, &required_size);
-            ESP_LOGI(TAG, "Connecting to saved WiFi...");
-            wifi_init_sta();
-        } else {
-            ESP_LOGI(TAG, "No saved configuration found");
-            enter_ap_mode = true;
-        }
-    }
-
-    // Khởi động AP mode nếu cần
-    if (enter_ap_mode) {
-        wifi_init_ap();
-        start_webserver();
-        esp_log_level_set("esp-tls", ESP_LOG_VERBOSE);
-        esp_log_level_set("http_client", ESP_LOG_VERBOSE);
-    }
-
-    // Khởi tạo các task chính
-    uart_init();
-    xSensorQueue = xQueueCreate(5, sizeof(data_frame_t));
-    xTaskCreate(uart_parser_task, "uart_parser", 1024 * 4, NULL, 5, NULL);
-    xTaskCreate(http_task, "http_task", 1024 * 8, NULL, 4, NULL);
-}
+// This function has been moved to main.c
+// The original app_main has been removed to avoid conflicts
+// All functionality is now called from the main.c file
 
 void print_hex(const uint8_t *data, size_t len) {
     for(int i=0; i<len; i++) {
@@ -621,4 +562,128 @@ bool is_internet_available() {
     close(sock);
     freeaddrinfo(res);
     return true;
+}
+
+static void urldecode(char *src, char *dest, size_t max_len) {
+    char a, b;
+    size_t i = 0;
+    while (*src && i < max_len-1) {
+        if ((*src == '%') &&
+            ((a = src[1]) && (b = src[2])) &&
+            (isxdigit(a) && isxdigit(b))) {
+            if (a >= 'a') a -= 'a'-'A';
+            if (a >= 'A') a -= ('A' - 10);
+            else a -= '0';
+            if (b >= 'a') b -= 'a'-'A';
+            if (b >= 'A') b -= ('A' - 10);
+            else b -= '0';
+            *dest++ = 16*a + b;
+            src += 3;
+        } else if (*src == '+') {
+            *dest++ = ' ';
+            src++;
+        } else {
+            *dest++ = *src++;
+        }
+        i++;
+    }
+    *dest = '\0';
+}
+
+static esp_err_t handle_get_wifi_scan(httpd_req_t *req) {
+    wifi_ap_record_t ap_records[20];
+    uint16_t ap_num = 20; // Số lượng AP tối đa cần lấy
+    
+    // Lưu lại chế độ WiFi hiện tại
+    wifi_mode_t original_mode;
+    esp_err_t err = esp_wifi_get_mode(&original_mode);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to get WiFi mode: %s", esp_err_to_name(err));
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to get WiFi mode");
+        return ESP_FAIL;
+    }    // Tạm thời chuyển sang APSTA mode nếu cần để duy trì kết nối AP trong khi quét
+    bool mode_changed = false;
+    if (original_mode == WIFI_MODE_AP) {  // Chỉ thay đổi nếu đang ở chế độ AP
+        ESP_LOGI(TAG, "Switching to APSTA mode for scanning while maintaining AP connections");
+        err = esp_wifi_set_mode(WIFI_MODE_APSTA);
+        if (err != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to set WiFi mode: %s", esp_err_to_name(err));
+            httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to set WiFi mode");
+            return ESP_FAIL;
+        }
+        mode_changed = true;
+        vTaskDelay(pdMS_TO_TICKS(500)); // Đợi WiFi ổn định, giảm thời gian chờ để tránh timeout
+    }
+
+    // Đảm bảo WiFi đã được khởi động
+    err = esp_wifi_start();
+    if (err != ESP_OK && err != ESP_ERR_WIFI_NOT_STOPPED) {
+        ESP_LOGE(TAG, "Failed to start WiFi: %s", esp_err_to_name(err));
+        if (mode_changed) esp_wifi_set_mode(original_mode);
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to start WiFi");
+        return ESP_FAIL;
+    }
+
+    // Dừng mọi quá trình quét đang diễn ra
+    esp_wifi_scan_stop();
+    vTaskDelay(pdMS_TO_TICKS(200));
+
+    // Cấu hình quét WiFi (đơn giản hóa)
+    wifi_scan_config_t scan_config = {
+        .scan_type = WIFI_SCAN_TYPE_ACTIVE,
+        .scan_time = { .active = { .min = 100, .max = 300 } }
+    };
+
+    // Bắt đầu quét
+    err = esp_wifi_scan_start(&scan_config, true); // true = chờ quét hoàn tất
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Scan start failed: %s", esp_err_to_name(err));
+        if (mode_changed) esp_wifi_set_mode(original_mode);
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "WiFi scan failed to start");
+        return ESP_FAIL;
+    }
+
+    // Lấy kết quả quét
+    err = esp_wifi_scan_get_ap_records(&ap_num, ap_records);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Get AP records failed: %s", esp_err_to_name(err));
+        if (mode_changed) esp_wifi_set_mode(original_mode);
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to get scan results");
+        return ESP_FAIL;
+    }
+
+    // Tạo JSON response
+    cJSON *root = cJSON_CreateArray();
+    for (int i = 0; i < ap_num; i++) {
+        cJSON *ap = cJSON_CreateObject();
+        cJSON_AddStringToObject(ap, "ssid", (char*)ap_records[i].ssid);
+        cJSON_AddNumberToObject(ap, "rssi", ap_records[i].rssi);
+        cJSON_AddNumberToObject(ap, "channel", ap_records[i].primary);
+        cJSON_AddItemToArray(root, ap);
+    }
+
+    char *json_str = cJSON_Print(root);
+    if (!json_str) {
+        ESP_LOGE(TAG, "Failed to print JSON");
+        cJSON_Delete(root);
+        if (mode_changed) esp_wifi_set_mode(original_mode);
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "JSON creation failed");
+        return ESP_FAIL;
+    }
+
+    // Gửi response
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_send(req, json_str, strlen(json_str));
+    
+    // Dọn dẹp
+    free(json_str);
+    cJSON_Delete(root);
+
+    // Khôi phục chế độ WiFi ban đầu
+    if (mode_changed) {
+        esp_wifi_set_mode(original_mode);
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+
+    return ESP_OK;
 }
