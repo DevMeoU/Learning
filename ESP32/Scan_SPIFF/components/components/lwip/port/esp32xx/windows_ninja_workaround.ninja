@@ -1,0 +1,25 @@
+# Windows-specific Ninja rules to handle file locking issues
+# This file provides custom rules for handling dependency files on Windows
+
+# Custom rule for deleting files that uses CMD's DEL command with /F flag
+# This forces deletion even if the file is in use by another process
+rule windows_safe_delete
+  command = cmd.exe /C "IF EXIST $in DEL /F /Q $in"
+  description = Safely deleting $in
+
+# Custom rule for dependency file generation that avoids file locking issues
+rule windows_dep_gen
+  command = $cc -MMD -MF $out.tmp -MT $out -E $in > NUL && cmd.exe /C "move /Y $out.tmp $out > NUL"
+  description = Generating dependencies for $in
+
+# Custom rule for compiling C files that handles dependency files better on Windows
+rule windows_compile_c
+  command = $cc $cflags -c $in -o $out
+  description = Compiling $in
+  deps = gcc
+  depfile = $out.d
+
+# Custom rule for cleaning that uses a more Windows-friendly approach
+rule windows_clean
+  command = cmd.exe /C "IF EXIST $in (ping -n 1 127.0.0.1 > NUL & DEL /F /Q $in)"
+  description = Cleaning $in

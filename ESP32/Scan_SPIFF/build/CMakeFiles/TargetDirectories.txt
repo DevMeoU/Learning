@@ -764,6 +764,13 @@ E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/json/CMakeFiles/list_instal
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/json/CMakeFiles/install.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/json/CMakeFiles/install/local.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/json/CMakeFiles/install/strip.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/__idf_lvgl.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/edit_cache.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/rebuild_cache.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/list_install_components.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/install.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/install/local.dir
+E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/lvgl/CMakeFiles/install/strip.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/mqtt/CMakeFiles/edit_cache.dir
 E:/Workspace/Learning/ESP32/Scan_SPIFF/build/esp-idf/mqtt/CMakeFiles/rebuild_cache.dir

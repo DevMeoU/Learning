@@ -35,6 +35,7 @@ extern void start_webserver(void);
 extern void uart_init(void);
 extern void uart_parser_task(void *pvParameters);
 extern void http_task(void *pvParameters);
+extern void initialize_sntp(void);
 extern QueueHandle_t xSensorQueue;
 extern nvs_handle_t nvs_handle_storage;
 
@@ -264,10 +265,25 @@ void app_main(void) {
             
             // Khởi tạo WiFi Station mode
             wifi_init_sta();
+            ESP_LOGI(TAG, "WiFi Station mode initialized");
+
+            // Khởi tạo SNTP
+            initialize_sntp();
+            ESP_LOGI(TAG, "SNTP initialized");
 
             // Khởi tạo UART và các task xử lý dữ liệu
             uart_init();
+            ESP_LOGI(TAG, "UART initialized");
+
             xSensorQueue = xQueueCreate(5, sizeof(data_frame_t));
+            if (xSensorQueue == NULL) {
+                ESP_LOGE(TAG, "Failed to create sensor queue");
+                return;
+            }
+            ESP_LOGI(TAG, "Sensor queue created");
+
+            // Tạo các task xử lý dữ liệu
+            ESP_LOGI(TAG, "Creating UART parser and HTTP tasks");
             xTaskCreate(uart_parser_task, "uart_parser", 1024 * 4, NULL, 5, NULL);
             xTaskCreate(http_task, "http_task", 1024 * 8, NULL, 4, NULL);
         } else {

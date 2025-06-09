@@ -24,7 +24,28 @@ This project demonstrates how to use SPIFFS with ESP32, along with WiFi configur
    - Securely communicates with Firebase using embedded certificates
    - Sends sensor data to Firebase
 
-SPIFFS partition size is set in partitions_example.csv file (0xF0000 bytes). See [Partition Tables](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/partition-tables.html) documentation for more information.
+## Partition Table Configuration
+
+The project uses a custom partition table defined in `partitions_example.csv`. The partition layout is as follows:
+
+- **nvs**: 0x6000 bytes - For storing WiFi and other configuration
+- **phy_init**: 0x1000 bytes - For PHY calibration data
+- **factory**: 0x110000 bytes (1.1MB) - For the application binary
+- **spiffs**: 0xF0000 bytes (960KB) - For storing web interface files and other data
+
+See [Partition Tables](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/partition-tables.html) documentation for more information.
+
+## Lý do chọn công nghệ
+
+Dự án này kết hợp SPIFFS, cấu hình WiFi và tích hợp Firebase vì những nguyên nhân sau:
+
+- **SPIFFS (SPI Flash File System)**: Được chọn vì khả năng lưu trữ hiệu quả trên bộ nhớ flash SPI của ESP32. Hệ thống này cho phép lưu trữ các tệp cấu hình, trang web và chứng chỉ bảo mật mà không cần bộ nhớ ngoài, giúp thiết bị nhỏ gọn và tiết kiệm chi phí.
+
+- **Cấu hình WiFi**: Cơ chế cấu hình kép (chế độ AP và STA) được triển khai để tạo trải nghiệm người dùng linh hoạt. Người dùng có thể dễ dàng thiết lập thiết bị thông qua giao diện web mà không cần phải biên dịch lại mã nguồn, giúp sản phẩm thân thiện với người dùng không chuyên.
+
+- **Tích hợp Firebase**: Được chọn làm nền tảng đám mây vì khả năng lưu trữ dữ liệu thời gian thực, xác thực bảo mật và khả năng mở rộng. Việc kết nối với Firebase cho phép giám sát từ xa và phân tích dữ liệu cảm biến, biến thiết bị thành một giải pháp IoT hoàn chỉnh.
+
+Sự kết hợp này tạo nên một hệ thống nhúng mạnh mẽ, dễ cấu hình và an toàn, phù hợp cho các ứng dụng IoT thực tế.
 
 ## How to use example
 

@@ -1269,6 +1269,18 @@
             "managed_priv_reqs": [],
             "include_dirs": [ "include" ]
         },
+        "lvgl": {
+            "alias": "idf::lvgl",
+            "target": "___idf_lvgl",
+            "prefix": "idf",
+            "dir": "C:/esp/container_directory/v5.4.1/esp-idf/components/lvgl",
+            "lib": "__idf_lvgl",
+            "reqs": [ "esp_timer" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "C:/esp/container_directory/v5.4.1/esp-idf/components/lvgl", "C:/esp/container_directory/v5.4.1/esp-idf/components/lvgl/src", "C:/esp/container_directory/v5.4.1/esp-idf/components/lvgl/../", "C:/esp/container_directory/v5.4.1/esp-idf/components/lvgl/examples", "C:/esp/container_directory/v5.4.1/esp-idf/components/lvgl/demos" ]
+        },
         "lwip": {
             "alias": "idf::lwip",
             "target": "___idf_lwip",

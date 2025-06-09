@@ -29,6 +29,7 @@
 #include "esp_log.h"
 #include "esp_tls.h"
 #include "esp_spiffs.h"
+#include "esp_sntp.h"
 
 // Khai báo external certificate
 extern const uint8_t firebase_cert_pem_start[] asm("_binary_firebase_cert_pem_start");
@@ -68,12 +69,15 @@ extern const uint8_t firebase_cert_pem_end[]   asm("_binary_firebase_cert_pem_en
 // Cấu hình WiFi
 #define WIFI_SSID "HAPPY HOME floor4"
 #define WIFI_PASS "H@ppyhome4"
-static char *server_url = NULL;
+// static char *server_url = NULL; // Removed unused static variable
 
 // Cấu hình AP mode
 #define AP_SSID      "ESP32_Config"
 #define AP_PASSWORD  "123456789"
 #define CONFIG_PORT  80
+
+// Cấu hình múi giờ (ví dụ: Asia/Ha_Noi, UTC+7)
+#define TIMEZONE "ICT-7"
 
 static const char *TAG = "UART_HTTP";
 QueueHandle_t xSensorQueue;
@@ -103,6 +107,8 @@ void print_hex(const uint8_t *data, size_t len);
 bool is_internet_available();
 esp_err_t send_file_from_spiffs(httpd_req_t *req, const char *path, const char *content_type);
 static esp_err_t handle_get_wifi_scan(httpd_req_t *req);
+const char *get_current_time(void); // Prototype for get_current_time function
+void time_sync_notification_cb(struct timeval *tv); // Prototype for SNTP callback
 
 // Thêm handler cho GET request tới root
 static esp_err_t handle_get_wifi_config_html(httpd_req_t *req) {
@@ -173,8 +179,11 @@ void uart_parser_task(void *pvParameters) {
                         memcpy(&recv_data, payload, sizeof(data_frame_t));
                         SET_ALL_LED(recv_data.led_green, recv_data.led_red, recv_data.led_yellow);
                         // In ra thông tin nhận được
-                        ESP_LOGI(TAG, "Led Green: %d, Led Yellow: %d, Led Red: %d, Reserved: %d, Sensor Data: %.2f",
-                                 recv_data.led_green, recv_data.led_yellow, recv_data.led_red, recv_data.reserved,
+                        ESP_LOGI(TAG, "Time: %s, LED Green: %d, LED Red: %d, LED Yellow: %d, Sensor Value: %.2f",
+                                 get_current_time(),
+                                 recv_data.led_green,
+                                 recv_data.led_red,
+                                 recv_data.led_yellow,
                                  recv_data.sensor_data.f_sensor_value);
                         xQueueSend(xSensorQueue, &recv_data, 0);
                     } else {
@@ -223,6 +232,9 @@ void http_task(void *pvParameters) {
 
             cJSON *root = cJSON_CreateObject();
             cJSON_AddStringToObject(root, "device", "ESP32-DEESOL");
+            cJSON_AddStringToObject(root, "time", get_current_time());
+            cJSON_AddNumberToObject(root, "timestamp", (uint32_t)time(NULL));
+            cJSON_AddStringToObject(root, "timezone", TIMEZONE); // Giả sử múi giờ là UTC+7
             cJSON_AddNumberToObject(root, "led_green", recv_data.led_green);
             cJSON_AddNumberToObject(root, "led_yellow", recv_data.led_yellow);
             cJSON_AddNumberToObject(root, "led_red", recv_data.led_red);
@@ -686,4 +698,35 @@ static esp_err_t handle_get_wifi_scan(httpd_req_t *req) {
     }
 
     return ESP_OK;
+}
+
+// Khởi tạo SNTP để đồng bộ thời gian
+void initialize_sntp(void) {
+    ESP_LOGI(TAG, "Initializing SNTP");
+    esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+    esp_sntp_setservername(0, "pool.ntp.org");
+    esp_sntp_set_time_sync_notification_cb(time_sync_notification_cb);
+    esp_sntp_init();
+    
+    // Thiết lập múi giờ
+    setenv("TZ", TIMEZONE, 1);
+    tzset();
+}
+
+// SNTP time sync notification callback
+void time_sync_notification_cb(struct timeval *tv) {
+    ESP_LOGI(TAG, "Time synced with NTP server");
+}
+
+// Hàm lấy thời gian hiện tại dưới dạng chuỗi
+const char *get_current_time(void) {
+    time_t now;
+    struct tm timeinfo;
+    static char time_str[64];
+
+    time(&now);
+    localtime_r(&now, &timeinfo);
+    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", &timeinfo);
+
+    return time_str;
 }

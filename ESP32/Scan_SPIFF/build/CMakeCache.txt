@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//No help, variable specified on the command line.
+CCACHE_ENABLE:UNINITIALIZED=1
+
+//Path to a program.
+CCACHE_FOUND:FILEPATH=C:/esp/tools_directory/tools/ccache/4.10.2/ccache-4.10.2-windows-x86_64/ccache.exe
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/esp/tools_directory/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32-elf-addr2line.exe
 
@@ -347,6 +353,9 @@ Mbed TLS_IS_TOP_LEVEL:STATIC=OFF
 Mbed TLS_SOURCE_DIR:STATIC=C:/esp/container_directory/v5.4.1/esp-idf/components/mbedtls/mbedtls
 
 //No help, variable specified on the command line.
+PYTHON:UNINITIALIZED=C:\esp\tools_directory\python_env\idf5.4_py3.11_env\Scripts\python.exe
+
+//No help, variable specified on the command line.
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1
 
 //No help, variable specified on the command line.
@@ -542,7 +551,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=117
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=118
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

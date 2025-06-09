@@ -1,5 +1,10 @@
 idf_build_get_property(target IDF_TARGET)
 
+# Include Windows-specific file utilities if on Windows
+if(CMAKE_HOST_WIN32)
+    include(${CMAKE_CURRENT_LIST_DIR}/port/windows_file_utils.cmake)
+endif()
+
 if(CONFIG_LWIP_ENABLE)
     if(NOT ${target} STREQUAL "linux")
         # ESP platform targets share the same port folder
@@ -149,6 +154,11 @@ if(NOT ${target} STREQUAL "linux")
         else()
             list(APPEND srcs "port/${target}/no_vfs_syscalls.c")
         endif()
+        
+        # Add Windows-specific workaround file if on Windows
+        if(CMAKE_HOST_WIN32)
+            list(APPEND srcs "port/${target}/windows_dep_workaround.c")
+        endif()
     else()
         # This wraps some posix IO functions to conditionally pass control to lwip
         list(APPEND srcs "port/${target}/vfs_lwip.c")
@@ -192,6 +202,59 @@ if(CONFIG_LWIP_ENABLE)
     # lots of LWIP source files evaluate macros that check address of stack variables
     target_compile_options(${COMPONENT_LIB} PRIVATE -Wno-address)
     target_compile_definitions(${COMPONENT_LIB} PRIVATE ESP_LWIP_COMPONENT_BUILD)
+
+    # Windows-specific fix for file locking issues during build
+    if(CMAKE_HOST_WIN32)
+        # Add Windows-specific compiler flags to help with file locking issues
+        # The /MP flag enables multi-processor compilation which can help reduce file contention
+        # The /FS flag forces synchronous PDB writes to avoid file locking conflicts
+        if(MSVC)
+            target_compile_options(${COMPONENT_LIB} PRIVATE /FS /MP)
+        endif()
+        
+        # For GCC/Clang on Windows, we can add flags to help with file handling
+        if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+            # Add flags to help with file handling on Windows
+            target_compile_options(${COMPONENT_LIB} PRIVATE -fno-keep-inline-dllexport)
+            
+            # Add Windows-specific dependency handling flags
+            # These flags help avoid file locking issues with dependency files
+            target_compile_options(${COMPONENT_LIB} PRIVATE 
+                # Write dependency info to a temporary file first
+                "-MMD" "-MP" "-MF" "${CMAKE_CURRENT_BINARY_DIR}/tmp_deps/$<TARGET_FILE_BASE_NAME:${COMPONENT_LIB}>.d.tmp"
+            )
+            
+            # Create the temporary directory for dependency files
+            file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/tmp_deps")
+        endif()
+        
+        # Configure CMake to use our custom batch script for handling compilation
+        # This script helps manage file locking issues with dependency files
+        set_property(TARGET ${COMPONENT_LIB} PROPERTY RULE_LAUNCH_COMPILE 
+            "cmd.exe /C \"${CMAKE_CURRENT_LIST_DIR}/port/${target}/windows_build_helper.bat compile\"")
+        
+        # Set special properties for the Windows dependency workaround file
+        set_source_files_properties(
+            port/${target}/windows_dep_workaround.c
+            PROPERTIES COMPILE_FLAGS
+            "-MD -MF NUL" # Disable dependency file generation for this file
+        )
+        
+        # Copy our custom Ninja rules file to the build directory
+        # This provides Windows-friendly rules for file operations
+        configure_file(
+            "${CMAKE_CURRENT_LIST_DIR}/port/${target}/windows_ninja_workaround.ninja"
+            "${CMAKE_BINARY_DIR}/windows_ninja_workaround.ninja"
+            COPYONLY
+        )
+        
+        # Add a custom command to include our Ninja rules
+        add_custom_command(
+            TARGET ${COMPONENT_LIB} PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E echo "subninja windows_ninja_workaround.ninja" >> "${CMAKE_BINARY_DIR}/build.ninja"
+            COMMENT "Adding Windows-specific Ninja rules"
+        )
+    endif()
 
     set_source_files_properties(
         lwip/src/netif/ppp/pppos.c
