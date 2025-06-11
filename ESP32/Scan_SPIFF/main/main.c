@@ -9,141 +9,34 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <sys/unistd.h>
-#include <sys/stat.h>
 #include "esp_err.h"
 #include "esp_log.h"
-#include "esp_spiffs.h"
 #include "esp_system.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
 #include "nvs_flash.h"
-#include "driver/uart.h"
-#include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/queue.h"
 #include "freertos/event_groups.h"
 #include "esp_tls.h"
 
+#include "gpio_control.h"
+#include "uart_handler.h"
+#include "wifi_manager.h"
+#include "spiffs_handler.h"
+#include "http_server.h"
+#include "sntp_handler.h"
+
 static const char *TAG = "main";
+
+// Function prototypes
+void initialize_sntp(void);
 
 // Event group để đồng bộ giữa init_task và app_main
 static EventGroupHandle_t init_event_group;
 #define INIT_DONE_BIT BIT0
 
-// Function declarations from apmode_cfg.c
-extern void wifi_init_sta(void);
-extern void wifi_init_ap(void);
-extern void start_webserver(void);
-extern void uart_init(void);
-extern void uart_parser_task(void *pvParameters);
-extern void http_task(void *pvParameters);
-extern void initialize_sntp(void);
-extern QueueHandle_t xSensorQueue;
 extern nvs_handle_t nvs_handle_storage;
 
-// Định nghĩa struct data_frame_t từ apmode_cfg.c để dùng cho xQueueCreate
-typedef struct {
-    uint8_t led_green;
-    uint8_t led_red;
-    uint8_t led_yellow;
-    uint8_t reserved;
-    union sensor_data {
-        uint32_t u32_sensor_value;
-        float f_sensor_value;
-    } sensor_data;
-} data_frame_t;
 
-// GPIO definitions from apmode_cfg.c
-#define BUTTON_GPIO         GPIO_NUM_16 // GPIO for button
-#define LED_NOTIFICATION    GPIO_NUM_2  // GPIO for notification LED
-#define LED_GREEN           GPIO_NUM_15 // GPIO for green LED
-#define LED_RED             GPIO_NUM_13 // GPIO for red LED
-#define LED_YELLOW          GPIO_NUM_12 // GPIO for yellow LED
-
-#define LED_NOTIFICATION_ON  gpio_set_level(LED_NOTIFICATION, 1)
-#define LED_NOTIFICATION_OFF gpio_set_level(LED_NOTIFICATION, 0)
-#define LED_GREEN_ON        gpio_set_level(LED_GREEN, 1)
-#define LED_GREEN_OFF       gpio_set_level(LED_GREEN, 0)
-#define LED_RED_ON          gpio_set_level(LED_RED, 1)
-#define LED_RED_OFF         gpio_set_level(LED_RED, 0)
-#define LED_YELLOW_ON       gpio_set_level(LED_YELLOW, 1)
-#define LED_YELLOW_OFF      gpio_set_level(LED_YELLOW, 0)
-
-// Function to initialize and mount SPIFFS with optimized settings
-esp_err_t initialize_spiffs(void) {
-    ESP_LOGI(TAG, "Initializing SPIFFS with optimized settings");
-
-    esp_vfs_spiffs_conf_t conf = {
-        .base_path = "/spiffs",
-        .partition_label = NULL,
-        .max_files = 10,  // Increased from 5 to allow more concurrent file operations
-        .format_if_mount_failed = true
-    };
-
-    // Use settings defined above to initialize and mount SPIFFS filesystem
-    esp_err_t ret = esp_vfs_spiffs_register(&conf);
-
-    if (ret != ESP_OK) {
-        if (ret == ESP_FAIL) {
-            ESP_LOGE(TAG, "Failed to mount or format filesystem");
-        } else if (ret == ESP_ERR_NOT_FOUND) {
-            ESP_LOGE(TAG, "Failed to find SPIFFS partition");
-        } else {
-            ESP_LOGE(TAG, "Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
-        }
-        return ret;
-    }
-
-    size_t total = 0, used = 0;
-    ret = esp_spiffs_info(conf.partition_label, &total, &used);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to get SPIFFS partition information (%s). Formatting...", esp_err_to_name(ret));
-        esp_spiffs_format(conf.partition_label);
-        return ret;
-    } else {
-        ESP_LOGI(TAG, "Partition size: total: %d, used: %d", total, used);
-    }
-
-    // Check consistency of reported partition size info
-    if (used > total) {
-        ESP_LOGW(TAG, "Number of used bytes cannot be larger than total. Performing SPIFFS_check().");
-        ret = esp_spiffs_check(conf.partition_label);
-        if (ret != ESP_OK) {
-            ESP_LOGE(TAG, "SPIFFS_check() failed (%s)", esp_err_to_name(ret));
-            return ret;
-        } else {
-            ESP_LOGI(TAG, "SPIFFS_check() successful");
-        }
-    }
-
-    return ESP_OK;
-}
-
-// Function to configure GPIO pins
-void configure_gpio(void) {
-    // Configure GPIO for button
-    gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << BUTTON_GPIO),
-        .mode = GPIO_MODE_INPUT,
-        .pull_up_en = GPIO_PULLUP_ENABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
-    gpio_config(&io_conf);
-
-    // Configure GPIO for LEDs
-    gpio_config_t led_conf = {
-        .pin_bit_mask = (1ULL << LED_NOTIFICATION) | (1ULL << LED_GREEN) | 
-                        (1ULL << LED_RED) | (1ULL << LED_YELLOW),
-        .mode = GPIO_MODE_OUTPUT,
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
-    gpio_config(&led_conf);
-}
 
 // Task initialization function that runs on core 0
 void init_task(void *pvParameters) {

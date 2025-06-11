@@ -77,7 +77,7 @@
 <body>
     <div class="container">
         <h1>ESP32 WiFi Configuration</h1>
-        <form id="configForm" method="post" action="/config">
+        <form id="configForm" method="post" action="/configure">
             <div class="form-group">
                 <label for="ssid">WiFi SSID:</label>
                 <div style="display: flex; gap: 8px; align-items: center;">
@@ -108,36 +108,78 @@
         function scanWifi() {
             const scanBtn = document.getElementById('scanBtn');
             const select = document.getElementById('ssid_select');
+            const statusDiv = document.getElementById('status');
+            
+            // Reset status display
+            statusDiv.style.display = 'none';
+            
+            // Update UI to show scanning in progress
             scanBtn.disabled = true;
-            scanBtn.textContent = 'Đang quét...';
-            select.innerHTML = '<option>Đang quét...</option>';
+            scanBtn.textContent = 'Scanning...';
+            select.innerHTML = '<option>Scanning networks...</option>';
+            
             fetch('/scan')
-                .then(res => res.json())
-                .then(list => {
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`Scan failed: ${res.status} ${res.statusText}`);
+                    }
+                    return res.json();
+                })
+                .then(data => {
                     select.innerHTML = '';
-                    if (list.length === 0) {
+                    
+                    // Check if we have networks in the response
+                    if (!data.networks || data.networks.length === 0) {
                         const opt = document.createElement('option');
                         opt.value = '';
-                        opt.textContent = 'Không tìm thấy WiFi';
+                        opt.textContent = 'No WiFi networks found';
                         select.appendChild(opt);
-                    } else {
-                        // Sắp xếp theo RSSI giảm dần
-                        list.sort((a, b) => b.rssi - a.rssi);
-                        list.forEach(ap => {
-                            const opt = document.createElement('option');
-                            opt.value = ap.ssid;
-                            opt.textContent = `${ap.ssid} (${ap.rssi} dBm)`;
-                            select.appendChild(opt);
-                        });
-                        // Tự động chọn SSID mạnh nhất
+                        return;
+                    }
+                    
+                    // Sort networks by signal strength (RSSI)
+                    const networks = data.networks.sort((a, b) => b.rssi - a.rssi);
+                    
+                    // Add each network to the dropdown
+                    networks.forEach(ap => {
+                        const opt = document.createElement('option');
+                        opt.value = ap.ssid;
+                        
+                        // Show SSID, signal strength and security
+                        let securityType = ap.auth || 'unknown';
+                        securityType = securityType.charAt(0).toUpperCase() + securityType.slice(1);
+                        
+                        opt.textContent = `${ap.ssid} (${ap.rssi} dBm, ${securityType})`;
+                        select.appendChild(opt);
+                    });
+                    
+                    // Auto-select the strongest network
+                    if (select.options.length > 0) {
                         select.selectedIndex = 0;
                         document.getElementById('ssid').value = select.value;
                     }
-                    scanBtn.disabled = false;
-                    scanBtn.textContent = 'Scan';
+                    
+                    // Show success message
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = `Found ${networks.length} WiFi networks`;
+                    statusDiv.style.display = 'block';
+                    
+                    // Auto-hide status after 3 seconds
+                    setTimeout(() => {
+                        statusDiv.style.display = 'none';
+                    }, 3000);
                 })
-                .catch(() => {
-                    select.innerHTML = '<option>Lỗi scan WiFi</option>';
+                .catch(error => {
+                    // Handle errors
+                    select.innerHTML = '<option>WiFi scan failed</option>';
+                    
+                    // Show error message
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = error.message || 'WiFi scan failed';
+                    statusDiv.style.display = 'block';
+                })
+                .finally(() => {
+                    // Re-enable scan button
                     scanBtn.disabled = false;
                     scanBtn.textContent = 'Scan';
                 });
@@ -150,42 +192,58 @@
         // Tự động scan khi load trang
         window.onload = function() {
             scanWifi();
+            prefillConfig();
         };
+        // Prefill config from /config
+        function prefillConfig() {
+            fetch('/config')
+                .then(res => res.json())
+                .then(cfg => {
+                    if (cfg.ssid) document.getElementById('ssid').value = cfg.ssid;
+                    if (cfg.server_url) document.getElementById('server_url').value = cfg.server_url;
+                    if (cfg.token) document.getElementById('token').value = cfg.token;
+                });
+        }
         // Khi submit form
         document.getElementById('configForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
-            const jsonData = {};
-            for (const [key, value] of formData.entries()) {
-                jsonData[key] = value;
-            }
-            fetch('/config', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                const statusDiv = document.getElementById('status');
-                statusDiv.style.display = 'block';
-                if (data.success) {
-                    statusDiv.className = 'status success';
-                    statusDiv.textContent = 'Configuration saved successfully! Device will reboot...';
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 5000);
-                } else {
-                    statusDiv.className = 'status error';
-                    statusDiv.textContent = 'Error: ' + (data.message || 'Unknown error');
-                }
-            })
-            .catch(error => {
-                const statusDiv = document.getElementById('status');
-                statusDiv.style.display = 'block';
+            const statusDiv = document.getElementById('status');
+            const ssidValue = document.getElementById('ssid').value.trim();
+            if (!ssidValue) {
                 statusDiv.className = 'status error';
-                statusDiv.textContent = 'Error: ' + error.message;
+                statusDiv.textContent = 'Vui lòng chọn hoặc nhập SSID WiFi!';
+                statusDiv.style.display = 'block';
+                return;
+            }
+            statusDiv.className = 'status success';
+            statusDiv.textContent = 'Đang lưu cấu hình...';
+            statusDiv.style.display = 'block';
+            // Serialize form data to x-www-form-urlencoded
+            const form = this;
+            const params = new URLSearchParams();
+            params.append('ssid', form.ssid.value);
+            params.append('password', form.password.value);
+            params.append('server_url', form.server_url.value);
+            params.append('token', form.token.value);
+            fetch('/configure', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: params.toString()
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Lưu cấu hình thất bại');
+                return res.text();
+            })
+            .then(() => {
+                statusDiv.className = 'status success';
+                statusDiv.textContent = 'Cấu hình thành công! Nếu thiết bị đổi WiFi, hãy kết nối lại. Trang sẽ tự động tải lại sau 5 giây...';
+                statusDiv.style.display = 'block';
+                setTimeout(() => { window.location.reload(); }, 5000);
+            })
+            .catch(err => {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'Lỗi khi lưu cấu hình hoặc mất kết nối thiết bị. Nếu bạn vừa đổi WiFi, hãy kết nối lại với thiết bị hoặc truy cập lại trang cấu hình.';
+                statusDiv.style.display = 'block';
             });
         });
     </script>
