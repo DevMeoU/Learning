@@ -28,6 +28,10 @@
 
 static const char *TAG = "main";
 
+// Event group để đồng bộ giữa init_task và app_main
+static EventGroupHandle_t init_event_group;
+#define INIT_DONE_BIT BIT0
+
 // Function declarations from apmode_cfg.c
 extern void wifi_init_sta(void);
 extern void wifi_init_ap(void);
@@ -141,14 +145,17 @@ void configure_gpio(void) {
     gpio_config(&led_conf);
 }
 
-void app_main(void) {
+// Task initialization function that runs on core 0
+void init_task(void *pvParameters) {
+    ESP_LOGI(TAG, "Starting initialization on core %d", xPortGetCoreID());
+    
     // Bật log chi tiết
     esp_log_level_set("wifi", ESP_LOG_DEBUG);
     esp_log_level_set("UART_HTTP", ESP_LOG_DEBUG);
 
     // Kiểm tra bộ nhớ
     ESP_LOGI(TAG, "Free heap: %" PRIu32, esp_get_free_heap_size());
-    
+
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -163,6 +170,7 @@ void app_main(void) {
     // Initialize SPIFFS with optimized settings
     if (initialize_spiffs() != ESP_OK) {
         ESP_LOGE(TAG, "Failed to initialize SPIFFS, halting");
+        vTaskDelete(NULL);
         return;
     }
 
@@ -170,7 +178,26 @@ void app_main(void) {
     configure_gpio();
 
     // Initialize TLS
-    esp_tls_init_global_ca_store();
+    esp_tls_init_global_ca_store();    // Đánh dấu init task đã hoàn thành
+    xEventGroupSetBits(init_event_group, INIT_DONE_BIT);
+    ESP_LOGI(TAG, "Initialization completed");
+    
+    // Xóa task
+    vTaskDelete(NULL);
+}
+
+void app_main(void) {
+    // Tạo event group để đồng bộ
+    init_event_group = xEventGroupCreate();
+    
+    // Tạo init task trên core 0
+    xTaskCreatePinnedToCore(init_task, "init_task", 4096, NULL, 5, NULL, 0);
+    
+    // Chờ init task hoàn thành
+    xEventGroupWaitBits(init_event_group, INIT_DONE_BIT, pdTRUE, pdTRUE, portMAX_DELAY);
+    
+    // Giải phóng event group
+    vEventGroupDelete(init_event_group);
 
     bool enter_ap_mode = false;
     int timeout = 5; // 5 seconds
@@ -254,16 +281,15 @@ void app_main(void) {
             config_valid = false;
         }
 
-        // Giải phóng bộ nhớ
-        if (saved_ssid) free(saved_ssid);
+        // Giải phóng bộ nhớ        if (saved_ssid) free(saved_ssid);
         if (saved_pass) free(saved_pass);
         if (saved_server_url) free(saved_server_url);
         if (saved_token) free(saved_token);
-
+        
         if (config_valid) {
             ESP_LOGI(TAG, "Valid configuration found, starting in Station mode...");
             
-            // Khởi tạo WiFi Station mode
+            // Khởi tạo WiFi Station mode trên core 0 (protocol core)
             wifi_init_sta();
             ESP_LOGI(TAG, "WiFi Station mode initialized");
 
@@ -282,10 +308,32 @@ void app_main(void) {
             }
             ESP_LOGI(TAG, "Sensor queue created");
 
-            // Tạo các task xử lý dữ liệu
-            ESP_LOGI(TAG, "Creating UART parser and HTTP tasks");
-            xTaskCreate(uart_parser_task, "uart_parser", 1024 * 4, NULL, 5, NULL);
-            xTaskCreate(http_task, "http_task", 1024 * 8, NULL, 4, NULL);
+            // Tạo các task xử lý dữ liệu trên các core khác nhau
+            ESP_LOGI(TAG, "Creating UART parser and HTTP tasks on specific cores");
+
+            // UART parser task chạy trên core 1 (application core) với priority cao
+            // để đảm bảo xử lý dữ liệu UART kịp thời
+            xTaskCreatePinnedToCore(
+                uart_parser_task,    // Task function
+                "uart_parser",       // Task name
+                1024 * 4,           // Stack size
+                NULL,               // Parameters
+                5,                  // Priority (higher)
+                NULL,               // Task handle
+                1                   // Core ID (1 = application core)
+            );
+
+            // HTTP task chạy trên core 0 (protocol core) với priority thấp hơn
+            // vì đây là core xử lý WiFi và network
+            xTaskCreatePinnedToCore(
+                http_task,          // Task function
+                "http_task",        // Task name
+                1024 * 8,          // Stack size
+                NULL,              // Parameters
+                4,                 // Priority (lower)
+                NULL,              // Task handle
+                0                  // Core ID (0 = protocol core)
+            );
         } else {
             ESP_LOGW(TAG, "No valid configuration found, restarting in AP mode...");
             nvs_set_u8(nvs_handle_storage, "force_ap", 1);
@@ -296,27 +344,4 @@ void app_main(void) {
     }
 }
 
-// Đảm bảo urldecode là static để tránh lỗi undefined reference khi link nhiều file
-static void urldecode(char *dst, const char *src)
-{
-    char *original_dst = dst;
-    int i;
-    for (i = 0; src[i] != '\0'; i++) {
-        if (src[i] == '%') {
-            // Decode percent-encoded characters
-            int value;
-            if (sscanf(&src[i + 1], "%2x", &value) == 1) {
-                *dst++ = (char)value;
-                i += 2;
-            }
-        } else if (src[i] == '+') {
-            // Convert plus signs to spaces
-            *dst++ = ' ';
-        } else {
-            *dst++ = src[i];
-        }
-    }
-    *dst = '\0';
-
-    ESP_LOGI(TAG, "Decoded URL: %s", original_dst);
-}
+// Moved urldecode function to apmode_cfg.c to avoid duplication
