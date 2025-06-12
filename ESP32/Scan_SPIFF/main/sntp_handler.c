@@ -48,3 +48,14 @@ const char *get_current_time(void)
     strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", &timeinfo);
     return time_str;
 }
+
+const int32_t get_current_timestamp(void)
+{
+    time_t now;
+    struct tm timeinfo;
+
+    time(&now);
+    localtime_r(&now, &timeinfo);
+
+    return now;
+}

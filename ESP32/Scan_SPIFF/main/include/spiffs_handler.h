@@ -3,6 +3,8 @@
 
 #include "esp_spiffs.h"
 #include "esp_err.h"
+#include "esp_log.h"
+#include <string.h>
 
 /**
  * @brief Initialize and mount SPIFFS filesystem
@@ -10,6 +12,32 @@
  * @return esp_err_t ESP_OK on success
  */
 esp_err_t initialize_spiffs(void);
+
+/**
+ * @brief Deinitialize and unmount SPIFFS filesystem
+ * 
+ * @return esp_err_t ESP_OK on success
+ */
+esp_err_t deinit_spiffs(void);
+
+/**
+ * @brief Read data from a file in SPIFFS
+ * 
+ * @param path Path to file in SPIFFS
+ * @param buffer Buffer to store read data
+ * @param max_size Maximum number of bytes to read
+ * @return esp_err_t ESP_OK on success
+ */
+esp_err_t read_from_spiffs(const char* path, char* buffer, size_t max_size);
+
+/**
+ * @brief Write data to a file in SPIFFS
+ * 
+ * @param path Path to file in SPIFFS
+ * @param data Data to write to file
+ * @return esp_err_t ESP_OK on success
+ */
+esp_err_t write_to_spiffs(const char* path, const char* data);
 
 /**
  * @brief Send a file from SPIFFS via HTTP

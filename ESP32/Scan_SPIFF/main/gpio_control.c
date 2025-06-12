@@ -3,7 +3,7 @@
 
 static const char *TAG = "GPIO";
 
-void configure_gpio(void) {
+esp_err_t init_gpio(void) {
     // Configure GPIO for button
     gpio_config_t io_conf = {
         .pin_bit_mask = (1ULL << BUTTON_GPIO),
@@ -22,8 +22,12 @@ void configure_gpio(void) {
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE,
-    };
-    gpio_config(&led_conf);
+    };    esp_err_t ret = gpio_config(&led_conf);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to configure LED GPIOs");
+        return ret;
+    }
     
     ESP_LOGI(TAG, "GPIO initialized");
+    return ESP_OK;
 }

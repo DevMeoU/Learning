@@ -9,21 +9,27 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "esp_err.h"
-#include "esp_log.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
+#include <stdlib.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/event_groups.h"
+#include "freertos/queue.h"
+#include "esp_system.h"
+#include "esp_flash.h"
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_log.h"
 #include "esp_tls.h"
+#include "esp_http_client.h"
+#include "esp_netif.h"
+#include "nvs_flash.h"
 
-#include "gpio_control.h"
-#include "uart_handler.h"
-#include "wifi_manager.h"
-#include "spiffs_handler.h"
-#include "http_server.h"
-#include "sntp_handler.h"
+#include "include/gpio_control.h"
+#include "include/uart_handler.h"
+#include "include/wifi_manager.h"
+#include "include/spiffs_handler.h"
+#include "include/http_server.h"
+#include "include/sntp_handler.h"
+#include "include/common_types.h"
 
 static const char *TAG = "main";
 
@@ -67,11 +73,11 @@ void init_task(void *pvParameters) {
         return;
     }
 
-    // Configure GPIO pins
-    configure_gpio();
+    // Initialize GPIO
+    ESP_ERROR_CHECK(init_gpio());
 
     // Initialize TLS
-    esp_tls_init_global_ca_store();    // Đánh dấu init task đã hoàn thành
+    esp_tls_init_global_ca_store();// Đánh dấu init task đã hoàn thành
     xEventGroupSetBits(init_event_group, INIT_DONE_BIT);
     ESP_LOGI(TAG, "Initialization completed");
     
@@ -227,6 +233,17 @@ void app_main(void) {
                 NULL,              // Task handle
                 0                  // Core ID (0 = protocol core)
             );
+
+            // Tạo task gửi dữ liệu lên Firebase trên core 1
+            xTaskCreatePinnedToCore(
+                firebase_sender_task,   // Task function
+                "firebase_sender",     // Task name
+                4096,                   // Stack size
+                NULL,                   // Parameters
+                4,                      // Priority (thấp hơn parser)
+                NULL,                   // Task handle
+                1                       // Core ID (1 = application core)
+            );
         } else {
             ESP_LOGW(TAG, "No valid configuration found, restarting in AP mode...");
             nvs_set_u8(nvs_handle_storage, "force_ap", 1);
@@ -236,5 +253,3 @@ void app_main(void) {
         }
     }
 }
-
-// Moved urldecode function to apmode_cfg.c to avoid duplication

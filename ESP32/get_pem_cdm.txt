@@ -1,0 +1,5 @@
+echo -n | openssl s_client -connect deesolcloud-default-rtdb.asia-southeast1.firebasedatabase.app:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > firebase_cert.pem
+
+echo -n | openssl s_client -connect graduate25-ef178-default-rtdb.asia-southeast1.firebasedatabase.app:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > firebase_cert.pem
+
+https://graduate25-ef178-default-rtdb.asia-southeast1.firebasedatabase.app

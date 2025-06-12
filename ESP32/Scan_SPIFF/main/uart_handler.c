@@ -3,9 +3,13 @@
 #include "esp_log.h"
 #include "gpio_control.h"
 #include "common_types.h"
+#include "cJSON.h"
+#include "http_server.h"
+#include "nvs.h"
 
 static const char *TAG = "UART";
 QueueHandle_t xSensorQueue = NULL;
+extern nvs_handle_t nvs_handle_storage;
 
 void uart_init() {
     uart_config_t uart_config = {
@@ -21,6 +25,72 @@ void uart_init() {
     uart_driver_install(UART_PORT_NUM, UART_BUF_SIZE, UART_BUF_SIZE, 0, NULL, 0);
     
     ESP_LOGI(TAG, "UART initialized");
+}
+
+// Prototype
+bool is_internet_available(void);
+
+// Task gửi dữ liệu lên Firebase
+void firebase_sender_task(void *pvParameters) {
+    data_frame_t recv_data;
+    char server_url[128] = {0};
+    char auth_token[128] = {0}; // Thêm biến lưu trữ auth token
+    size_t url_len = sizeof(server_url);
+    size_t token_len = sizeof(auth_token);
+    
+    // Lấy token từ NVS
+    nvs_get_str(nvs_handle_storage, "token", auth_token, &token_len);
+    
+    while (1) {
+        if (xQueueReceive(xSensorQueue, &recv_data, portMAX_DELAY) == pdTRUE) {
+            // Lấy URL từ NVS mỗi lần gửi để cập nhật thay đổi
+            url_len = sizeof(server_url);
+            nvs_get_str(nvs_handle_storage, "server_url", server_url, &url_len);
+            
+            if (!is_internet_available()) {
+                ESP_LOGW(TAG, "No internet connection, skipping HTTP request");
+                continue;
+            }
+            
+            if (strlen(server_url) == 0) {
+                ESP_LOGE(TAG, "server_url is empty, skipping HTTP request");
+                continue;
+            }
+            
+            // Tạo JSON dữ liệu
+            cJSON *root = cJSON_CreateObject();
+            cJSON_AddNumberToObject(root, "device_id", 1);
+            cJSON_AddStringToObject(root, "time", get_current_time());
+            cJSON_AddNumberToObject(root, "timestamp", get_current_timestamp());
+            cJSON_AddStringToObject(root, "timezone", TIMEZONE);
+            cJSON_AddNumberToObject(root, "light_sensor_1", recv_data.led_green);
+            cJSON_AddNumberToObject(root, "light_sensor_2", recv_data.led_red);
+            cJSON_AddNumberToObject(root, "temperature_sensor_1", recv_data.led_yellow);
+            cJSON_AddNumberToObject(root, "temperature_sensor_2", recv_data.sensor_data.f_sensor_value);
+
+            char *json_buf = cJSON_PrintUnformatted(root);
+            cJSON_Delete(root);
+            
+            // Xây dựng URL với phương thức PUT và auth token
+            char full_url[512];
+            if (strlen(auth_token) > 0) {
+                snprintf(full_url, sizeof(full_url), 
+                         "%s/data_stream.json?auth=%s", 
+                         server_url, 
+                         auth_token);
+            } else {
+                snprintf(full_url, sizeof(full_url), 
+                         "%s/data_stream.json", 
+                         server_url);
+            }
+            
+            send_to_firebase(full_url, json_buf, HTTP_METHOD_PUT);
+            
+            free(json_buf);
+            
+            vTaskDelay(pdMS_TO_TICKS(100));
+        }
+    }
 }
 
 void uart_parser_task(void *pvParameters) {
@@ -73,7 +143,6 @@ void uart_parser_task(void *pvParameters) {
                         data_frame_t recv_data;
                         memcpy(&recv_data, payload, sizeof(data_frame_t));
                         SET_ALL_LED(recv_data.led_green, recv_data.led_red, recv_data.led_yellow);
-                        // In ra thông tin nhận được
                         ESP_LOGI(TAG, "Time: %s, LED Green: %d, LED Red: %d, LED Yellow: %d, Sensor Value: %.2f",
                                  get_current_time(),
                                  recv_data.led_green,

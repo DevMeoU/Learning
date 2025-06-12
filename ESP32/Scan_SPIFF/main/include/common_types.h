@@ -18,7 +18,7 @@ typedef struct {
     uint8_t led_yellow;     // Status of yellow LED
     uint8_t reserved;       // Reserved for alignment
     union sensor_data sensor_data;  // Sensor reading value
-    int64_t timestamp;      // Timestamp for HTTP POST
+    // int64_t timestamp;      // Timestamp for HTTP POST
 } data_frame_t;
 
 extern QueueHandle_t xSensorQueue;
@@ -28,6 +28,7 @@ extern "C" {
 #endif
 
 const char *get_current_time(void);
+int32_t get_current_timestamp(void);
 
 #ifdef __cplusplus
 }

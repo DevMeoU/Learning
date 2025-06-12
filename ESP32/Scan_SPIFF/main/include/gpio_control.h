@@ -1,7 +1,10 @@
 #ifndef GPIO_CONTROL_H
 #define GPIO_CONTROL_H
 
-#include "driver/gpio.h"
+#include <driver/gpio.h>
+#include <esp_err.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
 
 // GPIO Pin Definitions
 #define BUTTON_GPIO         GPIO_NUM_16 // GPIO for button
@@ -25,6 +28,8 @@
     gpio_set_level(LED_YELLOW, (__ly__)); \
 }
 
-void configure_gpio(void);
+esp_err_t init_gpio(void);
+esp_err_t set_gpio_state(gpio_num_t gpio_num, bool state);
+bool get_gpio_state(gpio_num_t gpio_num);
 
 #endif /* GPIO_CONTROL_H */
