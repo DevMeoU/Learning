@@ -13,12 +13,10 @@ union sensor_data {
 
 // Data structure for sensor readings
 typedef struct {
-    uint8_t led_green;      // Status of green LED
-    uint8_t led_red;        // Status of red LED
-    uint8_t led_yellow;     // Status of yellow LED
-    uint8_t reserved;       // Reserved for alignment
-    union sensor_data sensor_data;  // Sensor reading value
-    // int64_t timestamp;      // Timestamp for HTTP POST
+    uint8_t led_status; /** Trạng thái led */
+    uint8_t reserved[3];
+    union sensor_data temperature;
+    union sensor_data temperature_fake;
 } data_frame_t;
 
 extern QueueHandle_t xSensorQueue;

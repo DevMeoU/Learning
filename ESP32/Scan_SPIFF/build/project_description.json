@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "Scan_SPIFF",
-    "project_version":    "RELEASE_DEESOL_02-1-gc5f08f2d-dirty",
+    "project_version":    "RELEASE_DEESOL_03-dirty",
     "project_path":       "E:/Workspace/Learning/ESP32/Scan_SPIFF",
     "idf_path":           "C:/esp/container_directory/v5.4.1/esp-idf",
     "build_dir":          "E:/Workspace/Learning/ESP32/Scan_SPIFF/build",

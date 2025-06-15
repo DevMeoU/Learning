@@ -63,10 +63,9 @@ void firebase_sender_task(void *pvParameters) {
             cJSON_AddStringToObject(root, "time", get_current_time());
             cJSON_AddNumberToObject(root, "timestamp", get_current_timestamp());
             cJSON_AddStringToObject(root, "timezone", TIMEZONE);
-            cJSON_AddNumberToObject(root, "light_sensor_1", recv_data.led_green);
-            cJSON_AddNumberToObject(root, "light_sensor_2", recv_data.led_red);
-            cJSON_AddNumberToObject(root, "temperature_sensor_1", recv_data.led_yellow);
-            cJSON_AddNumberToObject(root, "temperature_sensor_2", recv_data.sensor_data.f_sensor_value);
+            cJSON_AddNumberToObject(root, "led_warning", recv_data.led_status);
+            cJSON_AddNumberToObject(root, "temperature_sensor_real", recv_data.temperature.f_sensor_value);
+            cJSON_AddNumberToObject(root, "temperature_sensor_fake", recv_data.temperature_fake.f_sensor_value);
 
             char *json_buf = cJSON_PrintUnformatted(root);
             cJSON_Delete(root);
@@ -122,6 +121,7 @@ void uart_parser_task(void *pvParameters) {
                     break;
                 case 1: // Đọc độ dài payload
                     payload_len = b;
+                    // ESP_LOGI(TAG, "Payload length: %d, Max payload length: %d, sizeof(data_frame_t): %d", payload_len, MAX_PAYLOAD, sizeof(data_frame_t));
                     if (payload_len > MAX_PAYLOAD || payload_len != sizeof(data_frame_t)) {
                         ESP_LOGE(TAG, "Invalid payload length: %d", payload_len);
                         state = 0;
@@ -142,13 +142,12 @@ void uart_parser_task(void *pvParameters) {
                     if (checksum == b) {
                         data_frame_t recv_data;
                         memcpy(&recv_data, payload, sizeof(data_frame_t));
-                        SET_ALL_LED(recv_data.led_green, recv_data.led_red, recv_data.led_yellow);
-                        ESP_LOGI(TAG, "Time: %s, LED Green: %d, LED Red: %d, LED Yellow: %d, Sensor Value: %.2f",
+                        SET_ALL_LED(recv_data.led_status, 0, 0); // Cập nhật trạng thái LED
+                        ESP_LOGI(TAG, "Time: %s, Led Status: %d, Temperature: %.2f, Fake Temp: %.2f",
                                  get_current_time(),
-                                 recv_data.led_green,
-                                 recv_data.led_red,
-                                 recv_data.led_yellow,
-                                 recv_data.sensor_data.f_sensor_value);
+                                 recv_data.led_status,
+                                 recv_data.temperature.f_sensor_value,
+                                 recv_data.temperature_fake.f_sensor_value);
                         xQueueSend(xSensorQueue, &recv_data, 0);
                     } else {
                         ESP_LOGE(TAG, "Checksum error: expected 0x%02X, got 0x%02X", checksum, b);

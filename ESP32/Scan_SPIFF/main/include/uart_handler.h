@@ -14,7 +14,7 @@
 #define UART_RX_PIN     4
 #define UART_TX_PIN     5
 #define UART_BUF_SIZE   1024
-#define MAX_PAYLOAD     8
+#define MAX_PAYLOAD     12
 
 #define TIMEZONE        "UTC+7" // Adjust as needed
 
