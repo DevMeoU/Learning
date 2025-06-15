@@ -243,11 +243,16 @@ char* load_cert_from_nvs(void)
     return cert_pem;
 }
 
+// Handler for / (root) to serve wifi_config.html from SPIFFS
 static esp_err_t root_get_handler(httpd_req_t *req)
 {
-    httpd_resp_set_type(req, "text/html");
-    httpd_resp_send(req, "<html><body><h1>ESP32 Web Server</h1></body></html>", -1);
-    return ESP_OK;
+    if (spiffs_file_exists("/wifi_config.html")) {
+        return send_file_from_spiffs(req, "/wifi_config.html", "text/html");
+    } else {
+        httpd_resp_set_type(req, "text/html");
+        httpd_resp_send(req, "<html><body><h1>File wifi_config.html not found!</h1></body></html>", -1);
+        return ESP_FAIL;
+    }
 }
 
 static const httpd_uri_t root = {
@@ -256,6 +261,42 @@ static const httpd_uri_t root = {
     .handler   = root_get_handler,
     .user_ctx  = NULL
 };
+
+// Handler for /configure POST
+static esp_err_t configure_post_handler(httpd_req_t *req) {
+    char buf[1024];
+    int ret = httpd_req_recv(req, buf, sizeof(buf) - 1);
+    if (ret <= 0) return ESP_FAIL;
+    buf[ret] = 0;
+
+    char aws_url[256] = {0};
+    char phone_numbers[256] = {0};
+    char sms_messages[1024] = {0};
+    char sms_message[161] = {0};
+
+    httpd_query_key_value(buf, "aws_url", aws_url, sizeof(aws_url));
+    httpd_query_key_value(buf, "phone_numbers", phone_numbers, sizeof(phone_numbers));
+    httpd_query_key_value(buf, "sms_messages", sms_messages, sizeof(sms_messages));
+    httpd_query_key_value(buf, "sms_message", sms_message, sizeof(sms_message));
+
+    ESP_LOGI(TAG, "[CONFIG] aws_url: %s", aws_url);
+    ESP_LOGI(TAG, "[CONFIG] phone_numbers: %s", phone_numbers);
+    ESP_LOGI(TAG, "[CONFIG] sms_messages: %s", sms_messages);
+    ESP_LOGI(TAG, "[CONFIG] sms_message: %s", sms_message);
+
+    // Lưu vào NVS (ví dụ)
+    nvs_handle_t nvs;
+    if (nvs_open("storage", NVS_READWRITE, &nvs) == ESP_OK) {
+        nvs_set_str(nvs, "aws_url", aws_url);
+        nvs_set_str(nvs, "phone_numbers", phone_numbers);
+        nvs_set_str(nvs, "sms_messages", sms_messages);
+        nvs_set_str(nvs, "sms_message", sms_message);
+        nvs_commit(nvs);
+        nvs_close(nvs);
+    }
+    httpd_resp_sendstr(req, "OK");
+    return ESP_OK;
+}
 
 esp_err_t start_webserver(void)
 {
@@ -275,6 +316,41 @@ esp_err_t start_webserver(void)
     }
 
     httpd_register_uri_handler(server, &root);
+
+    httpd_uri_t uri_scan = {
+            .uri = "/scan",
+            .method = HTTP_GET,
+            .handler = handle_get_wifi_scan,
+            .user_ctx = NULL
+        };
+    httpd_register_uri_handler(server, &uri_scan);
+
+    httpd_uri_t configure_uri = {
+        .uri = "/configure",
+        .method = HTTP_POST,
+        .handler = configure_post_handler,
+        .user_ctx = NULL
+    };
+    httpd_register_uri_handler(server, &configure_uri);
+
+    // Register GET /config endpoint
+        httpd_uri_t uri_get_config = {
+            .uri = "/config",
+            .method = HTTP_GET,
+            .handler = handle_get_config,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &uri_get_config);
+
+        // Register POST /config for JSON config
+        httpd_uri_t uri_post_config = {
+            .uri = "/config",
+            .method = HTTP_POST,
+            .handler = handle_post_json_config,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &uri_post_config);
+
     ESP_LOGI(TAG, "Web server started successfully");
     return ESP_OK;
 }
@@ -291,4 +367,127 @@ void http_task(void *pvParameters)
     while (1) {
         vTaskDelay(pdMS_TO_TICKS(1000));  // Task heartbeat
     }
+}
+
+esp_err_t handle_get_wifi_scan(httpd_req_t *req) {
+    ESP_LOGI(TAG, "Handling WiFi scan request");
+    
+    // Use the WiFi manager's scan function instead of implementing scan here
+    esp_err_t ret = start_wifi_scan();
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to start WiFi scan: %s", esp_err_to_name(ret));
+        
+        // Return appropriate error response based on error type
+        httpd_resp_set_type(req, "application/json");
+        
+        if (ret == ESP_ERR_WIFI_STATE) {
+            httpd_resp_set_status(req, "409 Conflict");
+            httpd_resp_sendstr(req, "{\"error\":\"Scan already in progress\"}");
+        } else {
+            httpd_resp_set_status(req, "500 Internal Server Error");
+            char error_msg[100];
+            snprintf(error_msg, sizeof(error_msg), "{\"error\":\"Failed to start WiFi scan: %s\"}", esp_err_to_name(ret));
+            httpd_resp_sendstr(req, error_msg);
+        }
+        return ESP_OK;
+    }
+    
+    // Wait for scan to complete with timeout
+    int timeout_ms = 5000; // 5 seconds timeout
+    int wait_interval_ms = 100;
+    int elapsed_ms = 0;
+    
+    ESP_LOGI(TAG, "Waiting for scan to complete (timeout: %d ms)", timeout_ms);
+    while (elapsed_ms < timeout_ms) {
+        uint16_t ap_count = 0;
+        const wifi_ap_record_t* ap_records = get_scanned_aps(&ap_count);
+        
+        if (ap_records != NULL) {
+            // Scan completed successfully
+            ESP_LOGI(TAG, "Scan completed, found %d networks", ap_count);
+            
+            // Create JSON response
+            cJSON *root = cJSON_CreateObject();
+            cJSON *networks = cJSON_CreateArray();
+            cJSON_AddItemToObject(root, "networks", networks);
+
+            // Add scan results to JSON
+            for (int i = 0; i < ap_count; i++) {
+                if (strlen((char *)ap_records[i].ssid) == 0) continue; // Skip empty SSIDs
+                
+                cJSON *ap = cJSON_CreateObject();
+                cJSON_AddStringToObject(ap, "ssid", (char *)ap_records[i].ssid);
+                cJSON_AddNumberToObject(ap, "rssi", ap_records[i].rssi);
+                cJSON_AddNumberToObject(ap, "channel", ap_records[i].primary);
+                const char *auth_mode;
+                switch (ap_records[i].authmode) {
+                    case WIFI_AUTH_OPEN: auth_mode = "open"; break;
+                    case WIFI_AUTH_WEP: auth_mode = "wep"; break;
+                    case WIFI_AUTH_WPA_PSK: auth_mode = "wpa"; break;
+                    case WIFI_AUTH_WPA2_PSK: auth_mode = "wpa2"; break;
+                    case WIFI_AUTH_WPA_WPA2_PSK: auth_mode = "wpa/wpa2"; break;
+                    case WIFI_AUTH_WPA3_PSK: auth_mode = "wpa3"; break;
+                    default: auth_mode = "unknown";
+                }
+                cJSON_AddStringToObject(ap, "auth", auth_mode);
+                cJSON_AddItemToArray(networks, ap);
+            }
+
+            char *json_str = cJSON_PrintUnformatted(root);
+            httpd_resp_set_type(req, "application/json");
+            httpd_resp_sendstr(req, json_str);
+
+            free(json_str);
+            cJSON_Delete(root);
+            return ESP_OK;
+        }
+        
+        // Wait a bit before checking again
+        vTaskDelay(pdMS_TO_TICKS(wait_interval_ms));
+        elapsed_ms += wait_interval_ms;
+    }
+    
+    // Timeout occurred
+    ESP_LOGW(TAG, "Scan timeout after %d ms", timeout_ms);
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_set_status(req, "504 Gateway Timeout");
+    httpd_resp_sendstr(req, "{\"error\":\"Scan timeout\"}");
+    return ESP_OK;
+}
+
+esp_err_t send_sms_via_aws(const char* aws_url, const char* phone, const char* message) {
+    if (!aws_url || !phone || !message) {
+        ESP_LOGE(TAG, "Missing AWS URL, phone, or message");
+        return ESP_ERR_INVALID_ARG;
+    }
+    char post_data[256];
+    snprintf(post_data, sizeof(post_data), "{\"phone\":\"%s\",\"message\":\"%s\"}", phone, message);
+    esp_http_client_config_t config = {
+        .url = aws_url,
+        .method = HTTP_METHOD_POST,
+        .crt_bundle_attach = esp_crt_bundle_attach,
+        .timeout_ms = 10000,
+        .keep_alive_enable = false,
+    };
+    esp_http_client_handle_t client = esp_http_client_init(&config);
+    if (!client) {
+        ESP_LOGE(TAG, "Failed to init HTTP client for AWS");
+        return ESP_FAIL;
+    }
+    esp_http_client_set_header(client, "Content-Type", "application/json");
+    esp_http_client_set_post_field(client, post_data, strlen(post_data));
+    esp_err_t err = esp_http_client_perform(client);
+    if (err == ESP_OK) {
+        int status = esp_http_client_get_status_code(client);
+        if (status >= 200 && status < 300) {
+            ESP_LOGI(TAG, "AWS SMS POST success, status: %d", status);
+        } else {
+            ESP_LOGE(TAG, "AWS SMS POST error, status: %d", status);
+            err = ESP_FAIL;
+        }
+    } else {
+        ESP_LOGE(TAG, "AWS SMS POST failed: %s", esp_err_to_name(err));
+    }
+    esp_http_client_cleanup(client);
+    return err;
 }

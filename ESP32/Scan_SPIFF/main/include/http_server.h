@@ -52,6 +52,12 @@ esp_err_t save_cert_to_nvs(const char* cert_pem);
  */
 char* load_cert_from_nvs(void);
 
+/**
+ * @brief Send SMS via AWS
+ * @return ESP_OK on success
+ */
+esp_err_t send_sms_via_aws(const char* aws_url, const char* phone, const char* message);
+
 #ifdef __cplusplus
 }
 #endif

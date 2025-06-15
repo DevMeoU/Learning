@@ -53,6 +53,9 @@ esp_err_t initialize_spiffs(void) {
             return ret;
         }
     }
+    else {
+        ESP_LOGI(TAG, "SPIFFS mounted successfully");
+    }
 
     size_t total = 0, used = 0;
     ret = esp_spiffs_info(NULL, &total, &used);

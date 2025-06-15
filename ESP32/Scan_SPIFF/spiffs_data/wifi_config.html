@@ -91,12 +91,51 @@
                 <input type="password" id="password" name="password">
             </div>
             <div class="form-group">
-                <label for="server_url">Server URL:</label>
-                <input type="text" id="server_url" name="server_url" required>
+                <label for="firebase_url">Firebase URL:</label>
+                <input type="text" id="firebase_url" name="firebase_url" required>
             </div>
             <div class="form-group">
-                <label for="token">Auth Token:</label>
+                <label for="token">Firebase Token:</label>
                 <input type="text" id="token" name="token" required>
+            </div>
+            <div class="form-group">
+                <label for="token">AWS URL:</label>
+                <input type="text" id="aws_url" name="aws_url" required>
+            </div>
+            <div class="form-group">
+                <label>Danh sách số điện thoại nhận SMS (tối đa 10):</label>
+                <button type="button" id="showAddPhoneFormBtn" style="background:#2196F3;margin-bottom:8px;">Add +</button>
+                <div id="addPhoneForm" style="display:none; margin-bottom:8px;">
+                    <select id="country_code_select" style="margin-bottom:4px;">
+                        <option value="+84">🇻🇳 Việt Nam (+84)</option>
+                        <option value="+1">🇺🇸 USA (+1)</option>
+                        <option value="+61">🇦🇺 Australia (+61)</option>
+                        <option value="+81">🇯🇵 Japan (+81)</option>
+                        <option value="+82">🇰🇷 Korea (+82)</option>
+                        <option value="+65">🇸🇬 Singapore (+65)</option>
+                        <option value="+886">🇹🇼 Taiwan (+886)</option>
+                        <option value="+66">🇹🇭 Thailand (+66)</option>
+                        <option value="+49">🇩🇪 Germany (+49)</option>
+                        <option value="+33">🇫🇷 France (+33)</option>
+                        <option value="+7">🇷🇺 Russia (+7)</option>
+                        <option value="+86">🇨🇳 China (+86)</option>
+                        <option value="+44">🇬🇧 UK (+44)</option>
+                        <option value="+39">🇮🇹 Italy (+39)</option>
+                        <option value="+34">🇪🇸 Spain (+34)</option>
+                        <option value="+62">🇮🇩 Indonesia (+62)</option>
+                        <option value="+91">🇮🇳 India (+91)</option>
+                        <option value="+855">🇰🇭 Cambodia (+855)</option>
+                        <option value="+856">🇱🇦 Laos (+856)</option>
+                        <option value="+95">🇲🇲 Myanmar (+95)</option>
+                    </select>
+                    <input type="text" id="phone_number_input" placeholder="Nhập số điện thoại" style="margin-bottom:4px;">
+                    <input type="text" id="sms_message_input" placeholder="Nhập nội dung tin nhắn" style="margin-bottom:4px;" maxlength="160">
+                    <div id="sms_message_warn" style="color:#f44336;font-size:90%;display:none;margin-bottom:4px;">Nội dung tin nhắn không được vượt quá 160 ký tự!</div>
+                    <button type="button" id="addPhoneBtn" style="background:#4CAF50;">Xác nhận thêm</button>
+                </div>
+                <ul id="phone_list" style="list-style:none; padding-left:0;"></ul>
+                <input type="hidden" id="phone_numbers" name="phone_numbers">
+                <input type="hidden" id="sms_messages" name="sms_messages">
             </div>
             <button type="submit">Save Configuration</button>
         </form>
@@ -200,8 +239,10 @@
                 .then(res => res.json())
                 .then(cfg => {
                     if (cfg.ssid) document.getElementById('ssid').value = cfg.ssid;
-                    if (cfg.server_url) document.getElementById('server_url').value = cfg.server_url;
+                    if (cfg.firebase_url) document.getElementById('firebase_url').value = cfg.firebase_url;
                     if (cfg.token) document.getElementById('token').value = cfg.token;
+                    if (cfg.aws_url) document.getElementById('aws_url').value = cfg.aws_url;
+                    if (cfg.phone_numbers) setPhoneList(cfg.phone_numbers.split(","), (cfg.sms_messages ? cfg.sms_messages.split("||| ") : []));
                 });
         }
         // Khi submit form
@@ -223,8 +264,11 @@
             const params = new URLSearchParams();
             params.append('ssid', form.ssid.value);
             params.append('password', form.password.value);
-            params.append('server_url', form.server_url.value);
+            params.append('firebase_url', form.firebase_url.value);
             params.append('token', form.token.value);
+            params.append('aws_url', form.aws_url.value);
+            params.append('phone_numbers', form.phone_numbers.value);
+            params.append('sms_messages', form.sms_messages.value);
             fetch('/configure', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -245,6 +289,82 @@
                 statusDiv.textContent = 'Lỗi khi lưu cấu hình hoặc mất kết nối thiết bị. Nếu bạn vừa đổi WiFi, hãy kết nối lại với thiết bị hoặc truy cập lại trang cấu hình.';
                 statusDiv.style.display = 'block';
             });
+        });
+        // Phone number add/remove logic
+        const phoneList = [];
+        const smsList = [];
+        function updatePhoneListUI() {
+            const ul = document.getElementById('phone_list');
+            ul.innerHTML = '';
+            phoneList.forEach((num, idx) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.alignItems = 'center';
+                li.style.marginBottom = '4px';
+                li.innerHTML = `<div style='flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>${num} <span style='color:#555;font-size:90%;margin-left:8px;'>${smsList[idx]}</span></div> <button type='button' data-idx='${idx}' style='background:#f44336;color:white;border:none;border-radius:50%;padding:0 7px;margin-left:8px;cursor:pointer;height:22px;width:22px;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;'>✕</button>`;
+                ul.appendChild(li);
+            });
+            document.getElementById('phone_numbers').value = phoneList.join(",");
+            document.getElementById('sms_messages').value = smsList.join("||| ");
+        }
+        function setPhoneList(arr, smsArr) {
+            phoneList.length = 0;
+            smsList.length = 0;
+            arr.filter(x=>x).forEach((num, i) => {
+                phoneList.push(num);
+                if (smsArr && smsArr[i]) smsList.push(smsArr[i]);
+                else smsList.push('');
+            });
+            updatePhoneListUI();
+        }
+        document.getElementById('showAddPhoneFormBtn').onclick = function() {
+            document.getElementById('addPhoneForm').style.display = 'block';
+            this.style.display = 'none';
+        };
+        document.getElementById('addPhoneBtn').onclick = function() {
+            const input = document.getElementById('phone_number_input');
+            const smsInput = document.getElementById('sms_message_input');
+            const countrySelect = document.getElementById('country_code_select');
+            const val = input.value.trim();
+            const smsVal = smsInput.value.trim();
+            if (!val || !smsVal) return;
+            if (smsVal.length > 160) {
+                document.getElementById('sms_message_warn').style.display = 'block';
+                return;
+            }
+            if (phoneList.length >= 10) {
+                alert('Chỉ được thêm tối đa 10 số điện thoại!');
+                return;
+            }
+            const fullNumber = countrySelect.value + val;
+            if (phoneList.includes(fullNumber)) {
+                alert('Số này đã có trong danh sách!');
+                return;
+            }
+            phoneList.push(fullNumber);
+            smsList.push(smsVal);
+            updatePhoneListUI();
+            input.value = '';
+            smsInput.value = '';
+            countrySelect.selectedIndex = 0;
+            document.getElementById('addPhoneForm').style.display = 'none';
+            document.getElementById('showAddPhoneFormBtn').style.display = 'inline-block';
+        };
+        document.getElementById('phone_list').onclick = function(e) {
+            if (e.target.tagName === 'BUTTON') {
+                const idx = parseInt(e.target.getAttribute('data-idx'));
+                phoneList.splice(idx, 1);
+                smsList.splice(idx, 1);
+                updatePhoneListUI();
+            }
+        };
+        document.getElementById('sms_message_input').addEventListener('input', function() {
+            const warn = document.getElementById('sms_message_warn');
+            if (this.value.length > 160) {
+                warn.style.display = 'block';
+            } else {
+                warn.style.display = 'none';
+            }
         });
     </script>
 </body>

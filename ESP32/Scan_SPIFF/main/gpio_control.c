@@ -6,7 +6,7 @@ static const char *TAG = "GPIO";
 esp_err_t init_gpio(void) {
     // Configure GPIO for button
     gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << BUTTON_GPIO),
+        .pin_bit_mask = (1ULL << BUTTON_PAIR_CFG) | (1ULL << BUTTON_SEND_SMS),
         .mode = GPIO_MODE_INPUT,
         .pull_up_en = GPIO_PULLUP_ENABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,

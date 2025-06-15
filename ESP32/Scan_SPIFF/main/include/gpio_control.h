@@ -7,11 +7,12 @@
 #include <freertos/task.h>
 
 // GPIO Pin Definitions
-#define BUTTON_GPIO         GPIO_NUM_16 // GPIO for button
-#define LED_NOTIFICATION    GPIO_NUM_2  // GPIO for notification LED
-#define LED_GREEN           GPIO_NUM_15 // GPIO for green LED
-#define LED_RED            GPIO_NUM_13 // GPIO for red LED
-#define LED_YELLOW         GPIO_NUM_12 // GPIO for yellow LED
+#define BUTTON_PAIR_CFG             GPIO_NUM_16 // GPIO for button
+#define BUTTON_SEND_SMS             GPIO_NUM_0 // User button or external trigger
+#define LED_NOTIFICATION            GPIO_NUM_2  // GPIO for notification LED
+#define LED_GREEN                   GPIO_NUM_15 // GPIO for green LED
+#define LED_RED                     GPIO_NUM_13 // GPIO for red LED
+#define LED_YELLOW                  GPIO_NUM_12 // GPIO for yellow LED
 
 // LED Control Macros
 #define LED_NOTIFICATION_ON  gpio_set_level(LED_NOTIFICATION, 1)

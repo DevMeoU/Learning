@@ -35,6 +35,7 @@ static const char *TAG = "main";
 
 // Function prototypes
 void initialize_sntp(void);
+void gpio0_sms_task(void *pvParameters);
 
 // Event group để đồng bộ giữa init_task và app_main
 static EventGroupHandle_t init_event_group;
@@ -106,7 +107,7 @@ void app_main(void) {
     LED_NOTIFICATION_ON; // Turn on notification LED
     // 5-second countdown waiting for button press
     for (int i = timeout; i > 0; i--) {
-        if (gpio_get_level(BUTTON_GPIO) == 0) { // 0 = button pressed (due to pull-up)
+        if (gpio_get_level(BUTTON_PAIR_CFG) == 0) { // 0 = button pressed (due to pull-up)
             enter_ap_mode = true;
             ESP_LOGI(TAG, "Button pressed! Entering AP mode...");
             break;
@@ -142,7 +143,7 @@ void app_main(void) {
         size_t required_size;
         char *saved_ssid = NULL;
         char *saved_pass = NULL;
-        char *saved_server_url = NULL;
+        char *saved_firebase_url = NULL;
         char *saved_token = NULL;
         bool config_valid = true;
 
@@ -162,10 +163,10 @@ void app_main(void) {
             ESP_LOGI(TAG, "Found saved password");
         }
 
-        if (nvs_get_str(nvs_handle_storage, "server_url", NULL, &required_size) == ESP_OK) {
-            saved_server_url = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "server_url", saved_server_url, &required_size);
-            ESP_LOGI(TAG, "Found saved server URL: %s", saved_server_url);
+        if (nvs_get_str(nvs_handle_storage, "firebase_url", NULL, &required_size) == ESP_OK) {
+            saved_firebase_url = malloc(required_size);
+            nvs_get_str(nvs_handle_storage, "firebase_url", saved_firebase_url, &required_size);
+            ESP_LOGI(TAG, "Found saved server URL: %s", saved_firebase_url);
         } else {
             ESP_LOGW(TAG, "No saved server URL found");
             config_valid = false;
@@ -182,7 +183,7 @@ void app_main(void) {
 
         // Giải phóng bộ nhớ        if (saved_ssid) free(saved_ssid);
         if (saved_pass) free(saved_pass);
-        if (saved_server_url) free(saved_server_url);
+        if (saved_firebase_url) free(saved_firebase_url);
         if (saved_token) free(saved_token);
         
         if (config_valid) {
@@ -244,6 +245,17 @@ void app_main(void) {
                 NULL,                   // Task handle
                 1                       // Core ID (1 = application core)
             );
+
+            // After creating other tasks, create the GPIO0 SMS task
+            xTaskCreatePinnedToCore(
+                gpio0_sms_task,
+                "gpio0_sms_task",
+                2048,
+                NULL,
+                3, // Lower priority
+                NULL,
+                1 // Application core
+            );
         } else {
             ESP_LOGW(TAG, "No valid configuration found, restarting in AP mode...");
             nvs_set_u8(nvs_handle_storage, "force_ap", 1);
@@ -251,5 +263,56 @@ void app_main(void) {
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             esp_restart();
         }
+    }
+}
+
+void gpio0_sms_task(void *pvParameters) {
+    static const char *TAG_SMS = "GPIO0_SMS";
+    const int debounce_ms = 200;
+    int last_level = 1;
+    // Đọc cấu hình từ NVS
+    char aws_url[256] = {0};
+    char phone_numbers[256] = {0};
+    char sms_messages[1024] = {0};
+    nvs_handle_t nvs;
+    if (nvs_open("storage", NVS_READONLY, &nvs) == ESP_OK) {
+        size_t sz;
+        sz = sizeof(aws_url); nvs_get_str(nvs, "aws_url", aws_url, &sz);
+        sz = sizeof(phone_numbers); nvs_get_str(nvs, "phone_numbers", phone_numbers, &sz);
+        sz = sizeof(sms_messages); nvs_get_str(nvs, "sms_messages", sms_messages, &sz);
+        nvs_close(nvs);
+    }
+    if (!aws_url[0] || !phone_numbers[0] || !sms_messages[0]) {
+        ESP_LOGE(TAG_SMS, "Missing configuration, phone number, or message");
+        vTaskDelete(NULL);
+        return;
+    }
+    while (1) {
+        int level = gpio_get_level(BUTTON_SEND_SMS);
+        if (level == 0 && last_level == 1) { // Button pressed (active low)
+            ESP_LOGI(TAG_SMS, "GPIO0 pressed, sending SMS POST requests...");
+            // Parse phone numbers and messages
+            char *phone_ctx = NULL;
+            char *msg_ctx = NULL;
+            char *phone = strtok_r(phone_numbers, ",", &phone_ctx);
+            char *message = strtok_r(sms_messages, "|||", &msg_ctx);
+            int sent = 0;
+            while (phone && message) {
+                ESP_LOGI(TAG_SMS, "Sending to %s: %s", phone, message);
+                esp_err_t err = send_sms_via_aws(aws_url, phone, message);
+                if (err == ESP_OK) {
+                    ESP_LOGI(TAG_SMS, "SMS POST sent successfully to %s", phone);
+                } else {
+                    ESP_LOGE(TAG_SMS, "Failed to send SMS POST to %s: %s", phone, esp_err_to_name(err));
+                }
+                sent++;
+                phone = strtok_r(NULL, ",", &phone_ctx);
+                message = strtok_r(NULL, "|||", &msg_ctx);
+            }
+            ESP_LOGI(TAG_SMS, "Sent %d SMS(s)", sent);
+            vTaskDelay(debounce_ms / portTICK_PERIOD_MS); // Debounce delay
+        }
+        last_level = level;
+        vTaskDelay(50 / portTICK_PERIOD_MS); // Polling interval
     }
 }
