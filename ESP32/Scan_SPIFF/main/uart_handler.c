@@ -47,6 +47,7 @@ void firebase_sender_task(void *pvParameters) {
             url_len = sizeof(firebase_url);
             nvs_get_str(nvs_handle_storage, "firebase_url", firebase_url, &url_len);
             
+            ESP_LOGI(TAG, "Firebase URL: %s", firebase_url);
             if (!is_internet_available()) {
                 ESP_LOGW(TAG, "No internet connection, skipping HTTP request");
                 continue;
@@ -83,7 +84,7 @@ void firebase_sender_task(void *pvParameters) {
                          firebase_url);
             }
             
-            send_to_firebase(full_url, json_buf, HTTP_METHOD_PUT);
+            send_to_firebase(full_url, auth_token, json_buf, HTTP_METHOD_PUT);
             
             free(json_buf);
             

@@ -4,6 +4,10 @@
 #include "lwip/netdb.h"
 #include "lwip/sockets.h"
 #include "gpio_control.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
 
 #ifndef MIN
 #define MIN(a,b) (((a)<(b))?(a):(b))
@@ -281,32 +285,62 @@ void wifi_init_ap(void) {
 
 bool is_internet_available(void) {
     struct addrinfo hints = {
-        .ai_family = AF_INET,
+        .ai_family = AF_UNSPEC,    // Try both IPv4/IPv6
         .ai_socktype = SOCK_STREAM,
     };
+
+    bool connected = false;
+    esp_netif_t* netif = esp_netif_get_handle_from_ifkey("WIFI_STA_DEF");
+    assert(netif != NULL);
+
+    while (esp_netif_is_netif_up(netif) != true)
+    {
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
+
     struct addrinfo *res;
-    
-    int err = getaddrinfo("google.com", "80", &hints, &res);
-    if (err != 0 || res == NULL) {
-        ESP_LOGE(TAG, "DNS lookup failed");
+    int err = getaddrinfo("www.google.com", "80", &hints, &res);
+    ESP_LOGI(TAG, "DNS lookup result: %p, %d", res, err);
+
+    if (err != 0 || !res) {
+        const char* error_msg = "Unknown DNS error";
+        // Handle DNS errors in a compatible way
+        if (err == EAI_AGAIN) {
+            error_msg = "Temporary failure";
+        } else if (err == EAI_FAIL) {
+            error_msg = "Non-recoverable failure";
+        } else if (err == EAI_NONAME) {
+            error_msg = "Host not found";
+        } else if (err == EAI_MEMORY) {
+            error_msg = "Memory allocation failure";
+        } else {
+            // For other errors, use strerror
+            error_msg = strerror(errno);
+        }
+        ESP_LOGE(TAG, "DNS lookup failed: %s (code=%d)", error_msg, err);
         return false;
     }
 
-    int sock = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
-    if (sock < 0) {
-        freeaddrinfo(res);
-        return false;
-    }
+    // Try each returned address
+    for (struct addrinfo *p = res; p != NULL; p = p->ai_next) {
+        int sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
+        if (sock < 0) continue;
 
-    if (connect(sock, res->ai_addr, res->ai_addrlen) != 0) {
+        // Set timeout (5 seconds)
+        struct timeval tv = { .tv_sec = 5, .tv_usec = 0 };
+        setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
+
+        // Attempt connection
+        if (connect(sock, p->ai_addr, p->ai_addrlen) == 0) {
+            connected = true;
+            close(sock);
+            break;
+        }
         close(sock);
-        freeaddrinfo(res);
-        return false;
     }
 
-    close(sock);
     freeaddrinfo(res);
-    return true;
+    return connected;
 }
 
 esp_err_t start_wifi_scan(void) {

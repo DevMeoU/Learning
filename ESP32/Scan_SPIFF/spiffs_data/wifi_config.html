@@ -77,7 +77,7 @@
 <body>
     <div class="container">
         <h1>ESP32 WiFi Configuration</h1>
-        <form id="configForm" method="post" action="/configure">
+        <form id="configForm" method="post" action="/config">
             <div class="form-group">
                 <label for="ssid">WiFi SSID:</label>
                 <div style="display: flex; gap: 8px; align-items: center;">
@@ -239,7 +239,7 @@
                 .then(res => res.json())
                 .then(cfg => {
                     if (cfg.ssid) document.getElementById('ssid').value = cfg.ssid;
-                    if (cfg.firebase_url) document.getElementById('firebase_url').value = cfg.firebase_url;
+                    if (cfg.firebase_url) document.getElementById('firebase_url').value = cfg.firebase_url, validateForm();
                     if (cfg.token) document.getElementById('token').value = cfg.token;
                     if (cfg.aws_url) document.getElementById('aws_url').value = cfg.aws_url;
                     if (cfg.phone_numbers) setPhoneList(cfg.phone_numbers.split(","), (cfg.sms_messages ? cfg.sms_messages.split("||| ") : []));
@@ -269,7 +269,7 @@
             params.append('aws_url', form.aws_url.value);
             params.append('phone_numbers', form.phone_numbers.value);
             params.append('sms_messages', form.sms_messages.value);
-            fetch('/configure', {
+            fetch('/config', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: params.toString()
@@ -316,6 +316,15 @@
                 else smsList.push('');
             });
             updatePhoneListUI();
+        }
+
+        function validateForm() {
+            const url = document.getElementById("firebase_url").value;
+            if (!url.startsWith("https://")) {
+                alert("Firebase URL must start with https://");
+                return false;
+            }
+            return true;
         }
         document.getElementById('showAddPhoneFormBtn').onclick = function() {
             document.getElementById('addPhoneForm').style.display = 'block';

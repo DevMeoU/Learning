@@ -43,8 +43,6 @@ static EventGroupHandle_t init_event_group;
 
 extern nvs_handle_t nvs_handle_storage;
 
-
-
 // Task initialization function that runs on core 0
 void init_task(void *pvParameters) {
     ESP_LOGI(TAG, "Starting initialization on core %d", xPortGetCoreID());
@@ -145,6 +143,9 @@ void app_main(void) {
         char *saved_pass = NULL;
         char *saved_firebase_url = NULL;
         char *saved_token = NULL;
+        char *saved_aws_url = NULL;
+        char *saved_phone_numbers = NULL;
+        char *saved_sms_messages = NULL;
         bool config_valid = true;
 
         // Kiểm tra cấu hình đã lưu
@@ -157,12 +158,13 @@ void app_main(void) {
             config_valid = false;
         }
 
-        if (nvs_get_str(nvs_handle_storage, "wifi_pass", NULL, &required_size) == ESP_OK) {
+        if (nvs_get_str(nvs_handle_storage, "wifi_password", NULL, &required_size) == ESP_OK) {
             saved_pass = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "wifi_pass", saved_pass, &required_size);
+            nvs_get_str(nvs_handle_storage, "wifi_password", saved_pass, &required_size);
             ESP_LOGI(TAG, "Found saved password");
         }
 
+        // Thay đổi khi đọc từ NVS
         if (nvs_get_str(nvs_handle_storage, "firebase_url", NULL, &required_size) == ESP_OK) {
             saved_firebase_url = malloc(required_size);
             nvs_get_str(nvs_handle_storage, "firebase_url", saved_firebase_url, &required_size);
@@ -181,10 +183,30 @@ void app_main(void) {
             config_valid = false;
         }
 
-        // Giải phóng bộ nhớ        if (saved_ssid) free(saved_ssid);
+        if (nvs_get_str(nvs_handle_storage, "aws_url", NULL, &required_size) == ESP_OK) {
+            saved_aws_url = malloc(required_size);
+            nvs_get_str(nvs_handle_storage, "aws_url", saved_aws_url, &required_size);
+            ESP_LOGI(TAG, "Found saved AWS URL: %s", saved_aws_url);
+        }
+
+        if (nvs_get_str(nvs_handle_storage, "phone_numbers", NULL, &required_size) == ESP_OK) {
+            saved_phone_numbers = malloc(required_size);
+            nvs_get_str(nvs_handle_storage, "phone_numbers", saved_phone_numbers, &required_size);
+            ESP_LOGI(TAG, "Found saved phone numbers: %s", saved_phone_numbers);
+        }
+
+        if (nvs_get_str(nvs_handle_storage, "sms_messages", NULL, &required_size) == ESP_OK) {
+            saved_sms_messages = malloc(required_size);
+            nvs_get_str(nvs_handle_storage, "sms_messages", saved_sms_messages, &required_size);
+            ESP_LOGI(TAG, "Found saved SMS messages: %s", saved_sms_messages);
+        }
+
         if (saved_pass) free(saved_pass);
         if (saved_firebase_url) free(saved_firebase_url);
         if (saved_token) free(saved_token);
+        if (saved_aws_url) free(saved_aws_url);
+        if (saved_phone_numbers) free(saved_phone_numbers);
+        if (saved_sms_messages) free(saved_sms_messages);
         
         if (config_valid) {
             ESP_LOGI(TAG, "Valid configuration found, starting in Station mode...");
@@ -216,7 +238,7 @@ void app_main(void) {
             xTaskCreatePinnedToCore(
                 uart_parser_task,    // Task function
                 "uart_parser",       // Task name
-                1024 * 4,           // Stack size
+                1024 * 8,           // Stack size
                 NULL,               // Parameters
                 5,                  // Priority (higher)
                 NULL,               // Task handle
@@ -228,7 +250,7 @@ void app_main(void) {
             xTaskCreatePinnedToCore(
                 http_task,          // Task function
                 "http_task",        // Task name
-                1024 * 8,          // Stack size
+                1024 * 4,          // Stack size
                 NULL,              // Parameters
                 4,                 // Priority (lower)
                 NULL,              // Task handle
@@ -239,7 +261,7 @@ void app_main(void) {
             xTaskCreatePinnedToCore(
                 firebase_sender_task,   // Task function
                 "firebase_sender",     // Task name
-                4096,                   // Stack size
+                1024 * 8,                   // Stack size
                 NULL,                   // Parameters
                 4,                      // Priority (thấp hơn parser)
                 NULL,                   // Task handle
@@ -250,7 +272,7 @@ void app_main(void) {
             xTaskCreatePinnedToCore(
                 gpio0_sms_task,
                 "gpio0_sms_task",
-                2048,
+                1024 * 8,
                 NULL,
                 3, // Lower priority
                 NULL,
@@ -290,7 +312,7 @@ void gpio0_sms_task(void *pvParameters) {
     while (1) {
         int level = gpio_get_level(BUTTON_SEND_SMS);
         if (level == 0 && last_level == 1) { // Button pressed (active low)
-            ESP_LOGI(TAG_SMS, "GPIO0 pressed, sending SMS POST requests...");
+            ESP_LOGI(TAG_SMS, "Button sent SMS pressed, sending SMS POST requests...");
             // Parse phone numbers and messages
             char *phone_ctx = NULL;
             char *msg_ctx = NULL;

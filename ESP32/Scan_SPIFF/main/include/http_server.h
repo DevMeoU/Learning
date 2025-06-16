@@ -30,7 +30,7 @@ void http_task(void *pvParameters);
  * @param post_data JSON data to send
  * @return ESP_OK on success
  */
-esp_err_t send_to_firebase(const char* server_url, const char* post_data, esp_http_client_method_t method);
+esp_err_t send_to_firebase(const char* server_url, const char* token, const char* post_data, esp_http_client_method_t method);
 
 /**
  * @brief Get server certificate
