@@ -18,6 +18,9 @@
 #include "time_utils.h"
 #include "uart_handler.h"
 
+#define POST_BUF_LEN 4096
+
+
 static const char *TAG = "HTTP_SERVER";
 static httpd_handle_t server = NULL;
 extern nvs_handle_t nvs_handle_storage;
@@ -167,84 +170,6 @@ static esp_err_t root_get_handler(httpd_req_t *req) {
     }
 }
 
-static esp_err_t handle_post_config(httpd_req_t *req) {
-    char buf[1024];
-    int ret = httpd_req_recv(req, buf, sizeof(buf) - 1);
-    if (ret <= 0) return ESP_FAIL;
-    buf[ret] = 0;
-
-    // Parse all configuration parameters
-    char ssid[33] = {0};
-    char password[65] = {0};
-    char firebase_url[129] = {0};
-    char token[129] = {0};
-    char aws_url[256] = {0};
-    char phone_numbers[256] = {0};
-    char sms_messages[1024] = {0};
-
-    httpd_query_key_value(buf, "ssid", ssid, sizeof(ssid));
-    httpd_query_key_value(buf, "password", password, sizeof(password));
-    httpd_query_key_value(buf, "firebase_url", firebase_url, sizeof(firebase_url));
-    httpd_query_key_value(buf, "token", token, sizeof(token));
-    httpd_query_key_value(buf, "aws_url", aws_url, sizeof(aws_url));
-    httpd_query_key_value(buf, "phone_numbers", phone_numbers, sizeof(phone_numbers));
-    httpd_query_key_value(buf, "sms_messages", sms_messages, sizeof(sms_messages));
-
-    char decoded_ssid[33] = {0};
-    char decoded_password[65] = {0};
-    char decoded_firebase_url[129] = {0};
-    char decoded_token[129] = {0};
-    char decoded_aws_url[256] = {0};
-    char decoded_phone_numbers[256] = {0};
-    char decoded_sms_messages[1024] = {0};
-    
-    urldecode(ssid, decoded_ssid, sizeof(decoded_ssid));
-    urldecode(password, decoded_password, sizeof(decoded_password));
-    urldecode(firebase_url, decoded_firebase_url, sizeof(decoded_firebase_url));
-    urldecode(token, decoded_token, sizeof(decoded_token));
-    urldecode(aws_url, decoded_aws_url, sizeof(decoded_aws_url));
-    urldecode(phone_numbers, decoded_phone_numbers, sizeof(decoded_phone_numbers));
-    urldecode(sms_messages, decoded_sms_messages, sizeof(decoded_sms_messages));
-
-    if (strstr(decoded_firebase_url, "://") == NULL) {
-        ESP_LOGE(TAG, "Invalid Firebase URL format: %s", firebase_url);
-        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Invalid URL format");
-        return ESP_FAIL;
-    }
-
-
-    ESP_LOGI(TAG, "Saving WiFi SSID: %s", decoded_ssid);
-    ESP_LOGI(TAG, "Saving WiFi password: %s", decoded_password);
-    ESP_LOGI(TAG, "Saving Firebase URL: %s", decoded_firebase_url);
-    ESP_LOGI(TAG, "Saving token: %s", decoded_token);
-    ESP_LOGI(TAG, "Saving AWS URL: %s", decoded_aws_url);
-    ESP_LOGI(TAG, "Saving phone numbers: %s", decoded_phone_numbers);
-    ESP_LOGI(TAG, "Saving SMS messages: %s", decoded_sms_messages);
-    ESP_LOGI(TAG, "Saving all configurations");
-    
-    // Save to NVS
-    nvs_handle_t nvs;
-    if (nvs_open("storage", NVS_READWRITE, &nvs) == ESP_OK) {
-        nvs_set_str(nvs, "wifi_ssid", decoded_ssid);
-        nvs_set_str(nvs, "wifi_password", decoded_password);
-        nvs_set_str(nvs, "firebase_url", decoded_firebase_url);
-        nvs_set_str(nvs, "token", decoded_token);
-        nvs_set_str(nvs, "aws_url", decoded_aws_url);
-        nvs_set_str(nvs, "phone_numbers", decoded_phone_numbers);
-        nvs_set_str(nvs, "sms_messages", decoded_sms_messages);
-        nvs_commit(nvs);
-        nvs_close(nvs);
-        httpd_resp_sendstr(req, "All configurations saved successfully");
-        
-        // Reboot after successful save
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        esp_restart();
-    } else {
-        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "NVS error");
-    }
-    return ESP_OK;
-}
-
 static esp_err_t handle_get_wifi_scan(httpd_req_t *req) {
     ESP_LOGI(TAG, "Starting WiFi scan");
     
@@ -316,34 +241,227 @@ static esp_err_t handle_get_wifi_scan(httpd_req_t *req) {
 }
 
 static esp_err_t handle_get_config(httpd_req_t *req) {
-    char ssid[33] = {0};
-    char firebase_url[128] = {0};
-    char token[128] = {0};
-    size_t len = sizeof(ssid);
-    
-    nvs_get_str(nvs_handle_storage, "wifi_ssid", ssid, &len);
-    len = sizeof(firebase_url);
-    nvs_get_str(nvs_handle_storage, "firebase_url", firebase_url, &len);
-    len = sizeof(token);
-    nvs_get_str(nvs_handle_storage, "token", token, &len);
+    cJSON *root = cJSON_CreateObject();
+    if (!root) {
+        ESP_LOGE(TAG, "Failed to create JSON root object");
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
 
+    // Helper macro for safe NVS reads and JSON population
+    #define ADD_NVS_STRING_TO_JSON(json_key, nvs_key, buf_size) do { \
+        char buffer[buf_size] = {0}; \
+        size_t len = sizeof(buffer); \
+        esp_err_t ret = nvs_get_str(nvs_handle_storage, nvs_key, buffer, &len); \
+        if (ret != ESP_OK) { \
+            ESP_LOGW(TAG, "Failed to read %s from NVS: %s", nvs_key, esp_err_to_name(ret)); \
+            buffer[0] = '\0'; \
+        } \
+        cJSON_AddStringToObject(root, json_key, buffer); \
+    } while(0)
+
+    // Add all configuration parameters to JSON
+    ADD_NVS_STRING_TO_JSON("ssid", "wifi_ssid", 33);
+    ADD_NVS_STRING_TO_JSON("token", "token", 128);
+    ADD_NVS_STRING_TO_JSON("aws_url", "aws_url", 256);
+    ADD_NVS_STRING_TO_JSON("phone_numbers", "phone_numbers", 256);
+    ADD_NVS_STRING_TO_JSON("sms_messages", "sms_messages", 1024);
+    ADD_NVS_STRING_TO_JSON("twilio_acc_sid", "twilio_acc_sid", 64);
+    ADD_NVS_STRING_TO_JSON("twilio_token", "twilio_token", 64);
+    ADD_NVS_STRING_TO_JSON("twilio_from_n", "twilio_from_n", 32);
+    ADD_NVS_STRING_TO_JSON("twilio_url", "twilio_url", 256);
+    ADD_NVS_STRING_TO_JSON("enable_twilio", "enable_twilio", 8);
+    ADD_NVS_STRING_TO_JSON("enable_aws", "enable_aws", 8);
+
+    // Special handling for Firebase URL with auto-https
+    char firebase_url[128] = {0};
+    size_t len = sizeof(firebase_url);
+    esp_err_t ret = nvs_get_str(nvs_handle_storage, "firebase_url", firebase_url, &len);
+    if (ret != ESP_OK) {
+        ESP_LOGW(TAG, "Failed to read firebase_url from NVS: %s", esp_err_to_name(ret));
+        firebase_url[0] = '\0';
+    }
+    
+    // Auto-add https:// prefix if missing
     char fixed_url[150] = {0};
-    if (strstr(firebase_url, "://") == NULL && firebase_url[0] != '\0') {
+    if (firebase_url[0] != '\0' && strstr(firebase_url, "://") == NULL) {
         snprintf(fixed_url, sizeof(fixed_url), "https://%s", firebase_url);
     } else {
         strncpy(fixed_url, firebase_url, sizeof(fixed_url));
     }
+    cJSON_AddStringToObject(root, "firebase_url", fixed_url);
+
+    #undef ADD_NVS_STRING_TO_JSON
+
+    // Generate JSON string
+    char *json_str = cJSON_PrintUnformatted(root);
+    cJSON_Delete(root);  // Delete cJSON object immediately after printing
     
-    char json[384];
-    snprintf(json, sizeof(json), "{\"ssid\":\"%s\",\"firebase_url\":\"%s\",\"token\":\"%s\"}", 
-             ssid, fixed_url, token);
-    
+    if (!json_str) {
+        ESP_LOGE(TAG, "Failed to print JSON");
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
+
+    // Send response
     httpd_resp_set_type(req, "application/json");
-    httpd_resp_sendstr(req, json);
-    return ESP_OK;
+    esp_err_t err = httpd_resp_sendstr(req, json_str);
+    
+    // Free allocated JSON string
+    free(json_str);
+    
+    return err;
 }
 
+static esp_err_t handle_post_config(httpd_req_t *req) {
+    // 1) Đọc POST body
+    char *buf = malloc(POST_BUF_LEN);
+    if (!buf) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Out of memory");
+        return ESP_FAIL;
+    }
+    int ret = httpd_req_recv(req, buf, POST_BUF_LEN - 1);
+    if (ret <= 0) {
+        free(buf);
+        return ESP_FAIL;
+    }
+    buf[ret] = '\0';
 
+    // 2) Định nghĩa độ dài tối đa cho mỗi tham số
+    enum {
+        SSID_LEN               =  32 + 1,
+        PASSWORD_LEN           =  64 + 1,
+        FIREBASE_URL_LEN       = 256 + 1,
+        TOKEN_LEN              = 128 + 1,
+        AWS_URL_LEN            = 256 + 1,
+        PHONE_NUMBERS_LEN      = 256 + 1,
+        SMS_MESSAGES_LEN       = 512 + 1,
+        TWILIO_SID_LEN         =  64 + 1,
+        TWILIO_TOKEN_LEN       =  64 + 1,
+        TWILIO_FROM_NUMBER_LEN =  32 + 1,
+        TWILIO_URL_LEN         = 256 + 1,
+        ENABLE_FLAG_LEN        =   8 + 1,
+    };
+
+    // 3) Trích xuất thô từ query key/value, luôn NUL‑terminate
+    char raw_ssid[SSID_LEN]                         = {0};
+    char raw_password[PASSWORD_LEN]                 = {0};
+    char raw_firebase[FIREBASE_URL_LEN]             = {0};
+    char raw_token[TOKEN_LEN]                       = {0};
+    char raw_aws[AWS_URL_LEN]                       = {0};
+    char raw_phones[PHONE_NUMBERS_LEN]              = {0};
+    char raw_sms[SMS_MESSAGES_LEN]                  = {0};
+    char raw_twilio_sid[TWILIO_SID_LEN]             = {0};
+    char raw_twilio_token[TWILIO_TOKEN_LEN]         = {0};
+    char raw_twilio_from_n[TWILIO_FROM_NUMBER_LEN]  = {0};
+    char raw_twilio_url[TWILIO_URL_LEN]             = {0};
+    char raw_enable_twilio[ENABLE_FLAG_LEN]         = {0};
+    char raw_enable_aws[ENABLE_FLAG_LEN]            = {0};
+
+    httpd_query_key_value(buf, "ssid",              raw_ssid,               SSID_LEN);
+    httpd_query_key_value(buf, "password",          raw_password,           PASSWORD_LEN);
+    httpd_query_key_value(buf, "firebase_url",      raw_firebase,           FIREBASE_URL_LEN);
+    httpd_query_key_value(buf, "token",             raw_token,              TOKEN_LEN);
+    httpd_query_key_value(buf, "aws_url",           raw_aws,                AWS_URL_LEN);
+    httpd_query_key_value(buf, "phone_numbers",     raw_phones,             PHONE_NUMBERS_LEN);
+    httpd_query_key_value(buf, "sms_messages",      raw_sms,                SMS_MESSAGES_LEN);
+    httpd_query_key_value(buf, "twilio_acc_sid",    raw_twilio_sid,         TWILIO_SID_LEN);
+    httpd_query_key_value(buf, "twilio_token",      raw_twilio_token,       TWILIO_TOKEN_LEN);
+    httpd_query_key_value(buf, "twilio_from_n",     raw_twilio_from_n,      TWILIO_FROM_NUMBER_LEN);
+    httpd_query_key_value(buf, "twilio_url",        raw_twilio_url,         TWILIO_URL_LEN);
+    httpd_query_key_value(buf, "enable_twilio",     raw_enable_twilio,      ENABLE_FLAG_LEN);
+    httpd_query_key_value(buf, "enable_aws",        raw_enable_aws,         ENABLE_FLAG_LEN);
+
+    // 4) URL‑decode vào buffer riêng, cũng trên stack
+    char ssid[SSID_LEN]                             = {0};
+    char password[PASSWORD_LEN]                     = {0};
+    char firebase_url[FIREBASE_URL_LEN]             = {0};
+    char token[TOKEN_LEN]                           = {0};
+    char aws_url[AWS_URL_LEN]                       = {0};
+    char phone_numbers[PHONE_NUMBERS_LEN]           = {0};
+    char sms_messages[SMS_MESSAGES_LEN]             = {0};
+    char twilio_sid[TWILIO_SID_LEN]                 = {0};
+    char twilio_token[TWILIO_TOKEN_LEN]             = {0};
+    char twilio_from_n[TWILIO_FROM_NUMBER_LEN]      = {0};
+    char twilio_url[TWILIO_URL_LEN]                 = {0};
+    char enable_twilio[ENABLE_FLAG_LEN]             = {0};
+    char enable_aws[ENABLE_FLAG_LEN]                = {0};
+
+    urldecode(raw_ssid,           ssid,            sizeof(ssid));
+    urldecode(raw_password,       password,        sizeof(password));
+    urldecode(raw_firebase,       firebase_url,    sizeof(firebase_url));
+    urldecode(raw_token,          token,           sizeof(token));
+    urldecode(raw_aws,            aws_url,         sizeof(aws_url));
+    urldecode(raw_phones,         phone_numbers,   sizeof(phone_numbers));
+    urldecode(raw_sms,            sms_messages,    sizeof(sms_messages));
+    urldecode(raw_twilio_sid,     twilio_sid,      sizeof(twilio_sid));
+    urldecode(raw_twilio_token,   twilio_token,    sizeof(twilio_token));
+    urldecode(raw_twilio_from_n,  twilio_from_n,   sizeof(twilio_from_n));
+    urldecode(raw_twilio_url,     twilio_url,      sizeof(twilio_url));
+    urldecode(raw_enable_twilio,  enable_twilio,   sizeof(enable_twilio));
+    urldecode(raw_enable_aws,     enable_aws,      sizeof(enable_aws));
+
+    // 5) Kiểm tra bắt buộc (ví dụ SSID, password, firebase_url, token phải không rỗng)
+    if (!ssid[0] || !password[0] || !firebase_url[0] || !token[0]) {
+        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Missing required fields");
+        free(buf);
+        return ESP_FAIL;
+    }
+    // Kiểm tra format URL
+    if (!strstr(firebase_url, "://")) {
+        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Invalid Firebase URL");
+        free(buf);
+        return ESP_FAIL;
+    }
+
+    // 6) Ghi vào NVS
+    nvs_handle_t nvs;
+    esp_err_t err = nvs_open("storage", NVS_READWRITE, &nvs);
+    if (err != ESP_OK) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "NVS open failed");
+        free(buf);
+        return ESP_FAIL;
+    }
+
+    #define SET_AND_CHECK(key, val)                                    \
+        do {                                                           \
+            esp_err_t __e = nvs_set_str(nvs, key, val);                \
+            if (__e != ESP_OK) {                                       \
+                ESP_LOGE(TAG, "nvs_set_str(%s) failed: %s", key, esp_err_to_name(__e)); \
+            }                                                          \
+        } while (0)
+
+    SET_AND_CHECK("wifi_ssid",        ssid);
+    SET_AND_CHECK("wifi_password",    password);
+    SET_AND_CHECK("firebase_url",     firebase_url);
+    SET_AND_CHECK("token",            token);
+    SET_AND_CHECK("aws_url",          aws_url);
+    SET_AND_CHECK("phone_numbers",    phone_numbers);
+    SET_AND_CHECK("sms_messages",     sms_messages);
+    SET_AND_CHECK("twilio_acc_sid",   twilio_sid);
+    SET_AND_CHECK("twilio_token",     twilio_token);
+    SET_AND_CHECK("twilio_from_n",    twilio_from_n);
+    SET_AND_CHECK("twilio_url",       twilio_url);
+    SET_AND_CHECK("enable_twilio",    enable_twilio);
+    SET_AND_CHECK("enable_aws",       enable_aws);
+
+    err = nvs_commit(nvs);
+    nvs_close(nvs);
+    #undef SET_AND_CHECK
+
+    if (err != ESP_OK) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "NVS commit failed");
+        free(buf);
+        return ESP_FAIL;
+    }
+
+    // 7) Phản hồi và reboot
+    httpd_resp_sendstr(req, "All configurations saved");
+    free(buf);
+    vTaskDelay(pdMS_TO_TICKS(1000));
+    esp_restart();
+    return ESP_OK;
+}
 
 static void urldecode(char *src, char *dest, size_t max_len) {
     size_t src_len = strlen(src);

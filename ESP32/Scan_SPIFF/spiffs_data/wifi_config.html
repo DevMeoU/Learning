@@ -1,379 +1,1123 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <title>ESP32 Configuration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cấu Hình ESP32 - Twilio & AWS</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #3498db;
+            --twilio: #F22F46;
+            --aws: #FF9900;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0;
         }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h1 {
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             color: #333;
+            background: linear-gradient(135deg, #f5f7fa, #e4e7ec);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #1a2530);
+            color: white;
+            padding: 35px 30px;
             text-align: center;
+            position: relative;
         }
-        .form-group {
+        
+        header h1 {
+            font-size: 36px;
             margin-bottom: 15px;
+            font-weight: 700;
         }
+        
+        header p {
+            opacity: 0.85;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .twilio-badge {
+            background: var(--twilio);
+        }
+        
+        .aws-badge {
+            background: var(--aws);
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .config-section {
+            padding: 35px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-title {
+            font-size: 26px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid;
+        }
+        
+        .wifi-title {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .twilio-title {
+            color: var(--twilio);
+            border-bottom-color: var(--twilio);
+        }
+        
+        .aws-title {
+            color: var(--aws);
+            border-bottom-color: var(--aws);
+        }
+        
+        .firebase-title {
+            color: #FFCA28;
+            border-bottom-color: #FFCA28;
+        }
+        
+        .sms-title {
+            color: var(--success);
+            border-bottom-color: var(--success);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 17px;
         }
-        input[type="text"], input[type="password"], select {
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="url"],
+        select,
+        textarea {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 17px;
+            transition: all 0.3s;
+            background: #fafbfc;
         }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+            background: white;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 16px;
+            transition: all 0.3s;
+            text-align: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-twilio {
+            background: var(--twilio);
+            color: white;
+        }
+        
+        .btn-twilio:hover {
+            background: #d41c32;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(242, 47, 70, 0.3);
+        }
+        
+        .btn-aws {
+            background: var(--aws);
+            color: white;
+        }
+        
+        .btn-aws:hover {
+            background: #e88c00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 153, 0, 0.3);
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .wifi-scan-btn {
+            margin-top: 10px;
             width: 100%;
         }
-        button:hover {
-            background-color: #45a049;
+        
+        .sms-phone-list {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px dashed #e2e8f0;
         }
-        .status {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
+        
+        .sms-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .phone-item {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--success);
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .phone-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .phone-details {
+            flex: 1;
+        }
+        
+        .phone-number {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .sms-content {
+            color: #4a5568;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border-left: 4px solid var(--primary);
+            font-size: 16px;
+        }
+        
+        .phone-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .empty-list {
             text-align: center;
+            padding: 40px;
+            color: #718096;
+            font-style: italic;
+            font-size: 18px;
+            border: 2px dashed #cbd5e0;
+            border-radius: 10px;
+            margin: 20px 0;
         }
-        .success {
+        
+        .status {
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        
+        .status-success {
             background-color: #d4edda;
             color: #155724;
+            border: 2px solid #c3e6cb;
         }
-        .error {
+        
+        .status-error {
             background-color: #f8d7da;
             color: #721c24;
+            border: 2px solid #f5c6cb;
         }
-        .wifi-scan-btn {
-            margin-bottom: 10px;
-            background-color: #2196F3;
+        
+        .character-count {
+            font-size: 16px;
+            color: #718096;
+            text-align: right;
+            margin-top: 10px;
         }
-        .wifi-scan-btn:hover {
-            background-color: #1976D2;
+        
+        .character-count.warning {
+            color: #e67e22;
+        }
+        
+        .character-count.danger {
+            color: var(--danger);
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            font-size: 16px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .info-box {
+            background: #edf2f7;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 35px;
+            border-left: 5px solid;
+        }
+        
+        .twilio-box {
+            border-left-color: var(--twilio);
+        }
+        
+        .aws-box {
+            border-left-color: var(--aws);
+        }
+        
+        .sms-box {
+            border-left-color: var(--success);
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+        }
+        
+        .info-list {
+            padding-left: 25px;
+        }
+        
+        .info-list li {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .submit-section {
+            padding: 35px;
+            text-align: center;
+            background: #f8fafc;
+        }
+        
+        .submit-btn {
+            padding: 20px 50px;
+            font-size: 20px;
+            background: linear-gradient(135deg, var(--primary), #2c3e50);
+            color: white;
+            border-radius: 60px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.45);
+        }
+        
+        .service-icon {
+            font-size: 28px;
+        }
+        
+        .toggle-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .toggle-card {
+            flex: 1;
+            border-radius: 12px;
+            padding: 25px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .toggle-card.active {
+            border-color: var(--success);
+            background: #e8f5e9;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.2);
+        }
+        
+        .toggle-card h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 22px;
+        }
+        
+        .toggle-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .toggle-description {
+            color: #718096;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .checkbox-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .checkbox-label input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .checkbox-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .checkbox-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .checkbox-slider {
+            background-color: var(--success);
+        }
+        
+        input:checked + .checkbox-slider:before {
+            transform: translateX(26px);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ESP32 WiFi Configuration</h1>
+        <header>
+            <h1>Cấu Hình Hệ Thống ESP32</h1>
+            <p>Tích hợp Twilio SMS và AWS cho hệ thống IoT thông minh</p>
+            
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-badge twilio-badge">T</div>
+                    <div class="logo-text">Twilio SMS</div>
+                </div>
+                <div class="logo">
+                    <div class="logo-badge aws-badge">A</div>
+                    <div class="logo-text">AWS</div>
+                </div>
+            </div>
+        </header>
+        
         <form id="configForm" method="post" action="/config">
-            <div class="form-group">
-                <label for="ssid">WiFi SSID:</label>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <select id="ssid_select" style="flex:2"></select>
-                    <button type="button" class="wifi-scan-btn" id="scanBtn" style="flex:1">Scan</button>
+            <!-- WiFi Configuration Section -->
+            <div class="config-section">
+                <h2 class="section-title wifi-title">
+                    <span class="service-icon">📶</span>
+                    Cấu Hình WiFi
+                </h2>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="ssid">Tên mạng WiFi (SSID):</label>
+                            <select id="ssid_select"></select>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="button" class="btn btn-primary wifi-scan-btn" id="scanBtn">
+                                <span>🔍</span> Quét Mạng WiFi
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <input type="text" id="ssid" name="ssid" required placeholder="Or enter SSID manually" style="margin-top: 8px;">
-            </div>
-            <div class="form-group">
-                <label for="password">WiFi Password:</label>
-                <input type="password" id="password" name="password">
-            </div>
-            <div class="form-group">
-                <label for="firebase_url">Firebase URL:</label>
-                <input type="text" id="firebase_url" name="firebase_url" required>
-            </div>
-            <div class="form-group">
-                <label for="token">Firebase Token:</label>
-                <input type="text" id="token" name="token" required>
-            </div>
-            <div class="form-group">
-                <label for="token">AWS URL:</label>
-                <input type="text" id="aws_url" name="aws_url" required>
-            </div>
-            <div class="form-group">
-                <label>Danh sách số điện thoại nhận SMS (tối đa 10):</label>
-                <button type="button" id="showAddPhoneFormBtn" style="background:#2196F3;margin-bottom:8px;">Add +</button>
-                <div id="addPhoneForm" style="display:none; margin-bottom:8px;">
-                    <select id="country_code_select" style="margin-bottom:4px;">
-                        <option value="+84">🇻🇳 Việt Nam (+84)</option>
-                        <option value="+1">🇺🇸 USA (+1)</option>
-                        <option value="+61">🇦🇺 Australia (+61)</option>
-                        <option value="+81">🇯🇵 Japan (+81)</option>
-                        <option value="+82">🇰🇷 Korea (+82)</option>
-                        <option value="+65">🇸🇬 Singapore (+65)</option>
-                        <option value="+886">🇹🇼 Taiwan (+886)</option>
-                        <option value="+66">🇹🇭 Thailand (+66)</option>
-                        <option value="+49">🇩🇪 Germany (+49)</option>
-                        <option value="+33">🇫🇷 France (+33)</option>
-                        <option value="+7">🇷🇺 Russia (+7)</option>
-                        <option value="+86">🇨🇳 China (+86)</option>
-                        <option value="+44">🇬🇧 UK (+44)</option>
-                        <option value="+39">🇮🇹 Italy (+39)</option>
-                        <option value="+34">🇪🇸 Spain (+34)</option>
-                        <option value="+62">🇮🇩 Indonesia (+62)</option>
-                        <option value="+91">🇮🇳 India (+91)</option>
-                        <option value="+855">🇰🇭 Cambodia (+855)</option>
-                        <option value="+856">🇱🇦 Laos (+856)</option>
-                        <option value="+95">🇲🇲 Myanmar (+95)</option>
-                    </select>
-                    <input type="text" id="phone_number_input" placeholder="Nhập số điện thoại" style="margin-bottom:4px;">
-                    <input type="text" id="sms_message_input" placeholder="Nhập nội dung tin nhắn" style="margin-bottom:4px;" maxlength="160">
-                    <div id="sms_message_warn" style="color:#f44336;font-size:90%;display:none;margin-bottom:4px;">Nội dung tin nhắn không được vượt quá 160 ký tự!</div>
-                    <button type="button" id="addPhoneBtn" style="background:#4CAF50;">Xác nhận thêm</button>
+                
+                <div class="form-group">
+                    <input type="text" id="ssid" name="ssid" required placeholder="Hoặc nhập SSID thủ công">
                 </div>
-                <ul id="phone_list" style="list-style:none; padding-left:0;"></ul>
-                <input type="hidden" id="phone_numbers" name="phone_numbers">
-                <input type="hidden" id="sms_messages" name="sms_messages">
+                
+                <div class="form-group">
+                    <label for="password">Mật khẩu WiFi:</label>
+                    <input type="password" id="password" name="password">
+                </div>
             </div>
-            <button type="submit">Save Configuration</button>
+            
+            <!-- Firebase Configuration Section -->
+            <div class="config-section">
+                <h2 class="section-title firebase-title">
+                    <span class="service-icon">🔥</span>
+                    Cấu Hình Firebase
+                </h2>
+                
+                <div class="form-group">
+                    <label for="firebase_url">Firebase Database URL:</label>
+                    <input type="url" id="firebase_url" name="firebase_url" required 
+                           placeholder="https://your-project.firebaseio.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="token">Firebase Secret Token:</label>
+                    <input type="text" id="token" name="token" required>
+                </div>
+            </div>
+            
+            <!-- SMS Configuration Section -->
+            <div class="config-section">
+                <h2 class="section-title sms-title">
+                    <span class="service-icon">✉️</span>
+                    Cấu Hình SMS Chung
+                </h2>
+                
+                <div class="info-box sms-box">
+                    <h3><span>ℹ️</span> Thông tin Danh Sách SMS</h3>
+                    <ul class="info-list">
+                        <li>Danh sách số điện thoại và nội dung tin nhắn này sẽ được sử dụng chung cho cả Twilio và AWS</li>
+                        <li>Bạn có thể kích hoạt dịch vụ SMS ở phần cấu hình bên dưới</li>
+                        <li>Tối đa 5 số điện thoại - Mỗi tin nhắn giới hạn 160 ký tự</li>
+                    </ul>
+                </div>
+                
+                <div class="sms-phone-list">
+                    <div class="sms-header">
+                        <h3>Danh Sách Số Nhận Tin Nhắn</h3>
+                        <button type="button" class="btn btn-success" id="showAddPhoneFormBtn">
+                            <span>➕</span> Thêm Số Mới
+                        </button>
+                    </div>
+                    
+                    <div id="phone_list" class="phone-list">
+                        <div class="empty-list">Chưa có số điện thoại nào được thêm</div>
+                    </div>
+                    
+                    <!-- Phone Form (Hidden by default) -->
+                    <div id="addPhoneForm" style="display: none; margin-top: 30px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <h3 style="margin-bottom: 25px; color: var(--success);">Thêm Số Nhận SMS</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="country_code_select">Mã quốc gia:</label>
+                                    <select id="country_code_select">
+                                        <option value="+84">🇻🇳 Việt Nam (+84)</option>
+                                        <option value="+1">🇺🇸 USA (+1)</option>
+                                        <option value="+61">🇦🇺 Australia (+61)</option>
+                                        <option value="+81">🇯🇵 Japan (+81)</option>
+                                        <option value="+82">🇰🇷 Korea (+82)</option>
+                                        <option value="+65">🇸🇬 Singapore (+65)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label for="phone_number_input">Số điện thoại:</label>
+                                    <input type="text" id="phone_number_input" placeholder="Nhập số điện thoại">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sms_message_input">Nội dung tin nhắn:</label>
+                            <textarea id="sms_message_input" placeholder="Nhập nội dung tin nhắn" rows="4" maxlength="160"></textarea>
+                            <div class="character-count" id="sms_counter">0/160 ký tự</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <button type="button" class="btn btn-success" id="addPhoneBtn">
+                                    <span>✓</span> Xác nhận
+                                </button>
+                            </div>
+                            <div class="form-col">
+                                <button type="button" class="btn btn-danger" id="cancelAddPhoneBtn">
+                                    <span>✕</span> Hủy bỏ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="phone_numbers" name="phone_numbers">
+                    <input type="hidden" id="sms_messages" name="sms_messages">
+                </div>
+            </div>
+            
+            <!-- Service Activation Section -->
+            <div class="config-section">
+                <h2 class="section-title" style="color: #9b59b6; border-bottom-color: #9b59b6;">
+                    <span class="service-icon">⚙️</span>
+                    Kích Hoạt Dịch Vụ
+                </h2>
+                
+                <div class="toggle-container">
+                    <div class="toggle-card" id="twilio-toggle">
+                        <div class="toggle-icon" style="color: var(--twilio);">💬</div>
+                        <h3>Twilio SMS</h3>
+                        <p>Gửi SMS qua dịch vụ Twilio</p>
+                        <div class="toggle-description">Sử dụng tài khoản Twilio để gửi tin nhắn SMS</div>
+                        
+                        <div class="checkbox-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="enable_twilio" name="enable_twilio">
+                                <span class="checkbox-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="toggle-card" id="aws-toggle">
+                        <div class="toggle-icon" style="color: var(--aws);">☁️</div>
+                        <h3>AWS</h3>
+                        <p>Gửi dữ liệu lên AWS</p>
+                        <div class="toggle-description">Kết nối với dịch vụ AWS của bạn</div>
+                        
+                        <div class="checkbox-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="enable_aws" name="enable_aws">
+                                <span class="checkbox-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Twilio Configuration Section -->
+            <div class="config-section" id="twilio-section">
+                <h2 class="section-title twilio-title">
+                    <span class="service-icon">🔑</span>
+                    Thông Tin Twilio
+                </h2>
+                
+                <div class="info-box twilio-box">
+                    <h3><span>ℹ️</span> Thông tin cần thiết cho Twilio</h3>
+                    <ul class="info-list">
+                        <li><strong>Account SID</strong>: Tìm thấy trong bảng điều khiển Twilio của bạn</li>
+                        <li><strong>Auth Token</strong>: Mã bảo mật để xác thực tài khoản</li>
+                        <li><strong>From Number</strong>: Số điện thoại Twilio của bạn</li>
+                        <li><strong>Twilio URL</strong>: URL API của Twilio (mặc định: https://api.twilio.com)</li>
+                    </ul>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="twilio_acc_sid">Account SID:</label>
+                            <input type="text" id="twilio_acc_sid" name="twilio_acc_sid" 
+                                   placeholder="ACxxxxxxxxxxxxxxxx">
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="twilio_token">Auth Token:</label>
+                            <input type="password" id="twilio_token" name="twilio_token" 
+                                   placeholder="Mã bảo mật của bạn">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="twilio_from_n">Số điện thoại gửi (From):</label>
+                            <input type="text" id="twilio_from_n" name="twilio_from_n" 
+                                   placeholder="+13369758195">
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <!-- TRƯỜNG MỚI: Twilio URL -->
+                        <div class="form-group">
+                            <label for="twilio_url">Twilio URL:</label>
+                            <input type="url" id="twilio_url" name="twilio_url" 
+                                   placeholder="https://api.twilio.com">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AWS Configuration Section -->
+            <div class="config-section" id="aws-section">
+                <h2 class="section-title aws-title">
+                    <span class="service-icon">🔗</span>
+                    Thông Tin AWS
+                </h2>
+                
+                <div class="info-box aws-box">
+                    <h3><span>ℹ️</span> Thông tin cần thiết cho AWS</h3>
+                    <ul class="info-list">
+                        <li><strong>AWS Endpoint</strong>: URL API Gateway hoặc dịch vụ AWS của bạn</li>
+                        <li>URL này được sử dụng để gửi dữ liệu từ ESP32 lên AWS</li>
+                        <li>Ví dụ: https://api-id.execute-api.region.amazonaws.com/stage/resource</li>
+                    </ul>
+                </div>
+                
+                <div class="form-group">
+                    <label for="aws_url">AWS Endpoint URL:</label>
+                    <input type="url" id="aws_url" name="aws_url" 
+                           placeholder="https://your-aws-api.execute-api.region.amazonaws.com/prod">
+                </div>
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">Lưu Cấu Hình & Khởi Động Lại Hệ Thống</button>
+                <div id="status" class="status" style="display: none; margin-top: 30px;"></div>
+            </div>
         </form>
-        <div id="status" class="status" style="display: none;"></div>
+        
+        <footer>
+            <p>Hệ thống quản lý cấu hình IoT | © 2023 - Twilio & AWS Integration</p>
+        </footer>
     </div>
 
     <script>
-        // Scan WiFi and fill select
+        // Khai báo biến toàn cục
+        const phoneList = [];
+        const smsList = [];
+        
+        // Quét mạng WiFi
         function scanWifi() {
             const scanBtn = document.getElementById('scanBtn');
             const select = document.getElementById('ssid_select');
             const statusDiv = document.getElementById('status');
             
-            // Reset status display
+            // Cập nhật giao diện
+            scanBtn.disabled = true;
+            scanBtn.innerHTML = '<span>⏳</span> Đang quét...';
+            select.innerHTML = '<option>Đang quét mạng WiFi...</option>';
             statusDiv.style.display = 'none';
             
-            // Update UI to show scanning in progress
-            scanBtn.disabled = true;
-            scanBtn.textContent = 'Scanning...';
-            select.innerHTML = '<option>Scanning networks...</option>';
-            
+            // Gọi API quét WiFi
             fetch('/scan')
                 .then(res => {
-                    if (!res.ok) {
-                        throw new Error(`Scan failed: ${res.status} ${res.statusText}`);
-                    }
+                    if (!res.ok) throw new Error(`Lỗi quét: ${res.status} ${res.statusText}`);
                     return res.json();
                 })
                 .then(data => {
                     select.innerHTML = '';
                     
-                    // Check if we have networks in the response
                     if (!data.networks || data.networks.length === 0) {
-                        const opt = document.createElement('option');
-                        opt.value = '';
-                        opt.textContent = 'No WiFi networks found';
-                        select.appendChild(opt);
+                        select.innerHTML = '<option>Không tìm thấy mạng WiFi</option>';
                         return;
                     }
                     
-                    // Sort networks by signal strength (RSSI)
+                    // Sắp xếp mạng theo cường độ tín hiệu
                     const networks = data.networks.sort((a, b) => b.rssi - a.rssi);
                     
-                    // Add each network to the dropdown
+                    // Thêm các mạng vào dropdown
                     networks.forEach(ap => {
                         const opt = document.createElement('option');
                         opt.value = ap.ssid;
-                        
-                        // Show SSID, signal strength and security
-                        let securityType = ap.auth || 'unknown';
-                        securityType = securityType.charAt(0).toUpperCase() + securityType.slice(1);
-                        
-                        opt.textContent = `${ap.ssid} (${ap.rssi} dBm, ${securityType})`;
+                        let security = ap.auth ? ap.auth.charAt(0).toUpperCase() + ap.auth.slice(1) : 'Không bảo mật';
+                        opt.textContent = `${ap.ssid} (${ap.rssi}dBm, ${security})`;
                         select.appendChild(opt);
                     });
                     
-                    // Auto-select the strongest network
+                    // Tự động chọn mạng mạnh nhất
                     if (select.options.length > 0) {
                         select.selectedIndex = 0;
                         document.getElementById('ssid').value = select.value;
                     }
                     
-                    // Show success message
-                    statusDiv.className = 'status success';
-                    statusDiv.textContent = `Found ${networks.length} WiFi networks`;
-                    statusDiv.style.display = 'block';
-                    
-                    // Auto-hide status after 3 seconds
-                    setTimeout(() => {
-                        statusDiv.style.display = 'none';
-                    }, 3000);
+                    // Hiển thị thông báo thành công
+                    showStatus(`Tìm thấy ${networks.length} mạng WiFi`, 'success');
                 })
                 .catch(error => {
-                    // Handle errors
-                    select.innerHTML = '<option>WiFi scan failed</option>';
-                    
-                    // Show error message
-                    statusDiv.className = 'status error';
-                    statusDiv.textContent = error.message || 'WiFi scan failed';
-                    statusDiv.style.display = 'block';
+                    select.innerHTML = '<option>Quét mạng thất bại</option>';
+                    showStatus(error.message || 'Quét mạng WiFi thất bại', 'error');
                 })
                 .finally(() => {
-                    // Re-enable scan button
                     scanBtn.disabled = false;
-                    scanBtn.textContent = 'Scan';
+                    scanBtn.innerHTML = '<span>🔍</span> Quét Mạng WiFi';
                 });
         }
-        document.getElementById('scanBtn').onclick = scanWifi;
-        // Khi chọn SSID từ select thì điền vào input
-        document.getElementById('ssid_select').onchange = function() {
-            document.getElementById('ssid').value = this.value;
-        };
-        // Tự động scan khi load trang
-        window.onload = function() {
-            scanWifi();
-            prefillConfig();
-        };
-        // Prefill config from /config
+        
+        // Hiển thị thông báo trạng thái
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status status-${type}`;
+            statusDiv.style.display = 'block';
+            
+            // Tự động ẩn thông báo sau 5 giây
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Điền thông tin cấu hình từ server
         function prefillConfig() {
             fetch('/config')
                 .then(res => res.json())
                 .then(cfg => {
                     if (cfg.ssid) document.getElementById('ssid').value = cfg.ssid;
-                    if (cfg.firebase_url) document.getElementById('firebase_url').value = cfg.firebase_url, validateForm();
+                    if (cfg.firebase_url) document.getElementById('firebase_url').value = cfg.firebase_url;
                     if (cfg.token) document.getElementById('token').value = cfg.token;
+                    if (cfg.twilio_acc_sid) document.getElementById('twilio_acc_sid').value = cfg.twilio_acc_sid;
+                    if (cfg.twilio_token) document.getElementById('twilio_token').value = cfg.twilio_token;
+                    if (cfg.twilio_from_n) document.getElementById('twilio_from_n').value = cfg.twilio_from_n;
+                    if (cfg.twilio_url) document.getElementById('twilio_url').value = cfg.twilio_url; // Điền Twilio URL
                     if (cfg.aws_url) document.getElementById('aws_url').value = cfg.aws_url;
-                    if (cfg.phone_numbers) setPhoneList(cfg.phone_numbers.split(","), (cfg.sms_messages ? cfg.sms_messages.split("||| ") : []));
+                    if (cfg.phone_numbers) setPhoneList(cfg.phone_numbers.split(","), (cfg.sms_messages ? cfg.sms_messages.split("|||") : []));
+                    
+                    // Cập nhật trạng thái kích hoạt
+                    if (cfg.enable_twilio === "on") {
+                        document.getElementById('enable_twilio').checked = true;
+                        document.getElementById('twilio-toggle').classList.add('active');
+                    }
+                    
+                    if (cfg.enable_aws === "on") {
+                        document.getElementById('enable_aws').checked = true;
+                        document.getElementById('aws-toggle').classList.add('active');
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi tải cấu hình:', error);
                 });
         }
-        // Khi submit form
-        document.getElementById('configForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const statusDiv = document.getElementById('status');
-            const ssidValue = document.getElementById('ssid').value.trim();
-            if (!ssidValue) {
-                statusDiv.className = 'status error';
-                statusDiv.textContent = 'Vui lòng chọn hoặc nhập SSID WiFi!';
-                statusDiv.style.display = 'block';
+        
+        // Cập nhật giao diện danh sách số điện thoại
+        function updatePhoneListUI() {
+            const container = document.getElementById('phone_list');
+            
+            if (phoneList.length === 0) {
+                container.innerHTML = '<div class="empty-list">Chưa có số điện thoại nào được thêm</div>';
+                document.getElementById('phone_numbers').value = '';
+                document.getElementById('sms_messages').value = '';
                 return;
             }
-            statusDiv.className = 'status success';
-            statusDiv.textContent = 'Đang lưu cấu hình...';
-            statusDiv.style.display = 'block';
-            // Serialize form data to x-www-form-urlencoded
-            const form = this;
-            const params = new URLSearchParams();
-            params.append('ssid', form.ssid.value);
-            params.append('password', form.password.value);
-            params.append('firebase_url', form.firebase_url.value);
-            params.append('token', form.token.value);
-            params.append('aws_url', form.aws_url.value);
-            params.append('phone_numbers', form.phone_numbers.value);
-            params.append('sms_messages', form.sms_messages.value);
-            fetch('/config', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: params.toString()
-            })
-            .then(res => {
-                if (!res.ok) throw new Error('Lưu cấu hình thất bại');
-                return res.text();
-            })
-            .then(() => {
-                statusDiv.className = 'status success';
-                statusDiv.textContent = 'Cấu hình thành công! Nếu thiết bị đổi WiFi, hãy kết nối lại. Trang sẽ tự động tải lại sau 5 giây...';
-                statusDiv.style.display = 'block';
-                setTimeout(() => { window.location.reload(); }, 5000);
-            })
-            .catch(err => {
-                statusDiv.className = 'status error';
-                statusDiv.textContent = 'Lỗi khi lưu cấu hình hoặc mất kết nối thiết bị. Nếu bạn vừa đổi WiFi, hãy kết nối lại với thiết bị hoặc truy cập lại trang cấu hình.';
-                statusDiv.style.display = 'block';
+            
+            container.innerHTML = '';
+            
+            phoneList.forEach((phone, index) => {
+                const phoneItem = document.createElement('div');
+                phoneItem.className = 'phone-item';
+                phoneItem.innerHTML = `
+                    <div class="phone-details">
+                        <div class="phone-number">${phone}</div>
+                        <div class="sms-content">${smsList[index] || 'Không có nội dung'}</div>
+                    </div>
+                    <div class="phone-actions">
+                        <button class="btn btn-danger remove-btn" data-index="${index}">
+                            <span>✕</span> Xóa
+                        </button>
+                    </div>
+                `;
+                container.appendChild(phoneItem);
             });
-        });
-        // Phone number add/remove logic
-        const phoneList = [];
-        const smsList = [];
-        function updatePhoneListUI() {
-            const ul = document.getElementById('phone_list');
-            ul.innerHTML = '';
-            phoneList.forEach((num, idx) => {
-                const li = document.createElement('li');
-                li.style.display = 'flex';
-                li.style.alignItems = 'center';
-                li.style.marginBottom = '4px';
-                li.innerHTML = `<div style='flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>${num} <span style='color:#555;font-size:90%;margin-left:8px;'>${smsList[idx]}</span></div> <button type='button' data-idx='${idx}' style='background:#f44336;color:white;border:none;border-radius:50%;padding:0 7px;margin-left:8px;cursor:pointer;height:22px;width:22px;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;'>✕</button>`;
-                ul.appendChild(li);
-            });
+            
+            // Cập nhật hidden fields
             document.getElementById('phone_numbers').value = phoneList.join(",");
-            document.getElementById('sms_messages').value = smsList.join("||| ");
+            document.getElementById('sms_messages').value = smsList.join("|||");
         }
-        function setPhoneList(arr, smsArr) {
+        
+        // Thiết lập danh sách số điện thoại
+        function setPhoneList(phones, sms) {
             phoneList.length = 0;
             smsList.length = 0;
-            arr.filter(x=>x).forEach((num, i) => {
-                phoneList.push(num);
-                if (smsArr && smsArr[i]) smsList.push(smsArr[i]);
-                else smsList.push('');
+            
+            phones.forEach((phone, index) => {
+                if (phone) {
+                    phoneList.push(phone);
+                    smsList.push(sms[index] || '');
+                }
             });
+            
             updatePhoneListUI();
         }
-
-        function validateForm() {
-            const url = document.getElementById("firebase_url").value;
-            if (!url.startsWith("https://")) {
-                alert("Firebase URL must start with https://");
-                return false;
-            }
-            return true;
-        }
-        document.getElementById('showAddPhoneFormBtn').onclick = function() {
-            document.getElementById('addPhoneForm').style.display = 'block';
-            this.style.display = 'none';
-        };
-        document.getElementById('addPhoneBtn').onclick = function() {
-            const input = document.getElementById('phone_number_input');
-            const smsInput = document.getElementById('sms_message_input');
-            const countrySelect = document.getElementById('country_code_select');
-            const val = input.value.trim();
-            const smsVal = smsInput.value.trim();
-            if (!val || !smsVal) return;
-            if (smsVal.length > 160) {
-                document.getElementById('sms_message_warn').style.display = 'block';
-                return;
-            }
-            if (phoneList.length >= 10) {
-                alert('Chỉ được thêm tối đa 10 số điện thoại!');
-                return;
-            }
-            const fullNumber = countrySelect.value + val;
-            if (phoneList.includes(fullNumber)) {
-                alert('Số này đã có trong danh sách!');
-                return;
-            }
-            phoneList.push(fullNumber);
-            smsList.push(smsVal);
-            updatePhoneListUI();
-            input.value = '';
-            smsInput.value = '';
-            countrySelect.selectedIndex = 0;
-            document.getElementById('addPhoneForm').style.display = 'none';
-            document.getElementById('showAddPhoneFormBtn').style.display = 'inline-block';
-        };
-        document.getElementById('phone_list').onclick = function(e) {
-            if (e.target.tagName === 'BUTTON') {
-                const idx = parseInt(e.target.getAttribute('data-idx'));
-                phoneList.splice(idx, 1);
-                smsList.splice(idx, 1);
+        
+        // Xử lý sự kiện khi trang tải xong
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gắn sự kiện
+            document.getElementById('scanBtn').addEventListener('click', scanWifi);
+            document.getElementById('ssid_select').addEventListener('change', function() {
+                document.getElementById('ssid').value = this.value;
+            });
+            
+            // Sự kiện thêm số điện thoại
+            document.getElementById('showAddPhoneFormBtn').addEventListener('click', function() {
+                document.getElementById('addPhoneForm').style.display = 'block';
+                this.style.display = 'none';
+            });
+            
+            document.getElementById('cancelAddPhoneBtn').addEventListener('click', function() {
+                document.getElementById('addPhoneForm').style.display = 'none';
+                document.getElementById('showAddPhoneFormBtn').style.display = 'block';
+                document.getElementById('phone_number_input').value = '';
+                document.getElementById('sms_message_input').value = '';
+                document.getElementById('sms_counter').textContent = '0/160 ký tự';
+                document.getElementById('sms_counter').className = 'character-count';
+            });
+            
+            document.getElementById('addPhoneBtn').addEventListener('click', function() {
+                const countryCode = document.getElementById('country_code_select').value;
+                const phoneNumber = document.getElementById('phone_number_input').value.trim();
+                const smsMessage = document.getElementById('sms_message_input').value.trim();
+                
+                if (!phoneNumber) {
+                    showStatus('Vui lòng nhập số điện thoại', 'error');
+                    return;
+                }
+                
+                if (phoneList.length >= 5) {
+                    showStatus('Chỉ được thêm tối đa 5 số điện thoại', 'error');
+                    return;
+                }
+                
+                const fullPhone = countryCode + phoneNumber;
+                
+                if (phoneList.includes(fullPhone)) {
+                    showStatus('Số điện thoại đã tồn tại trong danh sách', 'error');
+                    return;
+                }
+                
+                // Thêm số và tin nhắn vào danh sách
+                phoneList.push(fullPhone);
+                smsList.push(smsMessage);
                 updatePhoneListUI();
-            }
-        };
-        document.getElementById('sms_message_input').addEventListener('input', function() {
-            const warn = document.getElementById('sms_message_warn');
-            if (this.value.length > 160) {
-                warn.style.display = 'block';
-            } else {
-                warn.style.display = 'none';
-            }
+                
+                // Reset form và ẩn đi
+                document.getElementById('phone_number_input').value = '';
+                document.getElementById('sms_message_input').value = '';
+                document.getElementById('addPhoneForm').style.display = 'none';
+                document.getElementById('showAddPhoneFormBtn').style.display = 'block';
+                document.getElementById('sms_counter').textContent = '0/160 ký tự';
+                document.getElementById('sms_counter').className = 'character-count';
+                
+                showStatus(`Đã thêm số ${fullPhone} vào danh sách`, 'success');
+            });
+            
+            // Sự kiện đếm ký tự tin nhắn
+            document.getElementById('sms_message_input').addEventListener('input', function() {
+                const length = this.value.length;
+                const counter = document.getElementById('sms_counter');
+                counter.textContent = `${length}/160 ký tự`;
+                
+                if (length > 150 && length <= 160) {
+                    counter.className = 'character-count warning';
+                } else if (length > 160) {
+                    counter.className = 'character-count danger';
+                } else {
+                    counter.className = 'character-count';
+                }
+            });
+            
+            // Sự kiện xóa số điện thoại
+            document.getElementById('phone_list').addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
+                    const btn = e.target.closest('.remove-btn');
+                    const index = parseInt(btn.dataset.index);
+                    const phone = phoneList[index];
+                    phoneList.splice(index, 1);
+                    smsList.splice(index, 1);
+                    updatePhoneListUI();
+                    showStatus(`Đã xóa số ${phone} khỏi danh sách`, 'success');
+                }
+            });
+            
+            // Sự kiện kích hoạt dịch vụ
+            document.getElementById('twilio-toggle').addEventListener('click', function() {
+                const checkbox = document.getElementById('enable_twilio');
+                checkbox.checked = !checkbox.checked;
+                this.classList.toggle('active', checkbox.checked);
+            });
+            
+            document.getElementById('aws-toggle').addEventListener('click', function() {
+                const checkbox = document.getElementById('enable_aws');
+                checkbox.checked = !checkbox.checked;
+                this.classList.toggle('active', checkbox.checked);
+            });
+            
+            // Sự kiện gửi form
+            document.getElementById('configForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const statusDiv = document.getElementById('status');
+                
+                // Kiểm tra dữ liệu
+                if (phoneList.length === 0) {
+                    showStatus('Vui lòng thêm ít nhất một số điện thoại nhận SMS', 'error');
+                    return;
+                }
+                
+                // Kiểm tra Twilio URL nếu dịch vụ Twilio được kích hoạt
+                if (document.getElementById('enable_twilio').checked) {
+                    const twilioUrl = document.getElementById('twilio_url').value.trim();
+                    if (!twilioUrl) {
+                        showStatus('Vui lòng nhập Twilio URL khi kích hoạt dịch vụ Twilio', 'error');
+                        return;
+                    }
+                }
+                
+                statusDiv.className = 'status status-success';
+                statusDiv.textContent = 'Đang lưu cấu hình...';
+                statusDiv.style.display = 'block';
+                
+                // Tạo dữ liệu form
+                const formData = new FormData(this);
+                
+                // Gửi dữ liệu đến server
+                fetch('/config', {
+                    method: 'POST',
+                    body: new URLSearchParams(formData)
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Lưu cấu hình thất bại');
+                    return response.text();
+                })
+                .then(() => {
+                    statusDiv.className = 'status status-success';
+                    statusDiv.textContent = 'Cấu hình đã được lưu thành công! Hệ thống sẽ khởi động lại...';
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 3000);
+                })
+                .catch(error => {
+                    statusDiv.className = 'status status-error';
+                    statusDiv.textContent = 'Lỗi: ' + error.message;
+                });
+            });
+            
+            // Tự động quét WiFi và điền cấu hình
+            scanWifi();
+            prefillConfig();
         });
     </script>
 </body>

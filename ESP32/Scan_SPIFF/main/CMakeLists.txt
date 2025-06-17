@@ -6,7 +6,8 @@ idf_component_register(
         "wifi_manager.c"
         "spiffs_handler.c"
         "http_server.c"
-        "sntp_handler.c"    
+        "sntp_handler.c"
+        "sms_task.c"
     INCLUDE_DIRS 
         "include"
     EMBED_FILES 

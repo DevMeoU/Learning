@@ -30,6 +30,7 @@
 #include "include/http_server.h"
 #include "include/sntp_handler.h"
 #include "include/common_types.h"
+#include "sms_task.h"
 
 static const char *TAG = "main";
 
@@ -82,6 +83,27 @@ void init_task(void *pvParameters) {
     
     // Xóa task
     vTaskDelete(NULL);
+}
+
+static char* nvs_get_alloc_str(nvs_handle_t h, const char *key) {
+    size_t required_size = 0;
+    esp_err_t err = nvs_get_str(h, key, NULL, &required_size);
+    if (err != ESP_OK) {
+        ESP_LOGW(TAG, "No \"%s\" in NVS (%s)", key, esp_err_to_name(err));
+        return NULL;
+    }
+    char *buf = malloc(required_size);
+    if (!buf) {
+        ESP_LOGE(TAG, "Out of memory allocating for \"%s\"", key);
+        return NULL;
+    }
+    err = nvs_get_str(h, key, buf, &required_size);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Read \"%s\" failed: %s", key, esp_err_to_name(err));
+        free(buf);
+        return NULL;
+    }
+    return buf;
 }
 
 void app_main(void) {
@@ -138,75 +160,50 @@ void app_main(void) {
     // Không có nút nhấn, kiểm tra cấu hình và vào chế độ Station
     else {
         ESP_LOGI(TAG, "Checking saved configuration...");
-        size_t required_size;
-        char *saved_ssid = NULL;
-        char *saved_pass = NULL;
-        char *saved_firebase_url = NULL;
-        char *saved_token = NULL;
-        char *saved_aws_url = NULL;
-        char *saved_phone_numbers = NULL;
-        char *saved_sms_messages = NULL;
         bool config_valid = true;
 
         // Kiểm tra cấu hình đã lưu
-        if (nvs_get_str(nvs_handle_storage, "wifi_ssid", NULL, &required_size) == ESP_OK) {
-            saved_ssid = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "wifi_ssid", saved_ssid, &required_size);
-            ESP_LOGI(TAG, "Found saved SSID: %s", saved_ssid);
-        } else {
-            ESP_LOGW(TAG, "No saved SSID found");
-            config_valid = false;
-        }
+        char *saved_ssid           = nvs_get_alloc_str(nvs_handle_storage, "wifi_ssid");
+        char *saved_pass           = nvs_get_alloc_str(nvs_handle_storage, "wifi_password");
+        char *saved_firebase_url   = nvs_get_alloc_str(nvs_handle_storage, "firebase_url");
+        char *saved_token          = nvs_get_alloc_str(nvs_handle_storage, "token");
+        char *saved_aws_url        = nvs_get_alloc_str(nvs_handle_storage, "aws_url");
+        char *saved_phone_numbers  = nvs_get_alloc_str(nvs_handle_storage, "phone_numbers");
+        char *saved_sms_messages   = nvs_get_alloc_str(nvs_handle_storage, "sms_messages");
+        char *saved_twilio_acc_sid = nvs_get_alloc_str(nvs_handle_storage, "twilio_acc_sid");
+        char *saved_twilio_token = nvs_get_alloc_str(nvs_handle_storage, "twilio_token");
+        char *saved_twilio_from_n = nvs_get_alloc_str(nvs_handle_storage, "twilio_from_n");
+        char *saved_twilio_url = nvs_get_alloc_str(nvs_handle_storage, "twilio_url");
+        char *saved_enable_twilio = nvs_get_alloc_str(nvs_handle_storage, "enable_twilio");
+        char *saved_enable_aws = nvs_get_alloc_str(nvs_handle_storage, "enable_aws");
 
-        if (nvs_get_str(nvs_handle_storage, "wifi_password", NULL, &required_size) == ESP_OK) {
-            saved_pass = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "wifi_password", saved_pass, &required_size);
-            ESP_LOGI(TAG, "Found saved password");
-        }
+        ESP_LOGI(TAG, "SSID: %s", saved_ssid ? saved_ssid : "(not set)");
+        ESP_LOGI(TAG, "Password: %s", saved_pass ? saved_pass : "(not set)");
+        ESP_LOGI(TAG, "Firebase URL: %s", saved_firebase_url ? saved_firebase_url : "(not set)");
+        ESP_LOGI(TAG, "Token: %s", saved_token ? saved_token : "(not set)");
+        ESP_LOGI(TAG, "AWS URL: %s", saved_aws_url ? saved_aws_url : "(not set)");
+        ESP_LOGI(TAG, "Phone numbers: %s", saved_phone_numbers ? saved_phone_numbers : "(not set)");
+        ESP_LOGI(TAG, "SMS messages: %s", saved_sms_messages ? saved_sms_messages : "(not set)");
+        ESP_LOGI(TAG, "Twilio account SID: %s", saved_twilio_acc_sid ? saved_twilio_acc_sid : "(not set)");
+        ESP_LOGI(TAG, "Twilio auth token: %s", saved_twilio_token ? saved_twilio_token : "(not set)");
+        ESP_LOGI(TAG, "Twilio from number: %s", saved_twilio_from_n ? saved_twilio_from_n : "(not set)");
+        ESP_LOGI(TAG, "Twilio URL: %s", saved_twilio_url ? saved_twilio_url : "(not set)");
+        ESP_LOGI(TAG, "Enable Twilio: %s", saved_enable_twilio ? saved_enable_twilio : "(not set)");
+        ESP_LOGI(TAG, "Enable AWS: %s", saved_enable_aws ? saved_enable_aws : "(not set)");
 
-        // Thay đổi khi đọc từ NVS
-        if (nvs_get_str(nvs_handle_storage, "firebase_url", NULL, &required_size) == ESP_OK) {
-            saved_firebase_url = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "firebase_url", saved_firebase_url, &required_size);
-            ESP_LOGI(TAG, "Found saved server URL: %s", saved_firebase_url);
-        } else {
-            ESP_LOGW(TAG, "No saved server URL found");
-            config_valid = false;
-        }
-
-        if (nvs_get_str(nvs_handle_storage, "token", NULL, &required_size) == ESP_OK) {
-            saved_token = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "token", saved_token, &required_size);
-            ESP_LOGI(TAG, "Found saved token");
-        } else {
-            ESP_LOGW(TAG, "No saved token found");
-            config_valid = false;
-        }
-
-        if (nvs_get_str(nvs_handle_storage, "aws_url", NULL, &required_size) == ESP_OK) {
-            saved_aws_url = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "aws_url", saved_aws_url, &required_size);
-            ESP_LOGI(TAG, "Found saved AWS URL: %s", saved_aws_url);
-        }
-
-        if (nvs_get_str(nvs_handle_storage, "phone_numbers", NULL, &required_size) == ESP_OK) {
-            saved_phone_numbers = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "phone_numbers", saved_phone_numbers, &required_size);
-            ESP_LOGI(TAG, "Found saved phone numbers: %s", saved_phone_numbers);
-        }
-
-        if (nvs_get_str(nvs_handle_storage, "sms_messages", NULL, &required_size) == ESP_OK) {
-            saved_sms_messages = malloc(required_size);
-            nvs_get_str(nvs_handle_storage, "sms_messages", saved_sms_messages, &required_size);
-            ESP_LOGI(TAG, "Found saved SMS messages: %s", saved_sms_messages);
-        }
-
+        if (saved_ssid) free(saved_ssid);
         if (saved_pass) free(saved_pass);
         if (saved_firebase_url) free(saved_firebase_url);
         if (saved_token) free(saved_token);
         if (saved_aws_url) free(saved_aws_url);
         if (saved_phone_numbers) free(saved_phone_numbers);
         if (saved_sms_messages) free(saved_sms_messages);
+        if (saved_twilio_acc_sid) free(saved_twilio_acc_sid);
+        if (saved_twilio_token) free(saved_twilio_token);
+        if (saved_twilio_from_n) free(saved_twilio_from_n);
+        if (saved_twilio_url) free(saved_twilio_url);
+        if (saved_enable_twilio) free(saved_enable_twilio);
+        if (saved_enable_aws) free(saved_enable_aws);
         
         if (config_valid) {
             ESP_LOGI(TAG, "Valid configuration found, starting in Station mode...");
@@ -250,7 +247,7 @@ void app_main(void) {
             xTaskCreatePinnedToCore(
                 http_task,          // Task function
                 "http_task",        // Task name
-                1024 * 4,          // Stack size
+                1024 * 32,          // Stack size
                 NULL,              // Parameters
                 4,                 // Priority (lower)
                 NULL,              // Task handle
@@ -270,11 +267,11 @@ void app_main(void) {
 
             // After creating other tasks, create the GPIO0 SMS task
             xTaskCreatePinnedToCore(
-                gpio0_sms_task,
-                "gpio0_sms_task",
-                1024 * 8,
+                sms_task_wrapper,
+                "sms_task",
+                1024 * 32, // Stack size
                 NULL,
-                3, // Lower priority
+                6, // Lower priority
                 NULL,
                 1 // Application core
             );
@@ -288,53 +285,3 @@ void app_main(void) {
     }
 }
 
-void gpio0_sms_task(void *pvParameters) {
-    static const char *TAG_SMS = "GPIO0_SMS";
-    const int debounce_ms = 200;
-    int last_level = 1;
-    // Đọc cấu hình từ NVS
-    char aws_url[256] = {0};
-    char phone_numbers[256] = {0};
-    char sms_messages[1024] = {0};
-    nvs_handle_t nvs;
-    if (nvs_open("storage", NVS_READONLY, &nvs) == ESP_OK) {
-        size_t sz;
-        sz = sizeof(aws_url); nvs_get_str(nvs, "aws_url", aws_url, &sz);
-        sz = sizeof(phone_numbers); nvs_get_str(nvs, "phone_numbers", phone_numbers, &sz);
-        sz = sizeof(sms_messages); nvs_get_str(nvs, "sms_messages", sms_messages, &sz);
-        nvs_close(nvs);
-    }
-    if (!aws_url[0] || !phone_numbers[0] || !sms_messages[0]) {
-        ESP_LOGE(TAG_SMS, "Missing configuration, phone number, or message");
-        vTaskDelete(NULL);
-        return;
-    }
-    while (1) {
-        int level = gpio_get_level(BUTTON_SEND_SMS);
-        if (level == 0 && last_level == 1) { // Button pressed (active low)
-            ESP_LOGI(TAG_SMS, "Button sent SMS pressed, sending SMS POST requests...");
-            // Parse phone numbers and messages
-            char *phone_ctx = NULL;
-            char *msg_ctx = NULL;
-            char *phone = strtok_r(phone_numbers, ",", &phone_ctx);
-            char *message = strtok_r(sms_messages, "|||", &msg_ctx);
-            int sent = 0;
-            while (phone && message) {
-                ESP_LOGI(TAG_SMS, "Sending to %s: %s", phone, message);
-                esp_err_t err = send_sms_via_aws(aws_url, phone, message);
-                if (err == ESP_OK) {
-                    ESP_LOGI(TAG_SMS, "SMS POST sent successfully to %s", phone);
-                } else {
-                    ESP_LOGE(TAG_SMS, "Failed to send SMS POST to %s: %s", phone, esp_err_to_name(err));
-                }
-                sent++;
-                phone = strtok_r(NULL, ",", &phone_ctx);
-                message = strtok_r(NULL, "|||", &msg_ctx);
-            }
-            ESP_LOGI(TAG_SMS, "Sent %d SMS(s)", sent);
-            vTaskDelay(debounce_ms / portTICK_PERIOD_MS); // Debounce delay
-        }
-        last_level = level;
-        vTaskDelay(50 / portTICK_PERIOD_MS); // Polling interval
-    }
-}
