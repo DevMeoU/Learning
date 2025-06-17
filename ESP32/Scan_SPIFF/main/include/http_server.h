@@ -13,6 +13,11 @@ extern "C" {
 #endif
 
 /**
+ * @brief Initialize network
+ */
+void init_network();
+
+/**
  * @brief Start the HTTP server
  * @return ESP_OK on success
  */

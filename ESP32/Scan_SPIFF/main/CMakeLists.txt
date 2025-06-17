@@ -32,3 +32,4 @@ idf_component_register(
 
 # Create SPIFFS image from 'spiffs_data' directory with partition name 'storage'
 spiffs_create_partition_image(storage ../spiffs_data FLASH_IN_PROJECT)
+set(ESP_TLS_USING_MBEDTLS true)

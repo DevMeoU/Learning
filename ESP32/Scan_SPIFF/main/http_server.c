@@ -30,12 +30,17 @@ extern QueueHandle_t xSensorQueue;
 extern const uint8_t firebase_cert_pem_start[] asm("_binary_firebase_cert_pem_start");
 extern const uint8_t firebase_cert_pem_end[] asm("_binary_firebase_cert_pem_end");
 
+SemaphoreHandle_t network_mutex;
+
 // Function prototypes
 static void urldecode(char *src, char *dest, size_t max_len);
 static esp_err_t root_get_handler(httpd_req_t *req);
 static esp_err_t handle_get_wifi_scan(httpd_req_t *req);
 static esp_err_t handle_get_config(httpd_req_t *req);
 
+void init_network() {
+    network_mutex = xSemaphoreCreateMutex();
+}
 // Simplified send_to_firebase: caller provides firebase host and token separately
 // full URL is built internally to include /data_stream.json?auth=<token>
 
@@ -72,47 +77,54 @@ esp_err_t send_to_firebase(const char* firebase_host, const char* token, const c
     }
     ESP_LOGI(TAG, "Final Firebase URL: %s", full_url);
 
-    // Configure HTTP client with global CA store for TLS verification
-    esp_http_client_config_t config = {
-        .url = full_url,
-        .timeout_ms = 15000,
-        .transport_type = HTTP_TRANSPORT_OVER_SSL,
-        .crt_bundle_attach = esp_crt_bundle_attach,  // enable server certificate verification
-        .skip_cert_common_name_check = false,        // Kiểm tra CN/SAN
-        .keep_alive_enable = true,                   // Giữ kết nối
-    };
-
-    esp_http_client_handle_t client = esp_http_client_init(&config);
-    if (!client) {
-        ESP_LOGE(TAG, "Failed to initialize HTTP client");
-        return ESP_FAIL;
-    }
-
-    // Optionally enforce common name match
-    esp_http_client_set_post_field(client, post_data, strlen(post_data));
-    esp_http_client_set_header(client, "Content-Type", "application/json");
-    esp_http_client_set_method(client, method);
-
     esp_err_t err = ESP_FAIL;
-    for (int i = 0; i < 3; ++i) {
-        err = esp_http_client_perform(client);
-        if (err == ESP_OK) {
-            int status = esp_http_client_get_status_code(client);
-            ESP_LOGI(TAG, "HTTP status = %d", status);
-            if (status >= 200 && status < 300) {
-                break;
-            }
-            ESP_LOGW(TAG, "Server returned HTTP %d", status);
-        } else {
-            ESP_LOGW(TAG, "Request failed: %s", esp_err_to_name(err));
-            int tls_code, tls_flags;
-            esp_tls_get_and_clear_last_error(NULL, &tls_code, &tls_flags);
-            ESP_LOGW(TAG, "TLS error: code=%d, flags=0x%x", tls_code, tls_flags);
+    if (xSemaphoreTake(network_mutex, pdMS_TO_TICKS(10000)) == pdTRUE) 
+    {
+        // Configure HTTP client with global CA store for TLS verification
+        esp_http_client_config_t config = {
+            .url = full_url,
+            .timeout_ms = 15000,
+            .transport_type = HTTP_TRANSPORT_OVER_SSL,
+            .crt_bundle_attach = esp_crt_bundle_attach,  // enable server certificate verification
+            .skip_cert_common_name_check = false,        // Kiểm tra CN/SAN
+            .keep_alive_enable = true,                   // Giữ kết nối
+        };
+        
+        esp_http_client_handle_t client = esp_http_client_init(&config);
+        if (!client) {
+            ESP_LOGE(TAG, "Failed to initialize HTTP client");
+            return ESP_FAIL;
         }
-        vTaskDelay(pdMS_TO_TICKS(2000 << i));  // backoff
-    }
 
-    esp_http_client_cleanup(client);
+        // Optionally enforce common name match
+        esp_http_client_set_post_field(client, post_data, strlen(post_data));
+        esp_http_client_set_header(client, "Content-Type", "application/json");
+        esp_http_client_set_method(client, method);
+
+        for (int i = 0; i < 3; ++i) {
+            err = esp_http_client_perform(client);
+            if (err == ESP_OK) {
+                int status = esp_http_client_get_status_code(client);
+                ESP_LOGI(TAG, "HTTP status = %d", status);
+                if (status >= 200 && status < 300) {
+                    break;
+                }
+                ESP_LOGW(TAG, "Server returned HTTP %d", status);
+            } else {
+                ESP_LOGW(TAG, "Request failed: %s", esp_err_to_name(err));
+                int tls_code, tls_flags;
+                esp_tls_get_and_clear_last_error(NULL, &tls_code, &tls_flags);
+                ESP_LOGW(TAG, "TLS error: code=%d, flags=0x%x", tls_code, tls_flags);
+            }
+            vTaskDelay(pdMS_TO_TICKS(2000 << i));  // backoff
+        }
+
+        esp_http_client_cleanup(client);
+        xSemaphoreGive(network_mutex);
+    } else {
+        ESP_LOGE(TAG, "Failed to acquire network mutex");
+        err = ESP_FAIL;
+    }
     return err;
 }
 

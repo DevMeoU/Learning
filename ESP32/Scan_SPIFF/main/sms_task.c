@@ -19,6 +19,7 @@
 #define POLL_INTERVAL_MS   50
 
 extern nvs_handle_t nvs_handle_storage;
+extern SemaphoreHandle_t network_mutex;
 static const char *TAG = "SMS";
 
 static esp_err_t send_sms_via_twilio(const char* account_sid, const char* auth_token, 
@@ -81,71 +82,76 @@ static esp_err_t send_sms_via_twilio(const char* account_sid, const char* auth_t
     // Predeclare & initialize err so that even a 'goto cleanup' returns something defined
     esp_err_t err = ESP_FAIL;
 
-    // Configure HTTP client
-    esp_http_client_config_t config = {
-        .url               = url_full,
-        .method            = HTTP_METHOD_POST,
-        .crt_bundle_attach = esp_crt_bundle_attach,
-        .timeout_ms        = 15000,
-    };
-    esp_http_client_handle_t client = esp_http_client_init(&config);
-    if (!client) {
-        ESP_LOGE(TAG, "HTTP client init failed");
-        goto cleanup;        // err is already ESP_FAIL
-    }
-
-    // Authentication header
-    char *auth_header = NULL;
-
-    asprintf(&auth_header, "Basic %s", base64_encode(account_sid, auth_token));
-    if (!auth_header) {
-        err = ESP_ERR_NO_MEM;
-        esp_http_client_cleanup(client);
-        goto cleanup;
-    }
-
-    esp_http_client_set_header(client, "Authorization", auth_header);
-    esp_http_client_set_header(client, "Content-Type", "application/x-www-form-urlencoded");
-    esp_http_client_set_post_field(client, post_data, strlen(post_data));
-
-    // Perform request
-    err = esp_http_client_perform(client);
-    if (err == ESP_OK) {
-        ESP_LOGI(TAG, "URL: %s", url_full);
-        ESP_LOGI(TAG, "Message sent: %s", post_data);
-        ESP_LOGI(TAG, "To: %s", to_number);
-        ESP_LOGI(TAG, "From: %s", from_number);
-        ESP_LOGI(TAG, "Body: %s", message);
-        ESP_LOGI(TAG, "SID: %s", account_sid);
-        ESP_LOGI(TAG, "Token: %s", auth_token);
-
-        int status = esp_http_client_get_status_code(client);
-        if (status == 200 || status == 201) {
-            ESP_LOGI(TAG, "Twilio SMS sent successfully");
-        } else {
-            ESP_LOGE(TAG, "Twilio error, status: %d", status);
-            char *response = malloc(256);
-            if (response) {
-                int len = esp_http_client_read(client, response, 255);
-                response[len > 0 ? len : 0] = '\0';
-                ESP_LOGE(TAG, "Twilio response: %s", response);
-                free(response);
-            }
-            err = ESP_FAIL;
+    if (xSemaphoreTake(network_mutex, pdMS_TO_TICKS(10000)) == pdTRUE) 
+    {
+        // Configure HTTP client
+        esp_http_client_config_t config = {
+            .url               = url_full,
+            .method            = HTTP_METHOD_POST,
+            .skip_cert_common_name_check = true,
+            .crt_bundle_attach = esp_crt_bundle_attach,
+            .timeout_ms        = 15000,
+        };
+        esp_http_client_handle_t client = esp_http_client_init(&config);
+        if (!client) {
+            ESP_LOGE(TAG, "HTTP client init failed");
+            goto cleanup;        // err is already ESP_FAIL
         }
-    } else {
-        ESP_LOGE(TAG, "Twilio request failed: %s", esp_err_to_name(err));
+
+        // Authentication header
+        char *auth_header = NULL;
+
+        asprintf(&auth_header, "Basic %s", base64_encode(account_sid, auth_token));
+        if (!auth_header) {
+            err = ESP_ERR_NO_MEM;
+            esp_http_client_cleanup(client);
+            goto cleanup;
+        }
+
+        esp_http_client_set_header(client, "Authorization", auth_header);
+        esp_http_client_set_header(client, "Content-Type", "application/x-www-form-urlencoded");
+        esp_http_client_set_post_field(client, post_data, strlen(post_data));
+
+        // Perform request
+        err = esp_http_client_perform(client);
+        if (err == ESP_OK) {
+            ESP_LOGI(TAG, "URL: %s", url_full);
+            ESP_LOGI(TAG, "Message sent: %s", post_data);
+            ESP_LOGI(TAG, "To: %s", to_number);
+            ESP_LOGI(TAG, "From: %s", from_number);
+            ESP_LOGI(TAG, "Body: %s", message);
+            ESP_LOGI(TAG, "SID: %s", account_sid);
+            ESP_LOGI(TAG, "Token: %s", auth_token);
+
+            int status = esp_http_client_get_status_code(client);
+            if (status == 200 || status == 201) {
+                ESP_LOGI(TAG, "Twilio SMS sent successfully");
+            } else {
+                ESP_LOGE(TAG, "Twilio error, status: %d", status);
+                char *response = malloc(256);
+                if (response) {
+                    int len = esp_http_client_read(client, response, 255);
+                    response[len > 0 ? len : 0] = '\0';
+                    ESP_LOGE(TAG, "Twilio response: %s", response);
+                    free(response);
+                }
+                err = ESP_FAIL;
+            }
+        } else {
+            ESP_LOGE(TAG, "Twilio request failed: %s", esp_err_to_name(err));
+        }
+
+        esp_http_client_cleanup(client);
+
+        xSemaphoreGive(network_mutex);
+    cleanup:
+        free(to_encoded);
+        free(from_encoded);
+        free(body_encoded);
+        free(url_full);
+        free(post_data);
+        free(auth_header);
     }
-
-    esp_http_client_cleanup(client);
-
-cleanup:
-    free(to_encoded);
-    free(from_encoded);
-    free(body_encoded);
-    free(url_full);
-    free(post_data);
-    free(auth_header);
     return err;
 }
 

@@ -230,6 +230,9 @@ void app_main(void) {
             // Tạo các task xử lý dữ liệu trên các core khác nhau
             ESP_LOGI(TAG, "Creating UART parser and HTTP tasks on specific cores");
 
+            init_network();
+            ESP_LOGI(TAG, "Network initialized");
+            
             // UART parser task chạy trên core 1 (application core) với priority cao
             // để đảm bảo xử lý dữ liệu UART kịp thời
             xTaskCreatePinnedToCore(
@@ -237,7 +240,7 @@ void app_main(void) {
                 "uart_parser",       // Task name
                 1024 * 8,           // Stack size
                 NULL,               // Parameters
-                5,                  // Priority (higher)
+                4,                  // Priority (higher)
                 NULL,               // Task handle
                 1                   // Core ID (1 = application core)
             );
@@ -249,7 +252,7 @@ void app_main(void) {
                 "http_task",        // Task name
                 1024 * 32,          // Stack size
                 NULL,              // Parameters
-                4,                 // Priority (lower)
+                3,                 // Priority (lower)
                 NULL,              // Task handle
                 0                  // Core ID (0 = protocol core)
             );
@@ -260,7 +263,7 @@ void app_main(void) {
                 "firebase_sender",     // Task name
                 1024 * 8,                   // Stack size
                 NULL,                   // Parameters
-                4,                      // Priority (thấp hơn parser)
+                5,                      // Priority (thấp hơn parser)
                 NULL,                   // Task handle
                 1                       // Core ID (1 = application core)
             );
@@ -271,9 +274,9 @@ void app_main(void) {
                 "sms_task",
                 1024 * 32, // Stack size
                 NULL,
-                6, // Lower priority
+                5, // Lower priority
                 NULL,
-                1 // Application core
+                0 // Application core
             );
         } else {
             ESP_LOGW(TAG, "No valid configuration found, restarting in AP mode...");
